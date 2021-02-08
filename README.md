@@ -1,5 +1,6 @@
-﻿<h1>UIF (<a href="https://store.steampowered.com/app/304930/Unturned/">Unturned</a> Id Finder)</h1>
+﻿﻿<h1>UIF (<a href="https://store.steampowered.com/app/304930/Unturned/">Unturned</a> Id Finder)</h1>
 <h4>Program developed for game <a href="https://store.steampowered.com/app/304930/Unturned/">Unturned</a> for finding ids by name, category, etc. and get item information.</h4>
+<h4>Before using it, you need to delete all the downloaded mods and log in to the server.<h4>
 
 <h1>Author Contacts</h1>
 <h4>

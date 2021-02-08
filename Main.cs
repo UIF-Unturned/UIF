@@ -16,7 +16,8 @@ namespace UIF
 	{
 		public string folderPath = (string)Core.GetRegistryParam(Program.Version+"\\Settings\\modsPath");
 		private string ModsTip = "Path to folder with mods.\nExample: " +
-			@"C:\Program Files (x86)\Steam\steamapps\workshop\content\304930";
+			@"C:\Program Files (x86)\Steam\steamapps\workshop\content\304930" +
+			"\n\nBefore using it, you need to delete all the downloaded mods and log in to the server.";
 		private ToolTip Tip = new ToolTip();
 
 		public Main()
