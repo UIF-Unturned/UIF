@@ -17,6 +17,12 @@ namespace UIF
 
 		public itemList(List<item> _items)
 		{
+			if (_items == null)
+			{
+				MessageBox.Show("Error in Item List.", "Error!");
+				return;
+			}
+
 			InitializeComponent();
 
 			for (int i = 0; i < _items.Count; i++)
@@ -46,6 +52,8 @@ namespace UIF
 				RangeTextBox.Clear();
 				StructureDamageTextBox.Clear();
 				PlayerDamageTextBox.Clear();
+				EngineTextBox.Clear();
+				VehicleHealthTextBox.Clear();
 			}
 			else
 			{
@@ -97,6 +105,14 @@ namespace UIF
 
 				if (currentItem.itemType2 != null)
 					ItemType2TextBox.Text = currentItem.itemType2;
+
+				if (currentItem.itemType2 != null)
+					if (currentItem.itemType2.Contains("Vehicle"))
+						EngineTextBox.Text = currentItem.engine.ToString();
+
+				if (currentItem.itemType2 != null)
+					if (currentItem.itemType2.Contains("Vehicle"))
+						VehicleHealthTextBox.Text = currentItem.vehicleHealth.ToString();
 			}
 		}
 

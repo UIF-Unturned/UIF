@@ -159,15 +159,16 @@ namespace UIF
 
 		private void VehiclesBtn_Click(object sender, EventArgs e)
 		{
-			var items = Core.parseAll(folderPath, i =>
-			{
-				if (i.itemType2 != null)
-					if (i.itemType2.Contains("Vehicle"))
-						return true;
-				return false;
-			});
+			//var items = Core.parseAll(folderPath, i =>
+			//{
+			//	if (i.itemType2 != null)
+			//		if (i.itemType2.Contains("Vehicle"))
+			//			return true;
+			//	return false;
+			//});
 
-			new itemList(items).ShowDialog();
+			//new itemList(items).ShowDialog();
+			new VehicleCategories(folderPath).ShowDialog();
 		}
 	}
 }

@@ -62,6 +62,10 @@
             this.SortingGroupBox = new System.Windows.Forms.GroupBox();
             this.SortDamageBuildingsBtn = new System.Windows.Forms.Button();
             this.MixBtn = new System.Windows.Forms.Button();
+            this.VehicleHealthTextBox = new System.Windows.Forms.TextBox();
+            this.VehicleHealthLabel = new System.Windows.Forms.Label();
+            this.EngineTextBox = new System.Windows.Forms.TextBox();
+            this.EngineLabel = new System.Windows.Forms.Label();
             this.InfoGroupBox.SuspendLayout();
             this.ItemStatsGroupBox.SuspendLayout();
             this.SortingGroupBox.SuspendLayout();
@@ -82,7 +86,7 @@
             this.ResultsListBox.FormattingEnabled = true;
             this.ResultsListBox.Location = new System.Drawing.Point(12, 29);
             this.ResultsListBox.Name = "ResultsListBox";
-            this.ResultsListBox.Size = new System.Drawing.Size(167, 472);
+            this.ResultsListBox.Size = new System.Drawing.Size(167, 511);
             this.ResultsListBox.TabIndex = 6;
             this.ResultsListBox.TabStop = false;
             this.ResultsListBox.SelectedIndexChanged += new System.EventHandler(this.ResultsListBox_SelectedIndexChanged);
@@ -154,6 +158,10 @@
             // 
             // ItemStatsGroupBox
             // 
+            this.ItemStatsGroupBox.Controls.Add(this.VehicleHealthTextBox);
+            this.ItemStatsGroupBox.Controls.Add(this.VehicleHealthLabel);
+            this.ItemStatsGroupBox.Controls.Add(this.EngineTextBox);
+            this.ItemStatsGroupBox.Controls.Add(this.EngineLabel);
             this.ItemStatsGroupBox.Controls.Add(this.RangeTextBox);
             this.ItemStatsGroupBox.Controls.Add(this.ItemType2TextBox);
             this.ItemStatsGroupBox.Controls.Add(this.RangeLabel);
@@ -174,7 +182,7 @@
             this.ItemStatsGroupBox.Controls.Add(this.CapacityLabel);
             this.ItemStatsGroupBox.Location = new System.Drawing.Point(185, 128);
             this.ItemStatsGroupBox.Name = "ItemStatsGroupBox";
-            this.ItemStatsGroupBox.Size = new System.Drawing.Size(263, 200);
+            this.ItemStatsGroupBox.Size = new System.Drawing.Size(263, 240);
             this.ItemStatsGroupBox.TabIndex = 4;
             this.ItemStatsGroupBox.TabStop = false;
             this.ItemStatsGroupBox.Text = "Item Stats";
@@ -399,7 +407,7 @@
             this.SortingGroupBox.Controls.Add(this.SortProtectionBtn);
             this.SortingGroupBox.Controls.Add(this.SortCapacityBtn);
             this.SortingGroupBox.Controls.Add(this.SortDamagePlayersBtn);
-            this.SortingGroupBox.Location = new System.Drawing.Point(185, 334);
+            this.SortingGroupBox.Location = new System.Drawing.Point(185, 374);
             this.SortingGroupBox.Name = "SortingGroupBox";
             this.SortingGroupBox.Size = new System.Drawing.Size(263, 167);
             this.SortingGroupBox.TabIndex = 0;
@@ -428,11 +436,51 @@
             this.MixBtn.UseVisualStyleBackColor = true;
             this.MixBtn.Click += new System.EventHandler(this.MixBtn_Click);
             // 
+            // VehicleHealthTextBox
+            // 
+            this.VehicleHealthTextBox.Location = new System.Drawing.Point(195, 218);
+            this.VehicleHealthTextBox.Name = "VehicleHealthTextBox";
+            this.VehicleHealthTextBox.ReadOnly = true;
+            this.VehicleHealthTextBox.Size = new System.Drawing.Size(62, 20);
+            this.VehicleHealthTextBox.TabIndex = 18;
+            this.VehicleHealthTextBox.TabStop = false;
+            this.VehicleHealthTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // VehicleHealthLabel
+            // 
+            this.VehicleHealthLabel.AutoSize = true;
+            this.VehicleHealthLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.VehicleHealthLabel.Location = new System.Drawing.Point(6, 216);
+            this.VehicleHealthLabel.Name = "VehicleHealthLabel";
+            this.VehicleHealthLabel.Size = new System.Drawing.Size(116, 20);
+            this.VehicleHealthLabel.TabIndex = 19;
+            this.VehicleHealthLabel.Text = "Vehicle Health:";
+            // 
+            // EngineTextBox
+            // 
+            this.EngineTextBox.Location = new System.Drawing.Point(195, 198);
+            this.EngineTextBox.Name = "EngineTextBox";
+            this.EngineTextBox.ReadOnly = true;
+            this.EngineTextBox.Size = new System.Drawing.Size(62, 20);
+            this.EngineTextBox.TabIndex = 20;
+            this.EngineTextBox.TabStop = false;
+            this.EngineTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // EngineLabel
+            // 
+            this.EngineLabel.AutoSize = true;
+            this.EngineLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.EngineLabel.Location = new System.Drawing.Point(6, 196);
+            this.EngineLabel.Name = "EngineLabel";
+            this.EngineLabel.Size = new System.Drawing.Size(63, 20);
+            this.EngineLabel.TabIndex = 21;
+            this.EngineLabel.Text = "Engine:";
+            // 
             // itemList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(460, 508);
+            this.ClientSize = new System.Drawing.Size(460, 550);
             this.Controls.Add(this.SortingGroupBox);
             this.Controls.Add(this.ItemStatsGroupBox);
             this.Controls.Add(this.InfoGroupBox);
@@ -487,5 +535,9 @@
         private System.Windows.Forms.TextBox PlayerDamageTextBox;
         private System.Windows.Forms.Label PlayerDamageLabel;
         private System.Windows.Forms.Button SortDamageBuildingsBtn;
+        private System.Windows.Forms.TextBox VehicleHealthTextBox;
+        private System.Windows.Forms.Label VehicleHealthLabel;
+        private System.Windows.Forms.TextBox EngineTextBox;
+        private System.Windows.Forms.Label EngineLabel;
     }
 }

@@ -37,29 +37,34 @@
             this.IDBox = new System.Windows.Forms.TextBox();
             this.AllItemsBtn = new System.Windows.Forms.Button();
             this.SearchNameBtn = new System.Windows.Forms.Button();
-            this.FldrTextBox = new System.Windows.Forms.TextBox();
             this.SelectFldrLabel = new System.Windows.Forms.Label();
-            this.SelectFldrBtn = new System.Windows.Forms.Button();
             this.CopyrightLabel = new System.Windows.Forms.Label();
             this.VersionLabel = new System.Windows.Forms.Label();
             this.SettingsGroupBox = new System.Windows.Forms.GroupBox();
+            this.OpenFldrBtn = new System.Windows.Forms.PictureBox();
+            this.MinusFldrBtn = new System.Windows.Forms.PictureBox();
+            this.PlusFldrBtn = new System.Windows.Forms.PictureBox();
+            this.FldrComboBox = new System.Windows.Forms.ComboBox();
             this.InfoBtn = new System.Windows.Forms.PictureBox();
+            this.AbouGroupBox = new System.Windows.Forms.GroupBox();
             this.DiscordLink = new System.Windows.Forms.PictureBox();
             this.GitHubLink = new System.Windows.Forms.PictureBox();
-            this.AbouGroupBox = new System.Windows.Forms.GroupBox();
             this.MainGroupBox.SuspendLayout();
             this.SettingsGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.OpenFldrBtn)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MinusFldrBtn)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PlusFldrBtn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.InfoBtn)).BeginInit();
+            this.AbouGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DiscordLink)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GitHubLink)).BeginInit();
-            this.AbouGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // NameTextBox
             // 
             this.NameTextBox.Location = new System.Drawing.Point(152, 19);
             this.NameTextBox.Name = "NameTextBox";
-            this.NameTextBox.Size = new System.Drawing.Size(154, 20);
+            this.NameTextBox.Size = new System.Drawing.Size(207, 20);
             this.NameTextBox.TabIndex = 5;
             this.NameTextBox.TabStop = false;
             // 
@@ -85,7 +90,7 @@
             this.MainGroupBox.Controls.Add(this.EnterNameLabel);
             this.MainGroupBox.Location = new System.Drawing.Point(12, 12);
             this.MainGroupBox.Name = "MainGroupBox";
-            this.MainGroupBox.Size = new System.Drawing.Size(393, 103);
+            this.MainGroupBox.Size = new System.Drawing.Size(455, 103);
             this.MainGroupBox.TabIndex = 5;
             this.MainGroupBox.TabStop = false;
             this.MainGroupBox.Text = "MAIN";
@@ -93,9 +98,9 @@
             // SearchIDBtn
             // 
             this.SearchIDBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.SearchIDBtn.Location = new System.Drawing.Point(312, 45);
+            this.SearchIDBtn.Location = new System.Drawing.Point(365, 45);
             this.SearchIDBtn.Name = "SearchIDBtn";
-            this.SearchIDBtn.Size = new System.Drawing.Size(75, 20);
+            this.SearchIDBtn.Size = new System.Drawing.Size(84, 20);
             this.SearchIDBtn.TabIndex = 0;
             this.SearchIDBtn.TabStop = false;
             this.SearchIDBtn.Text = "Search";
@@ -117,7 +122,7 @@
             // 
             this.IDBox.Location = new System.Drawing.Point(152, 45);
             this.IDBox.Name = "IDBox";
-            this.IDBox.Size = new System.Drawing.Size(154, 20);
+            this.IDBox.Size = new System.Drawing.Size(207, 20);
             this.IDBox.TabIndex = 2;
             this.IDBox.TabStop = false;
             // 
@@ -126,7 +131,7 @@
             this.AllItemsBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.AllItemsBtn.Location = new System.Drawing.Point(6, 71);
             this.AllItemsBtn.Name = "AllItemsBtn";
-            this.AllItemsBtn.Size = new System.Drawing.Size(381, 23);
+            this.AllItemsBtn.Size = new System.Drawing.Size(443, 23);
             this.AllItemsBtn.TabIndex = 3;
             this.AllItemsBtn.TabStop = false;
             this.AllItemsBtn.Text = "View items by categories";
@@ -136,24 +141,14 @@
             // SearchNameBtn
             // 
             this.SearchNameBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.SearchNameBtn.Location = new System.Drawing.Point(312, 19);
+            this.SearchNameBtn.Location = new System.Drawing.Point(365, 19);
             this.SearchNameBtn.Name = "SearchNameBtn";
-            this.SearchNameBtn.Size = new System.Drawing.Size(75, 20);
+            this.SearchNameBtn.Size = new System.Drawing.Size(84, 20);
             this.SearchNameBtn.TabIndex = 4;
             this.SearchNameBtn.TabStop = false;
             this.SearchNameBtn.Text = "Search";
             this.SearchNameBtn.UseVisualStyleBackColor = true;
             this.SearchNameBtn.Click += new System.EventHandler(this.SearchNameBtn_Click);
-            // 
-            // FldrTextBox
-            // 
-            this.FldrTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.FldrTextBox.Location = new System.Drawing.Point(6, 42);
-            this.FldrTextBox.Name = "FldrTextBox";
-            this.FldrTextBox.ReadOnly = true;
-            this.FldrTextBox.Size = new System.Drawing.Size(381, 23);
-            this.FldrTextBox.TabIndex = 1;
-            this.FldrTextBox.TabStop = false;
             // 
             // SelectFldrLabel
             // 
@@ -166,23 +161,11 @@
             this.SelectFldrLabel.Text = "Selected folder with mods:";
             this.SelectFldrLabel.Click += new System.EventHandler(this.SelectFldrLabel_Click);
             // 
-            // SelectFldrBtn
-            // 
-            this.SelectFldrBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.SelectFldrBtn.Location = new System.Drawing.Point(200, 13);
-            this.SelectFldrBtn.Name = "SelectFldrBtn";
-            this.SelectFldrBtn.Size = new System.Drawing.Size(157, 23);
-            this.SelectFldrBtn.TabIndex = 0;
-            this.SelectFldrBtn.TabStop = false;
-            this.SelectFldrBtn.Text = "Select a folder with mods";
-            this.SelectFldrBtn.UseVisualStyleBackColor = true;
-            this.SelectFldrBtn.Click += new System.EventHandler(this.SelectFldrBtn_Click);
-            // 
             // CopyrightLabel
             // 
             this.CopyrightLabel.AutoSize = true;
             this.CopyrightLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.CopyrightLabel.Location = new System.Drawing.Point(321, 47);
+            this.CopyrightLabel.Location = new System.Drawing.Point(383, 47);
             this.CopyrightLabel.Name = "CopyrightLabel";
             this.CopyrightLabel.Size = new System.Drawing.Size(72, 18);
             this.CopyrightLabel.TabIndex = 4;
@@ -193,7 +176,7 @@
             // 
             this.VersionLabel.AutoSize = true;
             this.VersionLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.VersionLabel.Location = new System.Drawing.Point(196, 35);
+            this.VersionLabel.Location = new System.Drawing.Point(175, 19);
             this.VersionLabel.Name = "VersionLabel";
             this.VersionLabel.Size = new System.Drawing.Size(42, 20);
             this.VersionLabel.TabIndex = 3;
@@ -202,28 +185,90 @@
             // 
             // SettingsGroupBox
             // 
+            this.SettingsGroupBox.Controls.Add(this.OpenFldrBtn);
+            this.SettingsGroupBox.Controls.Add(this.MinusFldrBtn);
+            this.SettingsGroupBox.Controls.Add(this.PlusFldrBtn);
+            this.SettingsGroupBox.Controls.Add(this.FldrComboBox);
             this.SettingsGroupBox.Controls.Add(this.InfoBtn);
-            this.SettingsGroupBox.Controls.Add(this.SelectFldrBtn);
-            this.SettingsGroupBox.Controls.Add(this.FldrTextBox);
             this.SettingsGroupBox.Controls.Add(this.SelectFldrLabel);
             this.SettingsGroupBox.Location = new System.Drawing.Point(12, 121);
             this.SettingsGroupBox.Name = "SettingsGroupBox";
-            this.SettingsGroupBox.Size = new System.Drawing.Size(393, 74);
+            this.SettingsGroupBox.Size = new System.Drawing.Size(455, 74);
             this.SettingsGroupBox.TabIndex = 0;
             this.SettingsGroupBox.TabStop = false;
             this.SettingsGroupBox.Text = "SETTINGS";
+            // 
+            // OpenFldrBtn
+            // 
+            this.OpenFldrBtn.Image = global::UIF.Properties.Resources.folder_icon;
+            this.OpenFldrBtn.InitialImage = global::UIF.Properties.Resources.folder_icon;
+            this.OpenFldrBtn.Location = new System.Drawing.Point(425, 13);
+            this.OpenFldrBtn.Name = "OpenFldrBtn";
+            this.OpenFldrBtn.Size = new System.Drawing.Size(24, 23);
+            this.OpenFldrBtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.OpenFldrBtn.TabIndex = 6;
+            this.OpenFldrBtn.TabStop = false;
+            this.OpenFldrBtn.Click += new System.EventHandler(this.OpenFldrBtn_Click);
+            // 
+            // MinusFldrBtn
+            // 
+            this.MinusFldrBtn.Image = ((System.Drawing.Image)(resources.GetObject("MinusFldrBtn.Image")));
+            this.MinusFldrBtn.InitialImage = ((System.Drawing.Image)(resources.GetObject("MinusFldrBtn.InitialImage")));
+            this.MinusFldrBtn.Location = new System.Drawing.Point(395, 13);
+            this.MinusFldrBtn.Name = "MinusFldrBtn";
+            this.MinusFldrBtn.Size = new System.Drawing.Size(24, 23);
+            this.MinusFldrBtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.MinusFldrBtn.TabIndex = 5;
+            this.MinusFldrBtn.TabStop = false;
+            this.MinusFldrBtn.Click += new System.EventHandler(this.MinusFldrBtn_Click);
+            // 
+            // PlusFldrBtn
+            // 
+            this.PlusFldrBtn.Image = ((System.Drawing.Image)(resources.GetObject("PlusFldrBtn.Image")));
+            this.PlusFldrBtn.InitialImage = ((System.Drawing.Image)(resources.GetObject("PlusFldrBtn.InitialImage")));
+            this.PlusFldrBtn.Location = new System.Drawing.Point(365, 13);
+            this.PlusFldrBtn.Name = "PlusFldrBtn";
+            this.PlusFldrBtn.Size = new System.Drawing.Size(24, 23);
+            this.PlusFldrBtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.PlusFldrBtn.TabIndex = 4;
+            this.PlusFldrBtn.TabStop = false;
+            this.PlusFldrBtn.Click += new System.EventHandler(this.PlusFldrBtn_Click);
+            // 
+            // FldrComboBox
+            // 
+            this.FldrComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.FldrComboBox.Location = new System.Drawing.Point(6, 42);
+            this.FldrComboBox.Name = "FldrComboBox";
+            this.FldrComboBox.Size = new System.Drawing.Size(443, 21);
+            this.FldrComboBox.TabIndex = 0;
+            this.FldrComboBox.TabStop = false;
+            this.FldrComboBox.SelectedIndexChanged += new System.EventHandler(this.FldrComboBox_SelectedIndexChanged);
+            this.FldrComboBox.TextUpdate += new System.EventHandler(this.FldrComboBox_TextUpdate);
             // 
             // InfoBtn
             // 
             this.InfoBtn.Image = global::UIF.Properties.Resources.info_icon;
             this.InfoBtn.InitialImage = global::UIF.Properties.Resources.info_icon;
-            this.InfoBtn.Location = new System.Drawing.Point(363, 13);
+            this.InfoBtn.Location = new System.Drawing.Point(169, 13);
             this.InfoBtn.Name = "InfoBtn";
             this.InfoBtn.Size = new System.Drawing.Size(24, 23);
             this.InfoBtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.InfoBtn.TabIndex = 3;
             this.InfoBtn.TabStop = false;
             this.InfoBtn.Click += new System.EventHandler(this.InfoBtn_Click);
+            // 
+            // AbouGroupBox
+            // 
+            this.AbouGroupBox.Controls.Add(this.VersionLabel);
+            this.AbouGroupBox.Controls.Add(this.CopyrightLabel);
+            this.AbouGroupBox.Controls.Add(this.DiscordLink);
+            this.AbouGroupBox.Controls.Add(this.GitHubLink);
+            this.AbouGroupBox.Location = new System.Drawing.Point(12, 201);
+            this.AbouGroupBox.Name = "AbouGroupBox";
+            this.AbouGroupBox.Size = new System.Drawing.Size(455, 65);
+            this.AbouGroupBox.TabIndex = 6;
+            this.AbouGroupBox.TabStop = false;
+            this.AbouGroupBox.Text = "About";
             // 
             // DiscordLink
             // 
@@ -251,24 +296,11 @@
             this.GitHubLink.TabStop = false;
             this.GitHubLink.Click += new System.EventHandler(this.GitHubLink_Click);
             // 
-            // AbouGroupBox
-            // 
-            this.AbouGroupBox.Controls.Add(this.VersionLabel);
-            this.AbouGroupBox.Controls.Add(this.CopyrightLabel);
-            this.AbouGroupBox.Controls.Add(this.DiscordLink);
-            this.AbouGroupBox.Controls.Add(this.GitHubLink);
-            this.AbouGroupBox.Location = new System.Drawing.Point(12, 201);
-            this.AbouGroupBox.Name = "AbouGroupBox";
-            this.AbouGroupBox.Size = new System.Drawing.Size(393, 65);
-            this.AbouGroupBox.TabIndex = 6;
-            this.AbouGroupBox.TabStop = false;
-            this.AbouGroupBox.Text = "About";
-            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(416, 273);
+            this.ClientSize = new System.Drawing.Size(479, 276);
             this.Controls.Add(this.AbouGroupBox);
             this.Controls.Add(this.SettingsGroupBox);
             this.Controls.Add(this.MainGroupBox);
@@ -281,11 +313,14 @@
             this.MainGroupBox.PerformLayout();
             this.SettingsGroupBox.ResumeLayout(false);
             this.SettingsGroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.OpenFldrBtn)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MinusFldrBtn)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PlusFldrBtn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.InfoBtn)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DiscordLink)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.GitHubLink)).EndInit();
             this.AbouGroupBox.ResumeLayout(false);
             this.AbouGroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DiscordLink)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GitHubLink)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -297,8 +332,6 @@
         private System.Windows.Forms.GroupBox MainGroupBox;
         private System.Windows.Forms.Button SearchNameBtn;
         private System.Windows.Forms.Button AllItemsBtn;
-        private System.Windows.Forms.Button SelectFldrBtn;
-        private System.Windows.Forms.TextBox FldrTextBox;
         private System.Windows.Forms.Label SelectFldrLabel;
         private System.Windows.Forms.Label CopyrightLabel;
         private System.Windows.Forms.Button SearchIDBtn;
@@ -310,6 +343,10 @@
         private System.Windows.Forms.GroupBox SettingsGroupBox;
         private System.Windows.Forms.PictureBox InfoBtn;
         private System.Windows.Forms.GroupBox AbouGroupBox;
+        private System.Windows.Forms.ComboBox FldrComboBox;
+        private System.Windows.Forms.PictureBox MinusFldrBtn;
+        private System.Windows.Forms.PictureBox PlusFldrBtn;
+        private System.Windows.Forms.PictureBox OpenFldrBtn;
     }
 }
 

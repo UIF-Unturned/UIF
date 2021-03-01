@@ -34,6 +34,10 @@ namespace UIF
 
 		public int? width = null, height = null;
 
+		public string engine = null;
+
+		public float? vehicleHealth = null;
+
 		public float? armor = null;
 
 		public float? range = null;
@@ -77,6 +81,13 @@ namespace UIF
 
 		public static List<item> parseAll(string folderPath, Func<item, bool> filter)
 		{
+			if (!Directory.Exists(folderPath))
+			{
+				MessageBox.Show("Folder doesn't exist", "Error!");
+				throw new Errors.FolderDoesntExist();
+				return null;
+			}
+
 			List<string> dirs = Directory.EnumerateDirectories(folderPath, "*", SearchOption.AllDirectories).ToList();
 			List<item> items = new List<item>();
 
@@ -101,6 +112,13 @@ namespace UIF
 		}
 		public static item parseDat(List<string> files, string EnglishDat, Func<item, bool> filter)
 		{
+			if (!File.Exists(EnglishDat))
+			{
+				MessageBox.Show("Folder doesn't exist", "Error!");
+				throw new Errors.FolderDoesntExist();
+				return null;
+			}
+
 			foreach (string a in files)
 				if (!a.EndsWith("English.dat"))
 				{
@@ -119,6 +137,10 @@ namespace UIF
 								item.height = line.Replace("Height ", "").ToInt();
 							else if (line.StartsWith("Useable "))
 								item.itemType = line.Replace("Useable ", "");
+							else if (line.StartsWith("Engine "))
+								item.engine = line.Replace("Engine ", "");
+							else if (line.StartsWith("Health "))
+								item.vehicleHealth = line.Replace("Health ", "").Replace(".", ",").ToFloat();
 							else if (line.StartsWith("Armor "))
 								item.armor = line.Replace("Armor ", "").Replace(".", ",").ToFloat();
 							else if (line.StartsWith("Player_Spine_Multiplier "))
@@ -327,4 +349,48 @@ namespace UIF.Errors
 	public class InvalidMode : Exception { }
 	public class YouInvalid : Exception { }
 	public class CursedCreator : Exception { }
+	public class FolderDoesntExist : Exception { }
+}
+
+namespace UIF.GUI
+{
+	public class ComboBoxReadOnly : ComboBox
+	{
+		public ComboBoxReadOnly()
+		{
+			textBox = new TextBox();
+			textBox.ReadOnly = true;
+			textBox.Visible = false;
+		}
+
+		private TextBox textBox;
+
+		private bool readOnly = false;
+
+		public bool ReadOnly
+		{
+			get { return readOnly; }
+			set
+			{
+				readOnly = value;
+
+				if (readOnly)
+				{
+					this.Visible = false;
+					textBox.Text = this.Text;
+					textBox.Location = this.Location;
+					textBox.Size = this.Size;
+					textBox.Visible = true;
+
+					if (textBox.Parent == null)
+						this.Parent.Controls.Add(textBox);
+				}
+				else
+				{
+					this.Visible = true;
+					this.textBox.Visible = false;
+				}
+			}
+		}
+	}
 }
