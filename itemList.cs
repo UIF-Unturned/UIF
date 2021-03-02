@@ -31,9 +31,12 @@ namespace UIF
 			items = _items;
 		}
 
-		private float floatToPercentage(float f)
-		{
-			return (1 - f) * 100;
+		private void updateItemList()
+        {
+			ResultsListBox.Items.Clear();
+
+			for (int i = 0; i < items.Count; i++)
+				ResultsListBox.Items.Add(items[i].name + " (" + items[i].id + ")");
 		}
 
 		private void ResultsListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -73,7 +76,7 @@ namespace UIF
 				PlayerDamageTextBox.Clear();
 
 				if (currentItem.armor != null && currentItem.itemType.TryContains("Clothing"))
-					ProtectionTextBox.Text = floatToPercentage((float)currentItem.armor)
+					ProtectionTextBox.Text = ((float)currentItem.armor).toPercentage()
 						.ToString();
 
 				if (currentItem.height != null && currentItem.width != null)
@@ -108,11 +111,11 @@ namespace UIF
 
 				if (currentItem.itemType2 != null)
 					if (currentItem.itemType2.Contains("Vehicle"))
-						EngineTextBox.Text = currentItem.engine.ToString();
+						EngineTextBox.Text = currentItem.engine != null ? currentItem.engine.ToString() : "Car";
 
 				if (currentItem.itemType2 != null)
 					if (currentItem.itemType2.Contains("Vehicle"))
-						VehicleHealthTextBox.Text = currentItem.vehicleHealth.ToString();
+						VehicleHealthTextBox.Text = currentItem.vehicleHealth != null ? currentItem.vehicleHealth.ToString() : "";
 			}
 		}
 
@@ -126,30 +129,21 @@ namespace UIF
 		{
 			items.Sort((a, b) => a.CompareTo(b, Core.CompareModes.ArmorStorage));
 
-			ResultsListBox.Items.Clear();
-
-			for (int i = 0; i < items.Count; i++)
-				ResultsListBox.Items.Add(items[i].name + " (" + items[i].id + ")");
+			updateItemList();
 		}
 
 		private void SortProtectionBtn_Click(object sender, EventArgs e)
 		{
 			items.Sort((a, b) => a.CompareTo(b, Core.CompareModes.ArmorProtection));
 
-			ResultsListBox.Items.Clear();
-
-			for (int i = 0; i < items.Count; i++)
-				ResultsListBox.Items.Add(items[i].name + " (" + items[i].id + ")");
+			updateItemList();
 		}
 
 		private void SortDamagePlayersBtn_Click(object sender, EventArgs e)
 		{
 			items.Sort((a, b) => a.CompareTo(b, Core.CompareModes.Damage));
 
-			ResultsListBox.Items.Clear();
-
-			for (int i = 0; i < items.Count; i++)
-				ResultsListBox.Items.Add(items[i].name + " (" + items[i].id + ")");
+			updateItemList();
 		}
 
 		private void MixBtn_Click(object sender, EventArgs e)
@@ -158,24 +152,25 @@ namespace UIF
 			Random random = new Random();
 			items.Sort((a, b) => random.Next(int.MinValue, int.MaxValue));
 
-			ResultsListBox.Items.Clear();
-
-			for (int i = 0; i < items.Count; i++)
-				ResultsListBox.Items.Add(items[i].name + " (" + items[i].id + ")");
+			updateItemList();
 		}
 
 		private void SortDamageBuildingsBtn_Click(object sender, EventArgs e)
 		{
 			items.Sort((a, b) => a.CompareTo(b, Core.CompareModes.StructureDamage));
 
-			ResultsListBox.Items.Clear();
-
-			for (int i = 0; i < items.Count; i++)
-				ResultsListBox.Items.Add(items[i].name + " (" + items[i].id + ")");
+			updateItemList();
 		}
 
 		private void NameLabel_Click(object sender, EventArgs e) => NameTextBox.Focus();
 
 		private void IdLabel_Click(object sender, EventArgs e) => IdTextBox.Focus();
-	}
+
+        private void SortVehicleHealthBtn_Click(object sender, EventArgs e)
+        {
+			items.Sort((a, b) => a.CompareTo(b, Core.CompareModes.VehicleHealth));
+
+			updateItemList();
+		}
+    }
 }

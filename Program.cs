@@ -21,6 +21,7 @@ namespace UIF
 		[STAThread]
 		static void Main()
 		{
+				
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
 			Application.Run(new Main());
@@ -58,6 +59,14 @@ namespace UIF
 
 	public static class Core
 	{
+		public enum CompareModes
+		{
+			Damage,
+			StructureDamage,
+			ArmorProtection,
+			ArmorStorage,
+			VehicleHealth
+		}
 		public static int CompareTo(this item a, item val, CompareModes mode)
 		{
 			switch (mode)
@@ -74,6 +83,9 @@ namespace UIF
 				case CompareModes.ArmorStorage:
 					return (val.itemType.TryContains("Clothing") ? (val.height * val.width) : 1)
 						.CompareTo(a.itemType.TryContains("Clothing") ? (a.height * a.width) : 1);
+				case CompareModes.VehicleHealth:
+					return (val.itemType2.TryContains("Vehicle") ? val.vehicleHealth : 1)
+						.CompareTo(a.itemType2.TryContains("Vehicle") ? a.vehicleHealth : 1);
 				default:
 					throw new Errors.InvalidMode();
 			}
@@ -259,14 +271,6 @@ namespace UIF
 				return false;
 			}
 		}
-
-		public enum CompareModes
-		{
-			Damage,
-			StructureDamage,
-			ArmorProtection,
-			ArmorStorage
-		}
 	}
 
 	public static class Misc
@@ -276,6 +280,11 @@ namespace UIF
 			return (((item.bodyDamage != 0 && item.bodyDamage != null) ? item.bodyDamage : 1) * (item.playerDamage != null ? item.playerDamage : 1)
 				+ ((item.headDamage != 0 && item.headDamage != null) ? item.headDamage : 1) * (item.playerDamage != null ? item.playerDamage : 1))
 				/ 2;
+		}
+
+		public static float toPercentage(this float f)
+		{
+			return (1 - f) * 100;
 		}
 
 		public static void OpenUrl(string url)

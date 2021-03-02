@@ -63,12 +63,6 @@
     <Compile Include="Main.Designer.cs">
       <DependentUpon>Main.cs</DependentUpon>
     </Compile>
-    <Compile Include="GunsCategories.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GunsCategories.Designer.cs">
-      <DependentUpon>GunsCategories.cs</DependentUpon>
-    </Compile>
     <Compile Include="itemList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -77,20 +71,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="VehicleCategories.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="VehicleCategories.Designer.cs">
-      <DependentUpon>VehicleCategories.cs</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="ItemsCategories.resx">
       <DependentUpon>ItemsCategories.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GunsCategories.resx">
-      <DependentUpon>GunsCategories.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="itemList.resx">
       <DependentUpon>itemList.cs</DependentUpon>
@@ -99,9 +84,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="VehicleCategories.resx">
-      <DependentUpon>VehicleCategories.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

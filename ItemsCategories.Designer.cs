@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ItemsCategories));
-            this.GunsAndAmmoBtn = new System.Windows.Forms.Button();
             this.HelmetsBtn = new System.Windows.Forms.Button();
             this.ShirtsBtn = new System.Windows.Forms.Button();
             this.ArmorGroupBox = new System.Windows.Forms.GroupBox();
@@ -39,24 +38,31 @@
             this.PantsBtn = new System.Windows.Forms.Button();
             this.OtherGroupBox = new System.Windows.Forms.GroupBox();
             this.StructuresAndBarricadesBtn = new System.Windows.Forms.Button();
-            this.VehiclesBtn = new System.Windows.Forms.Button();
             this.HealAndFoodBtn = new System.Windows.Forms.Button();
             this.AllItemsBtn = new System.Windows.Forms.Button();
             this.ItemsCategoriesLabel = new System.Windows.Forms.Label();
+            this.VehiclesGroup = new System.Windows.Forms.GroupBox();
+            this.CarsBtn = new System.Windows.Forms.Button();
+            this.BoatsBtn = new System.Windows.Forms.Button();
+            this.AllVehiclesBtn = new System.Windows.Forms.Button();
+            this.PlanesBtn = new System.Windows.Forms.Button();
+            this.HelicoptersBtn = new System.Windows.Forms.Button();
+            this.GunsGroupBox = new System.Windows.Forms.GroupBox();
+            this.RaidItemsBtn = new System.Windows.Forms.Button();
+            this.TacticsBtn = new System.Windows.Forms.Button();
+            this.SightsBtn = new System.Windows.Forms.Button();
+            this.AllCustomizeBtn = new System.Windows.Forms.Button();
+            this.SuppressorsBtn = new System.Windows.Forms.Button();
+            this.GripsBtn = new System.Windows.Forms.Button();
+            this.AllGunsBtn = new System.Windows.Forms.Button();
+            this.SemiGunsBtn = new System.Windows.Forms.Button();
+            this.SecondaryItemsBtn = new System.Windows.Forms.Button();
+            this.AutomaticWeaponsBtn = new System.Windows.Forms.Button();
             this.ArmorGroupBox.SuspendLayout();
             this.OtherGroupBox.SuspendLayout();
+            this.VehiclesGroup.SuspendLayout();
+            this.GunsGroupBox.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // GunsAndAmmoBtn
-            // 
-            this.GunsAndAmmoBtn.Location = new System.Drawing.Point(6, 19);
-            this.GunsAndAmmoBtn.Name = "GunsAndAmmoBtn";
-            this.GunsAndAmmoBtn.Size = new System.Drawing.Size(139, 23);
-            this.GunsAndAmmoBtn.TabIndex = 4;
-            this.GunsAndAmmoBtn.TabStop = false;
-            this.GunsAndAmmoBtn.Text = "Guns and Ammo";
-            this.GunsAndAmmoBtn.UseVisualStyleBackColor = true;
-            this.GunsAndAmmoBtn.Click += new System.EventHandler(this.GunsAndAmmoBtn_Click);
             // 
             // HelmetsBtn
             // 
@@ -88,7 +94,7 @@
             this.ArmorGroupBox.Controls.Add(this.BackpacksBtn);
             this.ArmorGroupBox.Controls.Add(this.ShirtsBtn);
             this.ArmorGroupBox.Controls.Add(this.PantsBtn);
-            this.ArmorGroupBox.Location = new System.Drawing.Point(11, 50);
+            this.ArmorGroupBox.Location = new System.Drawing.Point(170, 50);
             this.ArmorGroupBox.Name = "ArmorGroupBox";
             this.ArmorGroupBox.Size = new System.Drawing.Size(144, 193);
             this.ArmorGroupBox.TabIndex = 3;
@@ -142,11 +148,9 @@
             // OtherGroupBox
             // 
             this.OtherGroupBox.Controls.Add(this.StructuresAndBarricadesBtn);
-            this.OtherGroupBox.Controls.Add(this.VehiclesBtn);
             this.OtherGroupBox.Controls.Add(this.HealAndFoodBtn);
             this.OtherGroupBox.Controls.Add(this.AllItemsBtn);
-            this.OtherGroupBox.Controls.Add(this.GunsAndAmmoBtn);
-            this.OtherGroupBox.Location = new System.Drawing.Point(161, 50);
+            this.OtherGroupBox.Location = new System.Drawing.Point(12, 50);
             this.OtherGroupBox.Name = "OtherGroupBox";
             this.OtherGroupBox.Size = new System.Drawing.Size(152, 193);
             this.OtherGroupBox.TabIndex = 1;
@@ -155,7 +159,7 @@
             // 
             // StructuresAndBarricadesBtn
             // 
-            this.StructuresAndBarricadesBtn.Location = new System.Drawing.Point(6, 77);
+            this.StructuresAndBarricadesBtn.Location = new System.Drawing.Point(6, 48);
             this.StructuresAndBarricadesBtn.Name = "StructuresAndBarricadesBtn";
             this.StructuresAndBarricadesBtn.Size = new System.Drawing.Size(139, 23);
             this.StructuresAndBarricadesBtn.TabIndex = 0;
@@ -164,20 +168,9 @@
             this.StructuresAndBarricadesBtn.UseVisualStyleBackColor = true;
             this.StructuresAndBarricadesBtn.Click += new System.EventHandler(this.StructuresAndBarricadesBtn_Click);
             // 
-            // VehiclesBtn
-            // 
-            this.VehiclesBtn.Location = new System.Drawing.Point(6, 106);
-            this.VehiclesBtn.Name = "VehiclesBtn";
-            this.VehiclesBtn.Size = new System.Drawing.Size(139, 23);
-            this.VehiclesBtn.TabIndex = 1;
-            this.VehiclesBtn.TabStop = false;
-            this.VehiclesBtn.Text = "Vehicles";
-            this.VehiclesBtn.UseVisualStyleBackColor = true;
-            this.VehiclesBtn.Click += new System.EventHandler(this.VehiclesBtn_Click);
-            // 
             // HealAndFoodBtn
             // 
-            this.HealAndFoodBtn.Location = new System.Drawing.Point(6, 48);
+            this.HealAndFoodBtn.Location = new System.Drawing.Point(6, 19);
             this.HealAndFoodBtn.Name = "HealAndFoodBtn";
             this.HealAndFoodBtn.Size = new System.Drawing.Size(139, 23);
             this.HealAndFoodBtn.TabIndex = 2;
@@ -200,18 +193,218 @@
             // ItemsCategoriesLabel
             // 
             this.ItemsCategoriesLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ItemsCategoriesLabel.Location = new System.Drawing.Point(12, -3);
+            this.ItemsCategoriesLabel.Location = new System.Drawing.Point(255, -3);
             this.ItemsCategoriesLabel.Name = "ItemsCategoriesLabel";
             this.ItemsCategoriesLabel.Size = new System.Drawing.Size(301, 50);
             this.ItemsCategoriesLabel.TabIndex = 0;
             this.ItemsCategoriesLabel.Text = "Items Categories";
             this.ItemsCategoriesLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // VehiclesGroup
+            // 
+            this.VehiclesGroup.Controls.Add(this.CarsBtn);
+            this.VehiclesGroup.Controls.Add(this.BoatsBtn);
+            this.VehiclesGroup.Controls.Add(this.AllVehiclesBtn);
+            this.VehiclesGroup.Controls.Add(this.PlanesBtn);
+            this.VehiclesGroup.Controls.Add(this.HelicoptersBtn);
+            this.VehiclesGroup.Location = new System.Drawing.Point(320, 50);
+            this.VehiclesGroup.Name = "VehiclesGroup";
+            this.VehiclesGroup.Size = new System.Drawing.Size(177, 193);
+            this.VehiclesGroup.TabIndex = 4;
+            this.VehiclesGroup.TabStop = false;
+            this.VehiclesGroup.Text = "Vehicles";
+            // 
+            // CarsBtn
+            // 
+            this.CarsBtn.Location = new System.Drawing.Point(6, 106);
+            this.CarsBtn.Name = "CarsBtn";
+            this.CarsBtn.Size = new System.Drawing.Size(165, 23);
+            this.CarsBtn.TabIndex = 4;
+            this.CarsBtn.TabStop = false;
+            this.CarsBtn.Text = "Cars";
+            this.CarsBtn.UseVisualStyleBackColor = true;
+            this.CarsBtn.Click += new System.EventHandler(this.CarsBtn_Click);
+            // 
+            // BoatsBtn
+            // 
+            this.BoatsBtn.Location = new System.Drawing.Point(6, 77);
+            this.BoatsBtn.Name = "BoatsBtn";
+            this.BoatsBtn.Size = new System.Drawing.Size(165, 23);
+            this.BoatsBtn.TabIndex = 3;
+            this.BoatsBtn.TabStop = false;
+            this.BoatsBtn.Text = "Boats";
+            this.BoatsBtn.UseVisualStyleBackColor = true;
+            this.BoatsBtn.Click += new System.EventHandler(this.BoatsBtn_Click);
+            // 
+            // AllVehiclesBtn
+            // 
+            this.AllVehiclesBtn.Location = new System.Drawing.Point(6, 164);
+            this.AllVehiclesBtn.Name = "AllVehiclesBtn";
+            this.AllVehiclesBtn.Size = new System.Drawing.Size(165, 23);
+            this.AllVehiclesBtn.TabIndex = 2;
+            this.AllVehiclesBtn.TabStop = false;
+            this.AllVehiclesBtn.Text = "All vehicles";
+            this.AllVehiclesBtn.UseVisualStyleBackColor = true;
+            this.AllVehiclesBtn.Click += new System.EventHandler(this.AllVehiclesBtn_Click);
+            // 
+            // PlanesBtn
+            // 
+            this.PlanesBtn.Location = new System.Drawing.Point(6, 48);
+            this.PlanesBtn.Name = "PlanesBtn";
+            this.PlanesBtn.Size = new System.Drawing.Size(165, 23);
+            this.PlanesBtn.TabIndex = 1;
+            this.PlanesBtn.TabStop = false;
+            this.PlanesBtn.Text = "Planes";
+            this.PlanesBtn.UseVisualStyleBackColor = true;
+            this.PlanesBtn.Click += new System.EventHandler(this.PlanesBtn_Click);
+            // 
+            // HelicoptersBtn
+            // 
+            this.HelicoptersBtn.Location = new System.Drawing.Point(6, 19);
+            this.HelicoptersBtn.Name = "HelicoptersBtn";
+            this.HelicoptersBtn.Size = new System.Drawing.Size(165, 23);
+            this.HelicoptersBtn.TabIndex = 0;
+            this.HelicoptersBtn.TabStop = false;
+            this.HelicoptersBtn.Text = "Helicopters";
+            this.HelicoptersBtn.UseVisualStyleBackColor = true;
+            this.HelicoptersBtn.Click += new System.EventHandler(this.HelicoptersBtn_Click);
+            // 
+            // GunsGroupBox
+            // 
+            this.GunsGroupBox.Controls.Add(this.RaidItemsBtn);
+            this.GunsGroupBox.Controls.Add(this.TacticsBtn);
+            this.GunsGroupBox.Controls.Add(this.SightsBtn);
+            this.GunsGroupBox.Controls.Add(this.AllCustomizeBtn);
+            this.GunsGroupBox.Controls.Add(this.SuppressorsBtn);
+            this.GunsGroupBox.Controls.Add(this.GripsBtn);
+            this.GunsGroupBox.Controls.Add(this.AllGunsBtn);
+            this.GunsGroupBox.Controls.Add(this.SemiGunsBtn);
+            this.GunsGroupBox.Controls.Add(this.SecondaryItemsBtn);
+            this.GunsGroupBox.Controls.Add(this.AutomaticWeaponsBtn);
+            this.GunsGroupBox.Location = new System.Drawing.Point(503, 50);
+            this.GunsGroupBox.Name = "GunsGroupBox";
+            this.GunsGroupBox.Size = new System.Drawing.Size(274, 193);
+            this.GunsGroupBox.TabIndex = 5;
+            this.GunsGroupBox.TabStop = false;
+            this.GunsGroupBox.Text = "Guns";
+            // 
+            // RaidItemsBtn
+            // 
+            this.RaidItemsBtn.Location = new System.Drawing.Point(6, 106);
+            this.RaidItemsBtn.Name = "RaidItemsBtn";
+            this.RaidItemsBtn.Size = new System.Drawing.Size(129, 23);
+            this.RaidItemsBtn.TabIndex = 0;
+            this.RaidItemsBtn.TabStop = false;
+            this.RaidItemsBtn.Text = "Raid items";
+            this.RaidItemsBtn.UseVisualStyleBackColor = true;
+            this.RaidItemsBtn.Click += new System.EventHandler(this.RaidItemsBtn_Click);
+            // 
+            // TacticsBtn
+            // 
+            this.TacticsBtn.Location = new System.Drawing.Point(141, 106);
+            this.TacticsBtn.Name = "TacticsBtn";
+            this.TacticsBtn.Size = new System.Drawing.Size(129, 23);
+            this.TacticsBtn.TabIndex = 1;
+            this.TacticsBtn.TabStop = false;
+            this.TacticsBtn.Text = "Tacticals";
+            this.TacticsBtn.UseVisualStyleBackColor = true;
+            this.TacticsBtn.Click += new System.EventHandler(this.TacticalsBtn_Click);
+            // 
+            // SightsBtn
+            // 
+            this.SightsBtn.Location = new System.Drawing.Point(141, 77);
+            this.SightsBtn.Name = "SightsBtn";
+            this.SightsBtn.Size = new System.Drawing.Size(129, 23);
+            this.SightsBtn.TabIndex = 2;
+            this.SightsBtn.TabStop = false;
+            this.SightsBtn.Text = "Sights";
+            this.SightsBtn.UseVisualStyleBackColor = true;
+            this.SightsBtn.Click += new System.EventHandler(this.SightsBtn_Click);
+            // 
+            // AllCustomizeBtn
+            // 
+            this.AllCustomizeBtn.Location = new System.Drawing.Point(6, 164);
+            this.AllCustomizeBtn.Name = "AllCustomizeBtn";
+            this.AllCustomizeBtn.Size = new System.Drawing.Size(129, 23);
+            this.AllCustomizeBtn.TabIndex = 3;
+            this.AllCustomizeBtn.TabStop = false;
+            this.AllCustomizeBtn.Text = "All customize";
+            this.AllCustomizeBtn.UseVisualStyleBackColor = true;
+            this.AllCustomizeBtn.Click += new System.EventHandler(this.AllCustomizeBtn_Click);
+            // 
+            // SuppressorsBtn
+            // 
+            this.SuppressorsBtn.Location = new System.Drawing.Point(141, 48);
+            this.SuppressorsBtn.Name = "SuppressorsBtn";
+            this.SuppressorsBtn.Size = new System.Drawing.Size(129, 23);
+            this.SuppressorsBtn.TabIndex = 4;
+            this.SuppressorsBtn.TabStop = false;
+            this.SuppressorsBtn.Text = "Suppressors and Barrels";
+            this.SuppressorsBtn.UseVisualStyleBackColor = true;
+            this.SuppressorsBtn.Click += new System.EventHandler(this.SuppressorsBtn_Click);
+            // 
+            // GripsBtn
+            // 
+            this.GripsBtn.Location = new System.Drawing.Point(141, 19);
+            this.GripsBtn.Name = "GripsBtn";
+            this.GripsBtn.Size = new System.Drawing.Size(129, 23);
+            this.GripsBtn.TabIndex = 5;
+            this.GripsBtn.TabStop = false;
+            this.GripsBtn.Text = "Grips";
+            this.GripsBtn.UseVisualStyleBackColor = true;
+            this.GripsBtn.Click += new System.EventHandler(this.GripsBtn_Click);
+            // 
+            // AllGunsBtn
+            // 
+            this.AllGunsBtn.Location = new System.Drawing.Point(141, 164);
+            this.AllGunsBtn.Name = "AllGunsBtn";
+            this.AllGunsBtn.Size = new System.Drawing.Size(129, 23);
+            this.AllGunsBtn.TabIndex = 6;
+            this.AllGunsBtn.TabStop = false;
+            this.AllGunsBtn.Text = "All guns";
+            this.AllGunsBtn.UseVisualStyleBackColor = true;
+            this.AllGunsBtn.Click += new System.EventHandler(this.AllGunsBtn_Click);
+            // 
+            // SemiGunsBtn
+            // 
+            this.SemiGunsBtn.Location = new System.Drawing.Point(6, 77);
+            this.SemiGunsBtn.Name = "SemiGunsBtn";
+            this.SemiGunsBtn.Size = new System.Drawing.Size(129, 23);
+            this.SemiGunsBtn.TabIndex = 7;
+            this.SemiGunsBtn.TabStop = false;
+            this.SemiGunsBtn.Text = "Semi guns";
+            this.SemiGunsBtn.UseVisualStyleBackColor = true;
+            this.SemiGunsBtn.Click += new System.EventHandler(this.SemiGunsBtn_Click);
+            // 
+            // SecondaryItemsBtn
+            // 
+            this.SecondaryItemsBtn.Location = new System.Drawing.Point(6, 19);
+            this.SecondaryItemsBtn.Name = "SecondaryItemsBtn";
+            this.SecondaryItemsBtn.Size = new System.Drawing.Size(129, 23);
+            this.SecondaryItemsBtn.TabIndex = 8;
+            this.SecondaryItemsBtn.TabStop = false;
+            this.SecondaryItemsBtn.Text = "Secondary slot items";
+            this.SecondaryItemsBtn.UseVisualStyleBackColor = true;
+            this.SecondaryItemsBtn.Click += new System.EventHandler(this.SecondaryItemsBtn_Click);
+            // 
+            // AutomaticWeaponsBtn
+            // 
+            this.AutomaticWeaponsBtn.Location = new System.Drawing.Point(6, 48);
+            this.AutomaticWeaponsBtn.Name = "AutomaticWeaponsBtn";
+            this.AutomaticWeaponsBtn.Size = new System.Drawing.Size(129, 23);
+            this.AutomaticWeaponsBtn.TabIndex = 9;
+            this.AutomaticWeaponsBtn.TabStop = false;
+            this.AutomaticWeaponsBtn.Text = "Automatic weapons";
+            this.AutomaticWeaponsBtn.UseVisualStyleBackColor = true;
+            this.AutomaticWeaponsBtn.Click += new System.EventHandler(this.AutomaticWeaponsBtn_Click);
+            // 
             // ItemsCategories
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(325, 248);
+            this.ClientSize = new System.Drawing.Size(788, 251);
+            this.Controls.Add(this.GunsGroupBox);
+            this.Controls.Add(this.VehiclesGroup);
             this.Controls.Add(this.ItemsCategoriesLabel);
             this.Controls.Add(this.OtherGroupBox);
             this.Controls.Add(this.ArmorGroupBox);
@@ -222,13 +415,13 @@
             this.Text = "Items Categories";
             this.ArmorGroupBox.ResumeLayout(false);
             this.OtherGroupBox.ResumeLayout(false);
+            this.VehiclesGroup.ResumeLayout(false);
+            this.GunsGroupBox.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Button GunsAndAmmoBtn;
         private System.Windows.Forms.Button HelmetsBtn;
         private System.Windows.Forms.Button ShirtsBtn;
         private System.Windows.Forms.GroupBox ArmorGroupBox;
@@ -241,6 +434,22 @@
         private System.Windows.Forms.Label ItemsCategoriesLabel;
         private System.Windows.Forms.Button VestsBtn;
         private System.Windows.Forms.Button StructuresAndBarricadesBtn;
-        private System.Windows.Forms.Button VehiclesBtn;
+        private System.Windows.Forms.GroupBox VehiclesGroup;
+        private System.Windows.Forms.Button CarsBtn;
+        private System.Windows.Forms.Button BoatsBtn;
+        private System.Windows.Forms.Button AllVehiclesBtn;
+        private System.Windows.Forms.Button PlanesBtn;
+        private System.Windows.Forms.Button HelicoptersBtn;
+        private System.Windows.Forms.GroupBox GunsGroupBox;
+        private System.Windows.Forms.Button RaidItemsBtn;
+        private System.Windows.Forms.Button TacticsBtn;
+        private System.Windows.Forms.Button SightsBtn;
+        private System.Windows.Forms.Button AllCustomizeBtn;
+        private System.Windows.Forms.Button SuppressorsBtn;
+        private System.Windows.Forms.Button GripsBtn;
+        private System.Windows.Forms.Button AllGunsBtn;
+        private System.Windows.Forms.Button SemiGunsBtn;
+        private System.Windows.Forms.Button SecondaryItemsBtn;
+        private System.Windows.Forms.Button AutomaticWeaponsBtn;
     }
 }
