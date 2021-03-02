@@ -14,7 +14,7 @@ namespace UIF
 {
 	public static class Program
 	{
-		public const string Version = "0.4.1";
+		public const string Version = "0.4.2";
 		public const string DiscordUrl = "https://discord.gg/VhpM2ex";
 		public const string GithubUrl = "https://github.com/ymo4-dev/UIF";
 
@@ -359,47 +359,4 @@ namespace UIF.Errors
 	public class YouInvalid : Exception { }
 	public class CursedCreator : Exception { }
 	public class FolderDoesntExist : Exception { }
-}
-
-namespace UIF.GUI
-{
-	public class ComboBoxReadOnly : ComboBox
-	{
-		public ComboBoxReadOnly()
-		{
-			textBox = new TextBox();
-			textBox.ReadOnly = true;
-			textBox.Visible = false;
-		}
-
-		private TextBox textBox;
-
-		private bool readOnly = false;
-
-		public bool ReadOnly
-		{
-			get { return readOnly; }
-			set
-			{
-				readOnly = value;
-
-				if (readOnly)
-				{
-					this.Visible = false;
-					textBox.Text = this.Text;
-					textBox.Location = this.Location;
-					textBox.Size = this.Size;
-					textBox.Visible = true;
-
-					if (textBox.Parent == null)
-						this.Parent.Controls.Add(textBox);
-				}
-				else
-				{
-					this.Visible = true;
-					this.textBox.Visible = false;
-				}
-			}
-		}
-	}
 }

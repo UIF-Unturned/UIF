@@ -32,7 +32,7 @@ namespace UIF
 		}
 
 		private void updateItemList()
-        {
+		{
 			ResultsListBox.Items.Clear();
 
 			for (int i = 0; i < items.Count; i++)
@@ -43,37 +43,39 @@ namespace UIF
 		{
 			if (ResultsListBox.SelectedIndex == -1)
 			{
-				NameTextBox.Clear();
-				IdTextBox.Clear();
+                NameTextBox.Clear();
+                IdTextBox.Clear();
 
-				CapacityTextBox.Clear();
-				DamageHeadTextBox.Clear();
-				BodyDamageTextBox.Clear();
-				ProtectionTextBox.Clear();
-				ItemTypeTextBox.Clear();
-				ItemType2TextBox.Clear();
-				RangeTextBox.Clear();
-				StructureDamageTextBox.Clear();
-				PlayerDamageTextBox.Clear();
-				EngineTextBox.Clear();
-				VehicleHealthTextBox.Clear();
+                CapacityTextBox.Clear();
+                DamageHeadTextBox.Clear();
+                BodyDamageTextBox.Clear();
+                ProtectionTextBox.Clear();
+                ItemTypeTextBox.Clear();
+                ItemType2TextBox.Clear();
+                RangeTextBox.Clear();
+                StructureDamageTextBox.Clear();
+                PlayerDamageTextBox.Clear();
+                EngineTextBox.Clear();
+                VehicleHealthTextBox.Clear();
 			}
 			else
 			{
+                CapacityTextBox.Clear();
+                DamageHeadTextBox.Clear();
+                BodyDamageTextBox.Clear();
+                ProtectionTextBox.Clear();
+                ItemTypeTextBox.Clear();
+                ItemType2TextBox.Clear();
+                RangeTextBox.Clear();
+                StructureDamageTextBox.Clear();
+                PlayerDamageTextBox.Clear();
+                IdTextBox.Clear();
+                NameTextBox.Clear();
+
 				var currentItem = items[ResultsListBox.SelectedIndex];
 				
 				IdTextBox.Text = currentItem.id.ToString();
 				NameTextBox.Text = ResultsListBox.SelectedItem.ToString().Replace(" (" + currentItem.id.ToString() + ")", "");
-
-				CapacityTextBox.Clear();
-				DamageHeadTextBox.Clear();
-				BodyDamageTextBox.Clear();
-				ProtectionTextBox.Clear();
-				ItemTypeTextBox.Clear();
-				ItemType2TextBox.Clear();
-				RangeTextBox.Clear();
-				StructureDamageTextBox.Clear();
-				PlayerDamageTextBox.Clear();
 
 				if (currentItem.armor != null && currentItem.itemType.TryContains("Clothing"))
 					ProtectionTextBox.Text = ((float)currentItem.armor).toPercentage()
@@ -119,7 +121,7 @@ namespace UIF
 			}
 		}
 
-		private void button1_Click(object sender, EventArgs e)
+		private void IdToClipboard_Click(object sender, EventArgs e)
 		{
 			if (ResultsListBox.SelectedIndex != -1)
 				Clipboard.SetText(items[ResultsListBox.SelectedIndex].id.ToString());
@@ -148,7 +150,6 @@ namespace UIF
 
 		private void MixBtn_Click(object sender, EventArgs e)
 		{
-			//this.Controls.OfType<Button>();
 			Random random = new Random();
 			items.Sort((a, b) => random.Next(int.MinValue, int.MaxValue));
 
@@ -166,11 +167,11 @@ namespace UIF
 
 		private void IdLabel_Click(object sender, EventArgs e) => IdTextBox.Focus();
 
-        private void SortVehicleHealthBtn_Click(object sender, EventArgs e)
-        {
+		private void SortVehicleHealthBtn_Click(object sender, EventArgs e)
+		{
 			items.Sort((a, b) => a.CompareTo(b, Core.CompareModes.VehicleHealth));
 
 			updateItemList();
 		}
-    }
+	}
 }

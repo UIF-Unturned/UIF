@@ -64,9 +64,9 @@
             this.SortCapacityBtn = new System.Windows.Forms.Button();
             this.SortProtectionBtn = new System.Windows.Forms.Button();
             this.SortingGroupBox = new System.Windows.Forms.GroupBox();
+            this.SortVehicleHealthBtn = new System.Windows.Forms.Button();
             this.SortDamageBuildingsBtn = new System.Windows.Forms.Button();
             this.MixBtn = new System.Windows.Forms.Button();
-            this.SortVehicleHealthBtn = new System.Windows.Forms.Button();
             this.InfoGroupBox.SuspendLayout();
             this.ItemStatsGroupBox.SuspendLayout();
             this.SortingGroupBox.SuspendLayout();
@@ -155,7 +155,7 @@
             this.IdToClipboard.TabStop = false;
             this.IdToClipboard.Text = "Copy ID to clipboard";
             this.IdToClipboard.UseVisualStyleBackColor = true;
-            this.IdToClipboard.Click += new System.EventHandler(this.button1_Click);
+            this.IdToClipboard.Click += new System.EventHandler(this.IdToClipboard_Click);
             // 
             // ItemStatsGroupBox
             // 
@@ -456,6 +456,17 @@
             this.SortingGroupBox.TabStop = false;
             this.SortingGroupBox.Text = "Sorting";
             // 
+            // SortVehicleHealthBtn
+            // 
+            this.SortVehicleHealthBtn.Location = new System.Drawing.Point(10, 135);
+            this.SortVehicleHealthBtn.Name = "SortVehicleHealthBtn";
+            this.SortVehicleHealthBtn.Size = new System.Drawing.Size(247, 23);
+            this.SortVehicleHealthBtn.TabIndex = 5;
+            this.SortVehicleHealthBtn.TabStop = false;
+            this.SortVehicleHealthBtn.Text = "Sort by vehicle health";
+            this.SortVehicleHealthBtn.UseVisualStyleBackColor = true;
+            this.SortVehicleHealthBtn.Click += new System.EventHandler(this.SortVehicleHealthBtn_Click);
+            // 
             // SortDamageBuildingsBtn
             // 
             this.SortDamageBuildingsBtn.Location = new System.Drawing.Point(10, 106);
@@ -477,17 +488,6 @@
             this.MixBtn.Text = "Mix";
             this.MixBtn.UseVisualStyleBackColor = true;
             this.MixBtn.Click += new System.EventHandler(this.MixBtn_Click);
-            // 
-            // SortVehicleHealthBtn
-            // 
-            this.SortVehicleHealthBtn.Location = new System.Drawing.Point(10, 135);
-            this.SortVehicleHealthBtn.Name = "SortVehicleHealthBtn";
-            this.SortVehicleHealthBtn.Size = new System.Drawing.Size(247, 23);
-            this.SortVehicleHealthBtn.TabIndex = 5;
-            this.SortVehicleHealthBtn.TabStop = false;
-            this.SortVehicleHealthBtn.Text = "Sort by vehicle health";
-            this.SortVehicleHealthBtn.UseVisualStyleBackColor = true;
-            this.SortVehicleHealthBtn.Click += new System.EventHandler(this.SortVehicleHealthBtn_Click);
             // 
             // itemList
             // 
