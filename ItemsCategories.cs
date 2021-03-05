@@ -58,7 +58,7 @@ namespace UIF
 				return false;
 			});
 
-			items.Sort((a, b) => a.CompareTo(b, Core.CompareModes.ArmorStorage));
+			items.Sort((a, b) => a.CompareTo(b, Core.CompareModes.ClothingStorage));
 			new itemList(items).ShowDialog();
 		}
 
@@ -72,7 +72,7 @@ namespace UIF
 				return false;
 			});
 
-			items.Sort((a, b) => b.CompareTo(a, Core.CompareModes.ArmorProtection));
+			items.Sort((a, b) => b.CompareTo(a, Core.CompareModes.ClothingProtection));
 			new itemList(items).ShowDialog();
 		}
 
@@ -87,7 +87,7 @@ namespace UIF
 				return false;
 			});
 
-			items.Sort((a, b) => a.CompareTo(b, Core.CompareModes.ArmorProtection));
+			items.Sort((a, b) => a.CompareTo(b, Core.CompareModes.ClothingProtection));
 			new itemList(items).ShowDialog();
 		}
 
@@ -101,7 +101,7 @@ namespace UIF
 				return false;
 			});
 
-			items.Sort((a, b) => a.CompareTo(b, Core.CompareModes.ArmorProtection));
+			items.Sort((a, b) => a.CompareTo(b, Core.CompareModes.ClothingProtection));
 			new itemList(items).ShowDialog();
 		}
 
@@ -115,7 +115,7 @@ namespace UIF
 				return false;
 			});
 
-			items.Sort((a, b) => a.CompareTo(b, Core.CompareModes.ArmorProtection));
+			items.Sort((a, b) => a.CompareTo(b, Core.CompareModes.ClothingProtection));
 			new itemList(items).ShowDialog();
 		}
 
@@ -149,6 +149,7 @@ namespace UIF
 
 				return false;
 			});
+			items.Sort((a, b) => a.CompareTo(b, Core.CompareModes.BuildingHealth));
 
 			new itemList(items).ShowDialog();
 		}

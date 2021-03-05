@@ -38,39 +38,35 @@ namespace UIF
 			for (int i = 0; i < items.Count; i++)
 				ResultsListBox.Items.Add(items[i].name + " (" + items[i].id + ")");
 		}
+		private void clearTextBoxes()
+		{
+			ClothingCapacityTextBox.Clear();
+			DamageHeadTextBox.Clear();
+			BodyDamageTextBox.Clear();
+			ProtectionTextBox.Clear();
+			ItemTypeTextBox.Clear();
+			ItemType2TextBox.Clear();
+			RangeTextBox.Clear();
+			StructureDamageTextBox.Clear();
+			PlayerDamageTextBox.Clear();
+			EngineTextBox.Clear();
+			VehicleHealthTextBox.Clear();
+			BarricadeCapacityTextBox.Clear();
+			BuildingHealthTextBox.Clear();
+		}
 
 		private void ResultsListBox_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			if (ResultsListBox.SelectedIndex == -1)
 			{
-                NameTextBox.Clear();
-                IdTextBox.Clear();
+				NameTextBox.Clear();
+				IdTextBox.Clear();
 
-                CapacityTextBox.Clear();
-                DamageHeadTextBox.Clear();
-                BodyDamageTextBox.Clear();
-                ProtectionTextBox.Clear();
-                ItemTypeTextBox.Clear();
-                ItemType2TextBox.Clear();
-                RangeTextBox.Clear();
-                StructureDamageTextBox.Clear();
-                PlayerDamageTextBox.Clear();
-                EngineTextBox.Clear();
-                VehicleHealthTextBox.Clear();
+				clearTextBoxes();
 			}
 			else
 			{
-                CapacityTextBox.Clear();
-                DamageHeadTextBox.Clear();
-                BodyDamageTextBox.Clear();
-                ProtectionTextBox.Clear();
-                ItemTypeTextBox.Clear();
-                ItemType2TextBox.Clear();
-                RangeTextBox.Clear();
-                StructureDamageTextBox.Clear();
-                PlayerDamageTextBox.Clear();
-                IdTextBox.Clear();
-                NameTextBox.Clear();
+				clearTextBoxes();
 
 				var currentItem = items[ResultsListBox.SelectedIndex];
 				
@@ -81,8 +77,8 @@ namespace UIF
 					ProtectionTextBox.Text = ((float)currentItem.armor).toPercentage()
 						.ToString();
 
-				if (currentItem.height != null && currentItem.width != null)
-					CapacityTextBox.Text = (currentItem.height * currentItem.width)
+				if (currentItem.clothStorageHeight != null && currentItem.clothStorageWidth != null)
+					ClothingCapacityTextBox.Text = (currentItem.clothStorageHeight * currentItem.clothStorageWidth)
 						.ToString();
 
 				if (currentItem.headDamage != null && (currentItem.itemType.TryContains("Melee") || currentItem.itemType.TryContains("Gun")))
@@ -118,6 +114,16 @@ namespace UIF
 				if (currentItem.itemType2 != null)
 					if (currentItem.itemType2.Contains("Vehicle"))
 						VehicleHealthTextBox.Text = currentItem.vehicleHealth != null ? currentItem.vehicleHealth.ToString() : "";
+
+				if (currentItem.itemType != null)
+					if (currentItem.itemType.Contains("Barricade") || currentItem.itemType.Contains("Structure"))
+						BuildingHealthTextBox.Text = currentItem.buildingHealth != null ? currentItem.buildingHealth.ToString() : "";
+
+				if (currentItem.itemType2 != null)
+					if (currentItem.itemType2.Contains("Storage"))
+						BarricadeCapacityTextBox.Text =
+							currentItem.barricadeStorageHeight != null && currentItem.barricadeStorageWidth != null ?
+							(currentItem.barricadeStorageHeight * currentItem.barricadeStorageWidth).ToString() : "";
 			}
 		}
 
@@ -129,14 +135,14 @@ namespace UIF
 
 		private void SortCapacityBtn_Click(object sender, EventArgs e)
 		{
-			items.Sort((a, b) => a.CompareTo(b, Core.CompareModes.ArmorStorage));
+			items.Sort((a, b) => a.CompareTo(b, Core.CompareModes.ClothingStorage));
 
 			updateItemList();
 		}
 
 		private void SortProtectionBtn_Click(object sender, EventArgs e)
 		{
-			items.Sort((a, b) => a.CompareTo(b, Core.CompareModes.ArmorProtection));
+			items.Sort((a, b) => a.CompareTo(b, Core.CompareModes.ClothingProtection));
 
 			updateItemList();
 		}
@@ -170,6 +176,20 @@ namespace UIF
 		private void SortVehicleHealthBtn_Click(object sender, EventArgs e)
 		{
 			items.Sort((a, b) => a.CompareTo(b, Core.CompareModes.VehicleHealth));
+
+			updateItemList();
+		}
+
+		private void SortBarricadeCapacityBtn_Click(object sender, EventArgs e)
+		{
+			items.Sort((a, b) => a.CompareTo(b, Core.CompareModes.StructureStorage));
+
+			updateItemList();
+		}
+
+		private void SortByBuildingHealthBtn_Click(object sender, EventArgs e)
+		{
+			items.Sort((a, b) => a.CompareTo(b, Core.CompareModes.BuildingHealth));
 
 			updateItemList();
 		}

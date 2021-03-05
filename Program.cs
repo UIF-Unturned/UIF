@@ -33,7 +33,11 @@ namespace UIF
 		public int? id = null;
 		public string name = null;
 
-		public int? width = null, height = null;
+		public int? clothStorageWidth = null, clothStorageHeight = null;
+
+		public int? barricadeStorageWidth = null, barricadeStorageHeight = null;
+
+		public float? buildingHealth = null;
 
 		public string engine = null;
 
@@ -63,9 +67,11 @@ namespace UIF
 		{
 			Damage,
 			StructureDamage,
-			ArmorProtection,
-			ArmorStorage,
-			VehicleHealth
+			ClothingProtection,
+			ClothingStorage,
+			VehicleHealth,
+			StructureStorage,
+			BuildingHealth
 		}
 		public static int CompareTo(this item a, item val, CompareModes mode)
 		{
@@ -77,15 +83,24 @@ namespace UIF
 				case CompareModes.Damage:
 					return (val.itemType.TryContains("Gun") ? val.getAverageDamage() : 1)
 						.CompareTo(a.itemType.TryContains("Gun") ? a.getAverageDamage() : 1);
-				case CompareModes.ArmorProtection:
+				case CompareModes.ClothingProtection:
 					return (a.itemType.TryContains("Clothing") ? a.armor : 1)
 						.CompareTo(val.itemType.TryContains("Clothing") ? val.armor : 1);
-				case CompareModes.ArmorStorage:
-					return (val.itemType.TryContains("Clothing") ? (val.height * val.width) : 1)
-						.CompareTo(a.itemType.TryContains("Clothing") ? (a.height * a.width) : 1);
+				case CompareModes.ClothingStorage:
+					return (val.itemType.TryContains("Clothing") ? (val.clothStorageHeight * val.clothStorageWidth) : 1)
+						.CompareTo(a.itemType.TryContains("Clothing") ? (a.clothStorageHeight * a.clothStorageWidth) : 1);
 				case CompareModes.VehicleHealth:
 					return (val.itemType2.TryContains("Vehicle") ? val.vehicleHealth : 1)
 						.CompareTo(a.itemType2.TryContains("Vehicle") ? a.vehicleHealth : 1);
+				case CompareModes.StructureStorage:
+					return (val.itemType2.TryContains("Storage") ? (val.barricadeStorageHeight * val.barricadeStorageWidth) : 1)
+						.CompareTo(a.itemType2.TryContains("Storage") ? (a.barricadeStorageHeight * a.barricadeStorageWidth) : 1);
+				case CompareModes.BuildingHealth:
+					return (val.itemType.TryContains("Barricade") || val.itemType.TryContains("Structure")
+						|| val.itemType2.TryContains("Structure") || val.itemType2.TryContains("Barricade") ? val.buildingHealth : 1).
+
+						CompareTo(a.itemType.TryContains("Barricade") || a.itemType.TryContains("Structure")
+						|| a.itemType2.TryContains("Structure") || a.itemType2.TryContains("Barricade") ? a.buildingHealth : 1);
 				default:
 					throw new Errors.InvalidMode();
 			}
@@ -144,9 +159,15 @@ namespace UIF
 							if (line.StartsWith("ID "))
 								item.id = line.Replace("ID ", "").ToInt();
 							else if (line.StartsWith("Width "))
-								item.width = line.Replace("Width ", "").ToInt();
+								item.clothStorageWidth = line.Replace("Width ", "").ToInt();
 							else if (line.StartsWith("Height "))
-								item.height = line.Replace("Height ", "").ToInt();
+								item.clothStorageHeight = line.Replace("Height ", "").ToInt();
+							else if (line.StartsWith("Storage_X "))
+								item.barricadeStorageWidth = line.Replace("Storage_X ", "").ToInt();
+							else if (line.StartsWith("Storage_Y "))
+								item.barricadeStorageHeight = line.Replace("Storage_Y ", "").ToInt();
+							else if (line.StartsWith("Health "))
+								item.buildingHealth = line.Replace("Health ", "").Replace(".", ",").ToFloat();
 							else if (line.StartsWith("Useable "))
 								item.itemType = line.Replace("Useable ", "");
 							else if (line.StartsWith("Engine "))

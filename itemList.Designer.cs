@@ -54,12 +54,12 @@
             this.DamageHeadTextBox = new System.Windows.Forms.TextBox();
             this.PlayerDamageLabel = new System.Windows.Forms.Label();
             this.BodyDamageTextBox = new System.Windows.Forms.TextBox();
-            this.CapacityTextBox = new System.Windows.Forms.TextBox();
+            this.ClothingCapacityTextBox = new System.Windows.Forms.TextBox();
             this.ProtectionTextBox = new System.Windows.Forms.TextBox();
             this.BodyDamageLabel = new System.Windows.Forms.Label();
             this.HeadDamageLabel = new System.Windows.Forms.Label();
             this.ProtectionLabel = new System.Windows.Forms.Label();
-            this.CapacityLabel = new System.Windows.Forms.Label();
+            this.ClothingCapacityLabel = new System.Windows.Forms.Label();
             this.SortDamagePlayersBtn = new System.Windows.Forms.Button();
             this.SortCapacityBtn = new System.Windows.Forms.Button();
             this.SortProtectionBtn = new System.Windows.Forms.Button();
@@ -67,6 +67,12 @@
             this.SortVehicleHealthBtn = new System.Windows.Forms.Button();
             this.SortDamageBuildingsBtn = new System.Windows.Forms.Button();
             this.MixBtn = new System.Windows.Forms.Button();
+            this.SortBarricadeCapacityBtn = new System.Windows.Forms.Button();
+            this.BuildingHealthTextBox = new System.Windows.Forms.TextBox();
+            this.BuildingHealthLabel = new System.Windows.Forms.Label();
+            this.BarricadeCapacityTextBox = new System.Windows.Forms.TextBox();
+            this.BarricadeCapacityLabel = new System.Windows.Forms.Label();
+            this.SortByBuildingHealthBtn = new System.Windows.Forms.Button();
             this.InfoGroupBox.SuspendLayout();
             this.ItemStatsGroupBox.SuspendLayout();
             this.SortingGroupBox.SuspendLayout();
@@ -87,7 +93,7 @@
             this.ResultsListBox.FormattingEnabled = true;
             this.ResultsListBox.Location = new System.Drawing.Point(12, 29);
             this.ResultsListBox.Name = "ResultsListBox";
-            this.ResultsListBox.Size = new System.Drawing.Size(167, 537);
+            this.ResultsListBox.Size = new System.Drawing.Size(167, 381);
             this.ResultsListBox.TabIndex = 6;
             this.ResultsListBox.TabStop = false;
             this.ResultsListBox.SelectedIndexChanged += new System.EventHandler(this.ResultsListBox_SelectedIndexChanged);
@@ -159,6 +165,10 @@
             // 
             // ItemStatsGroupBox
             // 
+            this.ItemStatsGroupBox.Controls.Add(this.BuildingHealthTextBox);
+            this.ItemStatsGroupBox.Controls.Add(this.BuildingHealthLabel);
+            this.ItemStatsGroupBox.Controls.Add(this.BarricadeCapacityTextBox);
+            this.ItemStatsGroupBox.Controls.Add(this.BarricadeCapacityLabel);
             this.ItemStatsGroupBox.Controls.Add(this.VehicleHealthTextBox);
             this.ItemStatsGroupBox.Controls.Add(this.VehicleHealthLabel);
             this.ItemStatsGroupBox.Controls.Add(this.EngineTextBox);
@@ -175,15 +185,15 @@
             this.ItemStatsGroupBox.Controls.Add(this.DamageHeadTextBox);
             this.ItemStatsGroupBox.Controls.Add(this.PlayerDamageLabel);
             this.ItemStatsGroupBox.Controls.Add(this.BodyDamageTextBox);
-            this.ItemStatsGroupBox.Controls.Add(this.CapacityTextBox);
+            this.ItemStatsGroupBox.Controls.Add(this.ClothingCapacityTextBox);
             this.ItemStatsGroupBox.Controls.Add(this.ProtectionTextBox);
             this.ItemStatsGroupBox.Controls.Add(this.BodyDamageLabel);
             this.ItemStatsGroupBox.Controls.Add(this.HeadDamageLabel);
             this.ItemStatsGroupBox.Controls.Add(this.ProtectionLabel);
-            this.ItemStatsGroupBox.Controls.Add(this.CapacityLabel);
+            this.ItemStatsGroupBox.Controls.Add(this.ClothingCapacityLabel);
             this.ItemStatsGroupBox.Location = new System.Drawing.Point(185, 128);
             this.ItemStatsGroupBox.Name = "ItemStatsGroupBox";
-            this.ItemStatsGroupBox.Size = new System.Drawing.Size(263, 240);
+            this.ItemStatsGroupBox.Size = new System.Drawing.Size(263, 282);
             this.ItemStatsGroupBox.TabIndex = 4;
             this.ItemStatsGroupBox.TabStop = false;
             this.ItemStatsGroupBox.Text = "Item Stats";
@@ -348,15 +358,15 @@
             this.BodyDamageTextBox.TabStop = false;
             this.BodyDamageTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // CapacityTextBox
+            // ClothingCapacityTextBox
             // 
-            this.CapacityTextBox.Location = new System.Drawing.Point(195, 18);
-            this.CapacityTextBox.Name = "CapacityTextBox";
-            this.CapacityTextBox.ReadOnly = true;
-            this.CapacityTextBox.Size = new System.Drawing.Size(62, 20);
-            this.CapacityTextBox.TabIndex = 12;
-            this.CapacityTextBox.TabStop = false;
-            this.CapacityTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.ClothingCapacityTextBox.Location = new System.Drawing.Point(195, 18);
+            this.ClothingCapacityTextBox.Name = "ClothingCapacityTextBox";
+            this.ClothingCapacityTextBox.ReadOnly = true;
+            this.ClothingCapacityTextBox.Size = new System.Drawing.Size(62, 20);
+            this.ClothingCapacityTextBox.TabIndex = 12;
+            this.ClothingCapacityTextBox.TabStop = false;
+            this.ClothingCapacityTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // ProtectionTextBox
             // 
@@ -398,15 +408,15 @@
             this.ProtectionLabel.TabIndex = 16;
             this.ProtectionLabel.Text = "Protection (%):";
             // 
-            // CapacityLabel
+            // ClothingCapacityLabel
             // 
-            this.CapacityLabel.AutoSize = true;
-            this.CapacityLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.CapacityLabel.Location = new System.Drawing.Point(6, 16);
-            this.CapacityLabel.Name = "CapacityLabel";
-            this.CapacityLabel.Size = new System.Drawing.Size(122, 20);
-            this.CapacityLabel.TabIndex = 17;
-            this.CapacityLabel.Text = "Capacity (Cells):";
+            this.ClothingCapacityLabel.AutoSize = true;
+            this.ClothingCapacityLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ClothingCapacityLabel.Location = new System.Drawing.Point(6, 16);
+            this.ClothingCapacityLabel.Name = "ClothingCapacityLabel";
+            this.ClothingCapacityLabel.Size = new System.Drawing.Size(178, 20);
+            this.ClothingCapacityLabel.TabIndex = 17;
+            this.ClothingCapacityLabel.Text = "Clothing capacity (cells):";
             // 
             // SortDamagePlayersBtn
             // 
@@ -443,15 +453,17 @@
             // 
             // SortingGroupBox
             // 
+            this.SortingGroupBox.Controls.Add(this.SortByBuildingHealthBtn);
+            this.SortingGroupBox.Controls.Add(this.SortBarricadeCapacityBtn);
             this.SortingGroupBox.Controls.Add(this.SortVehicleHealthBtn);
             this.SortingGroupBox.Controls.Add(this.SortDamageBuildingsBtn);
             this.SortingGroupBox.Controls.Add(this.MixBtn);
             this.SortingGroupBox.Controls.Add(this.SortProtectionBtn);
             this.SortingGroupBox.Controls.Add(this.SortCapacityBtn);
             this.SortingGroupBox.Controls.Add(this.SortDamagePlayersBtn);
-            this.SortingGroupBox.Location = new System.Drawing.Point(185, 374);
+            this.SortingGroupBox.Location = new System.Drawing.Point(454, 128);
             this.SortingGroupBox.Name = "SortingGroupBox";
-            this.SortingGroupBox.Size = new System.Drawing.Size(263, 192);
+            this.SortingGroupBox.Size = new System.Drawing.Size(263, 282);
             this.SortingGroupBox.TabIndex = 0;
             this.SortingGroupBox.TabStop = false;
             this.SortingGroupBox.Text = "Sorting";
@@ -480,7 +492,7 @@
             // 
             // MixBtn
             // 
-            this.MixBtn.Location = new System.Drawing.Point(10, 164);
+            this.MixBtn.Location = new System.Drawing.Point(10, 222);
             this.MixBtn.Name = "MixBtn";
             this.MixBtn.Size = new System.Drawing.Size(247, 23);
             this.MixBtn.TabIndex = 1;
@@ -489,11 +501,73 @@
             this.MixBtn.UseVisualStyleBackColor = true;
             this.MixBtn.Click += new System.EventHandler(this.MixBtn_Click);
             // 
+            // SortBarricadeCapacityBtn
+            // 
+            this.SortBarricadeCapacityBtn.Location = new System.Drawing.Point(10, 164);
+            this.SortBarricadeCapacityBtn.Name = "SortBarricadeCapacityBtn";
+            this.SortBarricadeCapacityBtn.Size = new System.Drawing.Size(247, 23);
+            this.SortBarricadeCapacityBtn.TabIndex = 6;
+            this.SortBarricadeCapacityBtn.TabStop = false;
+            this.SortBarricadeCapacityBtn.Text = "Sort by barricade capacity";
+            this.SortBarricadeCapacityBtn.UseVisualStyleBackColor = true;
+            this.SortBarricadeCapacityBtn.Click += new System.EventHandler(this.SortBarricadeCapacityBtn_Click);
+            // 
+            // BuildingHealthTextBox
+            // 
+            this.BuildingHealthTextBox.Location = new System.Drawing.Point(195, 258);
+            this.BuildingHealthTextBox.Name = "BuildingHealthTextBox";
+            this.BuildingHealthTextBox.ReadOnly = true;
+            this.BuildingHealthTextBox.Size = new System.Drawing.Size(62, 20);
+            this.BuildingHealthTextBox.TabIndex = 22;
+            this.BuildingHealthTextBox.TabStop = false;
+            this.BuildingHealthTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // BuildingHealthLabel
+            // 
+            this.BuildingHealthLabel.AutoSize = true;
+            this.BuildingHealthLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.BuildingHealthLabel.Location = new System.Drawing.Point(6, 256);
+            this.BuildingHealthLabel.Name = "BuildingHealthLabel";
+            this.BuildingHealthLabel.Size = new System.Drawing.Size(117, 20);
+            this.BuildingHealthLabel.TabIndex = 23;
+            this.BuildingHealthLabel.Text = "Building health:";
+            // 
+            // BarricadeCapacityTextBox
+            // 
+            this.BarricadeCapacityTextBox.Location = new System.Drawing.Point(195, 238);
+            this.BarricadeCapacityTextBox.Name = "BarricadeCapacityTextBox";
+            this.BarricadeCapacityTextBox.ReadOnly = true;
+            this.BarricadeCapacityTextBox.Size = new System.Drawing.Size(62, 20);
+            this.BarricadeCapacityTextBox.TabIndex = 24;
+            this.BarricadeCapacityTextBox.TabStop = false;
+            this.BarricadeCapacityTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // BarricadeCapacityLabel
+            // 
+            this.BarricadeCapacityLabel.AutoSize = true;
+            this.BarricadeCapacityLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.BarricadeCapacityLabel.Location = new System.Drawing.Point(6, 236);
+            this.BarricadeCapacityLabel.Name = "BarricadeCapacityLabel";
+            this.BarricadeCapacityLabel.Size = new System.Drawing.Size(188, 20);
+            this.BarricadeCapacityLabel.TabIndex = 25;
+            this.BarricadeCapacityLabel.Text = "Barricade capacity (cells):";
+            // 
+            // SortByBuildingHealthBtn
+            // 
+            this.SortByBuildingHealthBtn.Location = new System.Drawing.Point(10, 193);
+            this.SortByBuildingHealthBtn.Name = "SortByBuildingHealthBtn";
+            this.SortByBuildingHealthBtn.Size = new System.Drawing.Size(247, 23);
+            this.SortByBuildingHealthBtn.TabIndex = 7;
+            this.SortByBuildingHealthBtn.TabStop = false;
+            this.SortByBuildingHealthBtn.Text = "Sort by building health";
+            this.SortByBuildingHealthBtn.UseVisualStyleBackColor = true;
+            this.SortByBuildingHealthBtn.Click += new System.EventHandler(this.SortByBuildingHealthBtn_Click);
+            // 
             // itemList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(460, 575);
+            this.ClientSize = new System.Drawing.Size(725, 421);
             this.Controls.Add(this.SortingGroupBox);
             this.Controls.Add(this.ItemStatsGroupBox);
             this.Controls.Add(this.InfoGroupBox);
@@ -526,12 +600,12 @@
         private System.Windows.Forms.GroupBox ItemStatsGroupBox;
         private System.Windows.Forms.TextBox DamageHeadTextBox;
         private System.Windows.Forms.TextBox BodyDamageTextBox;
-        private System.Windows.Forms.TextBox CapacityTextBox;
+        private System.Windows.Forms.TextBox ClothingCapacityTextBox;
         private System.Windows.Forms.TextBox ProtectionTextBox;
         private System.Windows.Forms.Label BodyDamageLabel;
         private System.Windows.Forms.Label HeadDamageLabel;
         private System.Windows.Forms.Label ProtectionLabel;
-        private System.Windows.Forms.Label CapacityLabel;
+        private System.Windows.Forms.Label ClothingCapacityLabel;
         private System.Windows.Forms.Label ItemTypeLabel;
         private System.Windows.Forms.TextBox ItemTypeTextBox;
         private System.Windows.Forms.TextBox ItemType2TextBox;
@@ -553,5 +627,11 @@
         private System.Windows.Forms.TextBox EngineTextBox;
         private System.Windows.Forms.Label EngineLabel;
         private System.Windows.Forms.Button SortVehicleHealthBtn;
+        private System.Windows.Forms.Button SortBarricadeCapacityBtn;
+        private System.Windows.Forms.TextBox BuildingHealthTextBox;
+        private System.Windows.Forms.Label BuildingHealthLabel;
+        private System.Windows.Forms.TextBox BarricadeCapacityTextBox;
+        private System.Windows.Forms.Label BarricadeCapacityLabel;
+        private System.Windows.Forms.Button SortByBuildingHealthBtn;
     }
 }
