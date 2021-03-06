@@ -92,7 +92,8 @@ namespace UIF
 
 		private void StructuresAndBarricadesBtn_Click(object sender, EventArgs e)
 		{
-			var items = Core.parseAll(folderPath, i => i.itemType.TryContains("Barricade") || i.itemType2.TryContains("Barricade"));
+			var items = Core.parseAll(folderPath, i => i.itemType.TryContains("Barricade") || i.itemType2.TryContains("Barricade") ||
+				i.itemType.TryContains("Structure") || i.itemType2.TryContains("Structure"));
 
 			items.Sort((a, b) => a.CompareTo(b, Core.CompareModes.BuildingHealth));
 

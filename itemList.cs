@@ -68,7 +68,7 @@ namespace UIF
 			{
 				clearTextBoxes();
 
-				var currentItem = items[ResultsListBox.SelectedIndex];
+				item currentItem = items[ResultsListBox.SelectedIndex];
 				
 				IdTextBox.Text = currentItem.id.ToString();
 				NameTextBox.Text = ResultsListBox.SelectedItem.ToString().Replace(" (" + currentItem.id.ToString() + ")", "");
@@ -107,13 +107,15 @@ namespace UIF
 				if (currentItem.itemType2 != null)
 					ItemType2TextBox.Text = currentItem.itemType2;
 
-				if (currentItem.itemType2.TryContains("Vehicle"))
+				if (currentItem.itemType2.TryContains("Vehicle") || currentItem.itemType.TryContains("Vehicle"))
+				{
 					EngineTextBox.Text = currentItem.engine != null ? currentItem.engine.ToString() : "Car";
 
-				if (currentItem.itemType2.TryContains("Vehicle"))
 					VehicleHealthTextBox.Text = currentItem.vehicleHealth != null ? currentItem.vehicleHealth.ToString() : "";
+				}
 
-				if (currentItem.itemType.TryContains("Barricade") || currentItem.itemType.TryContains("Structure"))
+				if (currentItem.itemType.TryContains("Barricade") || currentItem.itemType.TryContains("Structure") ||
+					currentItem.itemType2.TryContains("Structure") || currentItem.itemType2.TryContains("Barricade"))
 					BuildingHealthTextBox.Text = currentItem.buildingHealth != null ? currentItem.buildingHealth.ToString() : "";
 
 				if (currentItem.itemType2.TryContains("Storage"))
