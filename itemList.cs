@@ -40,7 +40,7 @@ namespace UIF
 		}
 		private void clearTextBoxes()
 		{
-			ClothingCapacityTextBox.Clear();
+			ItemCapacityTextBox.Clear();
 			DamageHeadTextBox.Clear();
 			BodyDamageTextBox.Clear();
 			ProtectionTextBox.Clear();
@@ -50,9 +50,7 @@ namespace UIF
 			StructureDamageTextBox.Clear();
 			PlayerDamageTextBox.Clear();
 			EngineTextBox.Clear();
-			VehicleHealthTextBox.Clear();
-			BarricadeCapacityTextBox.Clear();
-			BuildingHealthTextBox.Clear();
+			ItemHealthTextBox.Clear();
 		}
 
 		private void ResultsListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -77,8 +75,11 @@ namespace UIF
 					ProtectionTextBox.Text = ((float)currentItem.armor).toPercentage()
 						.ToString();
 
-				if (currentItem.clothStorageHeight != null && currentItem.clothStorageWidth != null)
-					ClothingCapacityTextBox.Text = (currentItem.clothStorageHeight * currentItem.clothStorageWidth)
+				if (currentItem.clothStorageHeight != null && currentItem.clothStorageWidth != null && currentItem.itemType.TryContains("Clothing"))
+					ItemCapacityTextBox.Text = (currentItem.clothStorageHeight * currentItem.clothStorageWidth)
+						.ToString();
+				else if (currentItem.barricadeStorageHeight != null && currentItem.barricadeStorageWidth != null && currentItem.itemType2.TryContains("Storage"))
+					ItemCapacityTextBox.Text = (currentItem.barricadeStorageHeight * currentItem.barricadeStorageWidth)
 						.ToString();
 
 				if (currentItem.headDamage != null && (currentItem.itemType.TryContains("Melee") || currentItem.itemType.TryContains("Gun")))
@@ -111,17 +112,11 @@ namespace UIF
 				{
 					EngineTextBox.Text = currentItem.engine != null ? currentItem.engine.ToString() : "Car";
 
-					VehicleHealthTextBox.Text = currentItem.vehicleHealth != null ? currentItem.vehicleHealth.ToString() : "";
+					ItemHealthTextBox.Text = currentItem.vehicleHealth != null ? currentItem.vehicleHealth.ToString() : "";
 				}
-
-				if (currentItem.itemType.TryContains("Barricade") || currentItem.itemType.TryContains("Structure") ||
-					currentItem.itemType2.TryContains("Structure") || currentItem.itemType2.TryContains("Barricade"))
-					BuildingHealthTextBox.Text = currentItem.buildingHealth != null ? currentItem.buildingHealth.ToString() : "";
-
-				if (currentItem.itemType2.TryContains("Storage"))
-					BarricadeCapacityTextBox.Text =
-						currentItem.barricadeStorageHeight != null && currentItem.barricadeStorageWidth != null ?
-						(currentItem.barricadeStorageHeight * currentItem.barricadeStorageWidth).ToString() : "";
+				else if (currentItem.itemType.TryContains("Barricade") || currentItem.itemType.TryContains("Structure") ||
+					currentItem.itemType2.TryContains("Barricade") || currentItem.itemType2.TryContains("Structure"))
+					ItemHealthTextBox.Text = currentItem.buildingHealth != null ? currentItem.buildingHealth.ToString() : "";
 			}
 		}
 

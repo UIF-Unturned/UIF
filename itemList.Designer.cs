@@ -38,8 +38,8 @@
             this.NameLabel = new System.Windows.Forms.Label();
             this.IdToClipboard = new System.Windows.Forms.Button();
             this.ItemStatsGroupBox = new System.Windows.Forms.GroupBox();
-            this.VehicleHealthTextBox = new System.Windows.Forms.TextBox();
-            this.VehicleHealthLabel = new System.Windows.Forms.Label();
+            this.ItemHealthTextBox = new System.Windows.Forms.TextBox();
+            this.ItemHealthLabel = new System.Windows.Forms.Label();
             this.EngineTextBox = new System.Windows.Forms.TextBox();
             this.EngineLabel = new System.Windows.Forms.Label();
             this.RangeTextBox = new System.Windows.Forms.TextBox();
@@ -54,12 +54,12 @@
             this.DamageHeadTextBox = new System.Windows.Forms.TextBox();
             this.PlayerDamageLabel = new System.Windows.Forms.Label();
             this.BodyDamageTextBox = new System.Windows.Forms.TextBox();
-            this.ClothingCapacityTextBox = new System.Windows.Forms.TextBox();
+            this.ItemCapacityTextBox = new System.Windows.Forms.TextBox();
             this.ProtectionTextBox = new System.Windows.Forms.TextBox();
             this.BodyDamageLabel = new System.Windows.Forms.Label();
             this.HeadDamageLabel = new System.Windows.Forms.Label();
             this.ProtectionLabel = new System.Windows.Forms.Label();
-            this.ClothingCapacityLabel = new System.Windows.Forms.Label();
+            this.ItemCapacityLabel = new System.Windows.Forms.Label();
             this.SortDamagePlayersBtn = new System.Windows.Forms.Button();
             this.SortCapacityBtn = new System.Windows.Forms.Button();
             this.SortProtectionBtn = new System.Windows.Forms.Button();
@@ -68,10 +68,6 @@
             this.SortDamageBuildingsBtn = new System.Windows.Forms.Button();
             this.MixBtn = new System.Windows.Forms.Button();
             this.SortBarricadeCapacityBtn = new System.Windows.Forms.Button();
-            this.BuildingHealthTextBox = new System.Windows.Forms.TextBox();
-            this.BuildingHealthLabel = new System.Windows.Forms.Label();
-            this.BarricadeCapacityTextBox = new System.Windows.Forms.TextBox();
-            this.BarricadeCapacityLabel = new System.Windows.Forms.Label();
             this.SortByBuildingHealthBtn = new System.Windows.Forms.Button();
             this.InfoGroupBox.SuspendLayout();
             this.ItemStatsGroupBox.SuspendLayout();
@@ -107,26 +103,26 @@
             this.InfoGroupBox.Controls.Add(this.IdToClipboard);
             this.InfoGroupBox.Location = new System.Drawing.Point(185, 29);
             this.InfoGroupBox.Name = "InfoGroupBox";
-            this.InfoGroupBox.Size = new System.Drawing.Size(263, 93);
+            this.InfoGroupBox.Size = new System.Drawing.Size(328, 93);
             this.InfoGroupBox.TabIndex = 5;
             this.InfoGroupBox.TabStop = false;
             this.InfoGroupBox.Text = "Info";
             // 
             // IdTextBox
             // 
-            this.IdTextBox.Location = new System.Drawing.Point(62, 39);
+            this.IdTextBox.Location = new System.Drawing.Point(90, 39);
             this.IdTextBox.Name = "IdTextBox";
             this.IdTextBox.ReadOnly = true;
-            this.IdTextBox.Size = new System.Drawing.Size(195, 20);
+            this.IdTextBox.Size = new System.Drawing.Size(231, 20);
             this.IdTextBox.TabIndex = 0;
             this.IdTextBox.TabStop = false;
             // 
             // NameTextBox
             // 
-            this.NameTextBox.Location = new System.Drawing.Point(62, 18);
+            this.NameTextBox.Location = new System.Drawing.Point(90, 18);
             this.NameTextBox.Name = "NameTextBox";
             this.NameTextBox.ReadOnly = true;
-            this.NameTextBox.Size = new System.Drawing.Size(195, 20);
+            this.NameTextBox.Size = new System.Drawing.Size(231, 20);
             this.NameTextBox.TabIndex = 1;
             this.NameTextBox.TabStop = false;
             // 
@@ -154,9 +150,9 @@
             // 
             // IdToClipboard
             // 
-            this.IdToClipboard.Location = new System.Drawing.Point(62, 65);
+            this.IdToClipboard.Location = new System.Drawing.Point(90, 65);
             this.IdToClipboard.Name = "IdToClipboard";
-            this.IdToClipboard.Size = new System.Drawing.Size(195, 23);
+            this.IdToClipboard.Size = new System.Drawing.Size(231, 23);
             this.IdToClipboard.TabIndex = 4;
             this.IdToClipboard.TabStop = false;
             this.IdToClipboard.Text = "Copy ID to clipboard";
@@ -165,12 +161,8 @@
             // 
             // ItemStatsGroupBox
             // 
-            this.ItemStatsGroupBox.Controls.Add(this.BuildingHealthTextBox);
-            this.ItemStatsGroupBox.Controls.Add(this.BuildingHealthLabel);
-            this.ItemStatsGroupBox.Controls.Add(this.BarricadeCapacityTextBox);
-            this.ItemStatsGroupBox.Controls.Add(this.BarricadeCapacityLabel);
-            this.ItemStatsGroupBox.Controls.Add(this.VehicleHealthTextBox);
-            this.ItemStatsGroupBox.Controls.Add(this.VehicleHealthLabel);
+            this.ItemStatsGroupBox.Controls.Add(this.ItemHealthTextBox);
+            this.ItemStatsGroupBox.Controls.Add(this.ItemHealthLabel);
             this.ItemStatsGroupBox.Controls.Add(this.EngineTextBox);
             this.ItemStatsGroupBox.Controls.Add(this.EngineLabel);
             this.ItemStatsGroupBox.Controls.Add(this.RangeTextBox);
@@ -185,42 +177,42 @@
             this.ItemStatsGroupBox.Controls.Add(this.DamageHeadTextBox);
             this.ItemStatsGroupBox.Controls.Add(this.PlayerDamageLabel);
             this.ItemStatsGroupBox.Controls.Add(this.BodyDamageTextBox);
-            this.ItemStatsGroupBox.Controls.Add(this.ClothingCapacityTextBox);
+            this.ItemStatsGroupBox.Controls.Add(this.ItemCapacityTextBox);
             this.ItemStatsGroupBox.Controls.Add(this.ProtectionTextBox);
             this.ItemStatsGroupBox.Controls.Add(this.BodyDamageLabel);
             this.ItemStatsGroupBox.Controls.Add(this.HeadDamageLabel);
             this.ItemStatsGroupBox.Controls.Add(this.ProtectionLabel);
-            this.ItemStatsGroupBox.Controls.Add(this.ClothingCapacityLabel);
+            this.ItemStatsGroupBox.Controls.Add(this.ItemCapacityLabel);
             this.ItemStatsGroupBox.Location = new System.Drawing.Point(185, 128);
             this.ItemStatsGroupBox.Name = "ItemStatsGroupBox";
-            this.ItemStatsGroupBox.Size = new System.Drawing.Size(263, 282);
+            this.ItemStatsGroupBox.Size = new System.Drawing.Size(328, 282);
             this.ItemStatsGroupBox.TabIndex = 4;
             this.ItemStatsGroupBox.TabStop = false;
             this.ItemStatsGroupBox.Text = "Item Stats";
             // 
-            // VehicleHealthTextBox
+            // ItemHealthTextBox
             // 
-            this.VehicleHealthTextBox.Location = new System.Drawing.Point(195, 218);
-            this.VehicleHealthTextBox.Name = "VehicleHealthTextBox";
-            this.VehicleHealthTextBox.ReadOnly = true;
-            this.VehicleHealthTextBox.Size = new System.Drawing.Size(62, 20);
-            this.VehicleHealthTextBox.TabIndex = 18;
-            this.VehicleHealthTextBox.TabStop = false;
-            this.VehicleHealthTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.ItemHealthTextBox.Location = new System.Drawing.Point(259, 218);
+            this.ItemHealthTextBox.Name = "ItemHealthTextBox";
+            this.ItemHealthTextBox.ReadOnly = true;
+            this.ItemHealthTextBox.Size = new System.Drawing.Size(62, 20);
+            this.ItemHealthTextBox.TabIndex = 18;
+            this.ItemHealthTextBox.TabStop = false;
+            this.ItemHealthTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // VehicleHealthLabel
+            // ItemHealthLabel
             // 
-            this.VehicleHealthLabel.AutoSize = true;
-            this.VehicleHealthLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.VehicleHealthLabel.Location = new System.Drawing.Point(6, 216);
-            this.VehicleHealthLabel.Name = "VehicleHealthLabel";
-            this.VehicleHealthLabel.Size = new System.Drawing.Size(116, 20);
-            this.VehicleHealthLabel.TabIndex = 19;
-            this.VehicleHealthLabel.Text = "Vehicle Health:";
+            this.ItemHealthLabel.AutoSize = true;
+            this.ItemHealthLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ItemHealthLabel.Location = new System.Drawing.Point(6, 216);
+            this.ItemHealthLabel.Name = "ItemHealthLabel";
+            this.ItemHealthLabel.Size = new System.Drawing.Size(184, 20);
+            this.ItemHealthLabel.TabIndex = 19;
+            this.ItemHealthLabel.Text = "Barricade/vehicle Health:";
             // 
             // EngineTextBox
             // 
-            this.EngineTextBox.Location = new System.Drawing.Point(195, 198);
+            this.EngineTextBox.Location = new System.Drawing.Point(259, 198);
             this.EngineTextBox.Name = "EngineTextBox";
             this.EngineTextBox.ReadOnly = true;
             this.EngineTextBox.Size = new System.Drawing.Size(62, 20);
@@ -240,7 +232,7 @@
             // 
             // RangeTextBox
             // 
-            this.RangeTextBox.Location = new System.Drawing.Point(195, 138);
+            this.RangeTextBox.Location = new System.Drawing.Point(259, 138);
             this.RangeTextBox.Name = "RangeTextBox";
             this.RangeTextBox.ReadOnly = true;
             this.RangeTextBox.Size = new System.Drawing.Size(62, 20);
@@ -250,7 +242,7 @@
             // 
             // ItemType2TextBox
             // 
-            this.ItemType2TextBox.Location = new System.Drawing.Point(195, 178);
+            this.ItemType2TextBox.Location = new System.Drawing.Point(259, 178);
             this.ItemType2TextBox.Name = "ItemType2TextBox";
             this.ItemType2TextBox.ReadOnly = true;
             this.ItemType2TextBox.Size = new System.Drawing.Size(62, 20);
@@ -280,7 +272,7 @@
             // 
             // StructureDamageTextBox
             // 
-            this.StructureDamageTextBox.Location = new System.Drawing.Point(195, 118);
+            this.StructureDamageTextBox.Location = new System.Drawing.Point(259, 118);
             this.StructureDamageTextBox.Name = "StructureDamageTextBox";
             this.StructureDamageTextBox.ReadOnly = true;
             this.StructureDamageTextBox.Size = new System.Drawing.Size(62, 20);
@@ -290,7 +282,7 @@
             // 
             // ItemTypeTextBox
             // 
-            this.ItemTypeTextBox.Location = new System.Drawing.Point(195, 158);
+            this.ItemTypeTextBox.Location = new System.Drawing.Point(259, 158);
             this.ItemTypeTextBox.Name = "ItemTypeTextBox";
             this.ItemTypeTextBox.ReadOnly = true;
             this.ItemTypeTextBox.Size = new System.Drawing.Size(62, 20);
@@ -320,7 +312,7 @@
             // 
             // PlayerDamageTextBox
             // 
-            this.PlayerDamageTextBox.Location = new System.Drawing.Point(195, 98);
+            this.PlayerDamageTextBox.Location = new System.Drawing.Point(259, 98);
             this.PlayerDamageTextBox.Name = "PlayerDamageTextBox";
             this.PlayerDamageTextBox.ReadOnly = true;
             this.PlayerDamageTextBox.Size = new System.Drawing.Size(62, 20);
@@ -330,7 +322,7 @@
             // 
             // DamageHeadTextBox
             // 
-            this.DamageHeadTextBox.Location = new System.Drawing.Point(195, 58);
+            this.DamageHeadTextBox.Location = new System.Drawing.Point(259, 58);
             this.DamageHeadTextBox.Name = "DamageHeadTextBox";
             this.DamageHeadTextBox.ReadOnly = true;
             this.DamageHeadTextBox.Size = new System.Drawing.Size(62, 20);
@@ -350,7 +342,7 @@
             // 
             // BodyDamageTextBox
             // 
-            this.BodyDamageTextBox.Location = new System.Drawing.Point(195, 78);
+            this.BodyDamageTextBox.Location = new System.Drawing.Point(259, 78);
             this.BodyDamageTextBox.Name = "BodyDamageTextBox";
             this.BodyDamageTextBox.ReadOnly = true;
             this.BodyDamageTextBox.Size = new System.Drawing.Size(62, 20);
@@ -358,19 +350,19 @@
             this.BodyDamageTextBox.TabStop = false;
             this.BodyDamageTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // ClothingCapacityTextBox
+            // ItemCapacityTextBox
             // 
-            this.ClothingCapacityTextBox.Location = new System.Drawing.Point(195, 18);
-            this.ClothingCapacityTextBox.Name = "ClothingCapacityTextBox";
-            this.ClothingCapacityTextBox.ReadOnly = true;
-            this.ClothingCapacityTextBox.Size = new System.Drawing.Size(62, 20);
-            this.ClothingCapacityTextBox.TabIndex = 12;
-            this.ClothingCapacityTextBox.TabStop = false;
-            this.ClothingCapacityTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.ItemCapacityTextBox.Location = new System.Drawing.Point(259, 18);
+            this.ItemCapacityTextBox.Name = "ItemCapacityTextBox";
+            this.ItemCapacityTextBox.ReadOnly = true;
+            this.ItemCapacityTextBox.Size = new System.Drawing.Size(62, 20);
+            this.ItemCapacityTextBox.TabIndex = 12;
+            this.ItemCapacityTextBox.TabStop = false;
+            this.ItemCapacityTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // ProtectionTextBox
             // 
-            this.ProtectionTextBox.Location = new System.Drawing.Point(195, 38);
+            this.ProtectionTextBox.Location = new System.Drawing.Point(259, 38);
             this.ProtectionTextBox.Name = "ProtectionTextBox";
             this.ProtectionTextBox.ReadOnly = true;
             this.ProtectionTextBox.Size = new System.Drawing.Size(62, 20);
@@ -408,15 +400,15 @@
             this.ProtectionLabel.TabIndex = 16;
             this.ProtectionLabel.Text = "Protection (%):";
             // 
-            // ClothingCapacityLabel
+            // ItemCapacityLabel
             // 
-            this.ClothingCapacityLabel.AutoSize = true;
-            this.ClothingCapacityLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ClothingCapacityLabel.Location = new System.Drawing.Point(6, 16);
-            this.ClothingCapacityLabel.Name = "ClothingCapacityLabel";
-            this.ClothingCapacityLabel.Size = new System.Drawing.Size(178, 20);
-            this.ClothingCapacityLabel.TabIndex = 17;
-            this.ClothingCapacityLabel.Text = "Clothing capacity (cells):";
+            this.ItemCapacityLabel.AutoSize = true;
+            this.ItemCapacityLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ItemCapacityLabel.Location = new System.Drawing.Point(6, 16);
+            this.ItemCapacityLabel.Name = "ItemCapacityLabel";
+            this.ItemCapacityLabel.Size = new System.Drawing.Size(247, 20);
+            this.ItemCapacityLabel.TabIndex = 17;
+            this.ItemCapacityLabel.Text = "Barricade/clothing capacity (cells):";
             // 
             // SortDamagePlayersBtn
             // 
@@ -461,7 +453,7 @@
             this.SortingGroupBox.Controls.Add(this.SortProtectionBtn);
             this.SortingGroupBox.Controls.Add(this.SortCapacityBtn);
             this.SortingGroupBox.Controls.Add(this.SortDamagePlayersBtn);
-            this.SortingGroupBox.Location = new System.Drawing.Point(454, 128);
+            this.SortingGroupBox.Location = new System.Drawing.Point(519, 128);
             this.SortingGroupBox.Name = "SortingGroupBox";
             this.SortingGroupBox.Size = new System.Drawing.Size(263, 282);
             this.SortingGroupBox.TabIndex = 0;
@@ -512,46 +504,6 @@
             this.SortBarricadeCapacityBtn.UseVisualStyleBackColor = true;
             this.SortBarricadeCapacityBtn.Click += new System.EventHandler(this.SortBarricadeCapacityBtn_Click);
             // 
-            // BuildingHealthTextBox
-            // 
-            this.BuildingHealthTextBox.Location = new System.Drawing.Point(195, 258);
-            this.BuildingHealthTextBox.Name = "BuildingHealthTextBox";
-            this.BuildingHealthTextBox.ReadOnly = true;
-            this.BuildingHealthTextBox.Size = new System.Drawing.Size(62, 20);
-            this.BuildingHealthTextBox.TabIndex = 22;
-            this.BuildingHealthTextBox.TabStop = false;
-            this.BuildingHealthTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // BuildingHealthLabel
-            // 
-            this.BuildingHealthLabel.AutoSize = true;
-            this.BuildingHealthLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.BuildingHealthLabel.Location = new System.Drawing.Point(6, 256);
-            this.BuildingHealthLabel.Name = "BuildingHealthLabel";
-            this.BuildingHealthLabel.Size = new System.Drawing.Size(117, 20);
-            this.BuildingHealthLabel.TabIndex = 23;
-            this.BuildingHealthLabel.Text = "Building health:";
-            // 
-            // BarricadeCapacityTextBox
-            // 
-            this.BarricadeCapacityTextBox.Location = new System.Drawing.Point(195, 238);
-            this.BarricadeCapacityTextBox.Name = "BarricadeCapacityTextBox";
-            this.BarricadeCapacityTextBox.ReadOnly = true;
-            this.BarricadeCapacityTextBox.Size = new System.Drawing.Size(62, 20);
-            this.BarricadeCapacityTextBox.TabIndex = 24;
-            this.BarricadeCapacityTextBox.TabStop = false;
-            this.BarricadeCapacityTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // BarricadeCapacityLabel
-            // 
-            this.BarricadeCapacityLabel.AutoSize = true;
-            this.BarricadeCapacityLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.BarricadeCapacityLabel.Location = new System.Drawing.Point(6, 236);
-            this.BarricadeCapacityLabel.Name = "BarricadeCapacityLabel";
-            this.BarricadeCapacityLabel.Size = new System.Drawing.Size(188, 20);
-            this.BarricadeCapacityLabel.TabIndex = 25;
-            this.BarricadeCapacityLabel.Text = "Barricade capacity (cells):";
-            // 
             // SortByBuildingHealthBtn
             // 
             this.SortByBuildingHealthBtn.Location = new System.Drawing.Point(10, 193);
@@ -567,7 +519,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(725, 421);
+            this.ClientSize = new System.Drawing.Size(792, 420);
             this.Controls.Add(this.SortingGroupBox);
             this.Controls.Add(this.ItemStatsGroupBox);
             this.Controls.Add(this.InfoGroupBox);
@@ -600,12 +552,12 @@
         private System.Windows.Forms.GroupBox ItemStatsGroupBox;
         private System.Windows.Forms.TextBox DamageHeadTextBox;
         private System.Windows.Forms.TextBox BodyDamageTextBox;
-        private System.Windows.Forms.TextBox ClothingCapacityTextBox;
+        private System.Windows.Forms.TextBox ItemCapacityTextBox;
         private System.Windows.Forms.TextBox ProtectionTextBox;
         private System.Windows.Forms.Label BodyDamageLabel;
         private System.Windows.Forms.Label HeadDamageLabel;
         private System.Windows.Forms.Label ProtectionLabel;
-        private System.Windows.Forms.Label ClothingCapacityLabel;
+        private System.Windows.Forms.Label ItemCapacityLabel;
         private System.Windows.Forms.Label ItemTypeLabel;
         private System.Windows.Forms.TextBox ItemTypeTextBox;
         private System.Windows.Forms.TextBox ItemType2TextBox;
@@ -622,16 +574,12 @@
         private System.Windows.Forms.TextBox PlayerDamageTextBox;
         private System.Windows.Forms.Label PlayerDamageLabel;
         private System.Windows.Forms.Button SortDamageBuildingsBtn;
-        private System.Windows.Forms.TextBox VehicleHealthTextBox;
-        private System.Windows.Forms.Label VehicleHealthLabel;
+        private System.Windows.Forms.TextBox ItemHealthTextBox;
+        private System.Windows.Forms.Label ItemHealthLabel;
         private System.Windows.Forms.TextBox EngineTextBox;
         private System.Windows.Forms.Label EngineLabel;
         private System.Windows.Forms.Button SortVehicleHealthBtn;
         private System.Windows.Forms.Button SortBarricadeCapacityBtn;
-        private System.Windows.Forms.TextBox BuildingHealthTextBox;
-        private System.Windows.Forms.Label BuildingHealthLabel;
-        private System.Windows.Forms.TextBox BarricadeCapacityTextBox;
-        private System.Windows.Forms.Label BarricadeCapacityLabel;
         private System.Windows.Forms.Button SortByBuildingHealthBtn;
     }
 }
