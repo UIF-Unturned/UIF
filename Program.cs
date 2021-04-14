@@ -59,6 +59,8 @@ namespace UIF
 		public List<string> modes = new List<string>();
 
 		public string slot = null;
+
+		public float? shake = null;
 	}
 
 	public static class Core
@@ -71,7 +73,8 @@ namespace UIF
 			ClothingStorage,
 			VehicleHealth,
 			StructureStorage,
-			BuildingHealth
+			BuildingHealth,
+			Shake
 		}
 		public static int CompareTo(this item a, item val, CompareModes mode)
 		{
@@ -92,15 +95,18 @@ namespace UIF
 				case CompareModes.VehicleHealth:
 					return (val.itemType2.TryContains("Vehicle") ? val.vehicleHealth : 1)
 						.CompareTo(a.itemType2.TryContains("Vehicle") ? a.vehicleHealth : 1);
+				case CompareModes.Shake:
+					return (a.itemType2.TryContains("Grip", "Barrel") ? a.shake : 1)
+						.CompareTo(val.itemType2.TryContains("Grip", "Barrel") ? val.shake: 1);
 				case CompareModes.StructureStorage:
 					return (val.itemType2.TryContains("Storage") ? (val.barricadeStorageHeight * val.barricadeStorageWidth) : 1)
 						.CompareTo(a.itemType2.TryContains("Storage") ? (a.barricadeStorageHeight * a.barricadeStorageWidth) : 1);
 				case CompareModes.BuildingHealth:
-					return (val.itemType.TryContains("Barricade") || val.itemType.TryContains("Structure")
-						|| val.itemType2.TryContains("Structure") || val.itemType2.TryContains("Barricade") ? val.buildingHealth : 1).
+					return (val.itemType.TryContains("Barricade", "Structure")
+						|| val.itemType2.TryContains("Structure", "Barricade") ? val.buildingHealth : 1).
 
-						CompareTo(a.itemType.TryContains("Barricade") || a.itemType.TryContains("Structure")
-						|| a.itemType2.TryContains("Structure") || a.itemType2.TryContains("Barricade") ? a.buildingHealth : 1);
+						CompareTo(a.itemType.TryContains("Barricade", "Structure")
+						|| a.itemType2.TryContains("Structure", "Barricade") ? a.buildingHealth : 1);
 				default:
 					throw new Errors.InvalidMode();
 			}
@@ -200,6 +206,8 @@ namespace UIF
 								item.range = line.Replace("Range ", "").Replace(".", ",").ToFloat();
 							else if (line.StartsWith("Invulnerable"))
 								item.invulnerable = true;
+							else if (line.StartsWith("Shake"))
+								item.shake = line.Replace("Shake ", "").Replace(".", ",").ToFloat();
 						} catch { }
 					}
 
@@ -333,6 +341,14 @@ namespace UIF
 					return var.Contains(a);
 			}
 			catch { }
+			return false;
+		}
+		public static bool TryContains(this string var, params string[] a)
+		{
+			foreach (string b in a)
+				if (TryContains(b))
+					return true;
+
 			return false;
 		}
 

@@ -51,6 +51,7 @@ namespace UIF
 			PlayerDamageTextBox.Clear();
 			EngineTextBox.Clear();
 			ItemHealthTextBox.Clear();
+			ShakeTextBox.Clear();
 		}
 
 		private void ResultsListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -82,24 +83,24 @@ namespace UIF
 					ItemCapacityTextBox.Text = (currentItem.barricadeStorageHeight * currentItem.barricadeStorageWidth)
 						.ToString();
 
-				if (currentItem.headDamage != null && (currentItem.itemType.TryContains("Melee") || currentItem.itemType.TryContains("Gun")))
+				if (currentItem.headDamage != null && currentItem.itemType.TryContains("Melee", "Gun"))
 					DamageHeadTextBox.Text = (currentItem.headDamage != null ? "" : "~") +
 						((currentItem.headDamage != null ? currentItem.headDamage : 1) *
 						(currentItem.playerDamage != null ? currentItem.playerDamage : 1)).ToString();
 
-				if (currentItem.bodyDamage != null && (currentItem.itemType.TryContains("Melee") || currentItem.itemType.TryContains("Gun")))
+				if (currentItem.bodyDamage != null && currentItem.itemType.TryContains("Melee", "Gun"))
 					BodyDamageTextBox.Text = (currentItem.bodyDamage != null ? "" : "~") +
 						((currentItem.bodyDamage != null ? currentItem.bodyDamage : 1) *
 						(currentItem.playerDamage != null ? currentItem.playerDamage : 1)).ToString();
 
-				if (currentItem.range != null && (currentItem.itemType.TryContains("Melee") || currentItem.itemType.TryContains("Gun")))
+				if (currentItem.range != null && currentItem.itemType.TryContains("Melee", "Gun"))
 					RangeTextBox.Text = currentItem.range.ToString();
 
-				if (currentItem.playerDamage != null && (currentItem.itemType.TryContains("Gun") || currentItem.itemType.TryContains("Melee")))
+				if (currentItem.playerDamage != null && currentItem.itemType.TryContains("Gun", "Melee"))
 					PlayerDamageTextBox.Text = currentItem.playerDamage.ToString();
 
-				if (currentItem.structureDamage != null && (currentItem.itemType.TryContains("Gun") ||
-					currentItem.itemType2.TryContains("Charge") || currentItem.itemType.TryContains("Melee")))
+				if (currentItem.structureDamage != null && (currentItem.itemType.TryContains("Gun", "Melee") ||
+					currentItem.itemType2.TryContains("Charge")))
 					StructureDamageTextBox.Text = (currentItem.explosive ? "~" : "") + currentItem.structureDamage.ToString();
 
 				if (currentItem.itemType != null)
@@ -114,9 +115,12 @@ namespace UIF
 
 					ItemHealthTextBox.Text = currentItem.vehicleHealth != null ? currentItem.vehicleHealth.ToString() : "";
 				}
-				else if (currentItem.itemType.TryContains("Barricade") || currentItem.itemType.TryContains("Structure") ||
-					currentItem.itemType2.TryContains("Barricade") || currentItem.itemType2.TryContains("Structure"))
+				else if (currentItem.itemType.TryContains("Barricade", "Structure") ||
+					currentItem.itemType2.TryContains("Barricade", "Structure"))
 					ItemHealthTextBox.Text = currentItem.buildingHealth != null ? currentItem.buildingHealth.ToString() : "";
+
+				if (currentItem.itemType2.TryContains("Grip", "Barrel"))
+					ShakeTextBox.Text = currentItem.shake.ToString();
 			}
 		}
 
@@ -183,6 +187,13 @@ namespace UIF
 		private void SortByBuildingHealthBtn_Click(object sender, EventArgs e)
 		{
 			items.Sort((a, b) => a.CompareTo(b, Core.CompareModes.BuildingHealth));
+
+			updateItemList();
+		}
+
+		private void SortByShakeBtn_Click(object sender, EventArgs e)
+		{
+			items.Sort((a, b) => a.CompareTo(b, Core.CompareModes.Shake));
 
 			updateItemList();
 		}

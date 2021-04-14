@@ -39,7 +39,12 @@ namespace UIF
 			this.Text += " | Ver. " + Program.Version;
 
 			FldrComboBox.Items.Clear();
-			if (RegistryFolderPath != null) FldrComboBox.Items.AddRange(RegistryFolderPath.Split('\n'));
+			if (RegistryFolderPath != null)
+			{
+				FldrComboBox.Items.AddRange(RegistryFolderPath.Split('\n'));
+
+				FldrComboBox.SelectedIndex = 0;
+			}
 
 			Tip.SetToolTip(InfoBtn, ModsTip);
 			Tip.SetToolTip(SelectFldrLabel, ModsTip);
