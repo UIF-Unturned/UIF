@@ -346,7 +346,7 @@ namespace UIF
 		public static bool TryContains(this string var, params string[] a)
 		{
 			foreach (string b in a)
-				if (TryContains(b))
+				if (var.TryContains(b))
 					return true;
 
 			return false;
