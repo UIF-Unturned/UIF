@@ -61,9 +61,11 @@ namespace UIF
 		public string slot = null;
 
 		public float? shake = null; // Grip, suppressor and laser (Spread)
-        
-		public float? volume = null;
-    }
+		
+		public float? barrelVolume = null;
+
+		public float? barrelDamage = null;
+	}
 
 	public static class Core
 	{
@@ -74,41 +76,49 @@ namespace UIF
 			ClothingProtection,
 			ClothingStorage,
 			VehicleHealth,
-			StructureStorage,
+			StructureCapacity,
 			BuildingHealth,
-			Shake
+			Shake,
+			BarrelDamage,
+			BarrelVolume
 		}
 		public static int CompareTo(this item a, item val, CompareModes mode)
 		{
 			switch (mode)
 			{
 				case CompareModes.StructureDamage:
-					return (((val.itemType2.TryContains("Charge") || val.itemType.TryContains("Gun")) && val.structureDamage != null) ? val.structureDamage : 1)
-						.CompareTo(((a.itemType2.TryContains("Charge") || a.itemType.TryContains("Gun")) && a.structureDamage != null) ? a.structureDamage : 1);
+					return (((val.itemType2.TryContains("Charge") || val.itemType.TryContains("Gun")) && val.structureDamage != null) ? val.structureDamage : 0)
+						.CompareTo(((a.itemType2.TryContains("Charge") || a.itemType.TryContains("Gun")) && a.structureDamage != null) ? a.structureDamage : 0);
 				case CompareModes.Damage:
-					return (val.itemType.TryContains("Gun") ? val.getAverageDamage() : 1)
-						.CompareTo(a.itemType.TryContains("Gun") ? a.getAverageDamage() : 1);
+					return (val.itemType.TryContains("Gun") ? val.getAverageDamage() : 0)
+						.CompareTo(a.itemType.TryContains("Gun") ? a.getAverageDamage() : 0);
 				case CompareModes.ClothingProtection:
 					return (a.itemType.TryContains("Clothing") ? a.armor : 1)
 						.CompareTo(val.itemType.TryContains("Clothing") ? val.armor : 1);
 				case CompareModes.ClothingStorage:
-					return (val.itemType.TryContains("Clothing") ? (val.clothStorageHeight * val.clothStorageWidth) : 1)
-						.CompareTo(a.itemType.TryContains("Clothing") ? (a.clothStorageHeight * a.clothStorageWidth) : 1);
+					return (val.itemType.TryContains("Clothing") ? (val.clothStorageHeight * val.clothStorageWidth) : 0)
+						.CompareTo(a.itemType.TryContains("Clothing") ? (a.clothStorageHeight * a.clothStorageWidth) : 0);
 				case CompareModes.VehicleHealth:
-					return (val.itemType2.TryContains("Vehicle") ? val.vehicleHealth : 1)
-						.CompareTo(a.itemType2.TryContains("Vehicle") ? a.vehicleHealth : 1);
+					return (val.itemType2.TryContains("Vehicle") ? val.vehicleHealth : 0)
+						.CompareTo(a.itemType2.TryContains("Vehicle") ? a.vehicleHealth : 0);
 				case CompareModes.Shake:
 					return (a.itemType2.TryContains("Grip", "Barrel", "Tactical") ? a.shake : 1)
 						.CompareTo(val.itemType2.TryContains("Grip", "Barrel", "Tactical") ? val.shake: 1);
-				case CompareModes.StructureStorage:
-					return (val.itemType2.TryContains("Storage") ? (val.barricadeStorageHeight * val.barricadeStorageWidth) : 1)
-						.CompareTo(a.itemType2.TryContains("Storage") ? (a.barricadeStorageHeight * a.barricadeStorageWidth) : 1);
+				case CompareModes.BarrelDamage:
+					return (val.itemType2.TryContains("Barrel") ? (val.barrelDamage != null ? val.barrelDamage : 1) : 0)
+						.CompareTo(a.itemType2.TryContains("Barrel") ? (a.barrelDamage != null ? a.barrelDamage : 1) : 0);
+				case CompareModes.BarrelVolume:
+					return (a.itemType2.TryContains("Barrel") ? a.barrelVolume : 1)
+						.CompareTo(val.itemType2.TryContains("Barrel") ? val.barrelVolume : 1);
+				case CompareModes.StructureCapacity:
+					return (val.itemType2.TryContains("Storage") ? (val.barricadeStorageHeight * val.barricadeStorageWidth) : 0)
+						.CompareTo(a.itemType2.TryContains("Storage") ? (a.barricadeStorageHeight * a.barricadeStorageWidth) : 0);
 				case CompareModes.BuildingHealth:
 					return (val.itemType.TryContains("Barricade", "Structure")
-						|| val.itemType2.TryContains("Structure", "Barricade") ? val.buildingHealth : 1).
+						|| val.itemType2.TryContains("Structure", "Barricade") ? val.buildingHealth : 0).
 
 						CompareTo(a.itemType.TryContains("Barricade", "Structure")
-						|| a.itemType2.TryContains("Structure", "Barricade") ? a.buildingHealth : 1);
+						|| a.itemType2.TryContains("Structure", "Barricade") ? a.buildingHealth : 0);
 				default:
 					throw new Errors.InvalidMode();
 			}
@@ -212,6 +222,10 @@ namespace UIF
 								item.shake = line.Replace("Shake ", "").Replace(".", ",").ToFloat();
 							else if (line.StartsWith("Spread"))
 								item.shake = line.Replace("Spread ", "").Replace(".", ",").ToFloat();
+							else if (line.StartsWith("Volume"))
+								item.barrelVolume = line.Replace("Volume ", "").Replace(".", ",").ToFloat();
+							else if (line.StartsWith("Damage"))
+								item.barrelDamage = line.Replace("Damage", "").Replace(".", ",").ToFloat();
 						} catch { }
 					}
 

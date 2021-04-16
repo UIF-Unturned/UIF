@@ -52,6 +52,8 @@ namespace UIF
 			EngineTextBox.Clear();
 			ItemHealthTextBox.Clear();
 			ShakeTextBox.Clear();
+			VolumeTextBox.Clear();
+			BarrelDamageTextBox.Clear();
 		}
 
 		private void ResultsListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -119,8 +121,14 @@ namespace UIF
 					currentItem.itemType2.TryContains("Barricade", "Structure"))
 					ItemHealthTextBox.Text = currentItem.buildingHealth != null ? currentItem.buildingHealth.ToString() : "";
 
-				if (currentItem.itemType2.TryContains("Grip", "Barrel", "Tactical") || currentItem.itemType.TryContains("Grip", "Barrel", "Tactical"))
+				if (currentItem.itemType2.TryContains("Grip", "Barrel", "Tactical"))
 					ShakeTextBox.Text = currentItem.shake != null ? currentItem.shake.ToString() : "";
+
+				if (currentItem.itemType2.TryContains("Barrel"))
+					VolumeTextBox.Text = currentItem.barrelVolume != null ? currentItem.barrelVolume.ToString() : "";
+
+				if ( currentItem.itemType2.TryContains("Barrel"))
+					BarrelDamageTextBox.Text = currentItem.barrelDamage != null ? currentItem.barrelDamage.ToString() : "1";
 			}
 		}
 
@@ -179,7 +187,7 @@ namespace UIF
 
 		private void SortBarricadeCapacityBtn_Click(object sender, EventArgs e)
 		{
-			items.Sort((a, b) => a.CompareTo(b, Core.CompareModes.StructureStorage));
+			items.Sort((a, b) => a.CompareTo(b, Core.CompareModes.StructureCapacity));
 
 			updateItemList();
 		}
@@ -194,6 +202,20 @@ namespace UIF
 		private void SortByShakeBtn_Click(object sender, EventArgs e)
 		{
 			items.Sort((a, b) => a.CompareTo(b, Core.CompareModes.Shake));
+
+			updateItemList();
+		}
+
+		private void SortByBarrelDamageBtn_Click(object sender, EventArgs e)
+		{
+			items.Sort((a, b) => a.CompareTo(b, Core.CompareModes.BarrelDamage));
+
+			updateItemList();
+		}
+
+		private void SortByVolumeBtn_Click(object sender, EventArgs e)
+		{
+			items.Sort((a, b) => a.CompareTo(b, Core.CompareModes.BarrelVolume));
 
 			updateItemList();
 		}
