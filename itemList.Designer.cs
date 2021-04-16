@@ -38,6 +38,8 @@
             this.NameLabel = new System.Windows.Forms.Label();
             this.IdToClipboard = new System.Windows.Forms.Button();
             this.ItemStatsGroupBox = new System.Windows.Forms.GroupBox();
+            this.ShakeTextBox = new System.Windows.Forms.TextBox();
+            this.ShakeLabel = new System.Windows.Forms.Label();
             this.ItemHealthTextBox = new System.Windows.Forms.TextBox();
             this.ItemHealthLabel = new System.Windows.Forms.Label();
             this.EngineTextBox = new System.Windows.Forms.TextBox();
@@ -64,14 +66,12 @@
             this.SortCapacityBtn = new System.Windows.Forms.Button();
             this.SortProtectionBtn = new System.Windows.Forms.Button();
             this.SortingGroupBox = new System.Windows.Forms.GroupBox();
+            this.SortByShakeBtn = new System.Windows.Forms.Button();
             this.SortByBuildingHealthBtn = new System.Windows.Forms.Button();
             this.SortBarricadeCapacityBtn = new System.Windows.Forms.Button();
             this.SortVehicleHealthBtn = new System.Windows.Forms.Button();
             this.SortDamageBuildingsBtn = new System.Windows.Forms.Button();
             this.MixBtn = new System.Windows.Forms.Button();
-            this.SortByShakeBtn = new System.Windows.Forms.Button();
-            this.ShakeTextBox = new System.Windows.Forms.TextBox();
-            this.ShakeLabel = new System.Windows.Forms.Label();
             this.InfoGroupBox.SuspendLayout();
             this.ItemStatsGroupBox.SuspendLayout();
             this.SortingGroupBox.SuspendLayout();
@@ -194,6 +194,26 @@
             this.ItemStatsGroupBox.TabIndex = 4;
             this.ItemStatsGroupBox.TabStop = false;
             this.ItemStatsGroupBox.Text = "Item Stats";
+            // 
+            // ShakeTextBox
+            // 
+            this.ShakeTextBox.Location = new System.Drawing.Point(259, 238);
+            this.ShakeTextBox.Name = "ShakeTextBox";
+            this.ShakeTextBox.ReadOnly = true;
+            this.ShakeTextBox.Size = new System.Drawing.Size(62, 20);
+            this.ShakeTextBox.TabIndex = 22;
+            this.ShakeTextBox.TabStop = false;
+            this.ShakeTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // ShakeLabel
+            // 
+            this.ShakeLabel.AutoSize = true;
+            this.ShakeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ShakeLabel.Location = new System.Drawing.Point(6, 236);
+            this.ShakeLabel.Name = "ShakeLabel";
+            this.ShakeLabel.Size = new System.Drawing.Size(136, 20);
+            this.ShakeLabel.TabIndex = 23;
+            this.ShakeLabel.Text = "Grip/Barrel shake:";
             // 
             // ItemHealthTextBox
             // 
@@ -466,6 +486,17 @@
             this.SortingGroupBox.TabStop = false;
             this.SortingGroupBox.Text = "Sorting";
             // 
+            // SortByShakeBtn
+            // 
+            this.SortByShakeBtn.Location = new System.Drawing.Point(10, 222);
+            this.SortByShakeBtn.Name = "SortByShakeBtn";
+            this.SortByShakeBtn.Size = new System.Drawing.Size(247, 23);
+            this.SortByShakeBtn.TabIndex = 8;
+            this.SortByShakeBtn.TabStop = false;
+            this.SortByShakeBtn.Text = "Sort by shake";
+            this.SortByShakeBtn.UseVisualStyleBackColor = true;
+            this.SortByShakeBtn.Click += new System.EventHandler(this.SortByShakeBtn_Click);
+            // 
             // SortByBuildingHealthBtn
             // 
             this.SortByBuildingHealthBtn.Location = new System.Drawing.Point(10, 193);
@@ -520,37 +551,6 @@
             this.MixBtn.Text = "Mix";
             this.MixBtn.UseVisualStyleBackColor = true;
             this.MixBtn.Click += new System.EventHandler(this.MixBtn_Click);
-            // 
-            // SortByShakeBtn
-            // 
-            this.SortByShakeBtn.Location = new System.Drawing.Point(10, 222);
-            this.SortByShakeBtn.Name = "SortByShakeBtn";
-            this.SortByShakeBtn.Size = new System.Drawing.Size(247, 23);
-            this.SortByShakeBtn.TabIndex = 8;
-            this.SortByShakeBtn.TabStop = false;
-            this.SortByShakeBtn.Text = "Sort by shake";
-            this.SortByShakeBtn.UseVisualStyleBackColor = true;
-            this.SortByShakeBtn.Click += new System.EventHandler(this.SortByShakeBtn_Click);
-            // 
-            // ShakeTextBox
-            // 
-            this.ShakeTextBox.Location = new System.Drawing.Point(259, 238);
-            this.ShakeTextBox.Name = "ShakeTextBox";
-            this.ShakeTextBox.ReadOnly = true;
-            this.ShakeTextBox.Size = new System.Drawing.Size(62, 20);
-            this.ShakeTextBox.TabIndex = 22;
-            this.ShakeTextBox.TabStop = false;
-            this.ShakeTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // ShakeLabel
-            // 
-            this.ShakeLabel.AutoSize = true;
-            this.ShakeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ShakeLabel.Location = new System.Drawing.Point(6, 236);
-            this.ShakeLabel.Name = "ShakeLabel";
-            this.ShakeLabel.Size = new System.Drawing.Size(136, 20);
-            this.ShakeLabel.TabIndex = 23;
-            this.ShakeLabel.Text = "Girp/Barrel shake:";
             // 
             // itemList
             // 

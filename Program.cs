@@ -16,7 +16,7 @@ namespace UIF
 	{
 		public const string Version = "0.4.2";
 		public const string DiscordUrl = "https://discord.gg/VhpM2ex";
-		public const string GithubUrl = "https://github.com/ymo4-dev/UIF";
+		public const string GithubUrl = "https://github.com/uif-unturned/UIF";
 
 		[STAThread]
 		static void Main()
@@ -60,8 +60,10 @@ namespace UIF
 
 		public string slot = null;
 
-		public float? shake = null;
-	}
+		public float? shake = null; // Grip, suppressor and laser (Spread)
+        
+		public float? volume = null;
+    }
 
 	public static class Core
 	{
@@ -96,8 +98,8 @@ namespace UIF
 					return (val.itemType2.TryContains("Vehicle") ? val.vehicleHealth : 1)
 						.CompareTo(a.itemType2.TryContains("Vehicle") ? a.vehicleHealth : 1);
 				case CompareModes.Shake:
-					return (a.itemType2.TryContains("Grip", "Barrel") ? a.shake : 1)
-						.CompareTo(val.itemType2.TryContains("Grip", "Barrel") ? val.shake: 1);
+					return (a.itemType2.TryContains("Grip", "Barrel", "Tactical") ? a.shake : 1)
+						.CompareTo(val.itemType2.TryContains("Grip", "Barrel", "Tactical") ? val.shake: 1);
 				case CompareModes.StructureStorage:
 					return (val.itemType2.TryContains("Storage") ? (val.barricadeStorageHeight * val.barricadeStorageWidth) : 1)
 						.CompareTo(a.itemType2.TryContains("Storage") ? (a.barricadeStorageHeight * a.barricadeStorageWidth) : 1);
@@ -208,6 +210,8 @@ namespace UIF
 								item.invulnerable = true;
 							else if (line.StartsWith("Shake"))
 								item.shake = line.Replace("Shake ", "").Replace(".", ",").ToFloat();
+							else if (line.StartsWith("Spread"))
+								item.shake = line.Replace("Spread ", "").Replace(".", ",").ToFloat();
 						} catch { }
 					}
 

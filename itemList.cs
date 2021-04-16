@@ -119,8 +119,8 @@ namespace UIF
 					currentItem.itemType2.TryContains("Barricade", "Structure"))
 					ItemHealthTextBox.Text = currentItem.buildingHealth != null ? currentItem.buildingHealth.ToString() : "";
 
-				if (currentItem.itemType2.TryContains("Grip", "Barrel"))
-					ShakeTextBox.Text = currentItem.shake.ToString();
+				if (currentItem.itemType2.TryContains("Grip", "Barrel", "Tactical") || currentItem.itemType.TryContains("Grip", "Barrel", "Tactical"))
+					ShakeTextBox.Text = currentItem.shake != null ? currentItem.shake.ToString() : "";
 			}
 		}
 
