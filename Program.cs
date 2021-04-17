@@ -185,13 +185,11 @@ namespace UIF
 							else if (line.StartsWith("Storage_Y "))
 								item.barricadeStorageHeight = line.Replace("Storage_Y ", "").ToInt();
 							else if (line.StartsWith("Health "))
-								item.buildingHealth = line.Replace("Health ", "").Replace(".", ",").ToFloat();
+								item.buildingHealth = item.vehicleHealth = line.Replace("Health ", "").Replace(".", ",").ToFloat();
 							else if (line.StartsWith("Useable "))
 								item.itemType = line.Replace("Useable ", "");
 							else if (line.StartsWith("Engine "))
 								item.engine = line.Replace("Engine ", "");
-							else if (line.StartsWith("Health "))
-								item.vehicleHealth = line.Replace("Health ", "").Replace(".", ",").ToFloat();
 							else if (line.StartsWith("Armor "))
 								item.armor = line.Replace("Armor ", "").Replace(".", ",").ToFloat();
 							else if (line.StartsWith("Player_Spine_Multiplier "))
