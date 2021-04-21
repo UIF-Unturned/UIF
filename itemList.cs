@@ -138,6 +138,31 @@ namespace UIF
 				Clipboard.SetText(items[ResultsListBox.SelectedIndex].id.ToString());
 		}
 
+		private void NameIdToClipboard_Click(object sender, EventArgs e)
+		{
+			if (ResultsListBox.SelectedIndex != -1)
+				Clipboard.SetText((items[ResultsListBox.SelectedIndex].name
+					+ " - "
+					+ (IdPrefixTextBox.Text != String.Empty ? IdPrefixTextBox.Text + " " : "")
+					+ items[ResultsListBox.SelectedIndex].id.ToString()).Replace("\n", ""));
+		}
+
+		private void AllNameIdToClipboard_Click(object sender, EventArgs e)
+		{
+			string copyStr = "";
+
+			for (int i = 0; i < items.Count; i++)
+			{
+				copyStr += (items[i].name
+					+ " - "
+					+ (IdPrefixTextBox.Text != String.Empty ? IdPrefixTextBox.Text + " " : "")
+					+ items[i].id.ToString()).Replace("\n", "").Replace("\r", "")
+					+ (i < items.Count ? "\n" : "");
+			}
+
+			Clipboard.SetText(copyStr);
+		}
+
 		private void SortCapacityBtn_Click(object sender, EventArgs e)
 		{
 			items.Sort((a, b) => a.CompareTo(b, Core.CompareModes.ClothingStorage));
