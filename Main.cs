@@ -23,7 +23,7 @@ namespace UIF
 
 		private void updateRegistry()
 		{
-			RegistryFolderPath = "";
+			RegistryFolderPath = String.Empty;
 			for (int i = 0; i < FldrComboBox.Items.Count; i++)
 			{
 				RegistryFolderPath += FldrComboBox.Items[i].ToString();

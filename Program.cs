@@ -168,36 +168,37 @@ namespace UIF
 				if (!a.EndsWith("English.dat"))
 				{
 					string[] linesModDat = File.ReadAllText(a).Split('\n');
-					var item = new UIF.item() { name = File.ReadAllText(EnglishDat).Split('\n')[0].Replace("Name ", "") };
+					var item = new UIF.item() { name = File.ReadAllText(EnglishDat).Split('\n')[0].Replace("Name ", String.Empty) };
 
-					foreach (string line in linesModDat)
+					foreach (string _line in linesModDat)
 					{
+						string line = _line.Replace("\n", String.Empty).Replace("\r", String.Empty);
 						try
 						{
 							if (line.StartsWith("ID "))
-								item.id = line.Replace("ID ", "").ToInt();
+								item.id = line.Replace("ID ", String.Empty).ToInt();
 							else if (line.StartsWith("Width "))
-								item.clothStorageWidth = line.Replace("Width ", "").ToInt();
+								item.clothStorageWidth = line.Replace("Width ", String.Empty).ToInt();
 							else if (line.StartsWith("Height "))
-								item.clothStorageHeight = line.Replace("Height ", "").ToInt();
+								item.clothStorageHeight = line.Replace("Height ", String.Empty).ToInt();
 							else if (line.StartsWith("Storage_X "))
-								item.barricadeStorageWidth = line.Replace("Storage_X ", "").ToInt();
+								item.barricadeStorageWidth = line.Replace("Storage_X ", String.Empty).ToInt();
 							else if (line.StartsWith("Storage_Y "))
-								item.barricadeStorageHeight = line.Replace("Storage_Y ", "").ToInt();
+								item.barricadeStorageHeight = line.Replace("Storage_Y ", String.Empty).ToInt();
 							else if (line.StartsWith("Health "))
-								item.buildingHealth = item.vehicleHealth = line.Replace("Health ", "").Replace(".", ",").ToFloat();
+								item.buildingHealth = item.vehicleHealth = line.Replace("Health ", String.Empty).Replace(".", ",").ToFloat();
 							else if (line.StartsWith("Useable "))
-								item.itemType = line.Replace("Useable ", "");
+								item.itemType = line.Replace("Useable ", String.Empty);
 							else if (line.StartsWith("Engine "))
-								item.engine = line.Replace("Engine ", "");
+								item.engine = line.Replace("Engine ", String.Empty);
 							else if (line.StartsWith("Armor "))
-								item.armor = line.Replace("Armor ", "").Replace(".", ",").ToFloat();
+								item.armor = line.Replace("Armor ", String.Empty).Replace(".", ",").ToFloat();
 							else if (line.StartsWith("Player_Spine_Multiplier "))
-								item.bodyDamage = line.Replace("Player_Spine_Multiplier ", "").Replace(".", ",").ToFloat();
+								item.bodyDamage = line.Replace("Player_Spine_Multiplier ", String.Empty).Replace(".", ",").ToFloat();
 							else if (line.StartsWith("Player_Skull_Multiplier "))
-								item.headDamage = line.Replace("Player_Skull_Multiplier ", "").Replace(".", ",").ToFloat();
+								item.headDamage = line.Replace("Player_Skull_Multiplier ", String.Empty).Replace(".", ",").ToFloat();
 							else if (line.StartsWith("Type "))
-								item.itemType2 = line.Replace("Type ", "");
+								item.itemType2 = line.Replace("Type ", String.Empty);
 							else if (line.StartsWith("Auto"))
 								item.modes.Add("Auto");
 							else if (line.StartsWith("Semi"))
@@ -205,25 +206,25 @@ namespace UIF
 							else if (line.StartsWith("Burst"))
 								item.modes.Add("Burst");
 							else if (line.StartsWith("Slot "))
-								item.slot = line.Replace("Slot ", "");
+								item.slot = line.Replace("Slot ", String.Empty);
 							else if (line.StartsWith("Player_Damage "))
-								item.playerDamage = line.Replace("Player_Damage ", "").Replace(".", ",").ToInt();
+								item.playerDamage = line.Replace("Player_Damage ", String.Empty).Replace(".", ",").ToInt();
 							else if (line.StartsWith("Structure_Damage "))
-								item.structureDamage = line.Replace("Structure_Damage ", "").Replace(".", ",").ToFloat();
+								item.structureDamage = line.Replace("Structure_Damage ", String.Empty).Replace(".", ",").ToFloat();
 							else if (line.StartsWith("Explosive") || line.StartsWith("Explosion"))
 								item.explosive = true;
 							else if (line.StartsWith("Range "))
-								item.range = line.Replace("Range ", "").Replace(".", ",").ToFloat();
+								item.range = line.Replace("Range ", String.Empty).Replace(".", ",").ToFloat();
 							else if (line.StartsWith("Invulnerable"))
 								item.invulnerable = true;
 							else if (line.StartsWith("Shake"))
-								item.shake = line.Replace("Shake ", "").Replace(".", ",").ToFloat();
+								item.shake = line.Replace("Shake ", String.Empty).Replace(".", ",").ToFloat();
 							else if (line.StartsWith("Spread"))
-								item.shake = line.Replace("Spread ", "").Replace(".", ",").ToFloat();
+								item.shake = line.Replace("Spread ", String.Empty).Replace(".", ",").ToFloat();
 							else if (line.StartsWith("Volume"))
-								item.barrelVolume = line.Replace("Volume ", "").Replace(".", ",").ToFloat();
+								item.barrelVolume = line.Replace("Volume ", String.Empty).Replace(".", ",").ToFloat();
 							else if (line.StartsWith("Damage"))
-								item.barrelDamage = line.Replace("Damage", "").Replace(".", ",").ToFloat();
+								item.barrelDamage = line.Replace("Damage", String.Empty).Replace(".", ",").ToFloat();
 						} catch { }
 					}
 
@@ -320,6 +321,18 @@ namespace UIF
 
 	public static class Misc
 	{
+		public static string Replace(this string replace_str, params string[] parameters)
+		{
+			string new_str = String.Empty;
+
+			for (int i = 0; i < parameters.Length - 1; i++)
+			{
+				new_str += replace_str.Replace(parameters[i], parameters[-1]);
+			}
+
+			return new_str;
+		}
+
 		public static float? getAverageDamage(this UIF.item item)
 		{
 			return (((item.bodyDamage != 0 && item.bodyDamage != null) ? item.bodyDamage : 1) * (item.playerDamage != null ? item.playerDamage : 1)
