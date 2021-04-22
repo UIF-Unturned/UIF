@@ -136,8 +136,8 @@ namespace UIF
 		{
 			if (ResultsListBox.SelectedIndex != -1)
 				Clipboard.SetText(
-					(IdPrefixTextBox.Text != String.Empty ? IdPrefixTextBox.Text + " " : String.Empty)
-					+ items[ResultsListBox.SelectedIndex].id.ToString()
+					((IdPrefixTextBox.Text != String.Empty ? IdPrefixTextBox.Text + " " : String.Empty)
+					+ items[ResultsListBox.SelectedIndex].id.ToString()).Replace("\n", "\r", String.Empty)
 					);
 		}
 
@@ -145,10 +145,10 @@ namespace UIF
 		{
 			if (ResultsListBox.SelectedIndex != -1)
 				Clipboard.SetText(
-					items[ResultsListBox.SelectedIndex].name
+					(items[ResultsListBox.SelectedIndex].name
 					+ " - "
 					+ (IdPrefixTextBox.Text != String.Empty ? IdPrefixTextBox.Text + " " : String.Empty)
-                    + items[ResultsListBox.SelectedIndex].id.ToString()
+					+ items[ResultsListBox.SelectedIndex].id.ToString()).Replace("\n", "\r", String.Empty)
 					);
 		}
 
@@ -159,10 +159,10 @@ namespace UIF
 			for (int i = 0; i < items.Count; i++)
 			{
 				copyStr +=
-					items[i].name
+					(items[i].name
 					+ " - "
 					+ (IdPrefixTextBox.Text != String.Empty ? IdPrefixTextBox.Text + " " : String.Empty)
-					+ items[i].id.ToString()
+					+ items[i].id.ToString()).Replace("\n", "\r", String.Empty)
 					+ (i < items.Count ? "\n" : String.Empty);
 			}
 

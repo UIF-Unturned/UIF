@@ -323,11 +323,11 @@ namespace UIF
 	{
 		public static string Replace(this string replace_str, params string[] parameters)
 		{
-			string new_str = String.Empty;
+			string new_str = replace_str;
 
 			for (int i = 0; i < parameters.Length - 1; i++)
 			{
-				new_str += replace_str.Replace(parameters[i], parameters[-1]);
+				new_str = replace_str.Replace(parameters[i], parameters.Last());
 			}
 
 			return new_str;
