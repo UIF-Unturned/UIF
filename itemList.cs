@@ -135,16 +135,21 @@ namespace UIF
 		private void IdToClipboard_Click(object sender, EventArgs e)
 		{
 			if (ResultsListBox.SelectedIndex != -1)
-				Clipboard.SetText(items[ResultsListBox.SelectedIndex].id.ToString());
+				Clipboard.SetText(
+					(IdPrefixTextBox.Text != String.Empty ? IdPrefixTextBox.Text + " " : String.Empty)
+					+ items[ResultsListBox.SelectedIndex].id.ToString()
+					);
 		}
 
 		private void NameIdToClipboard_Click(object sender, EventArgs e)
 		{
 			if (ResultsListBox.SelectedIndex != -1)
-				Clipboard.SetText((items[ResultsListBox.SelectedIndex].name
+				Clipboard.SetText(
+					items[ResultsListBox.SelectedIndex].name
 					+ " - "
 					+ (IdPrefixTextBox.Text != String.Empty ? IdPrefixTextBox.Text + " " : String.Empty)
-					+ items[ResultsListBox.SelectedIndex].id.ToString()));
+                    + items[ResultsListBox.SelectedIndex].id.ToString()
+					);
 		}
 
 		private void AllNameIdToClipboard_Click(object sender, EventArgs e)
@@ -153,10 +158,11 @@ namespace UIF
 
 			for (int i = 0; i < items.Count; i++)
 			{
-				copyStr += (items[i].name
+				copyStr +=
+					items[i].name
 					+ " - "
 					+ (IdPrefixTextBox.Text != String.Empty ? IdPrefixTextBox.Text + " " : String.Empty)
-					+ items[i].id.ToString())
+					+ items[i].id.ToString()
 					+ (i < items.Count ? "\n" : String.Empty);
 			}
 
