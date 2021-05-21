@@ -10,4 +10,4 @@ Discord: *YMO4#7441* (*[Server](https://discord.gg/VhpM2ex)*)
 # P.S.
 All modifications and pull requests are welcome.
 
-**Good Luck! 😉**
+<div align="center"><img src="README/goodluck.png" alt="goodluck"></div>
