@@ -172,7 +172,7 @@ namespace UIF
 
 					foreach (string _line in linesModDat)
 					{
-						string line = _line.Replace("\n", String.Empty).Replace("\r", String.Empty);
+						string line = _line.Replace("\r", String.Empty);
 						try
 						{
 							if (line.StartsWith("ID "))
