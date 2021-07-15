@@ -15,7 +15,7 @@ namespace UIF
 	public partial class Main : Form
 	{
 		public string RegistryFolderPath = (string)Core.GetRegistryParam(Program.Version+"\\Settings\\modsPath");
-		public string CurrentFolderPath = null;
+		public static string CurrentFolderPath = null;
 		private string ModsTip = "Path to folder with mods.\nExample: " +
 			@"C:\Program Files (x86)\Steam\steamapps\workshop\content\304930" +
 			"\n\nBefore using it, you need to delete all the downloaded mods and log in to the server.";
@@ -79,7 +79,7 @@ namespace UIF
 				MessageBox.Show("Folder is not specified!");
 			else
 			{
-				new ItemsCategories(CurrentFolderPath).ShowDialog();
+				new ItemsCategories().ShowDialog();
 			}
 		}
 

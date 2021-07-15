@@ -13,18 +13,10 @@ namespace UIF
 {
 	public partial class ItemsCategories : Form
 	{
-		string folderPath = null;
+		string folderPath = Main.CurrentFolderPath;
 
-		public ItemsCategories(string path)
+		public ItemsCategories()
 		{
-			if (path == null)
-			{
-				MessageBox.Show("folderPath is null!", "Error!");
-				return;
-			}
-
-			folderPath = path;
-
 			InitializeComponent();
 		}
 		
