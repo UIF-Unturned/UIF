@@ -146,5 +146,22 @@ namespace UIF
 			FldrComboBox.SelectedIndex = -1;
 			CurrentFolderPath = null;
 		}
-	}
+
+        private void LoadModsToRamBtn_Click(object sender, EventArgs e)
+        {
+			if (CurrentFolderPath != null)
+				if (Core.loadedItems != null)
+				{
+					Core.loadedItems = null;
+					FldrComboBox.Enabled = true;
+					LoadModsToRamBtn.Text = "Load mods";
+				} else {
+					Core.loadedItems = Core.parseAll(CurrentFolderPath);
+					FldrComboBox.Enabled = false;
+					LoadModsToRamBtn.Text = "Unload mods";
+				}
+			else
+				MessageBox.Show("Folder is not specified!");
+		}
+    }
 }

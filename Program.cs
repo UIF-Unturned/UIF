@@ -69,6 +69,8 @@ namespace UIF
 
 	public static class Core
 	{
+		public static List<item> loadedItems;
+
 		public enum CompareModes
 		{
 			Damage,
@@ -124,36 +126,55 @@ namespace UIF
 			}
 		}
 
-		public static List<item> parseAll(string folderPath, Func<item, bool> filter)
+		public static List<item> parseAll(string folderPath, Func<item, bool> filter = null)
 		{
-			if (!Directory.Exists(folderPath))
+			if (loadedItems == null)
 			{
-				MessageBox.Show("Folder doesn't exist", "Error!");
-				throw new Errors.FolderDoesntExist();
-				return null;
-			}
-
-			List<string> dirs = Directory.EnumerateDirectories(folderPath, "*", SearchOption.AllDirectories).ToList();
-			List<item> items = new List<item>();
-
-			for (int i = 0; i < dirs.Count; i++)
-			{
-				string EnglishDat = dirs[i] + "\\\\English.dat";
-
-				if (File.Exists(EnglishDat))
+				if (!Directory.Exists(folderPath))
 				{
-					var files = Directory.EnumerateFiles(dirs[i], "*.dat")
-						.ToList();
+					MessageBox.Show("Folder doesn't exist", "Error!");
+					throw new Errors.FolderDoesntExist();
+					return null;
+				}
 
-					var item = parseDat(files, EnglishDat, filter);
-					if (item.id != null)
+				List<string> dirs = Directory.EnumerateDirectories(folderPath, "*", SearchOption.AllDirectories).ToList();
+				List<item> items = new List<item>();
+
+				for (int i = 0; i < dirs.Count; i++)
+				{
+					string EnglishDat = dirs[i] + "\\\\English.dat";
+
+					if (File.Exists(EnglishDat))
 					{
-						items.Add(item);
+						var files = Directory.EnumerateFiles(dirs[i], "*.dat")
+							.ToList();
+
+						var item = parseDat(files, EnglishDat, filter);
+						if (item.id != null)
+						{
+							items.Add(item);
+						}
 					}
 				}
-			}
 
-			return items;
+				return items;
+			} else {
+				if (filter != null)
+				{
+					List<item> items = new List<item>();
+					foreach (item _item in loadedItems)
+					{
+						if (filter(_item))
+							items.Add(_item);
+					}
+
+					return items;
+				}
+				else
+				{
+					return loadedItems;
+				}
+			}
 		}
 		public static item parseDat(List<string> files, string EnglishDat, Func<item, bool> filter)
 		{
@@ -230,7 +251,7 @@ namespace UIF
 
 					try
 					{
-						if (filter(item))
+						if (filter == null || filter(item))
 							return item;
 					} catch { }
 				}

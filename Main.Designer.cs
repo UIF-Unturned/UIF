@@ -49,6 +49,7 @@
             this.AbouGroupBox = new System.Windows.Forms.GroupBox();
             this.DiscordLink = new System.Windows.Forms.PictureBox();
             this.GitHubLink = new System.Windows.Forms.PictureBox();
+            this.LoadModsToRamBtn = new System.Windows.Forms.Button();
             this.MainGroupBox.SuspendLayout();
             this.SettingsGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.OpenFldrBtn)).BeginInit();
@@ -185,6 +186,7 @@
             // 
             // SettingsGroupBox
             // 
+            this.SettingsGroupBox.Controls.Add(this.LoadModsToRamBtn);
             this.SettingsGroupBox.Controls.Add(this.OpenFldrBtn);
             this.SettingsGroupBox.Controls.Add(this.MinusFldrBtn);
             this.SettingsGroupBox.Controls.Add(this.PlusFldrBtn);
@@ -193,7 +195,7 @@
             this.SettingsGroupBox.Controls.Add(this.SelectFldrLabel);
             this.SettingsGroupBox.Location = new System.Drawing.Point(12, 121);
             this.SettingsGroupBox.Name = "SettingsGroupBox";
-            this.SettingsGroupBox.Size = new System.Drawing.Size(455, 74);
+            this.SettingsGroupBox.Size = new System.Drawing.Size(455, 100);
             this.SettingsGroupBox.TabIndex = 0;
             this.SettingsGroupBox.TabStop = false;
             this.SettingsGroupBox.Text = "SETTINGS";
@@ -263,7 +265,7 @@
             this.AbouGroupBox.Controls.Add(this.CopyrightLabel);
             this.AbouGroupBox.Controls.Add(this.DiscordLink);
             this.AbouGroupBox.Controls.Add(this.GitHubLink);
-            this.AbouGroupBox.Location = new System.Drawing.Point(12, 201);
+            this.AbouGroupBox.Location = new System.Drawing.Point(12, 227);
             this.AbouGroupBox.Name = "AbouGroupBox";
             this.AbouGroupBox.Size = new System.Drawing.Size(455, 65);
             this.AbouGroupBox.TabIndex = 6;
@@ -296,11 +298,23 @@
             this.GitHubLink.TabStop = false;
             this.GitHubLink.Click += new System.EventHandler(this.GitHubLink_Click);
             // 
+            // LoadModsToRamBtn
+            // 
+            this.LoadModsToRamBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.LoadModsToRamBtn.Location = new System.Drawing.Point(6, 69);
+            this.LoadModsToRamBtn.Name = "LoadModsToRamBtn";
+            this.LoadModsToRamBtn.Size = new System.Drawing.Size(443, 23);
+            this.LoadModsToRamBtn.TabIndex = 7;
+            this.LoadModsToRamBtn.TabStop = false;
+            this.LoadModsToRamBtn.Text = "Load mods";
+            this.LoadModsToRamBtn.UseVisualStyleBackColor = true;
+            this.LoadModsToRamBtn.Click += new System.EventHandler(this.LoadModsToRamBtn_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(479, 276);
+            this.ClientSize = new System.Drawing.Size(479, 306);
             this.Controls.Add(this.AbouGroupBox);
             this.Controls.Add(this.SettingsGroupBox);
             this.Controls.Add(this.MainGroupBox);
@@ -347,6 +361,7 @@
         private System.Windows.Forms.PictureBox MinusFldrBtn;
         private System.Windows.Forms.PictureBox PlusFldrBtn;
         private System.Windows.Forms.PictureBox OpenFldrBtn;
+        private System.Windows.Forms.Button LoadModsToRamBtn;
     }
 }
 
