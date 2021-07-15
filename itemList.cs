@@ -1,44 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace UIF
 {
-	public partial class itemList : Form
+	public partial class ItemList : Form
 	{
-		List<item> items;
+		private List<Item> items;
 
-		public itemList(List<item> _items)
+		public ItemList(List<Item> _items)
 		{
-			if (_items == null)
-			{
+			if (_items == null) {
 				MessageBox.Show("Error in Item List.", "Error!");
-				return;
+			} else {
+				InitializeComponent();
+
+				for (int i = 0; i < _items.Count; i++)
+					ResultsListBox.Items.Add(_items[i].name + " (" + _items[i].id + ")");
+
+				items = _items;
 			}
-
-			InitializeComponent();
-
-			for (int i = 0; i < _items.Count; i++)
-				ResultsListBox.Items.Add(_items[i].name + " (" + _items[i].id + ")");
-
-			items = _items;
 		}
 
-		private void updateItemList()
+		private void UpdateItemList()
 		{
 			ResultsListBox.Items.Clear();
 
 			for (int i = 0; i < items.Count; i++)
 				ResultsListBox.Items.Add(items[i].name + " (" + items[i].id + ")");
 		}
-		private void clearTextBoxes()
+		private void ClearTextBoxes()
 		{
 			ItemCapacityTextBox.Clear();
 			DamageHeadTextBox.Clear();
@@ -63,19 +54,19 @@ namespace UIF
 				NameTextBox.Clear();
 				IdTextBox.Clear();
 
-				clearTextBoxes();
+				ClearTextBoxes();
 			}
 			else
 			{
-				clearTextBoxes();
+				ClearTextBoxes();
 
-				item currentItem = items[ResultsListBox.SelectedIndex];
+				Item currentItem = items[ResultsListBox.SelectedIndex];
 				
 				IdTextBox.Text = currentItem.id.ToString();
-				NameTextBox.Text = ResultsListBox.SelectedItem.ToString().Replace(" (" + currentItem.id.ToString() + ")", String.Empty);
+				NameTextBox.Text = ResultsListBox.SelectedItem.ToString().Replace(" (" + currentItem.id.ToString() + ")", string.Empty);
 
 				if (currentItem.armor != null && currentItem.itemType.TryContains("Clothing"))
-					ProtectionTextBox.Text = ((float)currentItem.armor).toPercentage()
+					ProtectionTextBox.Text = ((float)currentItem.armor).ToPercentage()
 						.ToString();
 
 				if (currentItem.clothStorageHeight != null && currentItem.clothStorageWidth != null && currentItem.itemType.TryContains("Clothing"))
@@ -86,12 +77,12 @@ namespace UIF
 						.ToString();
 
 				if (currentItem.headDamage != null && currentItem.itemType.TryContains("Melee", "Gun"))
-					DamageHeadTextBox.Text = (currentItem.headDamage != null ? String.Empty : "~") +
+					DamageHeadTextBox.Text = (currentItem.headDamage != null ? string.Empty : "~") +
 						((currentItem.headDamage != null ? currentItem.headDamage : 1) *
 						(currentItem.playerDamage != null ? currentItem.playerDamage : 1)).ToString();
 
 				if (currentItem.bodyDamage != null && currentItem.itemType.TryContains("Melee", "Gun"))
-					BodyDamageTextBox.Text = (currentItem.bodyDamage != null ? String.Empty : "~") +
+					BodyDamageTextBox.Text = (currentItem.bodyDamage != null ? string.Empty : "~") +
 						((currentItem.bodyDamage != null ? currentItem.bodyDamage : 1) *
 						(currentItem.playerDamage != null ? currentItem.playerDamage : 1)).ToString();
 
@@ -103,7 +94,7 @@ namespace UIF
 
 				if (currentItem.structureDamage != null && (currentItem.itemType.TryContains("Gun", "Melee") ||
 					currentItem.itemType2.TryContains("Charge")))
-					StructureDamageTextBox.Text = (currentItem.explosive ? "~" : String.Empty) + currentItem.structureDamage.ToString();
+					StructureDamageTextBox.Text = (currentItem.explosive ? "~" : string.Empty) + currentItem.structureDamage.ToString();
 
 				if (currentItem.itemType != null)
 					ItemTypeTextBox.Text = currentItem.itemType;
@@ -115,17 +106,17 @@ namespace UIF
 				{
 					EngineTextBox.Text = currentItem.engine != null ? currentItem.engine.ToString() : "Car";
 
-					ItemHealthTextBox.Text = currentItem.vehicleHealth != null ? currentItem.vehicleHealth.ToString() : String.Empty;
+					ItemHealthTextBox.Text = currentItem.vehicleHealth != null ? currentItem.vehicleHealth.ToString() : string.Empty;
 				}
 				else if (currentItem.itemType.TryContains("Barricade", "Structure") ||
 					currentItem.itemType2.TryContains("Barricade", "Structure"))
-					ItemHealthTextBox.Text = currentItem.buildingHealth != null ? currentItem.buildingHealth.ToString() : String.Empty;
+					ItemHealthTextBox.Text = currentItem.buildingHealth != null ? currentItem.buildingHealth.ToString() : string.Empty;
 
 				if (currentItem.itemType2.TryContains("Grip", "Barrel", "Tactical"))
-					ShakeTextBox.Text = currentItem.shake != null ? currentItem.shake.ToString() : String.Empty;
+					ShakeTextBox.Text = currentItem.shake != null ? currentItem.shake.ToString() : string.Empty;
 
 				if (currentItem.itemType2.TryContains("Barrel"))
-					VolumeTextBox.Text = currentItem.barrelVolume != null ? currentItem.barrelVolume.ToString() : String.Empty;
+					VolumeTextBox.Text = currentItem.barrelVolume != null ? currentItem.barrelVolume.ToString() : string.Empty;
 
 				if ( currentItem.itemType2.TryContains("Barrel"))
 					BarrelDamageTextBox.Text = currentItem.barrelDamage != null ? currentItem.barrelDamage.ToString() : "1";
@@ -136,8 +127,8 @@ namespace UIF
 		{
 			if (ResultsListBox.SelectedIndex != -1)
 				Clipboard.SetText(
-					((IdPrefixTextBox.Text != String.Empty ? IdPrefixTextBox.Text + " " : String.Empty)
-					+ items[ResultsListBox.SelectedIndex].id.ToString()).Replace("\n", "\r", String.Empty)
+					((IdPrefixTextBox.Text != string.Empty ? IdPrefixTextBox.Text + " " : string.Empty)
+					+ items[ResultsListBox.SelectedIndex].id.ToString()).Replace("\n", "\r", string.Empty)
 					);
 		}
 
@@ -145,25 +136,33 @@ namespace UIF
 		{
 			if (ResultsListBox.SelectedIndex != -1)
 				Clipboard.SetText(
-					(items[ResultsListBox.SelectedIndex].name
-					+ " - "
-					+ (IdPrefixTextBox.Text != String.Empty ? IdPrefixTextBox.Text + " " : String.Empty)
-					+ items[ResultsListBox.SelectedIndex].id.ToString()).Replace("\n", "\r", String.Empty)
+						(
+							items[ResultsListBox.SelectedIndex].name
+							+ " - "
+							+ (IdPrefixTextBox.Text != string.Empty ? IdPrefixTextBox.Text + " " : string.Empty)
+							+ items[ResultsListBox.SelectedIndex].id.ToString()
+						)
+						.Replace("\n", "\r", string.Empty)
 					);
 		}
 
 		private void AllNameIdToClipboard_Click(object sender, EventArgs e)
 		{
-			string copyStr = String.Empty;
+			string copyStr = string.Empty;
 
 			for (int i = 0; i < items.Count; i++)
 			{
 				copyStr +=
-					(items[i].name
-					+ " - "
-					+ (IdPrefixTextBox.Text != String.Empty ? IdPrefixTextBox.Text + " " : String.Empty)
-					+ items[i].id.ToString()).Replace("\n", "\r", String.Empty)
-					+ (i < items.Count ? "\n" : String.Empty);
+					(
+						items[i].name
+						+ " - "
+						+ (IdPrefixTextBox.Text != string.Empty ? IdPrefixTextBox.Text + " " : string.Empty)
+						+ items[i].id.ToString()
+					)
+					.Replace("\n", "\r", string.Empty) +
+					(
+						i < items.Count ? "\n" : string.Empty
+					);
 			}
 
 			Clipboard.SetText(copyStr);
@@ -173,21 +172,21 @@ namespace UIF
 		{
 			items.Sort((a, b) => a.CompareTo(b, Core.CompareModes.ClothingStorage));
 
-			updateItemList();
+			UpdateItemList();
 		}
 
 		private void SortProtectionBtn_Click(object sender, EventArgs e)
 		{
 			items.Sort((a, b) => a.CompareTo(b, Core.CompareModes.ClothingProtection));
 
-			updateItemList();
+			UpdateItemList();
 		}
 
 		private void SortDamagePlayersBtn_Click(object sender, EventArgs e)
 		{
 			items.Sort((a, b) => a.CompareTo(b, Core.CompareModes.Damage));
 
-			updateItemList();
+			UpdateItemList();
 		}
 
 		private void MixBtn_Click(object sender, EventArgs e)
@@ -195,14 +194,14 @@ namespace UIF
 			Random random = new Random();
 			items.Sort((a, b) => random.Next(int.MinValue, int.MaxValue));
 
-			updateItemList();
+			UpdateItemList();
 		}
 
 		private void SortDamageBuildingsBtn_Click(object sender, EventArgs e)
 		{
 			items.Sort((a, b) => a.CompareTo(b, Core.CompareModes.StructureDamage));
 
-			updateItemList();
+			UpdateItemList();
 		}
 
 		private void NameLabel_Click(object sender, EventArgs e) => NameTextBox.Focus();
@@ -213,42 +212,42 @@ namespace UIF
 		{
 			items.Sort((a, b) => a.CompareTo(b, Core.CompareModes.VehicleHealth));
 
-			updateItemList();
+			UpdateItemList();
 		}
 
 		private void SortBarricadeCapacityBtn_Click(object sender, EventArgs e)
 		{
 			items.Sort((a, b) => a.CompareTo(b, Core.CompareModes.StructureCapacity));
 
-			updateItemList();
+			UpdateItemList();
 		}
 
 		private void SortByBuildingHealthBtn_Click(object sender, EventArgs e)
 		{
 			items.Sort((a, b) => a.CompareTo(b, Core.CompareModes.BuildingHealth));
 
-			updateItemList();
+			UpdateItemList();
 		}
 
 		private void SortByShakeBtn_Click(object sender, EventArgs e)
 		{
 			items.Sort((a, b) => a.CompareTo(b, Core.CompareModes.Shake));
 
-			updateItemList();
+			UpdateItemList();
 		}
 
 		private void SortByBarrelDamageBtn_Click(object sender, EventArgs e)
 		{
 			items.Sort((a, b) => a.CompareTo(b, Core.CompareModes.BarrelDamage));
 
-			updateItemList();
+			UpdateItemList();
 		}
 
 		private void SortByVolumeBtn_Click(object sender, EventArgs e)
 		{
 			items.Sort((a, b) => a.CompareTo(b, Core.CompareModes.BarrelVolume));
 
-			updateItemList();
+			UpdateItemList();
 		}
 	}
 }

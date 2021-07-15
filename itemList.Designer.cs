@@ -1,6 +1,6 @@
 ﻿namespace UIF
 {
-    partial class itemList
+    partial class ItemList
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(itemList));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ItemList));
             this.ResultsLabel = new System.Windows.Forms.Label();
             this.ResultsListBox = new System.Windows.Forms.ListBox();
             this.InfoGroupBox = new System.Windows.Forms.GroupBox();

@@ -3,10 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Reflection;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Win32;
 
@@ -28,7 +24,7 @@ namespace UIF
 		}
 	}
 
-	public class item
+	public class Item
 	{
 		public int? id = null;
 		public string name = null;
@@ -69,7 +65,8 @@ namespace UIF
 
 	public static class Core
 	{
-		public static List<item> loadedItems;
+		public static List<Item> loadedItems;
+		private static readonly string RegisterErr = "Error when getting the parameter in the registry.";
 
 		public enum CompareModes
 		{
@@ -84,7 +81,7 @@ namespace UIF
 			BarrelDamage,
 			BarrelVolume
 		}
-		public static int CompareTo(this item a, item val, CompareModes mode)
+		public static int CompareTo(this Item a, Item val, CompareModes mode)
 		{
 			switch (mode)
 			{
@@ -92,8 +89,8 @@ namespace UIF
 					return (((val.itemType2.TryContains("Charge") || val.itemType.TryContains("Gun")) && val.structureDamage != null) ? val.structureDamage : 0)
 						.CompareTo(((a.itemType2.TryContains("Charge") || a.itemType.TryContains("Gun")) && a.structureDamage != null) ? a.structureDamage : 0);
 				case CompareModes.Damage:
-					return (val.itemType.TryContains("Gun") ? val.getAverageDamage() : 0)
-						.CompareTo(a.itemType.TryContains("Gun") ? a.getAverageDamage() : 0);
+					return (val.itemType.TryContains("Gun") ? val.GetAverageDamage() : 0)
+						.CompareTo(a.itemType.TryContains("Gun") ? a.GetAverageDamage() : 0);
 				case CompareModes.ClothingProtection:
 					return (a.itemType.TryContains("Clothing") ? a.armor : 1)
 						.CompareTo(val.itemType.TryContains("Clothing") ? val.armor : 1);
@@ -126,7 +123,7 @@ namespace UIF
 			}
 		}
 
-		public static List<item> parseAll(string folderPath, Func<item, bool> filter = null)
+		public static List<Item> ParseAll(string folderPath, Func<Item, bool> filter = null)
 		{
 			if (loadedItems == null)
 			{
@@ -138,18 +135,18 @@ namespace UIF
 				}
 
 				List<string> dirs = Directory.EnumerateDirectories(folderPath, "*", SearchOption.AllDirectories).ToList();
-				List<item> items = new List<item>();
+				List<Item> items = new List<Item>();
 
 				for (int i = 0; i < dirs.Count; i++)
 				{
-					string EnglishDat = dirs[i] + "\\\\English.dat";
+					string EnglishDat = dirs[i] + "\\English.dat";
 
 					if (File.Exists(EnglishDat))
 					{
 						var files = Directory.EnumerateFiles(dirs[i], "*.dat")
 							.ToList();
 
-						var item = parseDat(files, EnglishDat, filter);
+						var item = ParseDat(files, EnglishDat, filter);
 						if (item.id != null)
 						{
 							items.Add(item);
@@ -161,8 +158,8 @@ namespace UIF
 			} else {
 				if (filter != null)
 				{
-					List<item> items = new List<item>();
-					foreach (item _item in loadedItems)
+					List<Item> items = new List<Item>();
+					foreach (Item _item in loadedItems)
 					{
 						if (filter(_item))
 							items.Add(_item);
@@ -176,7 +173,7 @@ namespace UIF
 				}
 			}
 		}
-		public static item parseDat(List<string> files, string EnglishDat, Func<item, bool> filter)
+		public static Item ParseDat(List<string> files, string EnglishDat, Func<Item, bool> filter)
 		{
 			if (!File.Exists(EnglishDat))
 			{
@@ -189,37 +186,37 @@ namespace UIF
 				if (!a.EndsWith("English.dat"))
 				{
 					string[] linesModDat = File.ReadAllText(a).Split('\n');
-					var item = new UIF.item() { name = File.ReadAllText(EnglishDat).Split('\n')[0].Replace("Name ", String.Empty) };
+					var item = new Item() { name = File.ReadAllText(EnglishDat).Split('\n')[0].Replace("Name ", string.Empty) };
 
 					foreach (string _line in linesModDat)
 					{
-						string line = _line.Replace("\r", String.Empty);
+						string line = _line.Replace("\r", string.Empty);
 						try
 						{
 							if (line.StartsWith("ID "))
-								item.id = line.Replace("ID ", String.Empty).ToInt();
+								item.id = line.Replace("ID ", string.Empty).ToInt();
 							else if (line.StartsWith("Width "))
-								item.clothStorageWidth = line.Replace("Width ", String.Empty).ToInt();
+								item.clothStorageWidth = line.Replace("Width ", string.Empty).ToInt();
 							else if (line.StartsWith("Height "))
-								item.clothStorageHeight = line.Replace("Height ", String.Empty).ToInt();
+								item.clothStorageHeight = line.Replace("Height ", string.Empty).ToInt();
 							else if (line.StartsWith("Storage_X "))
-								item.barricadeStorageWidth = line.Replace("Storage_X ", String.Empty).ToInt();
+								item.barricadeStorageWidth = line.Replace("Storage_X ", string.Empty).ToInt();
 							else if (line.StartsWith("Storage_Y "))
-								item.barricadeStorageHeight = line.Replace("Storage_Y ", String.Empty).ToInt();
+								item.barricadeStorageHeight = line.Replace("Storage_Y ", string.Empty).ToInt();
 							else if (line.StartsWith("Health "))
-								item.buildingHealth = item.vehicleHealth = line.Replace("Health ", String.Empty).Replace(".", ",").ToFloat();
+								item.buildingHealth = item.vehicleHealth = line.Replace("Health ", string.Empty).Replace(".", ",").ToFloat();
 							else if (line.StartsWith("Useable "))
-								item.itemType = line.Replace("Useable ", String.Empty);
+								item.itemType = line.Replace("Useable ", string.Empty);
 							else if (line.StartsWith("Engine "))
-								item.engine = line.Replace("Engine ", String.Empty);
+								item.engine = line.Replace("Engine ", string.Empty);
 							else if (line.StartsWith("Armor "))
-								item.armor = line.Replace("Armor ", String.Empty).Replace(".", ",").ToFloat();
+								item.armor = line.Replace("Armor ", string.Empty).Replace(".", ",").ToFloat();
 							else if (line.StartsWith("Player_Spine_Multiplier "))
-								item.bodyDamage = line.Replace("Player_Spine_Multiplier ", String.Empty).Replace(".", ",").ToFloat();
+								item.bodyDamage = line.Replace("Player_Spine_Multiplier ", string.Empty).Replace(".", ",").ToFloat();
 							else if (line.StartsWith("Player_Skull_Multiplier "))
-								item.headDamage = line.Replace("Player_Skull_Multiplier ", String.Empty).Replace(".", ",").ToFloat();
+								item.headDamage = line.Replace("Player_Skull_Multiplier ", string.Empty).Replace(".", ",").ToFloat();
 							else if (line.StartsWith("Type "))
-								item.itemType2 = line.Replace("Type ", String.Empty);
+								item.itemType2 = line.Replace("Type ", string.Empty);
 							else if (line.StartsWith("Auto"))
 								item.modes.Add("Auto");
 							else if (line.StartsWith("Semi"))
@@ -227,69 +224,62 @@ namespace UIF
 							else if (line.StartsWith("Burst"))
 								item.modes.Add("Burst");
 							else if (line.StartsWith("Slot "))
-								item.slot = line.Replace("Slot ", String.Empty);
+								item.slot = line.Replace("Slot ", string.Empty);
 							else if (line.StartsWith("Player_Damage "))
-								item.playerDamage = line.Replace("Player_Damage ", String.Empty).Replace(".", ",").ToInt();
+								item.playerDamage = line.Replace("Player_Damage ", string.Empty).Replace(".", ",").ToInt();
 							else if (line.StartsWith("Structure_Damage "))
-								item.structureDamage = line.Replace("Structure_Damage ", String.Empty).Replace(".", ",").ToFloat();
+								item.structureDamage = line.Replace("Structure_Damage ", string.Empty).Replace(".", ",").ToFloat();
 							else if (line.StartsWith("Explosive") || line.StartsWith("Explosion"))
 								item.explosive = true;
 							else if (line.StartsWith("Range "))
-								item.range = line.Replace("Range ", String.Empty).Replace(".", ",").ToFloat();
+								item.range = line.Replace("Range ", string.Empty).Replace(".", ",").ToFloat();
 							else if (line.StartsWith("Invulnerable"))
 								item.invulnerable = true;
 							else if (line.StartsWith("Shake"))
-								item.shake = line.Replace("Shake ", String.Empty).Replace(".", ",").ToFloat();
+								item.shake = line.Replace("Shake ", string.Empty).Replace(".", ",").ToFloat();
 							else if (line.StartsWith("Spread"))
-								item.shake = line.Replace("Spread ", String.Empty).Replace(".", ",").ToFloat();
+								item.shake = line.Replace("Spread ", string.Empty).Replace(".", ",").ToFloat();
 							else if (line.StartsWith("Volume"))
-								item.barrelVolume = line.Replace("Volume ", String.Empty).Replace(".", ",").ToFloat();
+								item.barrelVolume = line.Replace("Volume ", string.Empty).Replace(".", ",").ToFloat();
 							else if (line.StartsWith("Damage"))
-								item.barrelDamage = line.Replace("Damage", String.Empty).Replace(".", ",").ToFloat();
+								item.barrelDamage = line.Replace("Damage", string.Empty).Replace(".", ",").ToFloat();
 						} catch { }
 					}
 
-					try
-					{
+					try {
 						if (filter == null || filter(item))
 							return item;
 					} catch { }
 				}
 
-			return new UIF.item();
+			return new Item();
 		}
 
 		public static object GetRegistryParam(string paramPath)
 		{
-			RegistryKey key = null;
-			object ret = null;
+			object ret;
+			RegistryKey key;
 
-			try
-			{
+			try {
 				key = Registry.CurrentUser.OpenSubKey("Software");
-				if ((key = key.OpenSubKey("UIF")) == null)
-				{
+				if ((key = key.OpenSubKey("UIF")) == null) {
 					return null;
-				}
+				} else {
+					if (paramPath.StartsWith("\\")) paramPath = paramPath.Remove(0, 1);
+					if (paramPath.EndsWith("\\")) paramPath = paramPath.Remove(paramPath.Length - 1, 1);
 
-				if (paramPath.StartsWith("\\")) paramPath = paramPath.Remove(0, 1);
-				if (paramPath.EndsWith("\\")) paramPath = paramPath.Remove(paramPath.Length - 1, 1);
+					string[] splittedPath = paramPath.Split('\\');
 
-				string[] splittedPath = paramPath.Split('\\');
-
-				for (int i = 0; i < splittedPath.Length - 1; i++)
-				{
-					if ((key = key.OpenSubKey(splittedPath[i])) == null)
+					for (int i = 0; i < splittedPath.Length - 1; i++)
 					{
-						return null;
+						if ((key = key.OpenSubKey(splittedPath[i])) == null)
+							return null;
 					}
-				}
 
-				ret = key.GetValue(splittedPath[splittedPath.Length-1]);
-			}
-			catch
-			{
-				MessageBox.Show("Error when getting the parameter in the registry.", "Error");
+					ret = key.GetValue(splittedPath[splittedPath.Length - 1]);
+				}
+			} catch {
+				MessageBox.Show(RegisterErr, "Error");
 				return null;
 			}
 
@@ -303,10 +293,9 @@ namespace UIF
 
 		public static bool SetRegistryParam(string paramPath, string paramValue)
 		{
-			RegistryKey key = null;
+			RegistryKey key;
 
-			try
-			{
+			try {
 				key = Registry.CurrentUser.OpenSubKey("Software", true);
 
 				key.CreateSubKey("UIF");
@@ -317,17 +306,14 @@ namespace UIF
 
 				string[] splittedPath = paramPath.Split('\\');
 
-				for (int i = 0; i < splittedPath.Length - 1; i++)
-				{
+				for (int i = 0; i < splittedPath.Length - 1; i++) {
 					key.CreateSubKey(splittedPath[i]);
 					key = key.OpenSubKey(splittedPath[i], true);
 				}
 
 				key.SetValue(splittedPath[splittedPath.Length-1], paramValue);
-			}
-			catch
-			{
-				MessageBox.Show("Error when setting the parameter in the registry.", "Error");
+			} catch {
+				MessageBox.Show(RegisterErr, "Error");
 				return false;
 			}
 
@@ -346,34 +332,30 @@ namespace UIF
 		{
 			string new_str = replace_str;
 
-			for (int i = 0; i < parameters.Length - 1; i++)
-			{
+			for (int i = 0; i < parameters.Length - 1; i++) {
 				new_str = replace_str.Replace(parameters[i], parameters.Last());
 			}
 
 			return new_str;
 		}
 
-		public static float? getAverageDamage(this UIF.item item)
+		public static float? GetAverageDamage(this Item item)
 		{
 			return (((item.bodyDamage != 0 && item.bodyDamage != null) ? item.bodyDamage : 1) * (item.playerDamage != null ? item.playerDamage : 1)
 				+ ((item.headDamage != 0 && item.headDamage != null) ? item.headDamage : 1) * (item.playerDamage != null ? item.playerDamage : 1))
 				/ 2;
 		}
 
-		public static float toPercentage(this float f)
+		public static float ToPercentage(this float f)
 		{
 			return (1 - f) * 100;
 		}
 
 		public static void OpenUrl(string url)
 		{
-			try
-			{
+			try {
 				Process.Start(url);
-			}
-			catch
-			{
+			} catch {
 				MessageBox.Show("Error");
 			}
 		}
@@ -385,14 +367,13 @@ namespace UIF
 
 		public static bool TryContains(this string var, string a)
 		{
-			try
-			{
+			try {
 				if (var != null)
 					return var.Contains(a);
-			}
-			catch { }
+			} catch { }
 			return false;
 		}
+
 		public static bool TryContains(this string var, params string[] a)
 		{
 			foreach (string b in a)
@@ -404,11 +385,9 @@ namespace UIF
 
 		public static bool TryContains(this List<string> ts, object a)
 		{
-			try
-			{
+			try {
 				return ts.Contains(a);
-			}
-			catch { }
+			} catch { }
 			return false;
 		}
 

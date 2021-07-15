@@ -1,13 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace UIF
@@ -16,16 +9,16 @@ namespace UIF
 	{
 		public string RegistryFolderPath = (string)Core.GetRegistryParam(Program.Version+"\\Settings\\modsPath");
 		public static string CurrentFolderPath = null;
-		private string ModsTip = "Path to folder with mods.\nExample: " +
+		private readonly string ModsTip = "Path to folder with mods.\nExample: " +
 			@"C:\Program Files (x86)\Steam\steamapps\workshop\content\304930" +
 			"\n\nBefore using it, you need to delete all the downloaded mods and log in to the server.";
 		private ToolTip Tip = new ToolTip();
+		private readonly string FolderErrorText = "Folder is not specified!";
 
-		private void updateRegistry()
+		private void UpdateRegistry()
 		{
-			RegistryFolderPath = String.Empty;
-			for (int i = 0; i < FldrComboBox.Items.Count; i++)
-			{
+			RegistryFolderPath = string.Empty;
+			for (int i = 0; i < FldrComboBox.Items.Count; i++) {
 				RegistryFolderPath += FldrComboBox.Items[i].ToString();
 				if (i < FldrComboBox.Items.Count - 1) RegistryFolderPath += '\n';
 			}
@@ -39,8 +32,7 @@ namespace UIF
 			this.Text += " | Ver. " + Program.Version;
 
 			FldrComboBox.Items.Clear();
-			if (RegistryFolderPath != null)
-			{
+			if (RegistryFolderPath != null) {
 				FldrComboBox.Items.AddRange(RegistryFolderPath.Split('\n'));
 
 				FldrComboBox.SelectedIndex = 0;
@@ -63,51 +55,46 @@ namespace UIF
 
 		private void SearchNameBtn_Click(object sender, EventArgs e)
 		{
-			if (CurrentFolderPath == null)
-				MessageBox.Show("Folder is not specified!");
-			else
-			{
-				var items = Core.parseAll(CurrentFolderPath, i => i.name.ToLower().Contains(NameTextBox.Text.ToLower()));
-				
-				new itemList(items).ShowDialog();
+			if (CurrentFolderPath == null) {
+				MessageBox.Show(FolderErrorText);
+			} else {
+				var items = Core.ParseAll(CurrentFolderPath, i => i.name.ToLower().Contains(NameTextBox.Text.ToLower()));
+
+				new ItemList(items).ShowDialog();
 			}
 		}
 
 		private void AllItemsBtn_Click(object sender, EventArgs e)
 		{
 			if (CurrentFolderPath == null)
-				MessageBox.Show("Folder is not specified!");
+				MessageBox.Show(FolderErrorText);
 			else
-			{
 				new ItemsCategories().ShowDialog();
-			}
 		}
 
 		private void PlusFldrBtn_Click(object sender, EventArgs e)
 		{
 			FolderBrowserDialog fbd = new FolderBrowserDialog();
 			
-			if (fbd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-			{
-				if (fbd.SelectedPath != null)
-				{
+			if (fbd.ShowDialog() == DialogResult.OK) {
+				if (fbd.SelectedPath != null) {
 					int newFolderIndex = FldrComboBox.Items.Add(fbd.SelectedPath);
 					FldrComboBox.SelectedIndex = newFolderIndex;
 
-					updateRegistry();
+					UpdateRegistry();
 				}
 			}
 		}
 
 		private void MinusFldrBtn_Click(object sender, EventArgs e)
 		{
-			if (FldrComboBox.SelectedIndex != -1)
-			{
+			if (FldrComboBox.SelectedIndex != -1) {
 				FldrComboBox.Items.RemoveAt(FldrComboBox.SelectedIndex);
 
-				updateRegistry();
-			} else
-				MessageBox.Show("Folder isn't selected");
+				UpdateRegistry();
+			} else {
+				MessageBox.Show(FolderErrorText);
+			}
 		}
 
 		private void OpenFldrBtn_Click(object sender, EventArgs e)
@@ -115,18 +102,17 @@ namespace UIF
 			if (Directory.Exists(CurrentFolderPath))
 				Process.Start("explorer.exe", CurrentFolderPath);
 			else
-				MessageBox.Show("Folder isn't selected");
+				MessageBox.Show(FolderErrorText);
 		}
 
 		private void SearchIDButton_Click(object sender, EventArgs e)
 		{
-			if (CurrentFolderPath == null)
-				MessageBox.Show("Folder is not specified!");
-			else
-			{
-				var items = Core.parseAll(CurrentFolderPath, i => i.id == int.Parse(IDBox.Text));
+			if (CurrentFolderPath == null) {
+				MessageBox.Show(FolderErrorText);
+			} else {
+				var items = Core.ParseAll(CurrentFolderPath, i => i.id == int.Parse(IDBox.Text));
 
-				new itemList(items).ShowDialog();
+				new ItemList(items).ShowDialog();
 			}
 		}
 
@@ -147,21 +133,20 @@ namespace UIF
 			CurrentFolderPath = null;
 		}
 
-        private void LoadModsToRamBtn_Click(object sender, EventArgs e)
-        {
+		private void LoadModsToRamBtn_Click(object sender, EventArgs e)
+		{
 			if (CurrentFolderPath != null)
-				if (Core.loadedItems != null)
-				{
+				if (Core.loadedItems != null) {
 					Core.loadedItems = null;
 					FldrComboBox.Enabled = true;
 					LoadModsToRamBtn.Text = "Load mods";
 				} else {
-					Core.loadedItems = Core.parseAll(CurrentFolderPath);
+					Core.loadedItems = Core.ParseAll(CurrentFolderPath);
 					FldrComboBox.Enabled = false;
 					LoadModsToRamBtn.Text = "Unload mods";
 				}
 			else
-				MessageBox.Show("Folder is not specified!");
+				MessageBox.Show(FolderErrorText);
 		}
-    }
+	}
 }
