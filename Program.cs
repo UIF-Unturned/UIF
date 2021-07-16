@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Windows.Forms;
 
 namespace UIF
 {
 	public static class Program
 	{
-		public const string Version = "0.4.3";
+		public readonly static string Version = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion;
 		public const string DiscordUrl = "https://discord.gg/VhpM2ex";
 		public const string GithubUrl = "https://github.com/uif-unturned/UIF";
 
