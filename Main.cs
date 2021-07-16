@@ -7,7 +7,6 @@ namespace UIF
 {
 	public partial class Main : Form
 	{
-		public string RegistryFolderPath = (string)Core.GetRegistryParam(Program.Version+"\\Settings\\modsPath");
 		public static string CurrentFolderPath = null;
 		private readonly string ModsTip = "Path to folder with mods.\nExample: " +
 			@"C:\Program Files (x86)\Steam\steamapps\workshop\content\304930" +
@@ -15,14 +14,19 @@ namespace UIF
 		private ToolTip Tip = new ToolTip();
 		private readonly string FolderErrorText = "Folder is not specified!";
 
-		private void UpdateRegistry()
+		private void UpdateFoldersPaths()
 		{
-			RegistryFolderPath = string.Empty;
+			Properties.Settings.Default.FoldersPaths = string.Empty;
 			for (int i = 0; i < FldrComboBox.Items.Count; i++) {
-				RegistryFolderPath += FldrComboBox.Items[i].ToString();
-				if (i < FldrComboBox.Items.Count - 1) RegistryFolderPath += '\n';
+				string fldrString = FldrComboBox.Items[i].ToString();
+				if (FldrComboBox.Items[i] != null &&
+					fldrString != "" &&
+					fldrString != "\n") {
+					Properties.Settings.Default.FoldersPaths += FldrComboBox.Items[i].ToString();
+					if (i < FldrComboBox.Items.Count - 1) Properties.Settings.Default.FoldersPaths += '\n';
+				}
 			}
-			Core.SetRegistryParam(Program.Version + "\\Settings\\modsPath", RegistryFolderPath);
+			Properties.Settings.Default.Save();
 		}
 
 		public Main()
@@ -32,11 +36,13 @@ namespace UIF
 			this.Text += " | Ver. " + Program.Version;
 
 			FldrComboBox.Items.Clear();
-			if (RegistryFolderPath != null) {
-				FldrComboBox.Items.AddRange(RegistryFolderPath.Split('\n'));
-
-				FldrComboBox.SelectedIndex = 0;
+			foreach (string path in Properties.Settings.Default.FoldersPaths.Split('\n')) {
+				if (path != string.Empty)
+					FldrComboBox.Items.Add(path);
 			}
+
+			if (FldrComboBox.Items.Count > 0)
+				FldrComboBox.SelectedIndex = 0;
 
 			Tip.SetToolTip(InfoBtn, ModsTip);
 			Tip.SetToolTip(SelectFldrLabel, ModsTip);
@@ -81,7 +87,7 @@ namespace UIF
 					int newFolderIndex = FldrComboBox.Items.Add(fbd.SelectedPath);
 					FldrComboBox.SelectedIndex = newFolderIndex;
 
-					UpdateRegistry();
+					UpdateFoldersPaths();
 				}
 			}
 		}
@@ -90,8 +96,10 @@ namespace UIF
 		{
 			if (FldrComboBox.SelectedIndex != -1) {
 				FldrComboBox.Items.RemoveAt(FldrComboBox.SelectedIndex);
+				FldrComboBox.Text = string.Empty;
+				FldrComboBox.SelectedIndex = FldrComboBox.Items.Count > 0 ? 0 : -1;
 
-				UpdateRegistry();
+				UpdateFoldersPaths();
 			} else {
 				MessageBox.Show(FolderErrorText);
 			}

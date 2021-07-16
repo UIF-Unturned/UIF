@@ -4,7 +4,6 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using Microsoft.Win32;
 
 namespace UIF
 {
@@ -66,7 +65,6 @@ namespace UIF
 	public static class Core
 	{
 		public static List<Item> loadedItems;
-		private static readonly string RegisterErr = "Error when getting the parameter in the registry.";
 
 		public enum CompareModes
 		{
@@ -253,76 +251,6 @@ namespace UIF
 				}
 
 			return new Item();
-		}
-
-		public static object GetRegistryParam(string paramPath)
-		{
-			object ret;
-			RegistryKey key;
-
-			try {
-				key = Registry.CurrentUser.OpenSubKey("Software");
-				if ((key = key.OpenSubKey("UIF")) == null) {
-					return null;
-				} else {
-					if (paramPath.StartsWith("\\")) paramPath = paramPath.Remove(0, 1);
-					if (paramPath.EndsWith("\\")) paramPath = paramPath.Remove(paramPath.Length - 1, 1);
-
-					string[] splittedPath = paramPath.Split('\\');
-
-					for (int i = 0; i < splittedPath.Length - 1; i++)
-					{
-						if ((key = key.OpenSubKey(splittedPath[i])) == null)
-							return null;
-					}
-
-					ret = key.GetValue(splittedPath[splittedPath.Length - 1]);
-				}
-			} catch {
-				MessageBox.Show(RegisterErr, "Error");
-				return null;
-			}
-
-			if (key != null) {
-				key.Close();
-				return ret;
-			} else {
-				return null;
-			}
-		}
-
-		public static bool SetRegistryParam(string paramPath, string paramValue)
-		{
-			RegistryKey key;
-
-			try {
-				key = Registry.CurrentUser.OpenSubKey("Software", true);
-
-				key.CreateSubKey("UIF");
-				key = key.OpenSubKey("UIF", true);
-
-				if (paramPath.StartsWith("\\")) paramPath = paramPath.Remove(0, 1);
-				if (paramPath.EndsWith("\\")) paramPath = paramPath.Remove(paramPath.Length - 1, 1);
-
-				string[] splittedPath = paramPath.Split('\\');
-
-				for (int i = 0; i < splittedPath.Length - 1; i++) {
-					key.CreateSubKey(splittedPath[i]);
-					key = key.OpenSubKey(splittedPath[i], true);
-				}
-
-				key.SetValue(splittedPath[splittedPath.Length-1], paramValue);
-			} catch {
-				MessageBox.Show(RegisterErr, "Error");
-				return false;
-			}
-
-			if (key != null) {
-				key.Close();
-				return true;
-			} else {
-				return false;
-			}
 		}
 	}
 
