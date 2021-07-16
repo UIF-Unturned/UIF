@@ -138,6 +138,7 @@ namespace UIF
 			if (CurrentFolderPath != null)
 				if (Core.loadedItems != null) {
 					Core.loadedItems = null;
+					GC.Collect();
 					FldrComboBox.Enabled = true;
 					LoadModsToRamBtn.Text = "Load mods";
 				} else {
