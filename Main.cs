@@ -62,7 +62,7 @@ namespace UIF
 		private void SearchNameBtn_Click(object sender, EventArgs e)
 		{
 			if (CurrentFolderPath == null) {
-				MessageBox.Show(FolderErrorText);
+				throw new ArgumentNullException(FolderErrorText);
 			} else {
 				var items = Core.ParseAll(CurrentFolderPath, i => i.name.ToLower().Contains(NameTextBox.Text.ToLower()));
 
@@ -73,7 +73,7 @@ namespace UIF
 		private void AllItemsBtn_Click(object sender, EventArgs e)
 		{
 			if (CurrentFolderPath == null)
-				MessageBox.Show(FolderErrorText);
+				throw new ArgumentNullException(FolderErrorText);
 			else
 				new ItemsCategories().ShowDialog();
 		}
@@ -101,7 +101,7 @@ namespace UIF
 
 				UpdateFoldersPaths();
 			} else {
-				MessageBox.Show(FolderErrorText);
+				throw new ArgumentNullException(FolderErrorText);
 			}
 		}
 
@@ -110,13 +110,13 @@ namespace UIF
 			if (Directory.Exists(CurrentFolderPath))
 				Process.Start("explorer.exe", CurrentFolderPath);
 			else
-				MessageBox.Show(FolderErrorText);
+				throw new ArgumentNullException(FolderErrorText);
 		}
 
 		private void SearchIDButton_Click(object sender, EventArgs e)
 		{
 			if (CurrentFolderPath == null) {
-				MessageBox.Show(FolderErrorText);
+				throw new ArgumentNullException(FolderErrorText);
 			} else {
 				var items = Core.ParseAll(CurrentFolderPath, i => i.id == int.Parse(IDBox.Text));
 
@@ -155,7 +155,7 @@ namespace UIF
 					LoadModsToRamBtn.Text = "Unload mods";
 				}
 			else
-				MessageBox.Show(FolderErrorText);
+				throw new ArgumentNullException(FolderErrorText);
 		}
 	}
 }

@@ -118,7 +118,7 @@ namespace UIF
 						CompareTo(a.itemType.TryContains("Barricade", "Structure")
 						|| a.itemType2.TryContains("Structure", "Barricade") ? a.buildingHealth : 0);
 				default:
-					throw new Errors.InvalidMode();
+					throw new Exception("Invalid sort mode");
 			}
 		}
 
@@ -127,11 +127,7 @@ namespace UIF
 			if (loadedItems == null)
 			{
 				if (!Directory.Exists(folderPath))
-				{
-					MessageBox.Show("Folder doesn't exist", "Error!");
-					throw new Errors.FolderDoesntExist();
-					return null;
-				}
+					throw new DirectoryNotFoundException("Folder doesn't exist");
 
 				List<string> dirs = Directory.EnumerateDirectories(folderPath, "*", SearchOption.AllDirectories).ToList();
 				List<Item> items = new List<Item>();
@@ -175,11 +171,7 @@ namespace UIF
 		public static Item ParseDat(List<string> files, string EnglishDat, Func<Item, bool> filter)
 		{
 			if (!File.Exists(EnglishDat))
-			{
-				MessageBox.Show("Folder doesn't exist", "Error!");
-				throw new Errors.FolderDoesntExist();
-				return null;
-			}
+				throw new DirectoryNotFoundException("File doesn't exist");
 
 			foreach (string a in files)
 				if (!a.EndsWith("English.dat"))
@@ -190,8 +182,7 @@ namespace UIF
 					foreach (string _line in linesModDat)
 					{
 						string line = _line.Replace("\r", string.Empty);
-						try
-						{
+						try {
 							if (line.StartsWith("ID "))
 								item.id = line.Replace("ID ", string.Empty).ToInt();
 							else if (line.StartsWith("Width "))
@@ -282,11 +273,8 @@ namespace UIF
 
 		public static void OpenUrl(string url)
 		{
-			try {
-				Process.Start(url);
-			} catch {
-				MessageBox.Show("Error");
-			}
+			if (Process.Start(url) == null)
+				throw new Exception("Url open failed");
 		}
 
 		public static float ToFloat(this string str)
@@ -347,12 +335,4 @@ namespace UIF
 			return ((float)a).CompareTo(val);
 		}
 	}
-}
-
-namespace UIF.Errors
-{
-	public class InvalidMode : Exception { }
-	public class YouInvalid : Exception { }
-	public class CursedCreator : Exception { }
-	public class FolderDoesntExist : Exception { }
 }

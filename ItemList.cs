@@ -11,7 +11,7 @@ namespace UIF
 		public ItemList(List<Item> _items)
 		{
 			if (_items == null) {
-				MessageBox.Show("Error in Item List.", "Error!");
+				throw new ArgumentNullException("List<Item> is null");
 			} else {
 				InitializeComponent();
 
