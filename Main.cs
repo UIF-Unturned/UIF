@@ -134,12 +134,7 @@ namespace UIF
 
 		private void FldrComboBox_SelectedIndexChanged(object sender, EventArgs e) => CurrentFolderPath = FldrComboBox.Text;
 
-		private void FldrComboBox_TextUpdate(object sender, EventArgs e)
-		{
-			FldrComboBox.Text = "Input disabled! [Choose variant or create one more]";
-			FldrComboBox.SelectedIndex = -1;
-			CurrentFolderPath = null;
-		}
+		private void FldrComboBox_TextUpdate(object sender, EventArgs e) => FldrComboBox.Text = CurrentFolderPath;
 
 		private void LoadModsToRamBtn_Click(object sender, EventArgs e)
 		{
