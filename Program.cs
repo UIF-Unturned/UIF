@@ -14,6 +14,9 @@ namespace UIF
 		public const string DiscordUrl = "https://discord.gg/VhpM2ex";
 		public const string GithubUrl = "https://github.com/uif-unturned/UIF";
 
+		public readonly static Assembly ExeAssembly = Assembly.GetExecutingAssembly();
+		public readonly static string ProjectNamespace = ExeAssembly.EntryPoint.DeclaringType.Namespace;
+
 		[STAThread]
 		static void Main()
 		{
@@ -248,6 +251,18 @@ namespace UIF
 
 	public static class Misc
 	{
+		public static IEnumerable<Control> GetAllControls(Control control, Func<Control, bool> filter = null)
+		{
+			IEnumerable<Control> controls = control.Controls.Cast<Control>();
+
+			IEnumerable<Control> a = controls.SelectMany(ctrl => GetAllControls(ctrl, filter)).Concat(controls);
+
+			if (filter == null)
+				return a;
+			else
+				return a.Where(filter);
+		}
+
 		public static string Replace(this string replace_str, params string[] parameters)
 		{
 			string new_str = replace_str;

@@ -1,18 +1,19 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
+using System.Resources;
 using System.Windows.Forms;
 
 namespace UIF
 {
 	public partial class Main : Form
 	{
-		public static string CurrentFolderPath = null;
-		private readonly string ModsTip = "Path to folder with mods.\nExample: " +
-			@"C:\Program Files (x86)\Steam\steamapps\workshop\content\304930" +
-			"\n\nBefore using it, you need to delete all the downloaded mods and log in to the server.";
+		public static string CurrentFolderPath;
+		private string ModsTip;
 		private ToolTip Tip = new ToolTip();
 		private readonly string FolderErrorText = "Folder is not specified!";
+
+		private ResourceManager CurrentRM;
 
 		private void UpdateFoldersPaths()
 		{
@@ -32,6 +33,7 @@ namespace UIF
 		public Main()
 		{
 			InitializeComponent();
+
 			VersionLabel.Text += Program.Version;
 			this.Text += " | Ver. " + Program.Version;
 
@@ -44,20 +46,40 @@ namespace UIF
 			if (FldrComboBox.Items.Count > 0)
 				FldrComboBox.SelectedIndex = 0;
 
-			Tip.SetToolTip(InfoBtn, ModsTip);
-			Tip.SetToolTip(SelectFldrLabel, ModsTip);
+			for (int i = 0; i < Localization.Locales.Length; i++) {
+				string locale = Localization.Locales[i];
+				LocalizationComboBox.Items.Add(locale);
 
-			Tip.SetToolTip(MinusFldrBtn, "Delete selected folder");
-			Tip.SetToolTip(PlusFldrBtn, "Add selected folder");
-			Tip.SetToolTip(OpenFldrBtn, "Open selected folder");
+				if (locale == Properties.Settings.Default.Locale)
+					LocalizationComboBox.SelectedIndex = i;
+			}
 
 			Tip.SetToolTip(DiscordLink, Program.DiscordUrl);
 			Tip.SetToolTip(GitHubLink, Program.GithubUrl);
 		}
 
+		private void _UpdateLocalization() => CurrentRM = Localization.UpdateLocalization("Main", this);
+
+		public void OnLocalizationChange(ResourceManager RM)
+		{
+			Tip.SetToolTip(MinusFldrBtn, RM.GetStringSafety("MinusFldrBtnTip")); // Delete selected folder
+			Tip.SetToolTip(PlusFldrBtn, RM.GetStringSafety("PlusFldrBtnTip")); // Add selected folder
+			Tip.SetToolTip(OpenFldrBtn, RM.GetStringSafety("OpenFldrBtnTip")); // Open selected folder
+
+			ModsTip = RM.GetStringSafety("ModsTip");
+
+			Tip.SetToolTip(InfoBtn, ModsTip);
+			Tip.SetToolTip(SelectFldrLabel, ModsTip);
+
+			if (Core.loadedItems == null)
+				LoadModsToRamBtn.Text = RM.GetStringSafety("LoadModsToRamBtn");
+			else
+				LoadModsToRamBtn.Text = RM.GetStringSafety("UnloadMods");
+		}
+
 		private void EnterNameLabel_Click(object sender, EventArgs e) => NameTextBox.Focus();
 		
-		private void EnterIdLabel_Click(object sender, EventArgs e) => this.IDBox.Focus();
+		private void EnterIdLabel_Click(object sender, EventArgs e) => IDBox.Focus();
 
 		private void SearchNameBtn_Click(object sender, EventArgs e)
 		{
@@ -143,14 +165,24 @@ namespace UIF
 					Core.loadedItems = null;
 					GC.Collect();
 					FldrComboBox.Enabled = true;
-					LoadModsToRamBtn.Text = "Load mods";
+					LoadModsToRamBtn.Text = CurrentRM.GetStringSafety("LoadModsToRamBtn");
 				} else {
 					Core.loadedItems = Core.ParseAll(CurrentFolderPath);
 					FldrComboBox.Enabled = false;
-					LoadModsToRamBtn.Text = "Unload mods";
+					LoadModsToRamBtn.Text = CurrentRM.GetStringSafety("UnloadMods");
 				}
 			else
 				throw new ArgumentNullException(FolderErrorText);
 		}
+
+		private void LocalizationComboBox_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			Properties.Settings.Default.Locale = LocalizationComboBox.Text;
+			Properties.Settings.Default.Save();
+
+			_UpdateLocalization();
+		}
+		
+		private void LocalizationComboBox_TextUpdate(object sender, EventArgs e) => LocalizationComboBox.Text = Properties.Settings.Default.Locale;
 	}
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Resources;
 using System.Windows.Forms;
 
 namespace UIF
@@ -8,8 +9,17 @@ namespace UIF
 		public ItemsCategories()
 		{
 			InitializeComponent();
+
+			_UpdateLocalization();
 		}
-		
+
+		void OnLocalizationChange(ResourceManager RM)
+		{
+
+		}
+
+		private void _UpdateLocalization() => Localization.UpdateLocalization("ItemsCategories", this);
+
 		private void AllItemsBtn_Click(object sender, EventArgs e)
 		{
 			var items = Core.ParseAll(Main.CurrentFolderPath);

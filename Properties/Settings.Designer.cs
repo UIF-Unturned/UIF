@@ -34,5 +34,17 @@ namespace UIF.Properties {
                 this["FoldersPaths"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("en-US")]
+        public string Locale {
+            get {
+                return ((string)(this["Locale"]));
+            }
+            set {
+                this["Locale"] = value;
+            }
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Resources;
 using System.Windows.Forms;
 
 namespace UIF
@@ -20,7 +21,16 @@ namespace UIF
 
 				items = _items;
 			}
+
+			_UpdateLocalization();
 		}
+
+		void OnLocalizationChange(ResourceManager RM)
+		{
+
+		}
+
+		private void _UpdateLocalization() => Localization.UpdateLocalization("ItemList", this);
 
 		private void UpdateItemList()
 		{

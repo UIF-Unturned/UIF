@@ -57,6 +57,7 @@
     <Compile Include="ItemsCategories.Designer.cs">
       <DependentUpon>ItemsCategories.cs</DependentUpon>
     </Compile>
+    <Compile Include="Localization.cs" />
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -79,6 +80,20 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ItemList.resx">
       <DependentUpon>ItemList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\ItemList.en-US.resx" />
+    <EmbeddedResource Include="Properties\ItemList.ru-RU.resx" />
+    <EmbeddedResource Include="Properties\ItemsCategories.ru-RU.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ItemsCategories.ru-RU.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Main.en-US.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Main.ru-RU.resx" />
+    <EmbeddedResource Include="Properties\ItemsCategories.en-US.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ItemsCategories.en-US.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

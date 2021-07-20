@@ -41,6 +41,9 @@
             this.CopyrightLabel = new System.Windows.Forms.Label();
             this.VersionLabel = new System.Windows.Forms.Label();
             this.SettingsGroupBox = new System.Windows.Forms.GroupBox();
+            this.LocalizationComboBox = new System.Windows.Forms.ComboBox();
+            this.LocalizationLabel = new System.Windows.Forms.Label();
+            this.LoadModsToRamBtn = new System.Windows.Forms.Button();
             this.OpenFldrBtn = new System.Windows.Forms.PictureBox();
             this.MinusFldrBtn = new System.Windows.Forms.PictureBox();
             this.PlusFldrBtn = new System.Windows.Forms.PictureBox();
@@ -49,7 +52,6 @@
             this.AbouGroupBox = new System.Windows.Forms.GroupBox();
             this.DiscordLink = new System.Windows.Forms.PictureBox();
             this.GitHubLink = new System.Windows.Forms.PictureBox();
-            this.LoadModsToRamBtn = new System.Windows.Forms.Button();
             this.MainGroupBox.SuspendLayout();
             this.SettingsGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.OpenFldrBtn)).BeginInit();
@@ -186,6 +188,8 @@
             // 
             // SettingsGroupBox
             // 
+            this.SettingsGroupBox.Controls.Add(this.LocalizationComboBox);
+            this.SettingsGroupBox.Controls.Add(this.LocalizationLabel);
             this.SettingsGroupBox.Controls.Add(this.LoadModsToRamBtn);
             this.SettingsGroupBox.Controls.Add(this.OpenFldrBtn);
             this.SettingsGroupBox.Controls.Add(this.MinusFldrBtn);
@@ -199,6 +203,39 @@
             this.SettingsGroupBox.TabIndex = 0;
             this.SettingsGroupBox.TabStop = false;
             this.SettingsGroupBox.Text = "SETTINGS";
+            // 
+            // LocalizationComboBox
+            // 
+            this.LocalizationComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.LocalizationComboBox.Location = new System.Drawing.Point(343, 69);
+            this.LocalizationComboBox.Name = "LocalizationComboBox";
+            this.LocalizationComboBox.Size = new System.Drawing.Size(106, 21);
+            this.LocalizationComboBox.TabIndex = 9;
+            this.LocalizationComboBox.TabStop = false;
+            this.LocalizationComboBox.SelectedIndexChanged += new System.EventHandler(this.LocalizationComboBox_SelectedIndexChanged);
+            this.LocalizationComboBox.TextUpdate += new System.EventHandler(this.LocalizationComboBox_TextUpdate);
+            // 
+            // LocalizationLabel
+            // 
+            this.LocalizationLabel.AutoSize = true;
+            this.LocalizationLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F);
+            this.LocalizationLabel.Location = new System.Drawing.Point(255, 72);
+            this.LocalizationLabel.Name = "LocalizationLabel";
+            this.LocalizationLabel.Size = new System.Drawing.Size(82, 16);
+            this.LocalizationLabel.TabIndex = 8;
+            this.LocalizationLabel.Text = "Localization:";
+            // 
+            // LoadModsToRamBtn
+            // 
+            this.LoadModsToRamBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.LoadModsToRamBtn.Location = new System.Drawing.Point(6, 69);
+            this.LoadModsToRamBtn.Name = "LoadModsToRamBtn";
+            this.LoadModsToRamBtn.Size = new System.Drawing.Size(243, 23);
+            this.LoadModsToRamBtn.TabIndex = 7;
+            this.LoadModsToRamBtn.TabStop = false;
+            this.LoadModsToRamBtn.Text = "Load mods";
+            this.LoadModsToRamBtn.UseVisualStyleBackColor = true;
+            this.LoadModsToRamBtn.Click += new System.EventHandler(this.LoadModsToRamBtn_Click);
             // 
             // OpenFldrBtn
             // 
@@ -298,18 +335,6 @@
             this.GitHubLink.TabStop = false;
             this.GitHubLink.Click += new System.EventHandler(this.GitHubLink_Click);
             // 
-            // LoadModsToRamBtn
-            // 
-            this.LoadModsToRamBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.LoadModsToRamBtn.Location = new System.Drawing.Point(6, 69);
-            this.LoadModsToRamBtn.Name = "LoadModsToRamBtn";
-            this.LoadModsToRamBtn.Size = new System.Drawing.Size(443, 23);
-            this.LoadModsToRamBtn.TabIndex = 7;
-            this.LoadModsToRamBtn.TabStop = false;
-            this.LoadModsToRamBtn.Text = "Load mods";
-            this.LoadModsToRamBtn.UseVisualStyleBackColor = true;
-            this.LoadModsToRamBtn.Click += new System.EventHandler(this.LoadModsToRamBtn_Click);
-            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -362,6 +387,8 @@
         private System.Windows.Forms.PictureBox PlusFldrBtn;
         private System.Windows.Forms.PictureBox OpenFldrBtn;
         private System.Windows.Forms.Button LoadModsToRamBtn;
+        private System.Windows.Forms.ComboBox LocalizationComboBox;
+        private System.Windows.Forms.Label LocalizationLabel;
     }
 }
 
