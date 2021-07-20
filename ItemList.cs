@@ -39,23 +39,8 @@ namespace UIF
 			for (int i = 0; i < items.Count; i++)
 				ResultsListBox.Items.Add(items[i].name + " (" + items[i].id + ")");
 		}
-		private void ClearTextBoxes()
-		{
-			ItemCapacityTextBox.Clear();
-			DamageHeadTextBox.Clear();
-			BodyDamageTextBox.Clear();
-			ProtectionTextBox.Clear();
-			ItemTypeTextBox.Clear();
-			ItemType2TextBox.Clear();
-			RangeTextBox.Clear();
-			StructureDamageTextBox.Clear();
-			PlayerDamageTextBox.Clear();
-			EngineTextBox.Clear();
-			ItemHealthTextBox.Clear();
-			ShakeTextBox.Clear();
-			VolumeTextBox.Clear();
-			BarrelDamageTextBox.Clear();
-		}
+
+		private void ClearTextBoxes() => Misc.GetAllControls(ItemStatsGroupBox, c => c.GetType() == typeof(TextBox));
 
 		private void ResultsListBox_SelectedIndexChanged(object sender, EventArgs e)
 		{
