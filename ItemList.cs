@@ -40,7 +40,10 @@ namespace UIF
 				ResultsListBox.Items.Add(items[i].name + " (" + items[i].id + ")");
 		}
 
-		private void ClearTextBoxes() => Misc.GetAllControls(ItemStatsGroupBox, c => c.GetType() == typeof(TextBox));
+		private void ClearTextBoxes() {
+			foreach (Control control in Misc.GetAllControls(ItemStatsGroupBox, c => c.GetType() == typeof(TextBox)))
+				((TextBox)control).Clear();
+		}
 
 		private void ResultsListBox_SelectedIndexChanged(object sender, EventArgs e)
 		{
