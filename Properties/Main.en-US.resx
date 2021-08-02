@@ -117,7 +117,52 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="SearchNameBtn" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="EnterIdLabel" xml:space="preserve">
+    <value>Or enter the item ID:</value>
+  </data>
+  <data name="MainGroupBox" xml:space="preserve">
+    <value>Main</value>
+  </data>
+  <data name="AbouGroupBox" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="MinusFldrBtnTip" xml:space="preserve">
+    <value>Delete selected folder</value>
+  </data>
+  <data name="SearchIDBtn" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="OpenFldrBtnTip" xml:space="preserve">
+    <value>Open selected folder</value>
+  </data>
+  <data name="AllItemsBtn" xml:space="preserve">
+    <value>View items by categories</value>
+  </data>
+  <data name="LocalizationLabel" xml:space="preserve">
+    <value>Localization:</value>
+  </data>
+  <data name="CopyrightLabel" xml:space="preserve">
+    <value>(с) YMO4</value>
+  </data>
   <data name="LoadModsToRamBtn" xml:space="preserve">
     <value>Load mods</value>
+  </data>
+  <data name="PlusFldrBtnTip" xml:space="preserve">
+    <value>Add selected folder</value>
+  </data>
+  <data name="SettingsGroupBox" xml:space="preserve">
+    <value>SETTINGS</value>
+  </data>
+  <data name="SelectFldrLabel" xml:space="preserve">
+    <value>Selected folder with mods:</value>
+  </data>
+  <data name="EnterNameLabel" xml:space="preserve">
+    <value>Enter item name:</value>
+  </data>
+  <data name="UnloadMods" xml:space="preserve">
+    <value>Unload Mods</value>
   </data>
 </root>

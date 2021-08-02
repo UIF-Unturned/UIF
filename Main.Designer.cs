@@ -65,9 +65,10 @@
             // 
             // NameTextBox
             // 
-            this.NameTextBox.Location = new System.Drawing.Point(152, 19);
+            this.NameTextBox.Location = new System.Drawing.Point(254, 23);
+            this.NameTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.NameTextBox.Name = "NameTextBox";
-            this.NameTextBox.Size = new System.Drawing.Size(207, 20);
+            this.NameTextBox.Size = new System.Drawing.Size(224, 22);
             this.NameTextBox.TabIndex = 5;
             this.NameTextBox.TabStop = false;
             // 
@@ -75,9 +76,10 @@
             // 
             this.EnterNameLabel.AutoSize = true;
             this.EnterNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.EnterNameLabel.Location = new System.Drawing.Point(6, 20);
+            this.EnterNameLabel.Location = new System.Drawing.Point(8, 25);
+            this.EnterNameLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.EnterNameLabel.Name = "EnterNameLabel";
-            this.EnterNameLabel.Size = new System.Drawing.Size(107, 16);
+            this.EnterNameLabel.Size = new System.Drawing.Size(130, 20);
             this.EnterNameLabel.TabIndex = 6;
             this.EnterNameLabel.Text = "Enter item name:";
             this.EnterNameLabel.Click += new System.EventHandler(this.EnterNameLabel_Click);
@@ -91,9 +93,11 @@
             this.MainGroupBox.Controls.Add(this.SearchNameBtn);
             this.MainGroupBox.Controls.Add(this.NameTextBox);
             this.MainGroupBox.Controls.Add(this.EnterNameLabel);
-            this.MainGroupBox.Location = new System.Drawing.Point(12, 12);
+            this.MainGroupBox.Location = new System.Drawing.Point(16, 15);
+            this.MainGroupBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MainGroupBox.Name = "MainGroupBox";
-            this.MainGroupBox.Size = new System.Drawing.Size(455, 103);
+            this.MainGroupBox.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.MainGroupBox.Size = new System.Drawing.Size(607, 127);
             this.MainGroupBox.TabIndex = 5;
             this.MainGroupBox.TabStop = false;
             this.MainGroupBox.Text = "MAIN";
@@ -101,9 +105,10 @@
             // SearchIDBtn
             // 
             this.SearchIDBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.SearchIDBtn.Location = new System.Drawing.Point(365, 45);
+            this.SearchIDBtn.Location = new System.Drawing.Point(487, 55);
+            this.SearchIDBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.SearchIDBtn.Name = "SearchIDBtn";
-            this.SearchIDBtn.Size = new System.Drawing.Size(84, 20);
+            this.SearchIDBtn.Size = new System.Drawing.Size(112, 25);
             this.SearchIDBtn.TabIndex = 0;
             this.SearchIDBtn.TabStop = false;
             this.SearchIDBtn.Text = "Search";
@@ -114,27 +119,30 @@
             // 
             this.EnterIdLabel.AutoSize = true;
             this.EnterIdLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.EnterIdLabel.Location = new System.Drawing.Point(6, 45);
+            this.EnterIdLabel.Location = new System.Drawing.Point(8, 55);
+            this.EnterIdLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.EnterIdLabel.Name = "EnterIdLabel";
-            this.EnterIdLabel.Size = new System.Drawing.Size(123, 16);
+            this.EnterIdLabel.Size = new System.Drawing.Size(153, 20);
             this.EnterIdLabel.TabIndex = 1;
             this.EnterIdLabel.Text = "Or enter the item ID:";
             this.EnterIdLabel.Click += new System.EventHandler(this.EnterIdLabel_Click);
             // 
             // IDBox
             // 
-            this.IDBox.Location = new System.Drawing.Point(152, 45);
+            this.IDBox.Location = new System.Drawing.Point(254, 55);
+            this.IDBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.IDBox.Name = "IDBox";
-            this.IDBox.Size = new System.Drawing.Size(207, 20);
+            this.IDBox.Size = new System.Drawing.Size(224, 22);
             this.IDBox.TabIndex = 2;
             this.IDBox.TabStop = false;
             // 
             // AllItemsBtn
             // 
             this.AllItemsBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.AllItemsBtn.Location = new System.Drawing.Point(6, 71);
+            this.AllItemsBtn.Location = new System.Drawing.Point(8, 87);
+            this.AllItemsBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.AllItemsBtn.Name = "AllItemsBtn";
-            this.AllItemsBtn.Size = new System.Drawing.Size(443, 23);
+            this.AllItemsBtn.Size = new System.Drawing.Size(591, 28);
             this.AllItemsBtn.TabIndex = 3;
             this.AllItemsBtn.TabStop = false;
             this.AllItemsBtn.Text = "View items by categories";
@@ -144,9 +152,10 @@
             // SearchNameBtn
             // 
             this.SearchNameBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.SearchNameBtn.Location = new System.Drawing.Point(365, 19);
+            this.SearchNameBtn.Location = new System.Drawing.Point(487, 23);
+            this.SearchNameBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.SearchNameBtn.Name = "SearchNameBtn";
-            this.SearchNameBtn.Size = new System.Drawing.Size(84, 20);
+            this.SearchNameBtn.Size = new System.Drawing.Size(112, 25);
             this.SearchNameBtn.TabIndex = 4;
             this.SearchNameBtn.TabStop = false;
             this.SearchNameBtn.Text = "Search";
@@ -157,9 +166,10 @@
             // 
             this.SelectFldrLabel.AutoSize = true;
             this.SelectFldrLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.SelectFldrLabel.Location = new System.Drawing.Point(6, 16);
+            this.SelectFldrLabel.Location = new System.Drawing.Point(8, 20);
+            this.SelectFldrLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.SelectFldrLabel.Name = "SelectFldrLabel";
-            this.SelectFldrLabel.Size = new System.Drawing.Size(164, 16);
+            this.SelectFldrLabel.Size = new System.Drawing.Size(195, 20);
             this.SelectFldrLabel.TabIndex = 2;
             this.SelectFldrLabel.Text = "Selected folder with mods:";
             this.SelectFldrLabel.Click += new System.EventHandler(this.SelectFldrLabel_Click);
@@ -168,9 +178,10 @@
             // 
             this.CopyrightLabel.AutoSize = true;
             this.CopyrightLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.CopyrightLabel.Location = new System.Drawing.Point(383, 47);
+            this.CopyrightLabel.Location = new System.Drawing.Point(511, 58);
+            this.CopyrightLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.CopyrightLabel.Name = "CopyrightLabel";
-            this.CopyrightLabel.Size = new System.Drawing.Size(72, 18);
+            this.CopyrightLabel.Size = new System.Drawing.Size(90, 24);
             this.CopyrightLabel.TabIndex = 4;
             this.CopyrightLabel.Text = "(с) YMO4";
             this.CopyrightLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -179,9 +190,10 @@
             // 
             this.VersionLabel.AutoSize = true;
             this.VersionLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.VersionLabel.Location = new System.Drawing.Point(175, 19);
+            this.VersionLabel.Location = new System.Drawing.Point(233, 23);
+            this.VersionLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.VersionLabel.Name = "VersionLabel";
-            this.VersionLabel.Size = new System.Drawing.Size(42, 20);
+            this.VersionLabel.Size = new System.Drawing.Size(53, 25);
             this.VersionLabel.TabIndex = 3;
             this.VersionLabel.Text = "Ver. ";
             this.VersionLabel.Visible = false;
@@ -197,9 +209,11 @@
             this.SettingsGroupBox.Controls.Add(this.FldrComboBox);
             this.SettingsGroupBox.Controls.Add(this.InfoBtn);
             this.SettingsGroupBox.Controls.Add(this.SelectFldrLabel);
-            this.SettingsGroupBox.Location = new System.Drawing.Point(12, 121);
+            this.SettingsGroupBox.Location = new System.Drawing.Point(16, 149);
+            this.SettingsGroupBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.SettingsGroupBox.Name = "SettingsGroupBox";
-            this.SettingsGroupBox.Size = new System.Drawing.Size(455, 100);
+            this.SettingsGroupBox.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.SettingsGroupBox.Size = new System.Drawing.Size(607, 123);
             this.SettingsGroupBox.TabIndex = 0;
             this.SettingsGroupBox.TabStop = false;
             this.SettingsGroupBox.Text = "SETTINGS";
@@ -207,9 +221,10 @@
             // LocalizationComboBox
             // 
             this.LocalizationComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.LocalizationComboBox.Location = new System.Drawing.Point(343, 69);
+            this.LocalizationComboBox.Location = new System.Drawing.Point(477, 85);
+            this.LocalizationComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.LocalizationComboBox.Name = "LocalizationComboBox";
-            this.LocalizationComboBox.Size = new System.Drawing.Size(106, 21);
+            this.LocalizationComboBox.Size = new System.Drawing.Size(122, 25);
             this.LocalizationComboBox.TabIndex = 9;
             this.LocalizationComboBox.TabStop = false;
             this.LocalizationComboBox.SelectedIndexChanged += new System.EventHandler(this.LocalizationComboBox_SelectedIndexChanged);
@@ -219,18 +234,20 @@
             // 
             this.LocalizationLabel.AutoSize = true;
             this.LocalizationLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F);
-            this.LocalizationLabel.Location = new System.Drawing.Point(255, 72);
+            this.LocalizationLabel.Location = new System.Drawing.Point(340, 89);
+            this.LocalizationLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LocalizationLabel.Name = "LocalizationLabel";
-            this.LocalizationLabel.Size = new System.Drawing.Size(82, 16);
+            this.LocalizationLabel.Size = new System.Drawing.Size(97, 20);
             this.LocalizationLabel.TabIndex = 8;
             this.LocalizationLabel.Text = "Localization:";
             // 
             // LoadModsToRamBtn
             // 
             this.LoadModsToRamBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.LoadModsToRamBtn.Location = new System.Drawing.Point(6, 69);
+            this.LoadModsToRamBtn.Location = new System.Drawing.Point(8, 85);
+            this.LoadModsToRamBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.LoadModsToRamBtn.Name = "LoadModsToRamBtn";
-            this.LoadModsToRamBtn.Size = new System.Drawing.Size(243, 23);
+            this.LoadModsToRamBtn.Size = new System.Drawing.Size(324, 28);
             this.LoadModsToRamBtn.TabIndex = 7;
             this.LoadModsToRamBtn.TabStop = false;
             this.LoadModsToRamBtn.Text = "Load mods";
@@ -241,9 +258,10 @@
             // 
             this.OpenFldrBtn.Image = global::UIF.Properties.Resources.folder_icon;
             this.OpenFldrBtn.InitialImage = global::UIF.Properties.Resources.folder_icon;
-            this.OpenFldrBtn.Location = new System.Drawing.Point(425, 13);
+            this.OpenFldrBtn.Location = new System.Drawing.Point(567, 16);
+            this.OpenFldrBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.OpenFldrBtn.Name = "OpenFldrBtn";
-            this.OpenFldrBtn.Size = new System.Drawing.Size(24, 23);
+            this.OpenFldrBtn.Size = new System.Drawing.Size(32, 28);
             this.OpenFldrBtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.OpenFldrBtn.TabIndex = 6;
             this.OpenFldrBtn.TabStop = false;
@@ -253,9 +271,10 @@
             // 
             this.MinusFldrBtn.Image = ((System.Drawing.Image)(resources.GetObject("MinusFldrBtn.Image")));
             this.MinusFldrBtn.InitialImage = ((System.Drawing.Image)(resources.GetObject("MinusFldrBtn.InitialImage")));
-            this.MinusFldrBtn.Location = new System.Drawing.Point(395, 13);
+            this.MinusFldrBtn.Location = new System.Drawing.Point(527, 16);
+            this.MinusFldrBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MinusFldrBtn.Name = "MinusFldrBtn";
-            this.MinusFldrBtn.Size = new System.Drawing.Size(24, 23);
+            this.MinusFldrBtn.Size = new System.Drawing.Size(32, 28);
             this.MinusFldrBtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.MinusFldrBtn.TabIndex = 5;
             this.MinusFldrBtn.TabStop = false;
@@ -265,9 +284,10 @@
             // 
             this.PlusFldrBtn.Image = ((System.Drawing.Image)(resources.GetObject("PlusFldrBtn.Image")));
             this.PlusFldrBtn.InitialImage = ((System.Drawing.Image)(resources.GetObject("PlusFldrBtn.InitialImage")));
-            this.PlusFldrBtn.Location = new System.Drawing.Point(365, 13);
+            this.PlusFldrBtn.Location = new System.Drawing.Point(487, 16);
+            this.PlusFldrBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.PlusFldrBtn.Name = "PlusFldrBtn";
-            this.PlusFldrBtn.Size = new System.Drawing.Size(24, 23);
+            this.PlusFldrBtn.Size = new System.Drawing.Size(32, 28);
             this.PlusFldrBtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.PlusFldrBtn.TabIndex = 4;
             this.PlusFldrBtn.TabStop = false;
@@ -276,9 +296,10 @@
             // FldrComboBox
             // 
             this.FldrComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.FldrComboBox.Location = new System.Drawing.Point(6, 42);
+            this.FldrComboBox.Location = new System.Drawing.Point(8, 52);
+            this.FldrComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.FldrComboBox.Name = "FldrComboBox";
-            this.FldrComboBox.Size = new System.Drawing.Size(443, 21);
+            this.FldrComboBox.Size = new System.Drawing.Size(589, 25);
             this.FldrComboBox.TabIndex = 0;
             this.FldrComboBox.TabStop = false;
             this.FldrComboBox.SelectedIndexChanged += new System.EventHandler(this.FldrComboBox_SelectedIndexChanged);
@@ -288,9 +309,10 @@
             // 
             this.InfoBtn.Image = global::UIF.Properties.Resources.info_icon;
             this.InfoBtn.InitialImage = global::UIF.Properties.Resources.info_icon;
-            this.InfoBtn.Location = new System.Drawing.Point(169, 13);
+            this.InfoBtn.Location = new System.Drawing.Point(257, 16);
+            this.InfoBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.InfoBtn.Name = "InfoBtn";
-            this.InfoBtn.Size = new System.Drawing.Size(24, 23);
+            this.InfoBtn.Size = new System.Drawing.Size(32, 28);
             this.InfoBtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.InfoBtn.TabIndex = 3;
             this.InfoBtn.TabStop = false;
@@ -302,9 +324,11 @@
             this.AbouGroupBox.Controls.Add(this.CopyrightLabel);
             this.AbouGroupBox.Controls.Add(this.DiscordLink);
             this.AbouGroupBox.Controls.Add(this.GitHubLink);
-            this.AbouGroupBox.Location = new System.Drawing.Point(12, 227);
+            this.AbouGroupBox.Location = new System.Drawing.Point(16, 279);
+            this.AbouGroupBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.AbouGroupBox.Name = "AbouGroupBox";
-            this.AbouGroupBox.Size = new System.Drawing.Size(455, 65);
+            this.AbouGroupBox.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.AbouGroupBox.Size = new System.Drawing.Size(607, 80);
             this.AbouGroupBox.TabIndex = 6;
             this.AbouGroupBox.TabStop = false;
             this.AbouGroupBox.Text = "About";
@@ -314,9 +338,10 @@
             this.DiscordLink.Image = global::UIF.Properties.Resources.discord_icon;
             this.DiscordLink.ImageLocation = "";
             this.DiscordLink.InitialImage = global::UIF.Properties.Resources.discord_icon;
-            this.DiscordLink.Location = new System.Drawing.Point(6, 19);
+            this.DiscordLink.Location = new System.Drawing.Point(8, 23);
+            this.DiscordLink.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.DiscordLink.Name = "DiscordLink";
-            this.DiscordLink.Size = new System.Drawing.Size(115, 36);
+            this.DiscordLink.Size = new System.Drawing.Size(153, 44);
             this.DiscordLink.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.DiscordLink.TabIndex = 1;
             this.DiscordLink.TabStop = false;
@@ -327,9 +352,10 @@
             this.GitHubLink.Image = global::UIF.Properties.Resources.github_icon;
             this.GitHubLink.ImageLocation = "";
             this.GitHubLink.InitialImage = global::UIF.Properties.Resources.github_icon;
-            this.GitHubLink.Location = new System.Drawing.Point(127, 19);
+            this.GitHubLink.Location = new System.Drawing.Point(169, 23);
+            this.GitHubLink.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.GitHubLink.Name = "GitHubLink";
-            this.GitHubLink.Size = new System.Drawing.Size(42, 36);
+            this.GitHubLink.Size = new System.Drawing.Size(56, 44);
             this.GitHubLink.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.GitHubLink.TabIndex = 2;
             this.GitHubLink.TabStop = false;
@@ -337,14 +363,15 @@
             // 
             // Main
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(479, 306);
+            this.ClientSize = new System.Drawing.Size(639, 377);
             this.Controls.Add(this.AbouGroupBox);
             this.Controls.Add(this.SettingsGroupBox);
             this.Controls.Add(this.MainGroupBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.Name = "Main";
             this.Text = "UIF";
