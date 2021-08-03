@@ -170,6 +170,9 @@
   <data name="EnterNameLabel" xml:space="preserve">
     <value>Введите имя предмета:</value>
   </data>
+  <data name="RUAuthorLabel" xml:space="preserve">
+    <value>(c) Русифицировал BoomViz</value>
+  </data>
   <data name="UnloadMods" xml:space="preserve">
     <value>Выгрузить моды</value>
   </data>

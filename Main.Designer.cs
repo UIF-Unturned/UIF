@@ -52,6 +52,7 @@
             this.AbouGroupBox = new System.Windows.Forms.GroupBox();
             this.DiscordLink = new System.Windows.Forms.PictureBox();
             this.GitHubLink = new System.Windows.Forms.PictureBox();
+            this.RUAuthorLabel = new System.Windows.Forms.Label();
             this.MainGroupBox.SuspendLayout();
             this.SettingsGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.OpenFldrBtn)).BeginInit();
@@ -320,6 +321,7 @@
             // 
             // AbouGroupBox
             // 
+            this.AbouGroupBox.Controls.Add(this.RUAuthorLabel);
             this.AbouGroupBox.Controls.Add(this.VersionLabel);
             this.AbouGroupBox.Controls.Add(this.CopyrightLabel);
             this.AbouGroupBox.Controls.Add(this.DiscordLink);
@@ -360,6 +362,18 @@
             this.GitHubLink.TabIndex = 2;
             this.GitHubLink.TabStop = false;
             this.GitHubLink.Click += new System.EventHandler(this.GitHubLink_Click);
+            // 
+            // RUAuthorLabel
+            // 
+            this.RUAuthorLabel.AutoSize = true;
+            this.RUAuthorLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.RUAuthorLabel.Location = new System.Drawing.Point(331, 19);
+            this.RUAuthorLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.RUAuthorLabel.Name = "RUAuthorLabel";
+            this.RUAuthorLabel.Size = new System.Drawing.Size(270, 24);
+            this.RUAuthorLabel.TabIndex = 5;
+            this.RUAuthorLabel.Text = "(c) Руссифицировал BoomViz";
+            this.RUAuthorLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Main
             // 
@@ -416,6 +430,7 @@
         private System.Windows.Forms.Button LoadModsToRamBtn;
         private System.Windows.Forms.ComboBox LocalizationComboBox;
         private System.Windows.Forms.Label LocalizationLabel;
+        private System.Windows.Forms.Label RUAuthorLabel;
     }
 }
 
