@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace UIF
 {
-    public static class Misc
+	public static class Misc
 	{
 		public static IEnumerable<Control> GetAllControls(Control control, Func<Control, bool> filter = null)
 		{
@@ -25,18 +25,9 @@ namespace UIF
 			string new_str = replace_str;
 
 			for (int i = 0; i < parameters.Length - 1; i++)
-			{
 				new_str = replace_str.Replace(parameters[i], parameters.Last());
-			}
 
 			return new_str;
-		}
-
-		public static float? GetAverageDamage(this Item item)
-		{
-			return (((item.bodyDamage != 0 && item.bodyDamage != null) ? item.bodyDamage : 1) * (item.playerDamage != null ? item.playerDamage : 1)
-				+ ((item.headDamage != 0 && item.headDamage != null) ? item.headDamage : 1) * (item.playerDamage != null ? item.playerDamage : 1))
-				/ 2;
 		}
 
 		public static float ToPercentage(this float f)
@@ -50,6 +41,11 @@ namespace UIF
 				throw new Exception("Url open failed");
 		}
 
+		public static int ToInt(this string str)
+		{
+			return int.Parse(str);
+		}
+
 		public static float ToFloat(this string str)
 		{
 			return float.Parse(str);
@@ -57,12 +53,10 @@ namespace UIF
 
 		public static bool TryContains(this string var, string a)
 		{
-			try
-			{
+			try {
 				if (var != null)
 					return var.Contains(a);
-			}
-			catch { }
+			} catch { }
 			return false;
 		}
 
@@ -75,19 +69,21 @@ namespace UIF
 			return false;
 		}
 
-		public static bool TryContains(this List<string> ts, object a)
+		public static bool TryContains(this string[] ts, string a)
 		{
-			try
-			{
+			try {
 				return ts.Contains(a);
-			}
-			catch { }
+			} catch { }
 			return false;
 		}
 
-		public static int ToInt(this string str)
+		public static bool TryContains(this string[] s, string[] a)
 		{
-			return int.Parse(str);
+			foreach (string str in a)
+				if (s.TryContains(str))
+					return true;
+
+			return false;
 		}
 
 		public static int CompareTo(this int? a, object val)

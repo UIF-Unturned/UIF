@@ -21,7 +21,7 @@ namespace UIF
 			for (int i = 0; i < FldrComboBox.Items.Count; i++) {
 				string fldrString = FldrComboBox.Items[i].ToString();
 				if (FldrComboBox.Items[i] != null &&
-					fldrString != "" &&
+					fldrString != string.Empty &&
 					fldrString != "\n") {
 					Properties.Settings.Default.FoldersPaths += FldrComboBox.Items[i].ToString();
 					if (i < FldrComboBox.Items.Count - 1) Properties.Settings.Default.FoldersPaths += '\n';
@@ -76,7 +76,7 @@ namespace UIF
 			else
 				LoadModsToRamBtn.Text = RM.GetStringSafety("UnloadMods");
 		}
-
+		
 		private void EnterNameLabel_Click(object sender, EventArgs e) => NameTextBox.Focus();
 		
 		private void EnterIdLabel_Click(object sender, EventArgs e) => IDBox.Focus();
@@ -86,7 +86,7 @@ namespace UIF
 			if (CurrentFolderPath == null) {
 				throw new ArgumentNullException(FolderErrorText);
 			} else {
-				var items = Core.ParseAll(CurrentFolderPath, i => i.name.ToLower().Contains(NameTextBox.Text.ToLower()));
+				var items = Core.ParseAll(CurrentFolderPath, i => i.GetKeyValue("name").ToLower().Contains(NameTextBox.Text.ToLower()));
 
 				new ItemList(items).ShowDialog();
 			}
@@ -140,7 +140,7 @@ namespace UIF
 			if (CurrentFolderPath == null) {
 				throw new ArgumentNullException(FolderErrorText);
 			} else {
-				var items = Core.ParseAll(CurrentFolderPath, i => i.id == int.Parse(IDBox.Text));
+				var items = Core.ParseAll(CurrentFolderPath, i => i.GetKeyValue("id") == IDBox.Text);
 
 				new ItemList(items).ShowDialog();
 			}

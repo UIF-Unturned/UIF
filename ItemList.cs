@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Resources;
 using System.Windows.Forms;
 
@@ -8,6 +9,7 @@ namespace UIF
 	public partial class ItemList : Form
 	{
 		private List<Item> items;
+		private Control[] paramsBoxes;
 
 		public ItemList(List<Item> _items)
 		{
@@ -17,9 +19,11 @@ namespace UIF
 				InitializeComponent();
 
 				for (int i = 0; i < _items.Count; i++)
-					ResultsListBox.Items.Add(_items[i].name + " (" + _items[i].id + ")");
+					ResultsListBox.Items.Add(_items[i].GetKeyValue("name") + " (" + _items[i].GetKeyValue("id") + ")");
 
 				items = _items;
+
+				paramsBoxes = Misc.GetAllControls(ItemStatsGroupBox, c => c.GetType() == typeof(TextBox)).ToArray();
 			}
 
 			_UpdateLocalization();
@@ -37,87 +41,31 @@ namespace UIF
 			ResultsListBox.Items.Clear();
 
 			for (int i = 0; i < items.Count; i++)
-				ResultsListBox.Items.Add(items[i].name + " (" + items[i].id + ")");
+				ResultsListBox.Items.Add(items[i].GetKeyValue("name") + " (" + items[i].GetKeyValue("id") + ")");
 		}
 
 		private void ClearTextBoxes() {
-			foreach (Control control in Misc.GetAllControls(ItemStatsGroupBox, c => c.GetType() == typeof(TextBox)))
+			foreach (Control control in paramsBoxes)
 				((TextBox)control).Clear();
 		}
 
 		private void ResultsListBox_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			if (ResultsListBox.SelectedIndex == -1)
-			{
+			if (ResultsListBox.SelectedIndex == -1) {
 				NameTextBox.Clear();
 				IdTextBox.Clear();
 
 				ClearTextBoxes();
-			}
-			else
-			{
+			} else {			
 				ClearTextBoxes();
 
 				Item currentItem = items[ResultsListBox.SelectedIndex];
 				
-				IdTextBox.Text = currentItem.id.ToString();
-				NameTextBox.Text = ResultsListBox.SelectedItem.ToString().Replace(" (" + currentItem.id.ToString() + ")", string.Empty);
+				IdTextBox.Text = currentItem.GetKeyValue("id");
+				NameTextBox.Text = currentItem.GetKeyValue("name");
 
-				if (currentItem.armor != null && currentItem.itemType.TryContains("Clothing"))
-					ProtectionTextBox.Text = ((float)currentItem.armor).ToPercentage()
-						.ToString();
-
-				if (currentItem.clothStorageHeight != null && currentItem.clothStorageWidth != null && currentItem.itemType.TryContains("Clothing"))
-					ItemCapacityTextBox.Text = (currentItem.clothStorageHeight * currentItem.clothStorageWidth)
-						.ToString();
-				else if (currentItem.barricadeStorageHeight != null && currentItem.barricadeStorageWidth != null && currentItem.itemType2.TryContains("Storage"))
-					ItemCapacityTextBox.Text = (currentItem.barricadeStorageHeight * currentItem.barricadeStorageWidth)
-						.ToString();
-
-				if (currentItem.headDamage != null && currentItem.itemType.TryContains("Melee", "Gun"))
-					DamageHeadTextBox.Text = (currentItem.headDamage != null ? string.Empty : "~") +
-						((currentItem.headDamage != null ? currentItem.headDamage : 1) *
-						(currentItem.playerDamage != null ? currentItem.playerDamage : 1)).ToString();
-
-				if (currentItem.bodyDamage != null && currentItem.itemType.TryContains("Melee", "Gun"))
-					BodyDamageTextBox.Text = (currentItem.bodyDamage != null ? string.Empty : "~") +
-						((currentItem.bodyDamage != null ? currentItem.bodyDamage : 1) *
-						(currentItem.playerDamage != null ? currentItem.playerDamage : 1)).ToString();
-
-				if (currentItem.range != null && currentItem.itemType.TryContains("Melee", "Gun"))
-					RangeTextBox.Text = currentItem.range.ToString();
-
-				if (currentItem.playerDamage != null && currentItem.itemType.TryContains("Gun", "Melee"))
-					PlayerDamageTextBox.Text = currentItem.playerDamage.ToString();
-
-				if (currentItem.structureDamage != null && (currentItem.itemType.TryContains("Gun", "Melee") ||
-					currentItem.itemType2.TryContains("Charge")))
-					StructureDamageTextBox.Text = (currentItem.explosive ? "~" : string.Empty) + currentItem.structureDamage.ToString();
-
-				if (currentItem.itemType != null)
-					ItemTypeTextBox.Text = currentItem.itemType;
-
-				if (currentItem.itemType2 != null)
-					ItemType2TextBox.Text = currentItem.itemType2;
-
-				if (currentItem.itemType2.TryContains("Vehicle") || currentItem.itemType.TryContains("Vehicle"))
-				{
-					EngineTextBox.Text = currentItem.engine != null ? currentItem.engine.ToString() : "Car";
-
-					ItemHealthTextBox.Text = currentItem.vehicleHealth != null ? currentItem.vehicleHealth.ToString() : string.Empty;
-				}
-				else if (currentItem.itemType.TryContains("Barricade", "Structure") ||
-					currentItem.itemType2.TryContains("Barricade", "Structure"))
-					ItemHealthTextBox.Text = currentItem.buildingHealth != null ? currentItem.buildingHealth.ToString() : string.Empty;
-
-				if (currentItem.itemType2.TryContains("Grip", "Barrel", "Tactical"))
-					ShakeTextBox.Text = currentItem.shake != null ? currentItem.shake.ToString() : string.Empty;
-
-				if (currentItem.itemType2.TryContains("Barrel"))
-					VolumeTextBox.Text = currentItem.barrelVolume != null ? currentItem.barrelVolume.ToString() : string.Empty;
-
-				if ( currentItem.itemType2.TryContains("Barrel"))
-					BarrelDamageTextBox.Text = currentItem.barrelDamage != null ? currentItem.barrelDamage.ToString() : "1";
+				foreach (TextBox control in paramsBoxes)
+					control.Text = currentItem.FormatKey(control.Name);
 			}
 		}
 
@@ -126,7 +74,7 @@ namespace UIF
 			if (ResultsListBox.SelectedIndex != -1)
 				Clipboard.SetText(
 					((IdPrefixTextBox.Text != string.Empty ? IdPrefixTextBox.Text + " " : string.Empty)
-					+ items[ResultsListBox.SelectedIndex].id.ToString()).Replace("\n", "\r", string.Empty)
+					+ items[ResultsListBox.SelectedIndex].GetKeyValue("id")).Replace("\n", "\r", string.Empty)
 					);
 		}
 
@@ -135,10 +83,10 @@ namespace UIF
 			if (ResultsListBox.SelectedIndex != -1)
 				Clipboard.SetText(
 						(
-							items[ResultsListBox.SelectedIndex].name
+							items[ResultsListBox.SelectedIndex].GetKeyValue("name")
 							+ " - "
 							+ (IdPrefixTextBox.Text != string.Empty ? IdPrefixTextBox.Text + " " : string.Empty)
-							+ items[ResultsListBox.SelectedIndex].id.ToString()
+							+ items[ResultsListBox.SelectedIndex].GetKeyValue("id")
 						)
 						.Replace("\n", "\r", string.Empty)
 					);
@@ -152,10 +100,10 @@ namespace UIF
 			{
 				copyStr +=
 					(
-						items[i].name
+						items[i].GetKeyValue("name")
 						+ " - "
 						+ (IdPrefixTextBox.Text != string.Empty ? IdPrefixTextBox.Text + " " : string.Empty)
-						+ items[i].id.ToString()
+						+ items[i].GetKeyValue("id")
 					)
 					.Replace("\n", "\r", string.Empty) +
 					(

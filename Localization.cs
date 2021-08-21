@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace UIF
 {
-    public static class Localization
+	public static class Localization
 	{
 		public static readonly string[] Locales = new string[] { "en-US", "ru-RU" };
 

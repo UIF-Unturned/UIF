@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace UIF
 {
-    public static class Program
+	public static class Program
 	{
 		public readonly static string Version = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion;
 		public const string DiscordUrl = "https://discord.gg/VhpM2ex";

@@ -41,19 +41,19 @@
             this.NameLabel = new System.Windows.Forms.Label();
             this.IdToClipboard = new System.Windows.Forms.Button();
             this.ItemStatsGroupBox = new System.Windows.Forms.GroupBox();
-            this.BarrelDamageTextBox = new System.Windows.Forms.TextBox();
-            this.VolumeTextBox = new System.Windows.Forms.TextBox();
-            this.ShakeTextBox = new System.Windows.Forms.TextBox();
-            this.ItemHealthTextBox = new System.Windows.Forms.TextBox();
-            this.EngineTextBox = new System.Windows.Forms.TextBox();
-            this.ItemType2TextBox = new System.Windows.Forms.TextBox();
-            this.ItemTypeTextBox = new System.Windows.Forms.TextBox();
-            this.RangeTextBox = new System.Windows.Forms.TextBox();
-            this.StructureDamageTextBox = new System.Windows.Forms.TextBox();
-            this.PlayerDamageTextBox = new System.Windows.Forms.TextBox();
-            this.BodyDamageTextBox = new System.Windows.Forms.TextBox();
-            this.DamageHeadTextBox = new System.Windows.Forms.TextBox();
-            this.ProtectionTextBox = new System.Windows.Forms.TextBox();
+            this.damage = new System.Windows.Forms.TextBox();
+            this.volume = new System.Windows.Forms.TextBox();
+            this.shake = new System.Windows.Forms.TextBox();
+            this.health = new System.Windows.Forms.TextBox();
+            this.engine = new System.Windows.Forms.TextBox();
+            this.type = new System.Windows.Forms.TextBox();
+            this.useable = new System.Windows.Forms.TextBox();
+            this.range = new System.Windows.Forms.TextBox();
+            this.structure_damage = new System.Windows.Forms.TextBox();
+            this.player_damage = new System.Windows.Forms.TextBox();
+            this.player_spine_damage = new System.Windows.Forms.TextBox();
+            this.player_skull_damage = new System.Windows.Forms.TextBox();
+            this.armor = new System.Windows.Forms.TextBox();
             this.BarrelDamageLabel = new System.Windows.Forms.Label();
             this.VolumeLabel = new System.Windows.Forms.Label();
             this.ShakeLabel = new System.Windows.Forms.Label();
@@ -68,7 +68,7 @@
             this.HeadDamageLabel = new System.Windows.Forms.Label();
             this.ProtectionLabel = new System.Windows.Forms.Label();
             this.ItemCapacityLabel = new System.Windows.Forms.Label();
-            this.ItemCapacityTextBox = new System.Windows.Forms.TextBox();
+            this.item_capacity = new System.Windows.Forms.TextBox();
             this.SortDamagePlayersBtn = new System.Windows.Forms.Button();
             this.SortCapacityBtn = new System.Windows.Forms.Button();
             this.SortProtectionBtn = new System.Windows.Forms.Button();
@@ -211,19 +211,19 @@
             // 
             // ItemStatsGroupBox
             // 
-            this.ItemStatsGroupBox.Controls.Add(this.BarrelDamageTextBox);
-            this.ItemStatsGroupBox.Controls.Add(this.VolumeTextBox);
-            this.ItemStatsGroupBox.Controls.Add(this.ShakeTextBox);
-            this.ItemStatsGroupBox.Controls.Add(this.ItemHealthTextBox);
-            this.ItemStatsGroupBox.Controls.Add(this.EngineTextBox);
-            this.ItemStatsGroupBox.Controls.Add(this.ItemType2TextBox);
-            this.ItemStatsGroupBox.Controls.Add(this.ItemTypeTextBox);
-            this.ItemStatsGroupBox.Controls.Add(this.RangeTextBox);
-            this.ItemStatsGroupBox.Controls.Add(this.StructureDamageTextBox);
-            this.ItemStatsGroupBox.Controls.Add(this.PlayerDamageTextBox);
-            this.ItemStatsGroupBox.Controls.Add(this.BodyDamageTextBox);
-            this.ItemStatsGroupBox.Controls.Add(this.DamageHeadTextBox);
-            this.ItemStatsGroupBox.Controls.Add(this.ProtectionTextBox);
+            this.ItemStatsGroupBox.Controls.Add(this.damage);
+            this.ItemStatsGroupBox.Controls.Add(this.volume);
+            this.ItemStatsGroupBox.Controls.Add(this.shake);
+            this.ItemStatsGroupBox.Controls.Add(this.health);
+            this.ItemStatsGroupBox.Controls.Add(this.engine);
+            this.ItemStatsGroupBox.Controls.Add(this.type);
+            this.ItemStatsGroupBox.Controls.Add(this.useable);
+            this.ItemStatsGroupBox.Controls.Add(this.range);
+            this.ItemStatsGroupBox.Controls.Add(this.structure_damage);
+            this.ItemStatsGroupBox.Controls.Add(this.player_damage);
+            this.ItemStatsGroupBox.Controls.Add(this.player_spine_damage);
+            this.ItemStatsGroupBox.Controls.Add(this.player_skull_damage);
+            this.ItemStatsGroupBox.Controls.Add(this.armor);
             this.ItemStatsGroupBox.Controls.Add(this.BarrelDamageLabel);
             this.ItemStatsGroupBox.Controls.Add(this.VolumeLabel);
             this.ItemStatsGroupBox.Controls.Add(this.ShakeLabel);
@@ -238,7 +238,7 @@
             this.ItemStatsGroupBox.Controls.Add(this.HeadDamageLabel);
             this.ItemStatsGroupBox.Controls.Add(this.ProtectionLabel);
             this.ItemStatsGroupBox.Controls.Add(this.ItemCapacityLabel);
-            this.ItemStatsGroupBox.Controls.Add(this.ItemCapacityTextBox);
+            this.ItemStatsGroupBox.Controls.Add(this.item_capacity);
             this.ItemStatsGroupBox.Location = new System.Drawing.Point(185, 164);
             this.ItemStatsGroupBox.Name = "ItemStatsGroupBox";
             this.ItemStatsGroupBox.Size = new System.Drawing.Size(344, 311);
@@ -246,148 +246,148 @@
             this.ItemStatsGroupBox.TabStop = false;
             this.ItemStatsGroupBox.Text = "Item Stats";
             // 
-            // BarrelDamageTextBox
+            // damage
             // 
-            this.BarrelDamageTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.BarrelDamageTextBox.Location = new System.Drawing.Point(259, 278);
-            this.BarrelDamageTextBox.Name = "BarrelDamageTextBox";
-            this.BarrelDamageTextBox.ReadOnly = true;
-            this.BarrelDamageTextBox.Size = new System.Drawing.Size(79, 22);
-            this.BarrelDamageTextBox.TabIndex = 26;
-            this.BarrelDamageTextBox.TabStop = false;
-            this.BarrelDamageTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.damage.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.damage.Location = new System.Drawing.Point(259, 278);
+            this.damage.Name = "damage";
+            this.damage.ReadOnly = true;
+            this.damage.Size = new System.Drawing.Size(79, 22);
+            this.damage.TabIndex = 26;
+            this.damage.TabStop = false;
+            this.damage.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // VolumeTextBox
+            // volume
             // 
-            this.VolumeTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.VolumeTextBox.Location = new System.Drawing.Point(259, 258);
-            this.VolumeTextBox.Name = "VolumeTextBox";
-            this.VolumeTextBox.ReadOnly = true;
-            this.VolumeTextBox.Size = new System.Drawing.Size(79, 22);
-            this.VolumeTextBox.TabIndex = 24;
-            this.VolumeTextBox.TabStop = false;
-            this.VolumeTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.volume.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.volume.Location = new System.Drawing.Point(259, 258);
+            this.volume.Name = "volume";
+            this.volume.ReadOnly = true;
+            this.volume.Size = new System.Drawing.Size(79, 22);
+            this.volume.TabIndex = 24;
+            this.volume.TabStop = false;
+            this.volume.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // ShakeTextBox
+            // shake
             // 
-            this.ShakeTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ShakeTextBox.Location = new System.Drawing.Point(259, 238);
-            this.ShakeTextBox.Name = "ShakeTextBox";
-            this.ShakeTextBox.ReadOnly = true;
-            this.ShakeTextBox.Size = new System.Drawing.Size(79, 22);
-            this.ShakeTextBox.TabIndex = 22;
-            this.ShakeTextBox.TabStop = false;
-            this.ShakeTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.shake.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.shake.Location = new System.Drawing.Point(259, 238);
+            this.shake.Name = "shake";
+            this.shake.ReadOnly = true;
+            this.shake.Size = new System.Drawing.Size(79, 22);
+            this.shake.TabIndex = 22;
+            this.shake.TabStop = false;
+            this.shake.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // ItemHealthTextBox
+            // health
             // 
-            this.ItemHealthTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ItemHealthTextBox.Location = new System.Drawing.Point(259, 218);
-            this.ItemHealthTextBox.Name = "ItemHealthTextBox";
-            this.ItemHealthTextBox.ReadOnly = true;
-            this.ItemHealthTextBox.Size = new System.Drawing.Size(79, 22);
-            this.ItemHealthTextBox.TabIndex = 18;
-            this.ItemHealthTextBox.TabStop = false;
-            this.ItemHealthTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.health.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.health.Location = new System.Drawing.Point(259, 218);
+            this.health.Name = "health";
+            this.health.ReadOnly = true;
+            this.health.Size = new System.Drawing.Size(79, 22);
+            this.health.TabIndex = 18;
+            this.health.TabStop = false;
+            this.health.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // EngineTextBox
+            // engine
             // 
-            this.EngineTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.EngineTextBox.Location = new System.Drawing.Point(259, 198);
-            this.EngineTextBox.Name = "EngineTextBox";
-            this.EngineTextBox.ReadOnly = true;
-            this.EngineTextBox.Size = new System.Drawing.Size(79, 22);
-            this.EngineTextBox.TabIndex = 20;
-            this.EngineTextBox.TabStop = false;
-            this.EngineTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.engine.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.engine.Location = new System.Drawing.Point(259, 198);
+            this.engine.Name = "engine";
+            this.engine.ReadOnly = true;
+            this.engine.Size = new System.Drawing.Size(79, 22);
+            this.engine.TabIndex = 20;
+            this.engine.TabStop = false;
+            this.engine.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // ItemType2TextBox
+            // type
             // 
-            this.ItemType2TextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ItemType2TextBox.Location = new System.Drawing.Point(259, 178);
-            this.ItemType2TextBox.Name = "ItemType2TextBox";
-            this.ItemType2TextBox.ReadOnly = true;
-            this.ItemType2TextBox.Size = new System.Drawing.Size(79, 22);
-            this.ItemType2TextBox.TabIndex = 1;
-            this.ItemType2TextBox.TabStop = false;
-            this.ItemType2TextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.type.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.type.Location = new System.Drawing.Point(259, 178);
+            this.type.Name = "type";
+            this.type.ReadOnly = true;
+            this.type.Size = new System.Drawing.Size(79, 22);
+            this.type.TabIndex = 1;
+            this.type.TabStop = false;
+            this.type.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // ItemTypeTextBox
+            // useable
             // 
-            this.ItemTypeTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ItemTypeTextBox.Location = new System.Drawing.Point(259, 158);
-            this.ItemTypeTextBox.Name = "ItemTypeTextBox";
-            this.ItemTypeTextBox.ReadOnly = true;
-            this.ItemTypeTextBox.Size = new System.Drawing.Size(79, 22);
-            this.ItemTypeTextBox.TabIndex = 5;
-            this.ItemTypeTextBox.TabStop = false;
-            this.ItemTypeTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.useable.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.useable.Location = new System.Drawing.Point(259, 158);
+            this.useable.Name = "useable";
+            this.useable.ReadOnly = true;
+            this.useable.Size = new System.Drawing.Size(79, 22);
+            this.useable.TabIndex = 5;
+            this.useable.TabStop = false;
+            this.useable.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // RangeTextBox
+            // range
             // 
-            this.RangeTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.RangeTextBox.Location = new System.Drawing.Point(259, 138);
-            this.RangeTextBox.Name = "RangeTextBox";
-            this.RangeTextBox.ReadOnly = true;
-            this.RangeTextBox.Size = new System.Drawing.Size(79, 22);
-            this.RangeTextBox.TabIndex = 0;
-            this.RangeTextBox.TabStop = false;
-            this.RangeTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.range.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.range.Location = new System.Drawing.Point(259, 138);
+            this.range.Name = "range";
+            this.range.ReadOnly = true;
+            this.range.Size = new System.Drawing.Size(79, 22);
+            this.range.TabIndex = 0;
+            this.range.TabStop = false;
+            this.range.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // StructureDamageTextBox
+            // structure_damage
             // 
-            this.StructureDamageTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.StructureDamageTextBox.Location = new System.Drawing.Point(259, 118);
-            this.StructureDamageTextBox.Name = "StructureDamageTextBox";
-            this.StructureDamageTextBox.ReadOnly = true;
-            this.StructureDamageTextBox.Size = new System.Drawing.Size(79, 22);
-            this.StructureDamageTextBox.TabIndex = 4;
-            this.StructureDamageTextBox.TabStop = false;
-            this.StructureDamageTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.structure_damage.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.structure_damage.Location = new System.Drawing.Point(259, 118);
+            this.structure_damage.Name = "structure_damage";
+            this.structure_damage.ReadOnly = true;
+            this.structure_damage.Size = new System.Drawing.Size(79, 22);
+            this.structure_damage.TabIndex = 4;
+            this.structure_damage.TabStop = false;
+            this.structure_damage.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // PlayerDamageTextBox
+            // player_damage
             // 
-            this.PlayerDamageTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.PlayerDamageTextBox.Location = new System.Drawing.Point(259, 98);
-            this.PlayerDamageTextBox.Name = "PlayerDamageTextBox";
-            this.PlayerDamageTextBox.ReadOnly = true;
-            this.PlayerDamageTextBox.Size = new System.Drawing.Size(79, 22);
-            this.PlayerDamageTextBox.TabIndex = 8;
-            this.PlayerDamageTextBox.TabStop = false;
-            this.PlayerDamageTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.player_damage.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.player_damage.Location = new System.Drawing.Point(259, 98);
+            this.player_damage.Name = "player_damage";
+            this.player_damage.ReadOnly = true;
+            this.player_damage.Size = new System.Drawing.Size(79, 22);
+            this.player_damage.TabIndex = 8;
+            this.player_damage.TabStop = false;
+            this.player_damage.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // BodyDamageTextBox
+            // player_spine_damage
             // 
-            this.BodyDamageTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.BodyDamageTextBox.Location = new System.Drawing.Point(259, 78);
-            this.BodyDamageTextBox.Name = "BodyDamageTextBox";
-            this.BodyDamageTextBox.ReadOnly = true;
-            this.BodyDamageTextBox.Size = new System.Drawing.Size(79, 22);
-            this.BodyDamageTextBox.TabIndex = 11;
-            this.BodyDamageTextBox.TabStop = false;
-            this.BodyDamageTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.player_spine_damage.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.player_spine_damage.Location = new System.Drawing.Point(259, 78);
+            this.player_spine_damage.Name = "player_spine_damage";
+            this.player_spine_damage.ReadOnly = true;
+            this.player_spine_damage.Size = new System.Drawing.Size(79, 22);
+            this.player_spine_damage.TabIndex = 11;
+            this.player_spine_damage.TabStop = false;
+            this.player_spine_damage.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // DamageHeadTextBox
+            // player_skull_damage
             // 
-            this.DamageHeadTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.DamageHeadTextBox.Location = new System.Drawing.Point(259, 58);
-            this.DamageHeadTextBox.Name = "DamageHeadTextBox";
-            this.DamageHeadTextBox.ReadOnly = true;
-            this.DamageHeadTextBox.Size = new System.Drawing.Size(79, 22);
-            this.DamageHeadTextBox.TabIndex = 9;
-            this.DamageHeadTextBox.TabStop = false;
-            this.DamageHeadTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.player_skull_damage.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.player_skull_damage.Location = new System.Drawing.Point(259, 58);
+            this.player_skull_damage.Name = "player_skull_damage";
+            this.player_skull_damage.ReadOnly = true;
+            this.player_skull_damage.Size = new System.Drawing.Size(79, 22);
+            this.player_skull_damage.TabIndex = 9;
+            this.player_skull_damage.TabStop = false;
+            this.player_skull_damage.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // ProtectionTextBox
+            // armor
             // 
-            this.ProtectionTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ProtectionTextBox.Location = new System.Drawing.Point(259, 38);
-            this.ProtectionTextBox.Name = "ProtectionTextBox";
-            this.ProtectionTextBox.ReadOnly = true;
-            this.ProtectionTextBox.Size = new System.Drawing.Size(79, 22);
-            this.ProtectionTextBox.TabIndex = 13;
-            this.ProtectionTextBox.TabStop = false;
-            this.ProtectionTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.armor.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.armor.Location = new System.Drawing.Point(259, 38);
+            this.armor.Name = "armor";
+            this.armor.ReadOnly = true;
+            this.armor.Size = new System.Drawing.Size(79, 22);
+            this.armor.TabIndex = 13;
+            this.armor.TabStop = false;
+            this.armor.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // BarrelDamageLabel
             // 
@@ -395,9 +395,9 @@
             this.BarrelDamageLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.BarrelDamageLabel.Location = new System.Drawing.Point(6, 276);
             this.BarrelDamageLabel.Name = "BarrelDamageLabel";
-            this.BarrelDamageLabel.Size = new System.Drawing.Size(117, 20);
+            this.BarrelDamageLabel.Size = new System.Drawing.Size(183, 20);
             this.BarrelDamageLabel.TabIndex = 27;
-            this.BarrelDamageLabel.Text = "Barrel damage:";
+            this.BarrelDamageLabel.Text = "Barrel damage multiplier:";
             // 
             // VolumeLabel
             // 
@@ -455,9 +455,9 @@
             this.ItemType2Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.ItemType2Label.Location = new System.Drawing.Point(6, 176);
             this.ItemType2Label.Name = "ItemType2Label";
-            this.ItemType2Label.Size = new System.Drawing.Size(96, 20);
+            this.ItemType2Label.Size = new System.Drawing.Size(47, 20);
             this.ItemType2Label.TabIndex = 3;
-            this.ItemType2Label.Text = "Item Type 2:";
+            this.ItemType2Label.Text = "Type:";
             // 
             // BuildingsDamageLabel
             // 
@@ -475,9 +475,9 @@
             this.ItemTypeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.ItemTypeLabel.Location = new System.Drawing.Point(6, 156);
             this.ItemTypeLabel.Name = "ItemTypeLabel";
-            this.ItemTypeLabel.Size = new System.Drawing.Size(83, 20);
+            this.ItemTypeLabel.Size = new System.Drawing.Size(72, 20);
             this.ItemTypeLabel.TabIndex = 7;
-            this.ItemTypeLabel.Text = "Item Type:";
+            this.ItemTypeLabel.Text = "Useable:";
             // 
             // PlayerDamageLabel
             // 
@@ -529,16 +529,16 @@
             this.ItemCapacityLabel.TabIndex = 17;
             this.ItemCapacityLabel.Text = "Barricade/clothing capacity (cells):";
             // 
-            // ItemCapacityTextBox
+            // item_capacity
             // 
-            this.ItemCapacityTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ItemCapacityTextBox.Location = new System.Drawing.Point(259, 18);
-            this.ItemCapacityTextBox.Name = "ItemCapacityTextBox";
-            this.ItemCapacityTextBox.ReadOnly = true;
-            this.ItemCapacityTextBox.Size = new System.Drawing.Size(79, 22);
-            this.ItemCapacityTextBox.TabIndex = 12;
-            this.ItemCapacityTextBox.TabStop = false;
-            this.ItemCapacityTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.item_capacity.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.item_capacity.Location = new System.Drawing.Point(259, 18);
+            this.item_capacity.Name = "item_capacity";
+            this.item_capacity.ReadOnly = true;
+            this.item_capacity.Size = new System.Drawing.Size(79, 22);
+            this.item_capacity.TabIndex = 12;
+            this.item_capacity.TabStop = false;
+            this.item_capacity.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // SortDamagePlayersBtn
             // 
@@ -692,7 +692,7 @@
             this.MixBtn.UseVisualStyleBackColor = true;
             this.MixBtn.Click += new System.EventHandler(this.MixBtn_Click);
             // 
-            // itemList
+            // ItemList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -705,7 +705,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.Name = "itemList";
+            this.Name = "ItemList";
             this.Text = "Item List";
             this.InfoGroupBox.ResumeLayout(false);
             this.InfoGroupBox.PerformLayout();
@@ -728,44 +728,44 @@
         private System.Windows.Forms.Label NameLabel;
         private System.Windows.Forms.Button IdToClipboard;
         private System.Windows.Forms.GroupBox ItemStatsGroupBox;
-        private System.Windows.Forms.TextBox DamageHeadTextBox;
-        private System.Windows.Forms.TextBox BodyDamageTextBox;
-        private System.Windows.Forms.TextBox ItemCapacityTextBox;
-        private System.Windows.Forms.TextBox ProtectionTextBox;
+        private System.Windows.Forms.TextBox player_skull_damage;
+        private System.Windows.Forms.TextBox player_spine_damage;
+        private System.Windows.Forms.TextBox item_capacity;
+        private System.Windows.Forms.TextBox armor;
         private System.Windows.Forms.Label BodyDamageLabel;
         private System.Windows.Forms.Label HeadDamageLabel;
         private System.Windows.Forms.Label ProtectionLabel;
         private System.Windows.Forms.Label ItemCapacityLabel;
         private System.Windows.Forms.Label ItemTypeLabel;
-        private System.Windows.Forms.TextBox ItemTypeTextBox;
-        private System.Windows.Forms.TextBox ItemType2TextBox;
+        private System.Windows.Forms.TextBox useable;
+        private System.Windows.Forms.TextBox type;
         private System.Windows.Forms.Label ItemType2Label;
         private System.Windows.Forms.Button SortDamagePlayersBtn;
         private System.Windows.Forms.Button SortCapacityBtn;
         private System.Windows.Forms.Button SortProtectionBtn;
         private System.Windows.Forms.GroupBox SortingGroupBox;
         private System.Windows.Forms.Button MixBtn;
-        private System.Windows.Forms.TextBox RangeTextBox;
+        private System.Windows.Forms.TextBox range;
         private System.Windows.Forms.Label RangeLabel;
-        private System.Windows.Forms.TextBox StructureDamageTextBox;
+        private System.Windows.Forms.TextBox structure_damage;
         private System.Windows.Forms.Label BuildingsDamageLabel;
-        private System.Windows.Forms.TextBox PlayerDamageTextBox;
+        private System.Windows.Forms.TextBox player_damage;
         private System.Windows.Forms.Label PlayerDamageLabel;
         private System.Windows.Forms.Button SortDamageBuildingsBtn;
-        private System.Windows.Forms.TextBox ItemHealthTextBox;
+        private System.Windows.Forms.TextBox health;
         private System.Windows.Forms.Label ItemHealthLabel;
-        private System.Windows.Forms.TextBox EngineTextBox;
+        private System.Windows.Forms.TextBox engine;
         private System.Windows.Forms.Label EngineLabel;
         private System.Windows.Forms.Button SortVehicleHealthBtn;
         private System.Windows.Forms.Button SortBarricadeCapacityBtn;
         private System.Windows.Forms.Button SortByBuildingHealthBtn;
         private System.Windows.Forms.Button SortByShakeBtn;
-        private System.Windows.Forms.TextBox ShakeTextBox;
+        private System.Windows.Forms.TextBox shake;
         private System.Windows.Forms.Label ShakeLabel;
-        private System.Windows.Forms.TextBox VolumeTextBox;
+        private System.Windows.Forms.TextBox volume;
         private System.Windows.Forms.Label VolumeLabel;
         private System.Windows.Forms.Button SortByVolumeBtn;
-        private System.Windows.Forms.TextBox BarrelDamageTextBox;
+        private System.Windows.Forms.TextBox damage;
         private System.Windows.Forms.Label BarrelDamageLabel;
         private System.Windows.Forms.Button SortByBarrelDamageBtn;
         private System.Windows.Forms.TextBox IdPrefixTextBox;
