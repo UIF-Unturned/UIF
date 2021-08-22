@@ -17,6 +17,11 @@ namespace UIF
 		[STAThread]
 		static void Main()
 		{
+			if (string.IsNullOrEmpty(Properties.Settings.Default.Locale)) {
+				Properties.Settings.Default.Locale = Properties.Settings.Default.DefaultUILocale;
+				Properties.Settings.Default.Save();
+			}
+
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
 			Application.Run(new Main());

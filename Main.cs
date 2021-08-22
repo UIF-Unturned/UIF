@@ -13,7 +13,7 @@ namespace UIF
 		private ToolTip Tip = new ToolTip();
 		private readonly string FolderErrorText = "Folder is not specified!";
 
-		private ResourceManager CurrentRM;
+		private ResourceManager CurrentMainRM, CurrentAdditionalRM;
 
 		private void UpdateFoldersPaths()
 		{
@@ -46,8 +46,8 @@ namespace UIF
 			if (FldrComboBox.Items.Count > 0)
 				FldrComboBox.SelectedIndex = 0;
 
-			for (int i = 0; i < Localization.Locales.Length; i++) {
-				string locale = Localization.Locales[i];
+			for (int i = 0; i < Localization.AllLocales.Length; i++) {
+				string locale = Localization.AllLocales[i];
 				LocalizationComboBox.Items.Add(locale);
 
 				if (locale == Properties.Settings.Default.Locale)
@@ -57,24 +57,27 @@ namespace UIF
 			Tip.SetToolTip(DiscordLink, Program.DiscordUrl);
 			Tip.SetToolTip(GitHubLink, Program.GithubUrl);
 		}
+		
+		private void _UpdateLocalization() => Localization.UpdateLocalization(this);
 
-		private void _UpdateLocalization() => CurrentRM = Localization.UpdateLocalization("Main", this);
-
-		public void OnLocalizationChange(ResourceManager RM)
+		public void OnLocalizationChange(ResourceManager MainRM, ResourceManager AdditionalRM)
 		{
-			Tip.SetToolTip(MinusFldrBtn, RM.GetStringSafety("MinusFldrBtnTip")); // Delete selected folder
-			Tip.SetToolTip(PlusFldrBtn, RM.GetStringSafety("PlusFldrBtnTip")); // Add selected folder
-			Tip.SetToolTip(OpenFldrBtn, RM.GetStringSafety("OpenFldrBtnTip")); // Open selected folder
+			CurrentMainRM = MainRM;
+			CurrentAdditionalRM = AdditionalRM;
 
-			ModsTip = RM.GetStringSafety("ModsTip");
+			Tip.SetToolTip(MinusFldrBtn, MainRM.GetStringSafety("MinusFldrBtnTip")); // Delete selected folder
+			Tip.SetToolTip(PlusFldrBtn, MainRM.GetStringSafety("PlusFldrBtnTip")); // Add selected folder
+			Tip.SetToolTip(OpenFldrBtn, MainRM.GetStringSafety("OpenFldrBtnTip")); // Open selected folder
+
+			ModsTip = MainRM.GetStringSafety("ModsTip");
 
 			Tip.SetToolTip(InfoBtn, ModsTip);
 			Tip.SetToolTip(SelectFldrLabel, ModsTip);
 
 			if (Core.loadedItems == null)
-				LoadModsToRamBtn.Text = RM.GetStringSafety("LoadModsToRamBtn");
+				LoadModsToRamBtn.Text = MainRM.GetStringSafety("LoadModsToRamBtn");
 			else
-				LoadModsToRamBtn.Text = RM.GetStringSafety("UnloadMods");
+				LoadModsToRamBtn.Text = MainRM.GetStringSafety("UnloadMods");
 		}
 		
 		private void EnterNameLabel_Click(object sender, EventArgs e) => NameTextBox.Focus();
@@ -165,11 +168,11 @@ namespace UIF
 					Core.loadedItems = null;
 					GC.Collect();
 					FldrComboBox.Enabled = true;
-					LoadModsToRamBtn.Text = CurrentRM.GetStringSafety("LoadModsToRamBtn");
+					LoadModsToRamBtn.Text = CurrentMainRM.GetStringSafety("LoadModsToRamBtn");
 				} else {
 					Core.loadedItems = Core.ParseAll(CurrentFolderPath);
 					FldrComboBox.Enabled = false;
-					LoadModsToRamBtn.Text = CurrentRM.GetStringSafety("UnloadMods");
+					LoadModsToRamBtn.Text = CurrentMainRM.GetStringSafety("UnloadMods");
 				}
 			else
 				throw new ArgumentNullException(FolderErrorText);

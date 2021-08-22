@@ -11,6 +11,8 @@ namespace UIF
 		private List<Item> items;
 		private Control[] paramsBoxes;
 
+		private ResourceManager CurrentMainRM, CurrentAdditionalRM;
+
 		public ItemList(List<Item> _items)
 		{
 			if (_items == null) {
@@ -29,12 +31,13 @@ namespace UIF
 			_UpdateLocalization();
 		}
 
-		void OnLocalizationChange(ResourceManager RM)
+		public void OnLocalizationChange(ResourceManager MainRM, ResourceManager AdditionalRM)
 		{
-
+			CurrentMainRM = MainRM;
+			CurrentAdditionalRM = AdditionalRM;
 		}
 
-		private void _UpdateLocalization() => Localization.UpdateLocalization("ItemList", this);
+		private void _UpdateLocalization() => Localization.UpdateLocalization(this);
 
 		private void UpdateItemList()
 		{

@@ -6,6 +6,8 @@ namespace UIF
 {
 	public partial class ItemsCategories : Form
 	{
+		private ResourceManager CurrentMainRM, CurrentAdditionalRM;
+
 		public ItemsCategories()
 		{
 			InitializeComponent();
@@ -13,12 +15,13 @@ namespace UIF
 			_UpdateLocalization();
 		}
 
-		void OnLocalizationChange(ResourceManager RM)
+		public void OnLocalizationChange(ResourceManager MainRM, ResourceManager AdditionalRM)
 		{
-
+			CurrentMainRM = MainRM;
+			CurrentAdditionalRM = AdditionalRM;
 		}
 
-		private void _UpdateLocalization() => Localization.UpdateLocalization("ItemsCategories", this);
+		private void _UpdateLocalization() => Localization.UpdateLocalization(this);
 
 		private void AllItemsBtn_Click(object sender, EventArgs e)
 		{
