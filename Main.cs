@@ -34,8 +34,8 @@ namespace UIF
 		{
 			InitializeComponent();
 
-			VersionLabel.Text += Program.Version;
-			this.Text += " | Ver. " + Program.Version;
+			VersionLabel.Text += Properties.Settings.Default.Version;
+			this.Text += " | Ver. " + Properties.Settings.Default.Version;
 
 			FldrComboBox.Items.Clear();
 			foreach (string path in Properties.Settings.Default.FoldersPaths.Split('\n')) {
@@ -54,8 +54,8 @@ namespace UIF
 					LocalizationComboBox.SelectedIndex = i;
 			}
 
-			Tip.SetToolTip(DiscordLink, Program.DiscordUrl);
-			Tip.SetToolTip(GitHubLink, Program.GithubUrl);
+			Tip.SetToolTip(DiscordLink, Properties.Settings.Default.DiscordURL);
+			Tip.SetToolTip(GitHubLink, Properties.Settings.Default.GitHubURL);
 		}
 		
 		private void _UpdateLocalization() => Localization.UpdateLocalization(this);
@@ -149,9 +149,9 @@ namespace UIF
 			}
 		}
 
-		private void GitHubLink_Click(object sender, EventArgs e) => Misc.OpenUrl(Program.GithubUrl);
+		private void GitHubLink_Click(object sender, EventArgs e) => Misc.OpenUrl(Properties.Settings.Default.GitHubURL);
 
-		private void DiscordLink_Click(object sender, EventArgs e) => Misc.OpenUrl(Program.DiscordUrl);
+		private void DiscordLink_Click(object sender, EventArgs e) => Misc.OpenUrl(Properties.Settings.Default.DiscordURL);
 
 		private void InfoBtn_Click(object sender, EventArgs e) => Tip.Show(ModsTip, InfoBtn);
 

@@ -66,5 +66,32 @@ namespace UIF.Properties {
                 return ((global::System.Collections.Specialized.StringCollection)(this["AdditionalLocales"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://github.com/uif-unturned/UIF")]
+        public string GitHubURL {
+            get {
+                return ((string)(this["GitHubURL"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://discord.gg/VhpM2ex")]
+        public string DiscordURL {
+            get {
+                return ((string)(this["DiscordURL"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.4.3")]
+        public string Version {
+            get {
+                return ((string)(this["Version"]));
+            }
+        }
     }
 }

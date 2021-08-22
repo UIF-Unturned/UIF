@@ -17,5 +17,14 @@
   &lt;string&gt;ru-RU&lt;/string&gt;
 &lt;/ArrayOfString&gt;</Value>
     </Setting>
+    <Setting Name="GitHubURL" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">https://github.com/uif-unturned/UIF</Value>
+    </Setting>
+    <Setting Name="DiscordURL" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">https://discord.gg/VhpM2ex</Value>
+    </Setting>
+    <Setting Name="Version" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">0.4.3</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
