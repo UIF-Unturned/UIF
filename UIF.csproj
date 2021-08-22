@@ -101,6 +101,8 @@
     <EmbeddedResource Include="ItemList.resx">
       <DependentUpon>ItemList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Additional.en-US.resx" />
+    <EmbeddedResource Include="Properties\Additional.ru-RU.resx" />
     <EmbeddedResource Include="Properties\ItemList.en-US.resx" />
     <EmbeddedResource Include="Properties\ItemList.ru-RU.resx" />
     <EmbeddedResource Include="Properties\ItemsCategories.ru-RU.resx">
