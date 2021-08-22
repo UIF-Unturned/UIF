@@ -323,7 +323,7 @@
             // 
             // AllCustomizeBtn
             // 
-            this.AllCustomizeBtn.Location = new System.Drawing.Point(6, 164);
+            this.AllCustomizeBtn.Location = new System.Drawing.Point(141, 164);
             this.AllCustomizeBtn.Name = "AllCustomizeBtn";
             this.AllCustomizeBtn.Size = new System.Drawing.Size(129, 23);
             this.AllCustomizeBtn.TabIndex = 3;
@@ -356,7 +356,7 @@
             // 
             // AllGunsBtn
             // 
-            this.AllGunsBtn.Location = new System.Drawing.Point(141, 164);
+            this.AllGunsBtn.Location = new System.Drawing.Point(6, 164);
             this.AllGunsBtn.Name = "AllGunsBtn";
             this.AllGunsBtn.Size = new System.Drawing.Size(129, 23);
             this.AllGunsBtn.TabIndex = 6;
