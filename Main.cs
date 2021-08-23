@@ -68,6 +68,7 @@ namespace UIF
 			Tip.SetToolTip(MinusFldrBtn, MainRM.GetStringSafety("MinusFldrBtnTip")); // Delete selected folder
 			Tip.SetToolTip(PlusFldrBtn, MainRM.GetStringSafety("PlusFldrBtnTip")); // Add selected folder
 			Tip.SetToolTip(OpenFldrBtn, MainRM.GetStringSafety("OpenFldrBtnTip")); // Open selected folder
+			Tip.SetToolTip(MarkFolderAsDefaultBtn, MainRM.GetStringSafety("DefaultFldrBtnTip")); // Mark current folder as default
 
 			ModsTip = MainRM.GetStringSafety("ModsTip");
 
@@ -185,7 +186,16 @@ namespace UIF
 
 			_UpdateLocalization();
 		}
-		
+
+		private void MarkFolderAsDefaultBtn_Click(object sender, EventArgs e)
+		{
+			FldrComboBox.Items.Remove(CurrentFolderPath);
+			FldrComboBox.Items.Insert(0, CurrentFolderPath);
+			FldrComboBox.SelectedIndex = 0;
+
+			UpdateFoldersPaths();
+		}
+
 		private void LocalizationComboBox_TextUpdate(object sender, EventArgs e) => LocalizationComboBox.Text = Properties.Settings.Default.Locale;
 	}
 }

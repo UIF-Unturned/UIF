@@ -41,6 +41,7 @@
             this.CopyrightLabel = new System.Windows.Forms.Label();
             this.VersionLabel = new System.Windows.Forms.Label();
             this.SettingsGroupBox = new System.Windows.Forms.GroupBox();
+            this.MarkFolderAsDefaultBtn = new System.Windows.Forms.PictureBox();
             this.LocalizationComboBox = new System.Windows.Forms.ComboBox();
             this.LocalizationLabel = new System.Windows.Forms.Label();
             this.LoadModsToRamBtn = new System.Windows.Forms.Button();
@@ -54,6 +55,7 @@
             this.GitHubLink = new System.Windows.Forms.PictureBox();
             this.MainGroupBox.SuspendLayout();
             this.SettingsGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.MarkFolderAsDefaultBtn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.OpenFldrBtn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MinusFldrBtn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PlusFldrBtn)).BeginInit();
@@ -188,6 +190,7 @@
             // 
             // SettingsGroupBox
             // 
+            this.SettingsGroupBox.Controls.Add(this.MarkFolderAsDefaultBtn);
             this.SettingsGroupBox.Controls.Add(this.LocalizationComboBox);
             this.SettingsGroupBox.Controls.Add(this.LocalizationLabel);
             this.SettingsGroupBox.Controls.Add(this.LoadModsToRamBtn);
@@ -203,6 +206,18 @@
             this.SettingsGroupBox.TabIndex = 0;
             this.SettingsGroupBox.TabStop = false;
             this.SettingsGroupBox.Text = "SETTINGS";
+            // 
+            // MarkFolderAsDefaultBtn
+            // 
+            this.MarkFolderAsDefaultBtn.Image = ((System.Drawing.Image)(resources.GetObject("MarkFolderAsDefaultBtn.Image")));
+            this.MarkFolderAsDefaultBtn.InitialImage = ((System.Drawing.Image)(resources.GetObject("MarkFolderAsDefaultBtn.InitialImage")));
+            this.MarkFolderAsDefaultBtn.Location = new System.Drawing.Point(395, 13);
+            this.MarkFolderAsDefaultBtn.Name = "MarkFolderAsDefaultBtn";
+            this.MarkFolderAsDefaultBtn.Size = new System.Drawing.Size(24, 23);
+            this.MarkFolderAsDefaultBtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.MarkFolderAsDefaultBtn.TabIndex = 11;
+            this.MarkFolderAsDefaultBtn.TabStop = false;
+            this.MarkFolderAsDefaultBtn.Click += new System.EventHandler(this.MarkFolderAsDefaultBtn_Click);
             // 
             // LocalizationComboBox
             // 
@@ -253,7 +268,7 @@
             // 
             this.MinusFldrBtn.Image = ((System.Drawing.Image)(resources.GetObject("MinusFldrBtn.Image")));
             this.MinusFldrBtn.InitialImage = ((System.Drawing.Image)(resources.GetObject("MinusFldrBtn.InitialImage")));
-            this.MinusFldrBtn.Location = new System.Drawing.Point(395, 13);
+            this.MinusFldrBtn.Location = new System.Drawing.Point(365, 13);
             this.MinusFldrBtn.Name = "MinusFldrBtn";
             this.MinusFldrBtn.Size = new System.Drawing.Size(24, 23);
             this.MinusFldrBtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -265,7 +280,7 @@
             // 
             this.PlusFldrBtn.Image = ((System.Drawing.Image)(resources.GetObject("PlusFldrBtn.Image")));
             this.PlusFldrBtn.InitialImage = ((System.Drawing.Image)(resources.GetObject("PlusFldrBtn.InitialImage")));
-            this.PlusFldrBtn.Location = new System.Drawing.Point(365, 13);
+            this.PlusFldrBtn.Location = new System.Drawing.Point(335, 13);
             this.PlusFldrBtn.Name = "PlusFldrBtn";
             this.PlusFldrBtn.Size = new System.Drawing.Size(24, 23);
             this.PlusFldrBtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -352,6 +367,7 @@
             this.MainGroupBox.PerformLayout();
             this.SettingsGroupBox.ResumeLayout(false);
             this.SettingsGroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.MarkFolderAsDefaultBtn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.OpenFldrBtn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.MinusFldrBtn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PlusFldrBtn)).EndInit();
@@ -389,6 +405,7 @@
         private System.Windows.Forms.Button LoadModsToRamBtn;
         private System.Windows.Forms.ComboBox LocalizationComboBox;
         private System.Windows.Forms.Label LocalizationLabel;
+        private System.Windows.Forms.PictureBox MarkFolderAsDefaultBtn;
     }
 }
 

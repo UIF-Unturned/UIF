@@ -147,6 +147,7 @@
     <None Include="src\github_icon.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="src\up_arrow_icon.png" />
     <None Include="src\info_icon.jpg" />
     <None Include="src\plus_icon.png" />
     <None Include="src\minus_icon.png" />
