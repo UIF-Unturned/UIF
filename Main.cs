@@ -28,6 +28,8 @@ namespace UIF
 				}
 			}
 			Properties.Settings.Default.Save();
+
+			FldrComboBox_SelectedIndexChanged(this, null);
 		}
 
 		public Main()
@@ -158,7 +160,8 @@ namespace UIF
 
 		private void SelectFldrLabel_Click(object sender, EventArgs e) => Tip.Show(ModsTip, SelectFldrLabel);
 
-		private void FldrComboBox_SelectedIndexChanged(object sender, EventArgs e) => CurrentFolderPath = FldrComboBox.Text;
+		private void FldrComboBox_SelectedIndexChanged(object sender, EventArgs e) =>
+			CurrentFolderPath = FldrComboBox.SelectedIndex != -1 ? FldrComboBox.SelectedItem.ToString() : null;
 
 		private void FldrComboBox_TextUpdate(object sender, EventArgs e) => FldrComboBox.Text = CurrentFolderPath;
 
