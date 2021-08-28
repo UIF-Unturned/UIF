@@ -203,11 +203,20 @@ namespace UIF
 			new ItemList(items).ShowDialog();
 		}
 
+		private void GrenadesBtn_Click(object sender, EventArgs e)
+		{
+			var items = Core.ParseAll(Main.CurrentFolderPath, i => i.GetKeyValue("type").TryContains("Throwable") || i.GetKeyValue("useable").TryContains("Throwable"));
+			items.Sort((a, b) => a.CompareTo(b, Core.CompareModes.Damage));
+
+			new ItemList(items).ShowDialog();
+		}
+
 		private void RaidItemsBtn_Click(object sender, EventArgs e)
 		{
 			var items = Core.ParseAll(Main.CurrentFolderPath, i => (
-				i.GetKeyValue("useable").TryContains("Gun") && i.ContainsKey("invulnerable") &&
-				i.GetKeyValue("structure_damage", "0").ToFloat() != 0) || i.GetKeyValue("useable").TryContains("Charge")
+				i.GetKeyValue("useable").TryContains("Gun") && i.ContainsKey("invulnerable") && i.GetKeyValue("structure_damage", "0").ToFloat() != 0) ||	// Guns
+				(i.GetKeyValue("structure_damage", "0").ToFloat() != 0 && (i.GetKeyValue("type").TryContains("Throwable") || i.GetKeyValue("useable").TryContains("Throwable"))) ||	// Grenades
+				i.GetKeyValue("useable").TryContains("Charge")	// Or any useable == Charge
 			);
 			items.Sort((a, b) => a.CompareTo(b, Core.CompareModes.StructureDamage));
 

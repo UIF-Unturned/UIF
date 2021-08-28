@@ -58,6 +58,7 @@
             this.SemiGunsBtn = new System.Windows.Forms.Button();
             this.SecondaryItemsBtn = new System.Windows.Forms.Button();
             this.AutomaticWeaponsBtn = new System.Windows.Forms.Button();
+            this.GrenadesBtn = new System.Windows.Forms.Button();
             this.ArmorGroupBox.SuspendLayout();
             this.OtherGroupBox.SuspendLayout();
             this.VehiclesGroup.SuspendLayout();
@@ -147,6 +148,7 @@
             // 
             // OtherGroupBox
             // 
+            this.OtherGroupBox.Controls.Add(this.GrenadesBtn);
             this.OtherGroupBox.Controls.Add(this.StructuresAndBarricadesBtn);
             this.OtherGroupBox.Controls.Add(this.HealAndFoodBtn);
             this.OtherGroupBox.Controls.Add(this.AllItemsBtn);
@@ -398,6 +400,17 @@
             this.AutomaticWeaponsBtn.UseVisualStyleBackColor = true;
             this.AutomaticWeaponsBtn.Click += new System.EventHandler(this.AutomaticWeaponsBtn_Click);
             // 
+            // GrenadesBtn
+            // 
+            this.GrenadesBtn.Location = new System.Drawing.Point(6, 77);
+            this.GrenadesBtn.Name = "GrenadesBtn";
+            this.GrenadesBtn.Size = new System.Drawing.Size(139, 23);
+            this.GrenadesBtn.TabIndex = 4;
+            this.GrenadesBtn.TabStop = false;
+            this.GrenadesBtn.Text = "Grenades";
+            this.GrenadesBtn.UseVisualStyleBackColor = true;
+            this.GrenadesBtn.Click += new System.EventHandler(this.GrenadesBtn_Click);
+            // 
             // ItemsCategories
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -451,5 +464,6 @@
         private System.Windows.Forms.Button SemiGunsBtn;
         private System.Windows.Forms.Button SecondaryItemsBtn;
         private System.Windows.Forms.Button AutomaticWeaponsBtn;
+        private System.Windows.Forms.Button GrenadesBtn;
     }
 }

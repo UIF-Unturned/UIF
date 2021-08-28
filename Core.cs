@@ -79,7 +79,8 @@ namespace UIF
 					string playerDmg_h = this.GetKeyValue("player_damage", null),
 						multiplier_h = this.GetKeyValue("player_skull_multiplier", null);
 
-					if (playerDmg_h != null && this.GetKeyValue("useable").TryContains("Melee", "Gun"))
+					if (playerDmg_h != null && this.GetKeyValue("useable").TryContains("Melee", "Gun") ||
+						this.GetKeyValue("type").TryContains("Throwable") || this.GetKeyValue("useable").TryContains("Throwable"))
 						return multiplier_h != null ? (multiplier_h.ToFloat() * playerDmg_h.ToFloat()).ToString() : "~" + playerDmg_h;
 
 					return errReturn;
@@ -87,17 +88,20 @@ namespace UIF
 					string playerDmg_b = this.GetKeyValue("player_damage", null),
 						multiplier_b = this.GetKeyValue("player_spine_multiplier", null);
 
-					if (playerDmg_b != null && this.GetKeyValue("useable").TryContains("Melee", "Gun"))
+					if (playerDmg_b != null && this.GetKeyValue("useable").TryContains("Melee", "Gun") ||
+						this.GetKeyValue("type").TryContains("Throwable") || this.GetKeyValue("useable").TryContains("Throwable"))
 						return multiplier_b != null ? (multiplier_b.ToFloat() * playerDmg_b.ToFloat()).ToString() : "~" + playerDmg_b;
 
 					return errReturn;
 				case "player_damage":
-					if (this.GetKeyValue("useable").TryContains("Gun", "Melee"))
+					if (this.GetKeyValue("useable").TryContains("Gun", "Melee") ||
+						this.GetKeyValue("type").TryContains("Throwable") || this.GetKeyValue("useable").TryContains("Throwable"))
 						return value;
 
 					return errReturn;
 				case "structure_damage":
-					if (value != errReturn && (this.GetKeyValue("useable").TryContains("Gun", "Melee") || this.GetKeyValue("type").TryContains("Charge")))
+					if (value != errReturn && (this.GetKeyValue("useable").TryContains("Gun", "Melee") || this.GetKeyValue("type").TryContains("Charge") ||
+						this.GetKeyValue("type").TryContains("Throwable") || this.GetKeyValue("useable").TryContains("Throwable")))
 						return (this.ContainsKeys("explosion", "explosive") ? "~" : string.Empty) + value;
 
 					return errReturn;
