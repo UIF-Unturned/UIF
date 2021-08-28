@@ -41,6 +41,7 @@
             this.NameLabel = new System.Windows.Forms.Label();
             this.IdToClipboard = new System.Windows.Forms.Button();
             this.ItemStatsGroupBox = new System.Windows.Forms.GroupBox();
+            this.CalibersTextBox = new System.Windows.Forms.TextBox();
             this.damage = new System.Windows.Forms.TextBox();
             this.volume = new System.Windows.Forms.TextBox();
             this.shake = new System.Windows.Forms.TextBox();
@@ -211,6 +212,7 @@
             // 
             // ItemStatsGroupBox
             // 
+            this.ItemStatsGroupBox.Controls.Add(this.CalibersTextBox);
             this.ItemStatsGroupBox.Controls.Add(this.damage);
             this.ItemStatsGroupBox.Controls.Add(this.volume);
             this.ItemStatsGroupBox.Controls.Add(this.shake);
@@ -241,10 +243,19 @@
             this.ItemStatsGroupBox.Controls.Add(this.item_capacity);
             this.ItemStatsGroupBox.Location = new System.Drawing.Point(185, 164);
             this.ItemStatsGroupBox.Name = "ItemStatsGroupBox";
-            this.ItemStatsGroupBox.Size = new System.Drawing.Size(344, 311);
+            this.ItemStatsGroupBox.Size = new System.Drawing.Size(344, 445);
             this.ItemStatsGroupBox.TabIndex = 4;
             this.ItemStatsGroupBox.TabStop = false;
             this.ItemStatsGroupBox.Text = "Item Stats";
+            // 
+            // CalibersTextBox
+            // 
+            this.CalibersTextBox.Enabled = false;
+            this.CalibersTextBox.Location = new System.Drawing.Point(10, 317);
+            this.CalibersTextBox.Multiline = true;
+            this.CalibersTextBox.Name = "CalibersTextBox";
+            this.CalibersTextBox.Size = new System.Drawing.Size(328, 122);
+            this.CalibersTextBox.TabIndex = 28;
             // 
             // damage
             // 
@@ -696,7 +707,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(734, 482);
+            this.ClientSize = new System.Drawing.Size(734, 641);
             this.Controls.Add(this.SortingGroupBox);
             this.Controls.Add(this.ItemStatsGroupBox);
             this.Controls.Add(this.InfoGroupBox);
@@ -772,5 +783,6 @@
         private System.Windows.Forms.Button AllNameIdToClipboard;
         private System.Windows.Forms.Button NameIdToClipboard;
         private System.Windows.Forms.Label SortByLabel;
+        private System.Windows.Forms.TextBox CalibersTextBox;
     }
 }
