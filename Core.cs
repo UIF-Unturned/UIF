@@ -255,23 +255,25 @@ namespace UIF
 				List<string> fileLines = File.ReadAllText(file).Split('\n').ToList();
 				bool bEnglishDat = file.ToLower().EndsWith("english.dat");
 				foreach (string line in fileLines) {
-					int spaceIndex = line.IndexOf(' ');
-					string lineToken, lineValue;
-					if (spaceIndex != -1) {
-						lineToken = line.Substring(0, spaceIndex);
-						lineValue = line.Substring(spaceIndex + 1);
-					} else {
-						lineToken = line;
-						lineValue = line;
+					if (!string.IsNullOrWhiteSpace(line)) {
+						int spaceIndex = line.IndexOf(' ');
+						string lineToken, lineValue;
+						if (spaceIndex != -1) {
+							lineToken = line.Substring(0, spaceIndex);
+							lineValue = line.Substring(spaceIndex + 1);
+						} else {
+							lineToken = line;
+							lineValue = line;
+						}
+
+						lineToken = lineToken.Trim().ToLower();
+						lineValue = lineValue.Trim();
+						if (!bEnglishDat)
+							lineValue = lineValue.Replace(".", ",");
+
+						if (!item.ContainsKey(lineToken))
+							item.Add(lineToken, lineValue);
 					}
-
-					lineToken = lineToken.Replace("\r", string.Empty).ToLower();
-					lineValue = lineValue.Replace("\r", string.Empty);
-					if (!bEnglishDat)
-						lineValue = lineValue.Replace(".", ",");
-
-					if (!item.ContainsKey(lineToken))
-						item.Add(lineToken, lineValue);
 				}
 			}
 
