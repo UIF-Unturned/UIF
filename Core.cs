@@ -147,7 +147,7 @@ namespace UIF
 					_b += "Magazine: " + this.GetKeyValue("magazine") + "\r\n";
 					foreach (string i in this.Keys)
 					{
-						if (i.StartsWith("caliber_"))
+						if (i.StartsWith("caliber"))
 						{
 							_b += i + " " + this.GetKeyValue(i) + "\r\n";
 						}
