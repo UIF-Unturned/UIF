@@ -78,7 +78,7 @@ namespace UIF
 				case "player_skull_damage":
 					string playerDmg_h = this.GetKeyValue("player_damage", null),
 						multiplier_h = this.GetKeyValue("player_skull_multiplier", null);
-
+                    
 					if (playerDmg_h != null && this.GetKeyValue("useable").TryContains("Melee", "Gun") ||
 						this.GetKeyValue("type").TryContains("Throwable") || this.GetKeyValue("useable").TryContains("Throwable"))
 						return multiplier_h != null ? (multiplier_h.ToFloat() * playerDmg_h.ToFloat()).ToString() : "~" + playerDmg_h;
@@ -279,8 +279,6 @@ namespace UIF
 
 						lineToken = lineToken.Trim().ToLower();
 						lineValue = lineValue.Trim();
-						if (!bEnglishDat)
-							lineValue = lineValue.Replace(".", ",");
 
 						if (!item.ContainsKey(lineToken))
 							item.Add(lineToken, lineValue);

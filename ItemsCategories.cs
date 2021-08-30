@@ -128,7 +128,7 @@ namespace UIF
 
 		private void CarsBtn_Click(object sender, EventArgs e)
 		{
-			var items = Core.ParseAll(Main.CurrentFolderPath, i => i.GetKeyValue("type").TryContains("Vehicle"));
+			var items = Core.ParseAll(Main.CurrentFolderPath, i => !i.ContainsKey("engine") && i.GetKeyValue("type").TryContains("Vehicle"));
 			items.Sort((a, b) => a.CompareTo(b, Core.CompareModes.VehicleHealth));
 
 			new ItemList(items).ShowDialog();

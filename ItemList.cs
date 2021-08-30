@@ -77,22 +77,22 @@ namespace UIF
 			if (ResultsListBox.SelectedIndex != -1)
 				Clipboard.SetText(
 					((IdPrefixTextBox.Text != string.Empty ? IdPrefixTextBox.Text + " " : string.Empty)
-					+ items[ResultsListBox.SelectedIndex].GetKeyValue("id")).Replace("\n", "\r", string.Empty)
-					);
+					+ items[ResultsListBox.SelectedIndex].GetKeyValue("id")).Trim()
+				);
 		}
 
 		private void NameIdToClipboard_Click(object sender, EventArgs e)
 		{
 			if (ResultsListBox.SelectedIndex != -1)
 				Clipboard.SetText(
-						(
-							items[ResultsListBox.SelectedIndex].GetKeyValue("name")
-							+ " - "
-							+ (IdPrefixTextBox.Text != string.Empty ? IdPrefixTextBox.Text + " " : string.Empty)
-							+ items[ResultsListBox.SelectedIndex].GetKeyValue("id")
-						)
-						.Replace("\n", "\r", string.Empty)
-					);
+					(
+						items[ResultsListBox.SelectedIndex].GetKeyValue("name")
+						+ " - "
+						+ (IdPrefixTextBox.Text != string.Empty ? IdPrefixTextBox.Text + " " : string.Empty)
+						+ items[ResultsListBox.SelectedIndex].GetKeyValue("id")
+					)
+					.Trim()
+				);
 		}
 
 		private void AllNameIdToClipboard_Click(object sender, EventArgs e)
@@ -101,17 +101,13 @@ namespace UIF
 
 			for (int i = 0; i < items.Count; i++)
 			{
-				copyStr +=
-					(
-						items[i].GetKeyValue("name")
-						+ " - "
-						+ (IdPrefixTextBox.Text != string.Empty ? IdPrefixTextBox.Text + " " : string.Empty)
-						+ items[i].GetKeyValue("id")
-					)
-					.Replace("\n", "\r", string.Empty) +
-					(
-						i < items.Count ? "\n" : string.Empty
-					);
+				copyStr += (
+					items[i].GetKeyValue("name")
+					+ " - "
+					+ (IdPrefixTextBox.Text != string.Empty ? IdPrefixTextBox.Text + " " : string.Empty)
+					+ items[i].GetKeyValue("id")
+				)
+				.Trim() + (i < items.Count ? "\n" : string.Empty);
 			}
 
 			Clipboard.SetText(copyStr);
