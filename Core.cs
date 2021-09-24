@@ -185,6 +185,17 @@ namespace UIF
 						return value;
 
 					return errReturn;
+				case "CalibersTextBox":
+					string _b = "Amount: " + this.GetKeyValueStr("amount") + "\r\n";
+					_b += "Magazine: " + this.GetKeyValueStr("magazine") + "\r\n";
+					foreach (string i in this.Keys)
+					{
+						if (i.StartsWith("caliber"))
+						{
+							_b += i + " " + this.GetKeyValueStr(i) + "\r\n";
+						}
+					}
+					return _b;
 
 				default:
 					return value;

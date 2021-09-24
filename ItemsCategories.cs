@@ -211,6 +211,13 @@ namespace UIF
 			new ItemList(items).ShowDialog();
 		}
 
+		private void AmmoBtn_Click(object sender, EventArgs e)
+		{
+			var items = Core.ParseAll(Main.CurrentFolderPath, i => i.GetKeyValueStr("type").TryContains("Magazine"));
+
+			new ItemList(items).ShowDialog();
+		}
+
 		private void RaidItemsBtn_Click(object sender, EventArgs e)
 		{
 			var items = Core.ParseAll(Main.CurrentFolderPath, i => (

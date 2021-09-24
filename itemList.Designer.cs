@@ -41,6 +41,9 @@
             this.NameLabel = new System.Windows.Forms.Label();
             this.IdToClipboard = new System.Windows.Forms.Button();
             this.ItemStatsGroupBox = new System.Windows.Forms.GroupBox();
+            this.CalibersTextBox = new System.Windows.Forms.TextBox();
+            this.LinkedAmmoOrGunsBtn = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.damage = new System.Windows.Forms.TextBox();
             this.volume = new System.Windows.Forms.TextBox();
             this.shake = new System.Windows.Forms.TextBox();
@@ -82,8 +85,6 @@
             this.SortVehicleHealthBtn = new System.Windows.Forms.Button();
             this.SortDamageBuildingsBtn = new System.Windows.Forms.Button();
             this.MixBtn = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.LinkedAmmoOrGunsBtn = new System.Windows.Forms.Button();
             this.InfoGroupBox.SuspendLayout();
             this.ItemStatsGroupBox.SuspendLayout();
             this.SortingGroupBox.SuspendLayout();
@@ -213,6 +214,7 @@
             // 
             // ItemStatsGroupBox
             // 
+            this.ItemStatsGroupBox.Controls.Add(this.CalibersTextBox);
             this.ItemStatsGroupBox.Controls.Add(this.LinkedAmmoOrGunsBtn);
             this.ItemStatsGroupBox.Controls.Add(this.label1);
             this.ItemStatsGroupBox.Controls.Add(this.damage);
@@ -245,10 +247,40 @@
             this.ItemStatsGroupBox.Controls.Add(this.item_capacity);
             this.ItemStatsGroupBox.Location = new System.Drawing.Point(185, 164);
             this.ItemStatsGroupBox.Name = "ItemStatsGroupBox";
-            this.ItemStatsGroupBox.Size = new System.Drawing.Size(344, 354);
+            this.ItemStatsGroupBox.Size = new System.Drawing.Size(344, 458);
             this.ItemStatsGroupBox.TabIndex = 4;
             this.ItemStatsGroupBox.TabStop = false;
             this.ItemStatsGroupBox.Text = "Item Stats";
+            // 
+            // CalibersTextBox
+            // 
+            this.CalibersTextBox.Enabled = false;
+            this.CalibersTextBox.Location = new System.Drawing.Point(10, 330);
+            this.CalibersTextBox.Multiline = true;
+            this.CalibersTextBox.Name = "CalibersTextBox";
+            this.CalibersTextBox.Size = new System.Drawing.Size(328, 122);
+            this.CalibersTextBox.TabIndex = 28;
+            // 
+            // LinkedAmmoOrGunsBtn
+            // 
+            this.LinkedAmmoOrGunsBtn.Location = new System.Drawing.Point(259, 296);
+            this.LinkedAmmoOrGunsBtn.Name = "LinkedAmmoOrGunsBtn";
+            this.LinkedAmmoOrGunsBtn.Size = new System.Drawing.Size(79, 23);
+            this.LinkedAmmoOrGunsBtn.TabIndex = 8;
+            this.LinkedAmmoOrGunsBtn.TabStop = false;
+            this.LinkedAmmoOrGunsBtn.Text = "Click!";
+            this.LinkedAmmoOrGunsBtn.UseVisualStyleBackColor = true;
+            this.LinkedAmmoOrGunsBtn.Click += new System.EventHandler(this.LinkedAmmoOrGunsBtn_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(6, 296);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(147, 20);
+            this.label1.TabIndex = 28;
+            this.label1.Text = "Linked ammo/guns:";
             // 
             // damage
             // 
@@ -696,32 +728,11 @@
             this.MixBtn.UseVisualStyleBackColor = true;
             this.MixBtn.Click += new System.EventHandler(this.MixBtn_Click);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(6, 296);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(147, 20);
-            this.label1.TabIndex = 28;
-            this.label1.Text = "Linked ammo/guns:";
-            // 
-            // LinkedAmmoOrGunsBtn
-            // 
-            this.LinkedAmmoOrGunsBtn.Location = new System.Drawing.Point(259, 296);
-            this.LinkedAmmoOrGunsBtn.Name = "LinkedAmmoOrGunsBtn";
-            this.LinkedAmmoOrGunsBtn.Size = new System.Drawing.Size(79, 23);
-            this.LinkedAmmoOrGunsBtn.TabIndex = 8;
-            this.LinkedAmmoOrGunsBtn.TabStop = false;
-            this.LinkedAmmoOrGunsBtn.Text = "Click!";
-            this.LinkedAmmoOrGunsBtn.UseVisualStyleBackColor = true;
-            this.LinkedAmmoOrGunsBtn.Click += new System.EventHandler(this.LinkedAmmoOrGunsBtn_Click);
-            // 
             // ItemList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(734, 543);
+            this.ClientSize = new System.Drawing.Size(734, 660);
             this.Controls.Add(this.SortingGroupBox);
             this.Controls.Add(this.ItemStatsGroupBox);
             this.Controls.Add(this.InfoGroupBox);
@@ -759,15 +770,18 @@
         private System.Windows.Forms.TextBox armor;
         private System.Windows.Forms.Label BodyDamageLabel;
         private System.Windows.Forms.Label HeadDamageLabel;
+        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label ProtectionLabel;
         private System.Windows.Forms.Label ItemCapacityLabel;
         private System.Windows.Forms.Label ItemTypeLabel;
         private System.Windows.Forms.TextBox useable;
         private System.Windows.Forms.TextBox type;
+        private System.Windows.Forms.TextBox CalibersTextBox;
         private System.Windows.Forms.Label ItemType2Label;
         private System.Windows.Forms.Button SortDamagePlayersBtn;
         private System.Windows.Forms.Button SortCapacityBtn;
         private System.Windows.Forms.Button SortProtectionBtn;
+        private System.Windows.Forms.Button LinkedAmmoOrGunsBtn;
         private System.Windows.Forms.GroupBox SortingGroupBox;
         private System.Windows.Forms.Button MixBtn;
         private System.Windows.Forms.TextBox range;
@@ -797,7 +811,5 @@
         private System.Windows.Forms.Button AllNameIdToClipboard;
         private System.Windows.Forms.Button NameIdToClipboard;
         private System.Windows.Forms.Label SortByLabel;
-        private System.Windows.Forms.Button LinkedAmmoOrGunsBtn;
-        private System.Windows.Forms.Label label1;
     }
 }
