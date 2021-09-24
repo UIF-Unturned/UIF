@@ -11,6 +11,8 @@ namespace UIF
 		private List<Item> items;
 		private Control[] paramsBoxes;
 
+		private Item selectedItem;
+
 		private ResourceManager CurrentMainRM, CurrentAdditionalRM;
 
 		public ItemList(List<Item> _items)
@@ -21,7 +23,7 @@ namespace UIF
 				InitializeComponent();
 
 				for (int i = 0; i < _items.Count; i++)
-					ResultsListBox.Items.Add(_items[i].GetKeyValue("name") + " (" + _items[i].GetKeyValue("id") + ")");
+					ResultsListBox.Items.Add(_items[i].GetKeyValueStr("name") + " (" + _items[i].GetKeyValueStr("id") + ")");
 
 				items = _items;
 
@@ -44,7 +46,7 @@ namespace UIF
 			ResultsListBox.Items.Clear();
 
 			for (int i = 0; i < items.Count; i++)
-				ResultsListBox.Items.Add(items[i].GetKeyValue("name") + " (" + items[i].GetKeyValue("id") + ")");
+				ResultsListBox.Items.Add(items[i].GetKeyValueStr("name") + " (" + items[i].GetKeyValueStr("id") + ")");
 		}
 
 		private void ClearTextBoxes() {
@@ -62,13 +64,13 @@ namespace UIF
 			} else {			
 				ClearTextBoxes();
 
-				Item currentItem = items[ResultsListBox.SelectedIndex];
+				selectedItem = items[ResultsListBox.SelectedIndex];
 				
-				IdTextBox.Text = currentItem.GetKeyValue("id");
-				NameTextBox.Text = currentItem.GetKeyValue("name");
+				IdTextBox.Text = selectedItem.GetKeyValueStr("id");
+				NameTextBox.Text = selectedItem.GetKeyValueStr("name");
 
 				foreach (TextBox control in paramsBoxes)
-					control.Text = currentItem.FormatKey(control.Name);
+					control.Text = selectedItem.FormatKey(control.Name);
 			}
 		}
 
@@ -77,7 +79,7 @@ namespace UIF
 			if (ResultsListBox.SelectedIndex != -1)
 				Clipboard.SetText(
 					((IdPrefixTextBox.Text != string.Empty ? IdPrefixTextBox.Text + " " : string.Empty)
-					+ items[ResultsListBox.SelectedIndex].GetKeyValue("id")).Trim()
+					+ items[ResultsListBox.SelectedIndex].GetKeyValueStr("id")).Trim()
 				);
 		}
 
@@ -86,10 +88,10 @@ namespace UIF
 			if (ResultsListBox.SelectedIndex != -1)
 				Clipboard.SetText(
 					(
-						items[ResultsListBox.SelectedIndex].GetKeyValue("name")
+						items[ResultsListBox.SelectedIndex].GetKeyValueStr("name")
 						+ " - "
 						+ (IdPrefixTextBox.Text != string.Empty ? IdPrefixTextBox.Text + " " : string.Empty)
-						+ items[ResultsListBox.SelectedIndex].GetKeyValue("id")
+						+ items[ResultsListBox.SelectedIndex].GetKeyValueStr("id")
 					)
 					.Trim()
 				);
@@ -102,10 +104,10 @@ namespace UIF
 			for (int i = 0; i < items.Count; i++)
 			{
 				copyStr += (
-					items[i].GetKeyValue("name")
+					items[i].GetKeyValueStr("name")
 					+ " - "
 					+ (IdPrefixTextBox.Text != string.Empty ? IdPrefixTextBox.Text + " " : string.Empty)
-					+ items[i].GetKeyValue("id")
+					+ items[i].GetKeyValueStr("id")
 				)
 				.Trim() + (i < items.Count ? "\n" : string.Empty);
 			}
@@ -186,6 +188,17 @@ namespace UIF
 			items.Sort((a, b) => a.CompareTo(b, Core.CompareModes.BarrelDamage));
 
 			UpdateItemList();
+		}
+
+		private void LinkedAmmoOrGunsBtn_Click(object sender, EventArgs e)
+		{
+			if (selectedItem != null) {
+				List<Item> linked = selectedItem.GetLinked("caliber");
+				if (linked != null)
+					new ItemList(linked).Show();
+				else
+					MessageBox.Show("Item dosen't have calibers");
+			}
 		}
 
 		private void SortByVolumeBtn_Click(object sender, EventArgs e)

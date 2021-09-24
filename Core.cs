@@ -5,8 +5,25 @@ using System.Linq;
 
 namespace UIF
 {
-	public class Item : Dictionary<string, string> {
-		public string GetKeyValue(string key, string standartReturn = "") 
+	public class Item : Dictionary<string, object> {
+		public string GetKeyValueStr(string key, string standartReturn = "") 
+		{
+			return (string)GetKeyValueObj(key, standartReturn);
+		}
+
+		// Return string array with values or empty array
+		public List<string> GetKeyValueStr(string[] keys)
+		{
+			List<string> ret = new List<string>();
+			foreach (string key in keys) {
+				string a = this.GetKeyValueStr(key, null);
+				if (a != null)
+					ret.Add(a);
+			}
+			return ret;
+		}
+
+		public object GetKeyValueObj(string key, object standartReturn = null)
 		{
 			if (this.ContainsKey(key))
 				return this[key];
@@ -14,29 +31,55 @@ namespace UIF
 				return standartReturn;
 		}
 
-		// Return string array with values or empty array
-		public string[] GetKeyValue(string[] keys)
-		{
-			string[] ret = new string[] { };
-			foreach (string key in keys) {
-				string a = this.GetKeyValue(key, null);
-				if (a != null)
-					ret.Append(a);
-			}
-			return ret;
-		}
-
 		public float GetAverageDamage()
 		{
-			float bodyDmgMultiplier = this.GetKeyValue("player_spine_multiplier", "1").ToFloat(),
-				headDmgMultiplier = this.GetKeyValue("player_skull_multiplier", "1").ToFloat(),
-				playerDamageMultiplier = this.GetKeyValue("player_damage", "0").ToFloat();
+			float bodyDmgMultiplier = this.GetKeyValueStr("player_spine_multiplier", "1").ToFloat(),
+				headDmgMultiplier = this.GetKeyValueStr("player_skull_multiplier", "1").ToFloat(),
+				playerDamageMultiplier = this.GetKeyValueStr("player_damage", "0").ToFloat();
 
 			float ret = (bodyDmgMultiplier * playerDamageMultiplier) + (headDmgMultiplier * playerDamageMultiplier);
 			return ret != 0 ? ret / 2 : ret;
 		}
 
-		public int GetClothingCapacity() => this.GetKeyValue("storage_y", "0").ToInt() * this.GetKeyValue("storage_x", "0").ToInt();
+		public List<string> GetCalibers()
+		{
+			List<string> list = new List<string>();
+
+			string calibers = this.GetKeyValueStr("calibers", "1");
+			if (calibers != null)
+				for (int i = 0; i < calibers.ToInt(); i++) {
+					list.Add(this.GetKeyValueStr("caliber_" + i.ToString()));
+				}
+
+			return list;
+		}
+
+		private const string linked_prefix = "linked_";
+
+		public Item LinkWith(Item item, string parameter)
+		{
+			parameter = linked_prefix + parameter;
+			if (this.ContainsKey(parameter)) {
+				List<Item> linked = (List<Item>)(this[parameter]);
+				if (linked.Where(i => i.ContainsValue(item)).Count() == 0) {
+					linked.Add(item);
+					this[parameter] = linked;
+				}
+			} else {
+				List<Item> linked = new List<Item> { item };
+				if (linked.Where(i => i.ContainsValue(item)).Count() == 0) {
+					this.Add(parameter, linked);
+				}
+			}
+			return item;
+		}
+
+		public List<Item> GetLinked(string parameter)
+		{
+			return (List<Item>)this.GetKeyValueObj(linked_prefix + parameter);
+		}
+
+		public int GetClothingCapacity() => this.GetKeyValueStr("storage_y", "0").ToInt() * this.GetKeyValueStr("storage_x", "0").ToInt();
 
 		public bool ContainsKeys(params string[] keys)
 		{
@@ -55,71 +98,71 @@ namespace UIF
 				return errReturn;
 			}
 
-			string value = this.GetKeyValue(key, errReturn);
+			string value = this.GetKeyValueStr(key, errReturn);
 			switch (key)
 			{
 				case "item_capacity":
-					string storagex = this.GetKeyValue("storage_x", null), storagey = this.GetKeyValue("storage_y", null),
-						width = this.GetKeyValue("width", null), height = this.GetKeyValue("height", null);
+					string storagex = this.GetKeyValueStr("storage_x", null), storagey = this.GetKeyValueStr("storage_y", null),
+						width = this.GetKeyValueStr("width", null), height = this.GetKeyValueStr("height", null);
 
-					if (storagex != null && storagey != null && this.GetKeyValue("type").TryContains("Storage"))
+					if (storagex != null && storagey != null && this.GetKeyValueStr("type").TryContains("Storage"))
 						return (storagex.ToInt() * storagey.ToInt()).ToString();
-					else if (width != null && height != null && this.GetKeyValue("useable").TryContains("Clothing"))
+					else if (width != null && height != null && this.GetKeyValueStr("useable").TryContains("Clothing"))
 						return (width.ToInt() * height.ToInt()).ToString();
 
 					return errReturn;
 				case "armor":
-					if (value != errReturn && this.GetKeyValue("useable").TryContains("Clothing"))
+					if (value != errReturn && this.GetKeyValueStr("useable").TryContains("Clothing"))
 						return value.ToFloat().ToPercentage().ToString();
 
 					return errReturn;
 				//case "player_skull_multiplier":
 				//case "player_spine_multiplier":
 				case "player_skull_damage":
-					string playerDmg_h = this.GetKeyValue("player_damage", null),
-						multiplier_h = this.GetKeyValue("player_skull_multiplier", null);
-                    
-					if (playerDmg_h != null && this.GetKeyValue("useable").TryContains("Melee", "Gun") ||
-						this.GetKeyValue("type").TryContains("Throwable") || this.GetKeyValue("useable").TryContains("Throwable"))
+					string playerDmg_h = this.GetKeyValueStr("player_damage", null),
+						multiplier_h = this.GetKeyValueStr("player_skull_multiplier", null);
+					
+					if (playerDmg_h != null && this.GetKeyValueStr("useable").TryContains("Melee", "Gun") ||
+						this.GetKeyValueStr("type").TryContains("Throwable") || this.GetKeyValueStr("useable").TryContains("Throwable"))
 						return multiplier_h != null ? (multiplier_h.ToFloat() * playerDmg_h.ToFloat()).ToString() : "~" + playerDmg_h;
 
 					return errReturn;
 				case "player_spine_damage":
-					string playerDmg_b = this.GetKeyValue("player_damage", null),
-						multiplier_b = this.GetKeyValue("player_spine_multiplier", null);
+					string playerDmg_b = this.GetKeyValueStr("player_damage", null),
+						multiplier_b = this.GetKeyValueStr("player_spine_multiplier", null);
 
-					if (playerDmg_b != null && this.GetKeyValue("useable").TryContains("Melee", "Gun") ||
-						this.GetKeyValue("type").TryContains("Throwable") || this.GetKeyValue("useable").TryContains("Throwable"))
+					if (playerDmg_b != null && this.GetKeyValueStr("useable").TryContains("Melee", "Gun") ||
+						this.GetKeyValueStr("type").TryContains("Throwable") || this.GetKeyValueStr("useable").TryContains("Throwable"))
 						return multiplier_b != null ? (multiplier_b.ToFloat() * playerDmg_b.ToFloat()).ToString() : "~" + playerDmg_b;
 
 					return errReturn;
 				case "player_damage":
-					if (this.GetKeyValue("useable").TryContains("Gun", "Melee") ||
-						this.GetKeyValue("type").TryContains("Throwable") || this.GetKeyValue("useable").TryContains("Throwable"))
+					if (this.GetKeyValueStr("useable").TryContains("Gun", "Melee") ||
+						this.GetKeyValueStr("type").TryContains("Throwable") || this.GetKeyValueStr("useable").TryContains("Throwable"))
 						return value;
 
 					return errReturn;
 				case "structure_damage":
-					if (value != errReturn && (this.GetKeyValue("useable").TryContains("Gun", "Melee") || this.GetKeyValue("type").TryContains("Charge") ||
-						this.GetKeyValue("type").TryContains("Throwable") || this.GetKeyValue("useable").TryContains("Throwable")))
+					if (value != errReturn && (this.GetKeyValueStr("useable").TryContains("Gun", "Melee") || this.GetKeyValueStr("type").TryContains("Charge") ||
+						this.GetKeyValueStr("type").TryContains("Throwable") || this.GetKeyValueStr("useable").TryContains("Throwable")))
 						return (this.ContainsKeys("explosion", "explosive") ? "~" : string.Empty) + value;
 
 					return errReturn;
 				case "range":
-					if (this.GetKeyValue("useable").TryContains("Melee", "Gun"))
+					if (this.GetKeyValueStr("useable").TryContains("Melee", "Gun"))
 						return value;
 
 					return errReturn;
 				//case "useable":
 				//case "type":
 				case "engine":
-					if (this.GetKeyValue("useable").TryContains("Vehicle") || this.GetKeyValue("type").TryContains("Vehicle"))
+					if (this.GetKeyValueStr("useable").TryContains("Vehicle") || this.GetKeyValueStr("type").TryContains("Vehicle"))
 						return value;
 
 					return errReturn;
 				case "health":
-					string type = this.GetKeyValue("type"),
-						useable = this.GetKeyValue("useable");
+					string type = this.GetKeyValueStr("type"),
+						useable = this.GetKeyValueStr("useable");
 
 					// Костыль?
 					if (type.TryContains("Vehicle") || useable.TryContains("Vehicle") ||
@@ -128,17 +171,17 @@ namespace UIF
 
 					return errReturn;
 				case "shake":
-					if (this.GetKeyValue("type").TryContains("Grip", "Barrel", "Tactical"))
+					if (this.GetKeyValueStr("type").TryContains("Grip", "Barrel", "Tactical"))
 						return value;
 
 					return errReturn;
 				case "volume":
-					if (this.GetKeyValue("type").TryContains("Barrel"))
+					if (this.GetKeyValueStr("type").TryContains("Barrel"))
 						return value;
 
 					return errReturn;
 				case "damage":
-					if (this.GetKeyValue("type").TryContains("Barrel"))
+					if (this.GetKeyValueStr("type").TryContains("Barrel"))
 						return value;
 
 					return errReturn;
@@ -172,42 +215,150 @@ namespace UIF
 			switch (mode)
 			{
 				case CompareModes.StructureDamage:
-					return ((val.GetKeyValue("type").TryContains("Charge") || val.GetKeyValue("useable").TryContains("Gun")) ? val.GetKeyValue("structure_damage", "0").ToFloat() : 0)
-						.CompareTo((a.GetKeyValue("type").TryContains("Charge") || a.GetKeyValue("useable").TryContains("Gun")) ? a.GetKeyValue("structure_damage", "0").ToFloat() : 0);
+					return ((val.GetKeyValueStr("type").TryContains("Charge") || val.GetKeyValueStr("useable").TryContains("Gun")) ? val.GetKeyValueStr("structure_damage", "0").ToFloat() : 0)
+						.CompareTo((a.GetKeyValueStr("type").TryContains("Charge") || a.GetKeyValueStr("useable").TryContains("Gun")) ? a.GetKeyValueStr("structure_damage", "0").ToFloat() : 0);
 				case CompareModes.Damage:
-					return (val.GetKeyValue("useable").TryContains("Gun") ? val.GetAverageDamage() : 0)
-						.CompareTo(a.GetKeyValue("useable").TryContains("Gun") ? a.GetAverageDamage() : 0);
+					return (val.GetKeyValueStr("useable").TryContains("Gun") ? val.GetAverageDamage() : 0)
+						.CompareTo(a.GetKeyValueStr("useable").TryContains("Gun") ? a.GetAverageDamage() : 0);
 				case CompareModes.ClothingProtection:
-					return (a.GetKeyValue("useable").TryContains("Clothing") ? a.GetKeyValue("armor", "1").ToFloat() : 1)
-						.CompareTo(val.GetKeyValue("useable").TryContains("Clothing") ? val.GetKeyValue("armor", "1").ToFloat() : 1);
+					return (a.GetKeyValueStr("useable").TryContains("Clothing") ? a.GetKeyValueStr("armor", "1").ToFloat() : 1)
+						.CompareTo(val.GetKeyValueStr("useable").TryContains("Clothing") ? val.GetKeyValueStr("armor", "1").ToFloat() : 1);
 				case CompareModes.ClothingStorage:
-					return (val.GetKeyValue("useable").TryContains("Clothing") ? (val.GetKeyValue("height", "0").ToInt() * val.GetKeyValue("width", "0").ToInt()) : 0)
-						.CompareTo(a.GetKeyValue("useable").TryContains("Clothing") ? (a.GetKeyValue("height", "0").ToInt() * a.GetKeyValue("width", "0").ToInt()) : 0);
+					return (val.GetKeyValueStr("useable").TryContains("Clothing") ? (val.GetKeyValueStr("height", "0").ToInt() * val.GetKeyValueStr("width", "0").ToInt()) : 0)
+						.CompareTo(a.GetKeyValueStr("useable").TryContains("Clothing") ? (a.GetKeyValueStr("height", "0").ToInt() * a.GetKeyValueStr("width", "0").ToInt()) : 0);
 				case CompareModes.VehicleHealth:
-					return (val.GetKeyValue("type").TryContains("Vehicle") ? val.GetKeyValue("health", "0").ToFloat() : 0)
-						.CompareTo(a.GetKeyValue("type").TryContains("Vehicle") ? a.GetKeyValue("health", "0").ToFloat() : 0);
+					return (val.GetKeyValueStr("type").TryContains("Vehicle") ? val.GetKeyValueStr("health", "0").ToFloat() : 0)
+						.CompareTo(a.GetKeyValueStr("type").TryContains("Vehicle") ? a.GetKeyValueStr("health", "0").ToFloat() : 0);
 				case CompareModes.Shake:
-					return (a.GetKeyValue("type").TryContains("Grip", "Barrel", "Tactical") ? a.GetKeyValue("shake", "1").ToFloat() : 1)
-						.CompareTo(val.GetKeyValue("type").TryContains("Grip", "Barrel", "Tactical") ? val.GetKeyValue("shake", "1").ToFloat() : 1);
+					return (a.GetKeyValueStr("type").TryContains("Grip", "Barrel", "Tactical") ? a.GetKeyValueStr("shake", "1").ToFloat() : 1)
+						.CompareTo(val.GetKeyValueStr("type").TryContains("Grip", "Barrel", "Tactical") ? val.GetKeyValueStr("shake", "1").ToFloat() : 1);
 				case CompareModes.BarrelDamage:
-					return (val.GetKeyValue("type").TryContains("Barrel") ? val.GetKeyValue("damage", "1").ToFloat() : 1)
-						.CompareTo(a.GetKeyValue("type").TryContains("Barrel") ? a.GetKeyValue("damage", "1").ToFloat() : 1);
+					return (val.GetKeyValueStr("type").TryContains("Barrel") ? val.GetKeyValueStr("damage", "1").ToFloat() : 1)
+						.CompareTo(a.GetKeyValueStr("type").TryContains("Barrel") ? a.GetKeyValueStr("damage", "1").ToFloat() : 1);
 				case CompareModes.BarrelVolume:
-					return (a.GetKeyValue("type").TryContains("Barrel") ? a.GetKeyValue("volume", "1").ToFloat() : 1)
-						.CompareTo(val.GetKeyValue("type").TryContains("Barrel") ? val.GetKeyValue("volume", "1").ToFloat() : 1);
+					return (a.GetKeyValueStr("type").TryContains("Barrel") ? a.GetKeyValueStr("volume", "1").ToFloat() : 1)
+						.CompareTo(val.GetKeyValueStr("type").TryContains("Barrel") ? val.GetKeyValueStr("volume", "1").ToFloat() : 1);
 				case CompareModes.StructureCapacity:
-					return (val.GetKeyValue("type").TryContains("Storage") ? val.GetClothingCapacity() : 0)
-						.CompareTo(a.GetKeyValue("type").TryContains("Storage") ? a.GetClothingCapacity() : 0);
+					return (val.GetKeyValueStr("type").TryContains("Storage") ? val.GetClothingCapacity() : 0)
+						.CompareTo(a.GetKeyValueStr("type").TryContains("Storage") ? a.GetClothingCapacity() : 0);
 				case CompareModes.BuildingHealth:
-					return (val.GetKeyValue("useable").TryContains("Barricade", "Structure")
-						|| val.GetKeyValue("type").TryContains("Structure", "Barricade") ? val.GetKeyValue("health", "0") .ToFloat() : 0).
+					return (val.GetKeyValueStr("useable").TryContains("Barricade", "Structure")
+						|| val.GetKeyValueStr("type").TryContains("Structure", "Barricade") ? val.GetKeyValueStr("health", "0") .ToFloat() : 0).
 
-						CompareTo(a.GetKeyValue("useable").TryContains("Barricade", "Structure")
-						|| a.GetKeyValue("type").TryContains("Structure", "Barricade") ? a.GetKeyValue("health", "0").ToFloat() : 0);
+						CompareTo(a.GetKeyValueStr("useable").TryContains("Barricade", "Structure")
+						|| a.GetKeyValueStr("type").TryContains("Structure", "Barricade") ? a.GetKeyValueStr("health", "0").ToFloat() : 0);
 				default:
 					throw new Exception("Invalid sort mode");
 			}
 		}
+
+		public static void ItemsPostprocessor(ref List<Item> _items, Func<Item, bool> filter)
+		{
+			//foreach (Item i in items) {
+			//             List<string> calibers = i.GetCalibers();
+			//	foreach (string caliber in calibers) {
+			//		foreach (Item _i in items.Where(item => {
+			//                     List<string> __calibers = item.GetCalibers();
+			//			foreach (string __caliber in __calibers) {
+			//				if (__caliber == caliber) {
+			//					return true;
+			//				}
+			//			}
+			//			return false;
+			//		})) {
+			//                     Item _a = _i.LinkWith(i, "caliber");
+			//			items.RemoveAll(_g => _g.Equals(_i));
+			//			items.Add(_a);
+			//		}
+			//	}
+			//}
+
+
+			List<Item> items = new List<Item>(_items);
+
+			for (int i = 0; i < items.Count; i++)
+			{
+				if (items[i].GetKeyValueStr("type") == "Gun")
+					for (int a = 0; a < items.Count; a++)
+					{
+						if (items[a].GetKeyValueStr("type") == "Magazine")
+						{
+							var calibersa = items[a].GetCalibers();
+							if (calibersa.Count > 0)
+								if (!items[a].Equals(items[i]) && calibersa.Contains(items[i].GetKeyValueStr("caliber")))
+								{
+									items[a] = items[i].LinkWith(items[a], "caliber");
+								}
+						}
+					}
+			}
+
+			List<Item> filtered = new List<Item>();
+
+			foreach (Item i in items)
+            {
+				if (filter == null || filter(i))
+					filtered.Add(i);
+            }
+
+			_items = filtered;
+
+
+
+
+			return;
+			List<Item> gitems = new List<Item>(_items);
+
+			foreach (Item i in gitems)
+			{
+				foreach (string caliber in i.GetCalibers())
+				{
+					//foreach (Item item in items.Where(__item => !__item.Equals(i) && __item.GetCalibers().Contains(caliber)))
+					//{
+					//    Item linkedItem = item.LinkWith(item, "caliber");
+					//    items.Remove(item);
+					//    items.Add(linkedItem);
+					//}
+
+					gitems.Where((__item, pos) =>
+					{
+						if (!__item.Equals(i) && __item.GetCalibers().Contains(caliber))
+						{
+							Item linkedItem = __item.LinkWith(i, "caliber");
+							items[pos] = linkedItem;
+						}
+
+						return false;
+					});
+				}
+			}
+
+			_items = gitems;
+		}
+
+
+		//public static void ItemsPostprocessor(ref List<Item> items)
+		//{
+		//	List<Item> _items = new List<Item>(items);
+
+		//	foreach (Item i in items)
+		//	{
+		//		List<string> calibers = i.GetCalibers();
+		//		foreach (string caliber in calibers)
+		//		{
+
+		//			foreach (Item _i in items.Where(item => i.Equals(item) && item.GetKeyValueStr("caliber_" + caliber) == caliber))
+		//			{
+		//				Item _a = _i.LinkWith(i, "caliber");
+		//				_items.RemoveAll(_g => _g.Equals(_i));
+		//				_items.Add(_a);
+		//			}
+		//		}
+		//	}
+
+		//	items = _items;
+		//}
+
 
 		public static List<Item> ParseAll(string folderPath, Func<Item, bool> filter = null)
 		{
@@ -221,11 +372,13 @@ namespace UIF
 				IEnumerable<string> dirs = Directory.EnumerateDirectories(folderPath, "*", SearchOption.AllDirectories);
 				foreach (string dir in dirs) {
 					if (File.Exists(dir + "\\English.dat")) {
-						Item item = ParseDir(dir, filter);
-						if (item != null && item.GetKeyValue("id", null) != null)
+						Item item = ParseDir(dir, null);
+						if (item != null && item.GetKeyValueStr("id", null) != null)
 							items.Add(item);
 					}
 				}
+
+				ItemsPostprocessor(ref items, filter);
 
 				return items;
 			} else {
@@ -243,6 +396,7 @@ namespace UIF
 			}
 		}
 
+		// Don't forget that this method doesn't call `ItemsPreprocessor` and `ItemsPostprocessor` methods
 		public static Item ParseDir(string dir, Func<Item, bool> filter)
 		{
 			if (!File.Exists(dir + "\\English.dat"))

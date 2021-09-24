@@ -82,6 +82,8 @@
             this.SortVehicleHealthBtn = new System.Windows.Forms.Button();
             this.SortDamageBuildingsBtn = new System.Windows.Forms.Button();
             this.MixBtn = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.LinkedAmmoOrGunsBtn = new System.Windows.Forms.Button();
             this.InfoGroupBox.SuspendLayout();
             this.ItemStatsGroupBox.SuspendLayout();
             this.SortingGroupBox.SuspendLayout();
@@ -102,7 +104,7 @@
             this.ResultsListBox.FormattingEnabled = true;
             this.ResultsListBox.Location = new System.Drawing.Point(12, 29);
             this.ResultsListBox.Name = "ResultsListBox";
-            this.ResultsListBox.Size = new System.Drawing.Size(167, 446);
+            this.ResultsListBox.Size = new System.Drawing.Size(167, 485);
             this.ResultsListBox.TabIndex = 6;
             this.ResultsListBox.TabStop = false;
             this.ResultsListBox.SelectedIndexChanged += new System.EventHandler(this.ResultsListBox_SelectedIndexChanged);
@@ -211,6 +213,8 @@
             // 
             // ItemStatsGroupBox
             // 
+            this.ItemStatsGroupBox.Controls.Add(this.LinkedAmmoOrGunsBtn);
+            this.ItemStatsGroupBox.Controls.Add(this.label1);
             this.ItemStatsGroupBox.Controls.Add(this.damage);
             this.ItemStatsGroupBox.Controls.Add(this.volume);
             this.ItemStatsGroupBox.Controls.Add(this.shake);
@@ -241,7 +245,7 @@
             this.ItemStatsGroupBox.Controls.Add(this.item_capacity);
             this.ItemStatsGroupBox.Location = new System.Drawing.Point(185, 164);
             this.ItemStatsGroupBox.Name = "ItemStatsGroupBox";
-            this.ItemStatsGroupBox.Size = new System.Drawing.Size(344, 311);
+            this.ItemStatsGroupBox.Size = new System.Drawing.Size(344, 354);
             this.ItemStatsGroupBox.TabIndex = 4;
             this.ItemStatsGroupBox.TabStop = false;
             this.ItemStatsGroupBox.Text = "Item Stats";
@@ -589,7 +593,7 @@
             this.SortingGroupBox.Controls.Add(this.SortDamagePlayersBtn);
             this.SortingGroupBox.Location = new System.Drawing.Point(535, 29);
             this.SortingGroupBox.Name = "SortingGroupBox";
-            this.SortingGroupBox.Size = new System.Drawing.Size(192, 446);
+            this.SortingGroupBox.Size = new System.Drawing.Size(192, 489);
             this.SortingGroupBox.TabIndex = 0;
             this.SortingGroupBox.TabStop = false;
             this.SortingGroupBox.Text = "Sorting";
@@ -692,11 +696,32 @@
             this.MixBtn.UseVisualStyleBackColor = true;
             this.MixBtn.Click += new System.EventHandler(this.MixBtn_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(6, 296);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(147, 20);
+            this.label1.TabIndex = 28;
+            this.label1.Text = "Linked ammo/guns:";
+            // 
+            // LinkedAmmoOrGunsBtn
+            // 
+            this.LinkedAmmoOrGunsBtn.Location = new System.Drawing.Point(259, 296);
+            this.LinkedAmmoOrGunsBtn.Name = "LinkedAmmoOrGunsBtn";
+            this.LinkedAmmoOrGunsBtn.Size = new System.Drawing.Size(79, 23);
+            this.LinkedAmmoOrGunsBtn.TabIndex = 8;
+            this.LinkedAmmoOrGunsBtn.TabStop = false;
+            this.LinkedAmmoOrGunsBtn.Text = "Click!";
+            this.LinkedAmmoOrGunsBtn.UseVisualStyleBackColor = true;
+            this.LinkedAmmoOrGunsBtn.Click += new System.EventHandler(this.LinkedAmmoOrGunsBtn_Click);
+            // 
             // ItemList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(734, 482);
+            this.ClientSize = new System.Drawing.Size(734, 543);
             this.Controls.Add(this.SortingGroupBox);
             this.Controls.Add(this.ItemStatsGroupBox);
             this.Controls.Add(this.InfoGroupBox);
@@ -772,5 +797,7 @@
         private System.Windows.Forms.Button AllNameIdToClipboard;
         private System.Windows.Forms.Button NameIdToClipboard;
         private System.Windows.Forms.Label SortByLabel;
+        private System.Windows.Forms.Button LinkedAmmoOrGunsBtn;
+        private System.Windows.Forms.Label label1;
     }
 }
