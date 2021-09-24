@@ -288,6 +288,7 @@ namespace UIF
 								if (!items[a].Equals(items[i]) && calibersa.Contains(items[i].GetKeyValueStr("caliber")))
 								{
 									items[a] = items[i].LinkWith(items[a], "caliber");
+									items[i] = items[a].LinkWith(items[i], "caliber");
 								}
 						}
 					}
