@@ -37,6 +37,7 @@
             this.BackpacksBtn = new System.Windows.Forms.Button();
             this.PantsBtn = new System.Windows.Forms.Button();
             this.OtherGroupBox = new System.Windows.Forms.GroupBox();
+            this.GrenadesBtn = new System.Windows.Forms.Button();
             this.StructuresAndBarricadesBtn = new System.Windows.Forms.Button();
             this.HealAndFoodBtn = new System.Windows.Forms.Button();
             this.AllItemsBtn = new System.Windows.Forms.Button();
@@ -48,6 +49,7 @@
             this.PlanesBtn = new System.Windows.Forms.Button();
             this.HelicoptersBtn = new System.Windows.Forms.Button();
             this.GunsGroupBox = new System.Windows.Forms.GroupBox();
+            this.AmmoBtn = new System.Windows.Forms.Button();
             this.RaidItemsBtn = new System.Windows.Forms.Button();
             this.TacticsBtn = new System.Windows.Forms.Button();
             this.SightsBtn = new System.Windows.Forms.Button();
@@ -58,7 +60,6 @@
             this.SemiGunsBtn = new System.Windows.Forms.Button();
             this.SecondaryItemsBtn = new System.Windows.Forms.Button();
             this.AutomaticWeaponsBtn = new System.Windows.Forms.Button();
-            this.GrenadesBtn = new System.Windows.Forms.Button();
             this.ArmorGroupBox.SuspendLayout();
             this.OtherGroupBox.SuspendLayout();
             this.VehiclesGroup.SuspendLayout();
@@ -158,6 +159,17 @@
             this.OtherGroupBox.TabIndex = 1;
             this.OtherGroupBox.TabStop = false;
             this.OtherGroupBox.Text = "Other";
+            // 
+            // GrenadesBtn
+            // 
+            this.GrenadesBtn.Location = new System.Drawing.Point(6, 77);
+            this.GrenadesBtn.Name = "GrenadesBtn";
+            this.GrenadesBtn.Size = new System.Drawing.Size(139, 23);
+            this.GrenadesBtn.TabIndex = 4;
+            this.GrenadesBtn.TabStop = false;
+            this.GrenadesBtn.Text = "Grenades";
+            this.GrenadesBtn.UseVisualStyleBackColor = true;
+            this.GrenadesBtn.Click += new System.EventHandler(this.GrenadesBtn_Click);
             // 
             // StructuresAndBarricadesBtn
             // 
@@ -273,6 +285,7 @@
             // 
             // GunsGroupBox
             // 
+            this.GunsGroupBox.Controls.Add(this.AmmoBtn);
             this.GunsGroupBox.Controls.Add(this.RaidItemsBtn);
             this.GunsGroupBox.Controls.Add(this.TacticsBtn);
             this.GunsGroupBox.Controls.Add(this.SightsBtn);
@@ -289,6 +302,17 @@
             this.GunsGroupBox.TabIndex = 5;
             this.GunsGroupBox.TabStop = false;
             this.GunsGroupBox.Text = "Guns";
+            // 
+            // AmmoBtn
+            // 
+            this.AmmoBtn.Location = new System.Drawing.Point(6, 135);
+            this.AmmoBtn.Name = "AmmoBtn";
+            this.AmmoBtn.Size = new System.Drawing.Size(129, 23);
+            this.AmmoBtn.TabIndex = 10;
+            this.AmmoBtn.TabStop = false;
+            this.AmmoBtn.Text = "Ammo";
+            this.AmmoBtn.UseVisualStyleBackColor = true;
+            this.AmmoBtn.Click += new System.EventHandler(this.AmmoBtn_Click);
             // 
             // RaidItemsBtn
             // 
@@ -400,17 +424,6 @@
             this.AutomaticWeaponsBtn.UseVisualStyleBackColor = true;
             this.AutomaticWeaponsBtn.Click += new System.EventHandler(this.AutomaticWeaponsBtn_Click);
             // 
-            // GrenadesBtn
-            // 
-            this.GrenadesBtn.Location = new System.Drawing.Point(6, 77);
-            this.GrenadesBtn.Name = "GrenadesBtn";
-            this.GrenadesBtn.Size = new System.Drawing.Size(139, 23);
-            this.GrenadesBtn.TabIndex = 4;
-            this.GrenadesBtn.TabStop = false;
-            this.GrenadesBtn.Text = "Grenades";
-            this.GrenadesBtn.UseVisualStyleBackColor = true;
-            this.GrenadesBtn.Click += new System.EventHandler(this.GrenadesBtn_Click);
-            // 
             // ItemsCategories
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -465,5 +478,6 @@
         private System.Windows.Forms.Button SecondaryItemsBtn;
         private System.Windows.Forms.Button AutomaticWeaponsBtn;
         private System.Windows.Forms.Button GrenadesBtn;
+        private System.Windows.Forms.Button AmmoBtn;
     }
 }

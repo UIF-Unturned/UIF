@@ -142,6 +142,11 @@ namespace UIF
 						return value;
 
 					return errReturn;
+				case "amount":
+					if (this.GetKeyValue("type").TryContains("Magazine"))
+						return value;
+
+					return errReturn;
 
 				default:
 					return value;

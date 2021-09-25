@@ -211,7 +211,15 @@ namespace UIF
 			new ItemList(items).ShowDialog();
 		}
 
-		private void RaidItemsBtn_Click(object sender, EventArgs e)
+        private void AmmoBtn_Click(object sender, EventArgs e)
+        {
+			var items = Core.ParseAll(Main.CurrentFolderPath, i => i.GetKeyValue("type").TryContains("Magazine"));
+			items.Sort((a, b) => b.GetKeyValue("amount", "0").ToInt().CompareTo(a.GetKeyValue("amount", "0").ToInt()));
+
+			new ItemList(items).ShowDialog();
+		}
+
+        private void RaidItemsBtn_Click(object sender, EventArgs e)
 		{
 			var items = Core.ParseAll(Main.CurrentFolderPath, i => (
 				i.GetKeyValue("useable").TryContains("Gun") && i.ContainsKey("invulnerable") && i.GetKeyValue("structure_damage", "0").ToFloat() != 0) ||	// Guns
