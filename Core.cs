@@ -257,7 +257,8 @@ namespace UIF
 
 			List<string> files = Directory.EnumerateFiles(dir, "*.dat").ToList();
 			foreach (string file in files) {
-				List<string> fileLines = File.ReadAllText(file).Split('\n').ToList();
+				List<string> fileLines;
+				try { fileLines = File.ReadAllText(file).Split('\n').ToList(); } catch { return null; }
 				bool bEnglishDat = file.ToLower().EndsWith("english.dat");
 				foreach (string line in fileLines) {
 					if (!string.IsNullOrWhiteSpace(line)) {
