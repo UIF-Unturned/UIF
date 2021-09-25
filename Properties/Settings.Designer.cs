@@ -93,5 +93,34 @@ namespace UIF.Properties {
                 return ((string)(this["Version"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.Collections.Specialized.StringCollection UseableIgnore {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["UseableIgnore"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
+<ArrayOfString xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">
+  <string>Small</string>
+  <string>Medium</string>
+  <string>Large</string>
+  <string>Decal</string>
+  <string>Mythic</string>
+  <string>Quest</string>
+  <string>Resource</string>
+  <string>NPC</string>
+  <string>Dialogue</string>
+  <string>Vendor</string>
+</ArrayOfString>")]
+        public global::System.Collections.Specialized.StringCollection TypeIgnore {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["TypeIgnore"]));
+            }
+        }
     }
 }

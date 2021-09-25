@@ -26,5 +26,23 @@
     <Setting Name="Version" Type="System.String" Scope="Application">
       <Value Profile="(Default)">0.4.3</Value>
     </Setting>
+    <Setting Name="UseableIgnore" Type="System.Collections.Specialized.StringCollection" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="TypeIgnore" Type="System.Collections.Specialized.StringCollection" Scope="Application">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;string&gt;Small&lt;/string&gt;
+  &lt;string&gt;Medium&lt;/string&gt;
+  &lt;string&gt;Large&lt;/string&gt;
+  &lt;string&gt;Decal&lt;/string&gt;
+  &lt;string&gt;Mythic&lt;/string&gt;
+  &lt;string&gt;Quest&lt;/string&gt;
+  &lt;string&gt;Resource&lt;/string&gt;
+  &lt;string&gt;NPC&lt;/string&gt;
+  &lt;string&gt;Dialogue&lt;/string&gt;
+  &lt;string&gt;Vendor&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

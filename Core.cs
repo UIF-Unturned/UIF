@@ -441,6 +441,18 @@ namespace UIF
 				}
 			}
 
+			// UseableIgnore, TypeIgnore
+			string type = item.GetKeyValueStr("type", null),
+				useable = item.GetKeyValueStr("useable", null);
+
+			if (useable != null && Properties.Settings.Default.UseableIgnore != null)
+				if (Properties.Settings.Default.UseableIgnore.Contains(useable))
+					return null;
+			if (type != null && Properties.Settings.Default.TypeIgnore != null)
+				if (Properties.Settings.Default.TypeIgnore.Contains(type))
+					return null;
+
+			// filter
 			if (filter == null || filter(item))
 				return item;
 			else
