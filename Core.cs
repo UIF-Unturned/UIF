@@ -78,7 +78,7 @@ namespace UIF
 				case "player_skull_damage":
 					string playerDmg_h = this.GetKeyValue("player_damage", null),
 						multiplier_h = this.GetKeyValue("player_skull_multiplier", null);
-                    
+					
 					if (playerDmg_h != null && this.GetKeyValue("useable").TryContains("Melee", "Gun") ||
 						this.GetKeyValue("type").TryContains("Throwable") || this.GetKeyValue("useable").TryContains("Throwable"))
 						return multiplier_h != null ? (multiplier_h.ToFloat() * playerDmg_h.ToFloat()).ToString() : "~" + playerDmg_h;
@@ -275,6 +275,18 @@ namespace UIF
 				}
 			}
 
+			// UseableIgnore, TypeIgnore
+			string type = item.GetKeyValue("type", null),
+				useable = item.GetKeyValue("useable", null);
+
+			if (useable != null && Properties.Settings.Default.UseableIgnore != null)
+				if (Properties.Settings.Default.UseableIgnore.Contains(useable))
+					return null;
+			if (type != null && Properties.Settings.Default.TypeIgnore != null)
+				if (Properties.Settings.Default.TypeIgnore.Contains(type))
+					return null;
+
+			// filter
 			if (filter == null || filter(item))
 				return item;
 			else
