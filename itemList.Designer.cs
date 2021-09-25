@@ -254,10 +254,10 @@
             // 
             // CalibersTextBox
             // 
-            this.CalibersTextBox.Enabled = false;
             this.CalibersTextBox.Location = new System.Drawing.Point(10, 330);
             this.CalibersTextBox.Multiline = true;
             this.CalibersTextBox.Name = "CalibersTextBox";
+            this.CalibersTextBox.ReadOnly = true;
             this.CalibersTextBox.Size = new System.Drawing.Size(328, 122);
             this.CalibersTextBox.TabIndex = 28;
             // 
