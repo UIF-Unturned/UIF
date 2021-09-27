@@ -254,8 +254,8 @@ namespace UIF
 					return (a.GetValue("type").TryContains("Grip", "Barrel", "Tactical") ? a.GetValue("shake", "1").ToFloat() : 1)
 						.CompareTo(val.GetValue("type").TryContains("Grip", "Barrel", "Tactical") ? val.GetValue("shake", "1").ToFloat() : 1);
 				case CompareModes.BarrelDamage:
-					return (val.GetValue("type").TryContains("Barrel") ? val.GetValue("damage", "1").ToFloat() : 1)
-						.CompareTo(a.GetValue("type").TryContains("Barrel") ? a.GetValue("damage", "1").ToFloat() : 1);
+					return (a.GetValue("type").TryContains("Barrel") ? a.GetValue("damage", "0").ToFloat() : 0)
+						.CompareTo(val.GetValue("type").TryContains("Barrel") ? val.GetValue("damage", "0").ToFloat() : 0);
 				case CompareModes.BarrelVolume:
 					return (a.GetValue("type").TryContains("Barrel") ? a.GetValue("volume", "1").ToFloat() : 1)
 						.CompareTo(val.GetValue("type").TryContains("Barrel") ? val.GetValue("volume", "1").ToFloat() : 1);
