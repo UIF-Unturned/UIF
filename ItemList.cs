@@ -13,6 +13,8 @@ namespace UIF
 
 		private ResourceManager CurrentMainRM, CurrentAdditionalRM;
 
+		Item selectedItem = null;
+
 		public ItemList(List<Item> _items)
 		{
 			if (_items == null) {
@@ -62,13 +64,13 @@ namespace UIF
 			} else {			
 				ClearTextBoxes();
 
-				Item currentItem = items[ResultsListBox.SelectedIndex];
+				selectedItem = items[ResultsListBox.SelectedIndex];
 				
-				IdTextBox.Text = currentItem.GetKeyValue("id");
-				NameTextBox.Text = currentItem.GetKeyValue("name");
+				IdTextBox.Text = selectedItem.GetKeyValue("id");
+				NameTextBox.Text = selectedItem.GetKeyValue("name");
 
 				foreach (TextBox control in paramsBoxes)
-					control.Text = currentItem.FormatKey(control.Name);
+					control.Text = selectedItem.FormatKey(control.Name);
 			}
 		}
 
@@ -188,7 +190,53 @@ namespace UIF
 			UpdateItemList();
 		}
 
-		private void SortByVolumeBtn_Click(object sender, EventArgs e)
+		private void LinkedAmmoBtn_Click(object sender, EventArgs e)
+		{
+			if (selectedItem != null) {
+				List<Item> linked = selectedItem.GetLinked("ammo");
+				if (linked != null && linked.Count > 0) {
+					linked.Sort((a, b) => a.CompareTo(b, Core.CompareModes.AmmoAmount));
+					new ItemList(linked).Show();
+				} else {
+					MessageBox.Show("This item doesn't have linked");
+				}
+			}
+		}
+
+		private void LinkedModulesBtn_Click(object sender, EventArgs e)
+		{
+			if (selectedItem != null)
+			{
+				List<Item> linked = selectedItem.GetLinked("modules");
+				if (linked != null && linked.Count > 0)
+					new ItemList(linked).Show();
+				else
+					MessageBox.Show("This item doesn't have linked");
+			}
+		}
+
+		private void LinkedGunsBtn_Click(object sender, EventArgs e)
+		{
+			if (selectedItem != null)
+			{
+				List<Item> linked = selectedItem.GetLinked("guns");
+				if (linked != null && linked.Count > 0) {
+					linked.Sort((a, b) => a.CompareTo(b, Core.CompareModes.Damage));
+					new ItemList(linked).Show();
+				} else {
+					MessageBox.Show("This item doesn't have linked");
+				}
+			}
+		}
+
+        private void SortByAmmoAmountBtn_Click(object sender, EventArgs e)
+        {
+			items.Sort((a, b) => a.CompareTo(b, Core.CompareModes.AmmoAmount));
+
+			UpdateItemList();
+        }
+
+        private void SortByVolumeBtn_Click(object sender, EventArgs e)
 		{
 			items.Sort((a, b) => a.CompareTo(b, Core.CompareModes.BarrelVolume));
 

@@ -6,6 +6,37 @@ using System.Linq;
 namespace UIF
 {
 	public class Item : Dictionary<string, string> {
+		// мб сделать его public
+		private Dictionary<string, List<Item>> linked = new Dictionary<string, List<Item>>();
+
+		public void AddLink(string param, Item link_item)
+		{
+			if (!linked.ContainsKey(param))
+				linked.Add(param, new List<Item>());
+
+			linked[param].Add(link_item);
+		}
+
+		public List<Item> GetLinked(string param)
+		{
+			if (linked.ContainsKey(param))
+				return linked[param].Count > 0 ? linked[param] : null;
+			else
+				return null;
+		}
+
+		public List<Item> GetAllLinked()
+		{
+			List<Item> rtn = new List<Item>();
+
+			foreach (var item in linked)
+			{
+				rtn.AddRange(this.GetLinked(item.Key));
+			}
+
+			return rtn;
+		}
+
 		public string GetKeyValue(string key, string standartReturn = "") 
 		{
 			if (this.ContainsKey(key))
@@ -37,6 +68,27 @@ namespace UIF
 		}
 
 		public int GetClothingCapacity() => this.GetKeyValue("storage_y", "0").ToInt() * this.GetKeyValue("storage_x", "0").ToInt();
+
+		public List<string> GetCalibers()
+		{
+			List<string> list = new List<string>();
+
+			string gunCaliber = this.GetKeyValue("caliber", null);
+			if (gunCaliber != null) {
+				list.Add(gunCaliber);
+			}
+
+			string calibers = this.GetKeyValue("calibers", null);
+			if (calibers != null)
+				for (int i = 0; i < calibers.ToInt(); i++) {
+					string caliber_ = this.GetKeyValue("caliber_" + i.ToString(), null);
+
+					if (caliber_ != null)
+						list.Add(caliber_);
+				}
+
+			return list;
+		}
 
 		public bool ContainsKeys(params string[] keys)
 		{
@@ -169,7 +221,8 @@ namespace UIF
 			BuildingHealth,
 			Shake,
 			BarrelDamage,
-			BarrelVolume
+			BarrelVolume,
+			AmmoAmount
 		}
 
 		public static int CompareTo(this Item a, Item val, CompareModes mode)
@@ -209,9 +262,69 @@ namespace UIF
 
 						CompareTo(a.GetKeyValue("useable").TryContains("Barricade", "Structure")
 						|| a.GetKeyValue("type").TryContains("Structure", "Barricade") ? a.GetKeyValue("health", "0").ToFloat() : 0);
+				case CompareModes.AmmoAmount:
+					return (val.GetKeyValue("type").TryContains("Magazine") ? val.GetKeyValue("amount", "0").ToInt() : 0)
+						.CompareTo(a.GetKeyValue("type").TryContains("Magazine") ? a.GetKeyValue("amount", "0").ToInt() : 0);
+
 				default:
 					throw new Exception("Invalid sort mode");
 			}
+		}
+
+		public static void ItemsPreprocessor(ref List<Item> items)
+		{
+			for (int i = 0; i < items.Count; i++)
+			{
+				if (items[i].GetKeyValue("type") == "Gun")
+					for (int a = 0; a < items.Count; a++)
+					{
+						if (i != a)
+						{
+							string type = items[a].GetKeyValue("type");
+							List<string> calibersa = items[a].GetCalibers();
+							string linkParam = null;
+							if (calibersa.Count > 0)
+							{
+								if (calibersa.Contains(items[i].GetKeyValue("caliber")))
+								{
+									if (type == "Magazine")
+										linkParam = "ammo";
+									else if (type == "Gun")
+										linkParam = "guns";
+								}
+							}
+							else
+							{
+								if (type == "Grip" && items[i].ContainsKey("hook_grip"))
+									linkParam = "modules";
+								else if (type == "Barrel" && items[i].ContainsKey("hook_barrel"))
+									linkParam = "modules";
+								else if (type == "Sight" && items[i].ContainsKey("hook_sight"))
+									linkParam = "modules";
+								else if (type == "Tactical" && items[i].ContainsKey("hook_tactical"))
+									linkParam = "modules";
+								else if (type == "Magazine")
+									linkParam = "ammo";
+							}
+
+							if (linkParam != null)
+							{
+								List<Item> linkedGuns_a = items[a].GetLinked("guns");
+								List<Item> linkedParam_i = items[i].GetLinked(linkParam);
+
+								if (linkedGuns_a == null || (linkedGuns_a != null && !linkedGuns_a.Contains(items[i])))
+									items[a].AddLink("guns", items[i]);
+								if (linkedParam_i == null || (linkedParam_i != null && !linkedParam_i.Contains(items[a])))
+									items[i].AddLink(linkParam, items[a]);
+							}
+						}
+					}
+			}
+		}
+
+		public static void ItemsPostprocessor(ref List<Item> items)
+		{
+
 		}
 
 		public static List<Item> ParseAll(string folderPath, Func<Item, bool> filter = null)
@@ -226,11 +339,25 @@ namespace UIF
 				IEnumerable<string> dirs = Directory.EnumerateDirectories(folderPath, "*", SearchOption.AllDirectories);
 				foreach (string dir in dirs) {
 					if (File.Exists(dir + "\\English.dat")) {
-						Item item = ParseDir(dir, filter);
+						Item item = ParseDir(dir, null);
 						if (item != null && item.GetKeyValue("id", null) != null)
 							items.Add(item);
 					}
 				}
+
+				ItemsPreprocessor(ref items);
+
+				// filter
+				if (filter != null)
+					for (int i = 0; i < items.Count; i++) {
+						if (!filter(items[i])) {
+							items.RemoveAt(i);
+							i -= 1;  // Так как мы удаляем элемент, то следующий стает на его место, таким образом, если не сделать i -= 1,
+							// то мы оставим след. элемент в списке без проверки
+						}
+					}
+
+				ItemsPostprocessor(ref items);
 
 				return items;
 			} else {
@@ -248,6 +375,7 @@ namespace UIF
 			}
 		}
 
+		// Don't forget that this method doesn't call `ItemsPreprocessor` and `ItemsPostprocessor` methods
 		public static Item ParseDir(string dir, Func<Item, bool> filter)
 		{
 			if (!File.Exists(dir + "\\English.dat"))

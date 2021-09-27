@@ -214,7 +214,7 @@ namespace UIF
         private void AmmoBtn_Click(object sender, EventArgs e)
         {
 			var items = Core.ParseAll(Main.CurrentFolderPath, i => i.GetKeyValue("type").TryContains("Magazine"));
-			items.Sort((a, b) => b.GetKeyValue("amount", "0").ToInt().CompareTo(a.GetKeyValue("amount", "0").ToInt()));
+			items.Sort((a, b) => a.CompareTo(b, Core.CompareModes.AmmoAmount));
 
 			new ItemList(items).ShowDialog();
 		}
