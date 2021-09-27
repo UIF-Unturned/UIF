@@ -114,14 +114,14 @@ namespace UIF
 					string storagex = this.GetValue("storage_x", null), storagey = this.GetValue("storage_y", null),
 						width = this.GetValue("width", null), height = this.GetValue("height", null);
 
-					if (storagex != null && storagey != null && this.GetValue("type").TryContains("Storage"))
+					if (storagex != null && storagey != null && this.GetValue("type") == "Storage")
 						return (storagex.ToInt() * storagey.ToInt()).ToString();
-					else if (width != null && height != null && this.GetValue("useable").TryContains("Clothing"))
+					else if (width != null && height != null && this.GetValue("useable") == "Clothing")
 						return (width.ToInt() * height.ToInt()).ToString();
 
 					return errReturn;
 				case "armor":
-					if (value != errReturn && this.GetValue("useable").TryContains("Clothing"))
+					if (value != errReturn && this.GetValue("useable") == "Clothing")
 						return value.ToFloat().Unturned_ToPercentage().ToString();
 
 					return errReturn;
@@ -130,9 +130,11 @@ namespace UIF
 				case "player_skull_damage":
 					string playerDmg_h = this.GetValue("player_damage", null),
 						multiplier_h = this.GetValue("player_skull_multiplier", null);
-					
-					if (playerDmg_h != null && this.GetValue("useable").TryContains("Melee", "Gun") ||
-						this.GetValue("type").TryContains("Throwable") || this.GetValue("useable").TryContains("Throwable"))
+
+					string skull_useable = this.GetValue("useable");
+
+					if (playerDmg_h != null && (skull_useable == "Melee" || skull_useable == "Gun" ||
+						this.GetValue("type") == "Throwable" || skull_useable == "Throwable"))
 						return multiplier_h != null ? (multiplier_h.ToFloat() * playerDmg_h.ToFloat()).ToString() : "~" + playerDmg_h;
 
 					return errReturn;
@@ -140,32 +142,41 @@ namespace UIF
 					string playerDmg_b = this.GetValue("player_damage", null),
 						multiplier_b = this.GetValue("player_spine_multiplier", null);
 
-					if (playerDmg_b != null && this.GetValue("useable").TryContains("Melee", "Gun") ||
-						this.GetValue("type").TryContains("Throwable") || this.GetValue("useable").TryContains("Throwable"))
+					string spine_useable = this.GetValue("useable");
+
+					if (playerDmg_b != null && (spine_useable == "Melee" || spine_useable == "Gun" ||
+						this.GetValue("type") == "Throwable" || spine_useable == "Throwable"))
 						return multiplier_b != null ? (multiplier_b.ToFloat() * playerDmg_b.ToFloat()).ToString() : "~" + playerDmg_b;
 
 					return errReturn;
 				case "player_damage":
-					if (this.GetValue("useable").TryContains("Gun", "Melee") ||
-						this.GetValue("type").TryContains("Throwable") || this.GetValue("useable").TryContains("Throwable"))
+					string dmg_useable = this.GetValue("useable");
+
+					if (dmg_useable == "Gun" || dmg_useable == "Melee" ||
+						this.GetValue("type") == "Throwable" || dmg_useable == "Throwable")
 						return value;
 
 					return errReturn;
 				case "structure_damage":
-					if (value != errReturn && (this.GetValue("useable").TryContains("Gun", "Melee") || this.GetValue("type").TryContains("Charge") ||
-						this.GetValue("type").TryContains("Throwable") || this.GetValue("useable").TryContains("Throwable")))
+					string structureDmg_useable = this.GetValue("useable"),
+						structureDmg_type = this.GetValue("type");
+
+					if (value != errReturn && (structureDmg_useable == "Gun" || structureDmg_useable == "Melee" || structureDmg_type == "Charge" ||
+						structureDmg_type == "Throwable" || structureDmg_useable == "Throwable"))
 						return (this.ContainsKeys("explosion", "explosive") ? "~" : string.Empty) + value;
 
 					return errReturn;
 				case "range":
-					if (this.GetValue("useable").TryContains("Melee", "Gun"))
+					string range_useable = this.GetValue("useable");
+
+					if (range_useable == "Melee" || range_useable == "Gun")
 						return value;
 
 					return errReturn;
 				//case "useable":
 				//case "type":
 				case "engine":
-					if (this.GetValue("useable").TryContains("Vehicle") || this.GetValue("type").TryContains("Vehicle"))
+					if (this.GetValue("useable") == "Vehicle" || this.GetValue("type") == "Vehicle")
 						return value;
 
 					return errReturn;
@@ -174,34 +185,38 @@ namespace UIF
 						useable = this.GetValue("useable");
 
 					// Костыль?
-					if (type.TryContains("Vehicle") || useable.TryContains("Vehicle") ||
-						type.TryContains("Barricade", "Structure") || useable.TryContains("Barricade", "Structure"))
+					if (type == "Vehicle" || useable == "Vehicle" ||
+						type == "Barricade" || type == "Structure" ||
+						useable == "Barricade" || useable == "Structure")
 						return value;
 
 					return errReturn;
 				case "shake":
-					if (this.GetValue("type").TryContains("Grip", "Barrel", "Tactical"))
+					string shake_type = this.GetValue("type");
+
+					if (shake_type == "Grip" ||
+						shake_type == "Barrel" ||
+						shake_type == "Tactical")
 						return value;
 
 					return errReturn;
 				case "volume":
-					if (this.GetValue("type").TryContains("Barrel"))
+					if (this.GetValue("type") == "Barrel")
 						return value;
 
 					return errReturn;
 				case "damage":
-					if (this.GetValue("type").TryContains("Barrel"))
+					if (this.GetValue("type") == "Barrel")
 						return value;
 
 					return errReturn;
 				case "amount":
-					if (this.GetValue("type").TryContains("Magazine"))
+					if (this.GetValue("type") == "Magazine")
 						return value;
 
 					return errReturn;
-
 				case "pellets":
-					if (this.GetValue("type").TryContains("Magazine"))
+					if (this.GetValue("type") == "Magazine")
 						return value;
 
 					return errReturn;
@@ -236,41 +251,50 @@ namespace UIF
 			switch (mode)
 			{
 				case CompareModes.StructureDamage:
-					return ((val.GetValue("type").TryContains("Charge") || val.GetValue("useable").TryContains("Gun")) ? val.GetValue("structure_damage", "0").ToFloat() : 0)
-						.CompareTo((a.GetValue("type").TryContains("Charge") || a.GetValue("useable").TryContains("Gun")) ? a.GetValue("structure_damage", "0").ToFloat() : 0);
+					return ((val.GetValue("type") == "Charge" || val.GetValue("useable") == "Gun") ? val.GetValue("structure_damage", "0").ToFloat() : 0)
+						.CompareTo((a.GetValue("type") == "Charge" || a.GetValue("useable") == "Gun") ? a.GetValue("structure_damage", "0").ToFloat() : 0);
 				case CompareModes.Damage:
-					return (val.GetValue("useable").TryContains("Gun") ? val.GetAverageDamage() : 0)
-						.CompareTo(a.GetValue("useable").TryContains("Gun") ? a.GetAverageDamage() : 0);
+					return (val.GetValue("useable") == "Gun" ? val.GetAverageDamage() : 0)
+						.CompareTo(a.GetValue("useable") == "Gun" ? a.GetAverageDamage() : 0);
 				case CompareModes.ClothingProtection:
-					return (a.GetValue("useable").TryContains("Clothing") ? a.GetValue("armor", "1").ToFloat() : 1)
-						.CompareTo(val.GetValue("useable").TryContains("Clothing") ? val.GetValue("armor", "1").ToFloat() : 1);
+					return (a.GetValue("useable") == "Clothing" ? a.GetValue("armor", "1").ToFloat() : 1)
+						.CompareTo(val.GetValue("useable") == "Clothing" ? val.GetValue("armor", "1").ToFloat() : 1);
 				case CompareModes.ClothingStorage:
-					return (val.GetValue("useable").TryContains("Clothing") ? (val.GetValue("height", "0").ToInt() * val.GetValue("width", "0").ToInt()) : 0)
-						.CompareTo(a.GetValue("useable").TryContains("Clothing") ? (a.GetValue("height", "0").ToInt() * a.GetValue("width", "0").ToInt()) : 0);
+					return (val.GetValue("useable") == "Clothing" ? (val.GetValue("height", "0").ToInt() * val.GetValue("width", "0").ToInt()) : 0)
+						.CompareTo(a.GetValue("useable") == "Clothing" ? (a.GetValue("height", "0").ToInt() * a.GetValue("width", "0").ToInt()) : 0);
 				case CompareModes.VehicleHealth:
-					return (val.GetValue("type").TryContains("Vehicle") ? val.GetValue("health", "0").ToFloat() : 0)
-						.CompareTo(a.GetValue("type").TryContains("Vehicle") ? a.GetValue("health", "0").ToFloat() : 0);
+					return (val.GetValue("type") == "Vehicle" ? val.GetValue("health", "0").ToFloat() : 0)
+						.CompareTo(a.GetValue("type") == "Vehicle" ? a.GetValue("health", "0").ToFloat() : 0);
 				case CompareModes.Shake:
-					return (a.GetValue("type").TryContains("Grip", "Barrel", "Tactical") ? a.GetValue("shake", "1").ToFloat() : 1)
-						.CompareTo(val.GetValue("type").TryContains("Grip", "Barrel", "Tactical") ? val.GetValue("shake", "1").ToFloat() : 1);
-				case CompareModes.BarrelDamage:
-					return (a.GetValue("type").TryContains("Barrel") ? a.GetValue("damage", "0").ToFloat() : 0)
-						.CompareTo(val.GetValue("type").TryContains("Barrel") ? val.GetValue("damage", "0").ToFloat() : 0);
-				case CompareModes.BarrelVolume:
-					return (a.GetValue("type").TryContains("Barrel") ? a.GetValue("volume", "1").ToFloat() : 1)
-						.CompareTo(val.GetValue("type").TryContains("Barrel") ? val.GetValue("volume", "1").ToFloat() : 1);
-				case CompareModes.StructureCapacity:
-					return (val.GetValue("type").TryContains("Storage") ? val.GetClothingCapacity() : 0)
-						.CompareTo(a.GetValue("type").TryContains("Storage") ? a.GetClothingCapacity() : 0);
-				case CompareModes.BuildingHealth:
-					return (val.GetValue("useable").TryContains("Barricade", "Structure")
-						|| val.GetValue("type").TryContains("Structure", "Barricade") ? val.GetValue("health", "0") .ToFloat() : 0).
+					string shake_type_a = a.GetValue("type"),
+						shake_type_val = val.GetValue("type");
 
-						CompareTo(a.GetValue("useable").TryContains("Barricade", "Structure")
-						|| a.GetValue("type").TryContains("Structure", "Barricade") ? a.GetValue("health", "0").ToFloat() : 0);
+					return (shake_type_a == "Grip" || shake_type_a == "Barrel" || shake_type_a == "Tactical" ? a.GetValue("shake", "1").ToFloat() : 1)
+						.CompareTo(shake_type_val == "Grip" || shake_type_val == "Barrel" || shake_type_val == "Tactical" ? val.GetValue("shake", "1").ToFloat() : 1);
+				case CompareModes.BarrelDamage:
+					return (a.GetValue("type") == "Barrel" ? a.GetValue("damage", "0").ToFloat() : 0)
+						.CompareTo(val.GetValue("type") == "Barrel" ? val.GetValue("damage", "0").ToFloat() : 0);
+				case CompareModes.BarrelVolume:
+					return (a.GetValue("type") == "Barrel" ? a.GetValue("volume", "1").ToFloat() : 1)
+						.CompareTo(val.GetValue("type") == "Barrel" ? val.GetValue("volume", "1").ToFloat() : 1);
+				case CompareModes.StructureCapacity:
+					return (val.GetValue("type") == "Storage" ? val.GetClothingCapacity() : 0)
+						.CompareTo(a.GetValue("type") == "Storage" ? a.GetClothingCapacity() : 0);
+				case CompareModes.BuildingHealth:
+					string buildingH_type_a = a.GetValue("type"),
+						buildingH_type_val = val.GetValue("type");
+
+					string buildingH_useable_a = a.GetValue("useable"),
+						buildingH_useable_val = val.GetValue("useable");
+
+					return (buildingH_useable_val == "Barricade" || buildingH_useable_val == "Structure"
+						|| buildingH_type_val == "Structure" || buildingH_type_val == "Barricade" ? val.GetValue("health", "0") .ToFloat() : 0)
+
+						.CompareTo(buildingH_useable_a == "Barricade" || buildingH_useable_a == "Structure"
+						|| buildingH_type_a == "Structure" || buildingH_type_a == "Barricade" ? a.GetValue("health", "0").ToFloat() : 0);
 				case CompareModes.AmmoAmount:
-					return (val.GetValue("type").TryContains("Magazine") ? val.GetValue("amount", "0").ToInt() * val.GetValue("pellets", "1").ToInt() : 0)
-						.CompareTo(a.GetValue("type").TryContains("Magazine") ? a.GetValue("amount", "0").ToInt() * a.GetValue("pellets", "1").ToInt() : 0);
+					return (val.GetValue("type") == "Magazine" ? val.GetValue("amount", "0").ToInt() * val.GetValue("pellets", "1").ToInt() : 0)
+						.CompareTo(a.GetValue("type") == "Magazine" ? a.GetValue("amount", "0").ToInt() * a.GetValue("pellets", "1").ToInt() : 0);
 
 				default:
 					throw new Exception("Invalid sort mode");

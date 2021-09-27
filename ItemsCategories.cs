@@ -32,14 +32,14 @@ namespace UIF
 
 		private void AllArmorBtn_Click(object sender, EventArgs e)
 		{
-			var items = Core.ParseAll(Main.CurrentFolderPath, i => i.GetValue("useable").TryContains("Clothing"));
+			var items = Core.ParseAll(Main.CurrentFolderPath, i => i.GetValue("useable") == "Clothing");
 
 			new ItemList(items).ShowDialog();
 		}
 
 		private void BackpacksBtn_Click(object sender, EventArgs e)
 		{
-			var items = Core.ParseAll(Main.CurrentFolderPath, i => i.GetValue("type").TryContains("Backpack"));
+			var items = Core.ParseAll(Main.CurrentFolderPath, i => i.GetValue("type") == "Backpack");
 			items.Sort((a, b) => a.CompareTo(b, Core.CompareModes.ClothingStorage));
 
 			new ItemList(items).ShowDialog();
@@ -47,7 +47,7 @@ namespace UIF
 
 		private void PantsBtn_Click(object sender, EventArgs e)
 		{
-			var items = Core.ParseAll(Main.CurrentFolderPath, i => i.GetValue("type").TryContains("Pants"));
+			var items = Core.ParseAll(Main.CurrentFolderPath, i => i.GetValue("type") == "Pants");
 			items.Sort((a, b) => b.CompareTo(a, Core.CompareModes.ClothingProtection));
 
 			new ItemList(items).ShowDialog();
@@ -56,7 +56,7 @@ namespace UIF
 		private void ShirtsBtn_Click(object sender, EventArgs e)
 		{
 
-			var items = Core.ParseAll(Main.CurrentFolderPath, i => i.GetValue("type").TryContains("Shirt"));
+			var items = Core.ParseAll(Main.CurrentFolderPath, i => i.GetValue("type") == "Shirt");
 			items.Sort((a, b) => a.CompareTo(b, Core.CompareModes.ClothingProtection));
 
 			new ItemList(items).ShowDialog();
@@ -64,7 +64,7 @@ namespace UIF
 
 		private void HelmetsBtn_Click(object sender, EventArgs e)
 		{
-			var items = Core.ParseAll(Main.CurrentFolderPath, i => i.GetValue("type").TryContains("Hat"));
+			var items = Core.ParseAll(Main.CurrentFolderPath, i => i.GetValue("type") == "Hat");
 			items.Sort((a, b) => a.CompareTo(b, Core.CompareModes.ClothingProtection));
 			
 			new ItemList(items).ShowDialog();
@@ -72,7 +72,7 @@ namespace UIF
 
 		private void VestsBtn_Click(object sender, EventArgs e)
 		{
-			var items = Core.ParseAll(Main.CurrentFolderPath, i => i.GetValue("type").TryContains("Vest"));
+			var items = Core.ParseAll(Main.CurrentFolderPath, i => i.GetValue("type") == "Vest");
 			items.Sort((a, b) => a.CompareTo(b, Core.CompareModes.ClothingProtection));
 
 			new ItemList(items).ShowDialog();
@@ -80,15 +80,15 @@ namespace UIF
 
 		private void HealAndFoodBtn_Click(object sender, EventArgs e)
 		{
-			var items = Core.ParseAll(Main.CurrentFolderPath, i => i.GetValue("useable").TryContains("Consumeable"));
+			var items = Core.ParseAll(Main.CurrentFolderPath, i => i.GetValue("useable") == "Consumeable");
 
 			new ItemList(items).ShowDialog();
 		}
 
 		private void StructuresAndBarricadesBtn_Click(object sender, EventArgs e)
 		{
-			var items = Core.ParseAll(Main.CurrentFolderPath, i => i.GetValue("useable").TryContains("Barricade") || i.GetValue("type").TryContains("Barricade") ||
-				i.GetValue("useable").TryContains("Structure") || i.GetValue("type").TryContains("Structure"));
+			var items = Core.ParseAll(Main.CurrentFolderPath, i => i.GetValue("useable") == "Barricade" || i.GetValue("type") == "Barricade" ||
+				i.GetValue("useable") == "Structure" || i.GetValue("type") == "Structure");
 			items.Sort((a, b) => a.CompareTo(b, Core.CompareModes.BuildingHealth));
 
 			new ItemList(items).ShowDialog();
@@ -96,7 +96,7 @@ namespace UIF
 
 		private void HelicoptersBtn_Click(object sender, EventArgs e)
 		{
-			var items = Core.ParseAll(Main.CurrentFolderPath, i => i.GetValue("engine").TryContains("Helicopter") && i.GetValue("type").TryContains("Vehicle"));
+			var items = Core.ParseAll(Main.CurrentFolderPath, i => i.GetValue("engine") == "Helicopter" && i.GetValue("type") == "Vehicle");
 			items.Sort((a, b) => a.CompareTo(b, Core.CompareModes.VehicleHealth));
 
 			new ItemList(items).ShowDialog();
@@ -104,7 +104,7 @@ namespace UIF
 
 		private void PlanesBtn_Click(object sender, EventArgs e)
 		{
-			var items = Core.ParseAll(Main.CurrentFolderPath, i => i.GetValue("engine").TryContains("Plane") && i.GetValue("type").TryContains("Vehicle"));
+			var items = Core.ParseAll(Main.CurrentFolderPath, i => i.GetValue("engine") == "Plane" && i.GetValue("type") == "Vehicle");
 			items.Sort((a, b) => a.CompareTo(b, Core.CompareModes.VehicleHealth));
 
 			new ItemList(items).ShowDialog();
@@ -112,7 +112,7 @@ namespace UIF
 
 		private void AllVehiclesBtn_Click(object sender, EventArgs e)
 		{
-			var items = Core.ParseAll(Main.CurrentFolderPath, i => i.GetValue("type").TryContains("Vehicle"));
+			var items = Core.ParseAll(Main.CurrentFolderPath, i => i.GetValue("type") == "Vehicle");
 			items.Sort((a, b) => a.CompareTo(b, Core.CompareModes.VehicleHealth));
 
 			new ItemList(items).ShowDialog();
@@ -120,7 +120,7 @@ namespace UIF
 
 		private void BoatsBtn_Click(object sender, EventArgs e)
 		{
-			var items = Core.ParseAll(Main.CurrentFolderPath, i => i.GetValue("engine").TryContains("Boat") && i.GetValue("type").TryContains("Vehicle"));
+			var items = Core.ParseAll(Main.CurrentFolderPath, i => i.GetValue("engine") == "Boat" && i.GetValue("type") == "Vehicle");
 			items.Sort((a, b) => a.CompareTo(b, Core.CompareModes.VehicleHealth));
 
 			new ItemList(items).ShowDialog();
@@ -128,7 +128,7 @@ namespace UIF
 
 		private void CarsBtn_Click(object sender, EventArgs e)
 		{
-			var items = Core.ParseAll(Main.CurrentFolderPath, i => !i.ContainsKey("engine") && i.GetValue("type").TryContains("Vehicle"));
+			var items = Core.ParseAll(Main.CurrentFolderPath, i => !i.ContainsKey("engine") && i.GetValue("type") == "Vehicle");
 			items.Sort((a, b) => a.CompareTo(b, Core.CompareModes.VehicleHealth));
 
 			new ItemList(items).ShowDialog();
@@ -136,7 +136,7 @@ namespace UIF
 
 		private void AllGunsBtn_Click(object sender, EventArgs e)
 		{
-			var items = Core.ParseAll(Main.CurrentFolderPath, i => i.GetValue("useable").TryContains("Gun"));
+			var items = Core.ParseAll(Main.CurrentFolderPath, i => i.GetValue("useable") == "Gun");
 			items.Sort((a, b) => a.CompareTo(b, Core.CompareModes.Damage));
 
 			new ItemList(items).ShowDialog();
@@ -144,14 +144,14 @@ namespace UIF
 
 		private void GripsBtn_Click(object sender, EventArgs e)
 		{
-			var items = Core.ParseAll(Main.CurrentFolderPath, i => i.GetValue("type").TryContains("Grip"));
+			var items = Core.ParseAll(Main.CurrentFolderPath, i => i.GetValue("type") == "Grip");
 
 			new ItemList(items).ShowDialog();
 		}
 
 		private void SuppressorsBtn_Click(object sender, EventArgs e)
 		{
-			var items = Core.ParseAll(Main.CurrentFolderPath, i => i.GetValue("type").TryContains("Barrel"));
+			var items = Core.ParseAll(Main.CurrentFolderPath, i => i.GetValue("type") == "Barrel");
 
 			new ItemList(items).ShowDialog();
 		}
@@ -165,7 +165,7 @@ namespace UIF
 
 		private void AutomaticWeaponsBtn_Click(object sender, EventArgs e)
 		{
-			var items = Core.ParseAll(Main.CurrentFolderPath, i => i.GetValue("useable").TryContains("Gun") && i.ContainsKey("auto"));
+			var items = Core.ParseAll(Main.CurrentFolderPath, i => i.GetValue("useable") == "Gun" && i.ContainsKey("auto"));
 			items.Sort((a, b) => a.CompareTo(b, Core.CompareModes.Damage));
 
 			new ItemList(items).ShowDialog();
@@ -181,7 +181,7 @@ namespace UIF
 
 		private void SecondaryItemsBtn_Click(object sender, EventArgs e)
 		{
-			var items = Core.ParseAll(Main.CurrentFolderPath, i => i.GetValue("slot").TryContains("Secondary"));
+			var items = Core.ParseAll(Main.CurrentFolderPath, i => i.GetValue("slot") == "Secondary");
 			items.Sort((a, b) => a.CompareTo(b, Core.CompareModes.Damage));
 
 			new ItemList(items).ShowDialog();
@@ -189,7 +189,7 @@ namespace UIF
 
 		private void TacticalsBtn_Click(object sender, EventArgs e)
 		{
-			var items = Core.ParseAll(Main.CurrentFolderPath, i => i.GetValue("type").TryContains("Tactical"));
+			var items = Core.ParseAll(Main.CurrentFolderPath, i => i.GetValue("type") == "Tactical");
 			items.Sort((a, b) => a.CompareTo(b, Core.CompareModes.Damage));
 
 			new ItemList(items).ShowDialog();
@@ -197,7 +197,7 @@ namespace UIF
 
 		private void SightsBtn_Click(object sender, EventArgs e)
 		{
-			var items = Core.ParseAll(Main.CurrentFolderPath, i => i.GetValue("type").TryContains("Sight"));
+			var items = Core.ParseAll(Main.CurrentFolderPath, i => i.GetValue("type") == "Sight");
 			//items.Sort((a, b) => b.bodyDamage.CompareTo(a.bodyDamage));
 
 			new ItemList(items).ShowDialog();
@@ -205,26 +205,26 @@ namespace UIF
 
 		private void GrenadesBtn_Click(object sender, EventArgs e)
 		{
-			var items = Core.ParseAll(Main.CurrentFolderPath, i => i.GetValue("type").TryContains("Throwable") || i.GetValue("useable").TryContains("Throwable"));
+			var items = Core.ParseAll(Main.CurrentFolderPath, i => i.GetValue("type") == "Throwable" || i.GetValue("useable") == "Throwable");
 			items.Sort((a, b) => a.CompareTo(b, Core.CompareModes.Damage));
 
 			new ItemList(items).ShowDialog();
 		}
 
-        private void AmmoBtn_Click(object sender, EventArgs e)
-        {
-			var items = Core.ParseAll(Main.CurrentFolderPath, i => i.GetValue("type").TryContains("Magazine"));
+		private void AmmoBtn_Click(object sender, EventArgs e)
+		{
+			var items = Core.ParseAll(Main.CurrentFolderPath, i => i.GetValue("type") == "Magazine");
 			items.Sort((a, b) => a.CompareTo(b, Core.CompareModes.AmmoAmount));
 
 			new ItemList(items).ShowDialog();
 		}
 
-        private void RaidItemsBtn_Click(object sender, EventArgs e)
+		private void RaidItemsBtn_Click(object sender, EventArgs e)
 		{
 			var items = Core.ParseAll(Main.CurrentFolderPath, i => (
-				i.GetValue("useable").TryContains("Gun") && i.ContainsKey("invulnerable") && i.GetValue("structure_damage", "0").ToFloat() != 0) ||	// Guns
-				(i.GetValue("structure_damage", "0").ToFloat() != 0 && (i.GetValue("type").TryContains("Throwable") || i.GetValue("useable").TryContains("Throwable"))) ||	// Grenades
-				i.GetValue("useable").TryContains("Charge")	// Or any useable == Charge
+				i.GetValue("useable") == "Gun" && i.ContainsKey("invulnerable") && i.GetValue("structure_damage", "0").ToFloat() != 0) ||	// Guns
+				(i.GetValue("structure_damage", "0").ToFloat() != 0 && (i.GetValue("type") == "Throwable" || i.GetValue("useable") == "Throwable")) ||	// Grenades
+				i.GetValue("useable") == "Charge"	// Or any useable == Charge
 			);
 			items.Sort((a, b) => a.CompareTo(b, Core.CompareModes.StructureDamage));
 
