@@ -200,6 +200,12 @@ namespace UIF
 
 					return errReturn;
 
+				case "pellets":
+					if (this.GetKeyValue("type").TryContains("Magazine"))
+						return value;
+
+					return errReturn;
+
 				default:
 					return value;
 			}
@@ -263,8 +269,8 @@ namespace UIF
 						CompareTo(a.GetKeyValue("useable").TryContains("Barricade", "Structure")
 						|| a.GetKeyValue("type").TryContains("Structure", "Barricade") ? a.GetKeyValue("health", "0").ToFloat() : 0);
 				case CompareModes.AmmoAmount:
-					return (val.GetKeyValue("type").TryContains("Magazine") ? val.GetKeyValue("amount", "0").ToInt() : 0)
-						.CompareTo(a.GetKeyValue("type").TryContains("Magazine") ? a.GetKeyValue("amount", "0").ToInt() : 0);
+					return (val.GetKeyValue("type").TryContains("Magazine") ? val.GetKeyValue("amount", "0").ToInt() * val.GetKeyValue("pellets", "1").ToInt() : 0)
+						.CompareTo(a.GetKeyValue("type").TryContains("Magazine") ? a.GetKeyValue("amount", "0").ToInt() * a.GetKeyValue("pellets", "1").ToInt() : 0);
 
 				default:
 					throw new Exception("Invalid sort mode");

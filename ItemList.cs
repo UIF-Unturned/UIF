@@ -229,14 +229,22 @@ namespace UIF
 			}
 		}
 
-        private void SortByAmmoAmountBtn_Click(object sender, EventArgs e)
-        {
+		private void SortByAmmoAmountBtn_Click(object sender, EventArgs e)
+		{
 			items.Sort((a, b) => a.CompareTo(b, Core.CompareModes.AmmoAmount));
 
 			UpdateItemList();
-        }
+		}
 
-        private void SortByVolumeBtn_Click(object sender, EventArgs e)
+		private void SortByPelletsBtn_Click(object sender, EventArgs e)
+		{
+			items.Sort((a, b) => (b.GetKeyValue("type") == "Magazine" ? b.GetKeyValue("pellets", "1").ToInt() : 1)
+			.CompareTo(a.GetKeyValue("type") == "Magazine" ? a.GetKeyValue("pellets", "1").ToInt() : 1));
+
+			UpdateItemList();
+		}
+
+		private void SortByVolumeBtn_Click(object sender, EventArgs e)
 		{
 			items.Sort((a, b) => a.CompareTo(b, Core.CompareModes.BarrelVolume));
 
