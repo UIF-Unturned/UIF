@@ -30,7 +30,7 @@ namespace UIF
 			return new_str;
 		}
 
-		public static float ToPercentage(this float f)
+		public static float Unturned_ToPercentage(this float f)
 		{
 			return (1 - f) * 100;
 		}

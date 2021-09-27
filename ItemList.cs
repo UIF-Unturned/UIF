@@ -23,7 +23,7 @@ namespace UIF
 				InitializeComponent();
 
 				for (int i = 0; i < _items.Count; i++)
-					ResultsListBox.Items.Add(_items[i].GetKeyValue("name") + " (" + _items[i].GetKeyValue("id") + ")");
+					ResultsListBox.Items.Add(_items[i].GetValue("name") + " (" + _items[i].GetValue("id") + ")");
 
 				items = _items;
 
@@ -46,7 +46,7 @@ namespace UIF
 			ResultsListBox.Items.Clear();
 
 			for (int i = 0; i < items.Count; i++)
-				ResultsListBox.Items.Add(items[i].GetKeyValue("name") + " (" + items[i].GetKeyValue("id") + ")");
+				ResultsListBox.Items.Add(items[i].GetValue("name") + " (" + items[i].GetValue("id") + ")");
 		}
 
 		private void ClearTextBoxes() {
@@ -66,8 +66,8 @@ namespace UIF
 
 				selectedItem = items[ResultsListBox.SelectedIndex];
 				
-				IdTextBox.Text = selectedItem.GetKeyValue("id");
-				NameTextBox.Text = selectedItem.GetKeyValue("name");
+				IdTextBox.Text = selectedItem.GetValue("id");
+				NameTextBox.Text = selectedItem.GetValue("name");
 
 				foreach (TextBox control in paramsBoxes)
 					control.Text = selectedItem.FormatKey(control.Name);
@@ -79,7 +79,7 @@ namespace UIF
 			if (ResultsListBox.SelectedIndex != -1)
 				Clipboard.SetText(
 					((IdPrefixTextBox.Text != string.Empty ? IdPrefixTextBox.Text + " " : string.Empty)
-					+ items[ResultsListBox.SelectedIndex].GetKeyValue("id")).Trim()
+					+ items[ResultsListBox.SelectedIndex].GetValue("id")).Trim()
 				);
 		}
 
@@ -88,10 +88,10 @@ namespace UIF
 			if (ResultsListBox.SelectedIndex != -1)
 				Clipboard.SetText(
 					(
-						items[ResultsListBox.SelectedIndex].GetKeyValue("name")
+						items[ResultsListBox.SelectedIndex].GetValue("name")
 						+ " - "
 						+ (IdPrefixTextBox.Text != string.Empty ? IdPrefixTextBox.Text + " " : string.Empty)
-						+ items[ResultsListBox.SelectedIndex].GetKeyValue("id")
+						+ items[ResultsListBox.SelectedIndex].GetValue("id")
 					)
 					.Trim()
 				);
@@ -104,10 +104,10 @@ namespace UIF
 			for (int i = 0; i < items.Count; i++)
 			{
 				copyStr += (
-					items[i].GetKeyValue("name")
+					items[i].GetValue("name")
 					+ " - "
 					+ (IdPrefixTextBox.Text != string.Empty ? IdPrefixTextBox.Text + " " : string.Empty)
-					+ items[i].GetKeyValue("id")
+					+ items[i].GetValue("id")
 				)
 				.Trim() + (i < items.Count ? "\n" : string.Empty);
 			}
@@ -238,8 +238,8 @@ namespace UIF
 
 		private void SortByPelletsBtn_Click(object sender, EventArgs e)
 		{
-			items.Sort((a, b) => (b.GetKeyValue("type") == "Magazine" ? b.GetKeyValue("pellets", "1").ToInt() : 1)
-			.CompareTo(a.GetKeyValue("type") == "Magazine" ? a.GetKeyValue("pellets", "1").ToInt() : 1));
+			items.Sort((a, b) => (b.GetValue("type") == "Magazine" ? b.GetValue("pellets", "1").ToInt() : 1)
+			.CompareTo(a.GetValue("type") == "Magazine" ? a.GetValue("pellets", "1").ToInt() : 1));
 
 			UpdateItemList();
 		}

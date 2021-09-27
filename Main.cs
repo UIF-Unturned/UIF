@@ -92,7 +92,7 @@ namespace UIF
 			if (CurrentFolderPath == null) {
 				throw new ArgumentNullException(FolderErrorText);
 			} else {
-				var items = Core.ParseAll(CurrentFolderPath, i => i.GetKeyValue("name").ToLower().Contains(NameTextBox.Text.ToLower()));
+				var items = Core.ParseAll(CurrentFolderPath, i => i.GetValue("name").ToLower().Contains(NameTextBox.Text.ToLower()));
 
 				new ItemList(items).ShowDialog();
 			}
@@ -146,7 +146,7 @@ namespace UIF
 			if (CurrentFolderPath == null) {
 				throw new ArgumentNullException(FolderErrorText);
 			} else {
-				var items = Core.ParseAll(CurrentFolderPath, i => i.GetKeyValue("id") == IDBox.Text);
+				var items = Core.ParseAll(CurrentFolderPath, i => i.GetValue("id") == IDBox.Text);
 
 				new ItemList(items).ShowDialog();
 			}
