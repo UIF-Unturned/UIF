@@ -44,32 +44,33 @@
             this.MarkFolderAsDefaultBtn = new System.Windows.Forms.PictureBox();
             this.LocalizationComboBox = new System.Windows.Forms.ComboBox();
             this.LocalizationLabel = new System.Windows.Forms.Label();
+            this.PlusFldrBtn = new System.Windows.Forms.PictureBox();
             this.LoadModsToRamBtn = new System.Windows.Forms.Button();
             this.OpenFldrBtn = new System.Windows.Forms.PictureBox();
             this.MinusFldrBtn = new System.Windows.Forms.PictureBox();
-            this.PlusFldrBtn = new System.Windows.Forms.PictureBox();
             this.FldrComboBox = new System.Windows.Forms.ComboBox();
             this.InfoBtn = new System.Windows.Forms.PictureBox();
-            this.AbouGroupBox = new System.Windows.Forms.GroupBox();
+            this.AboutGroupBox = new System.Windows.Forms.GroupBox();
+            this.RUAuthorLabel = new System.Windows.Forms.Label();
             this.DiscordLink = new System.Windows.Forms.PictureBox();
             this.GitHubLink = new System.Windows.Forms.PictureBox();
             this.MainGroupBox.SuspendLayout();
             this.SettingsGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MarkFolderAsDefaultBtn)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PlusFldrBtn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.OpenFldrBtn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MinusFldrBtn)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PlusFldrBtn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.InfoBtn)).BeginInit();
-            this.AbouGroupBox.SuspendLayout();
+            this.AboutGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DiscordLink)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GitHubLink)).BeginInit();
             this.SuspendLayout();
             // 
             // NameTextBox
             // 
-            this.NameTextBox.Location = new System.Drawing.Point(152, 19);
+            this.NameTextBox.Location = new System.Drawing.Point(190, 19);
             this.NameTextBox.Name = "NameTextBox";
-            this.NameTextBox.Size = new System.Drawing.Size(207, 20);
+            this.NameTextBox.Size = new System.Drawing.Size(169, 20);
             this.NameTextBox.TabIndex = 5;
             this.NameTextBox.TabStop = false;
             // 
@@ -125,9 +126,9 @@
             // 
             // IDBox
             // 
-            this.IDBox.Location = new System.Drawing.Point(152, 45);
+            this.IDBox.Location = new System.Drawing.Point(190, 45);
             this.IDBox.Name = "IDBox";
-            this.IDBox.Size = new System.Drawing.Size(207, 20);
+            this.IDBox.Size = new System.Drawing.Size(169, 20);
             this.IDBox.TabIndex = 2;
             this.IDBox.TabStop = false;
             // 
@@ -193,10 +194,10 @@
             this.SettingsGroupBox.Controls.Add(this.MarkFolderAsDefaultBtn);
             this.SettingsGroupBox.Controls.Add(this.LocalizationComboBox);
             this.SettingsGroupBox.Controls.Add(this.LocalizationLabel);
+            this.SettingsGroupBox.Controls.Add(this.PlusFldrBtn);
             this.SettingsGroupBox.Controls.Add(this.LoadModsToRamBtn);
             this.SettingsGroupBox.Controls.Add(this.OpenFldrBtn);
             this.SettingsGroupBox.Controls.Add(this.MinusFldrBtn);
-            this.SettingsGroupBox.Controls.Add(this.PlusFldrBtn);
             this.SettingsGroupBox.Controls.Add(this.FldrComboBox);
             this.SettingsGroupBox.Controls.Add(this.InfoBtn);
             this.SettingsGroupBox.Controls.Add(this.SelectFldrLabel);
@@ -211,7 +212,8 @@
             // 
             this.MarkFolderAsDefaultBtn.Image = ((System.Drawing.Image)(resources.GetObject("MarkFolderAsDefaultBtn.Image")));
             this.MarkFolderAsDefaultBtn.InitialImage = ((System.Drawing.Image)(resources.GetObject("MarkFolderAsDefaultBtn.InitialImage")));
-            this.MarkFolderAsDefaultBtn.Location = new System.Drawing.Point(395, 13);
+            this.MarkFolderAsDefaultBtn.Location = new System.Drawing.Point(396, 13);
+            this.MarkFolderAsDefaultBtn.Margin = new System.Windows.Forms.Padding(2);
             this.MarkFolderAsDefaultBtn.Name = "MarkFolderAsDefaultBtn";
             this.MarkFolderAsDefaultBtn.Size = new System.Drawing.Size(24, 23);
             this.MarkFolderAsDefaultBtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -222,9 +224,9 @@
             // LocalizationComboBox
             // 
             this.LocalizationComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.LocalizationComboBox.Location = new System.Drawing.Point(343, 69);
+            this.LocalizationComboBox.Location = new System.Drawing.Point(358, 69);
             this.LocalizationComboBox.Name = "LocalizationComboBox";
-            this.LocalizationComboBox.Size = new System.Drawing.Size(106, 21);
+            this.LocalizationComboBox.Size = new System.Drawing.Size(92, 21);
             this.LocalizationComboBox.TabIndex = 9;
             this.LocalizationComboBox.TabStop = false;
             this.LocalizationComboBox.SelectedIndexChanged += new System.EventHandler(this.LocalizationComboBox_SelectedIndexChanged);
@@ -239,6 +241,18 @@
             this.LocalizationLabel.Size = new System.Drawing.Size(82, 16);
             this.LocalizationLabel.TabIndex = 8;
             this.LocalizationLabel.Text = "Localization:";
+            // 
+            // PlusFldrBtn
+            // 
+            this.PlusFldrBtn.Image = ((System.Drawing.Image)(resources.GetObject("PlusFldrBtn.Image")));
+            this.PlusFldrBtn.InitialImage = ((System.Drawing.Image)(resources.GetObject("PlusFldrBtn.InitialImage")));
+            this.PlusFldrBtn.Location = new System.Drawing.Point(337, 13);
+            this.PlusFldrBtn.Name = "PlusFldrBtn";
+            this.PlusFldrBtn.Size = new System.Drawing.Size(24, 23);
+            this.PlusFldrBtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.PlusFldrBtn.TabIndex = 4;
+            this.PlusFldrBtn.TabStop = false;
+            this.PlusFldrBtn.Click += new System.EventHandler(this.PlusFldrBtn_Click);
             // 
             // LoadModsToRamBtn
             // 
@@ -268,25 +282,13 @@
             // 
             this.MinusFldrBtn.Image = ((System.Drawing.Image)(resources.GetObject("MinusFldrBtn.Image")));
             this.MinusFldrBtn.InitialImage = ((System.Drawing.Image)(resources.GetObject("MinusFldrBtn.InitialImage")));
-            this.MinusFldrBtn.Location = new System.Drawing.Point(365, 13);
+            this.MinusFldrBtn.Location = new System.Drawing.Point(367, 13);
             this.MinusFldrBtn.Name = "MinusFldrBtn";
             this.MinusFldrBtn.Size = new System.Drawing.Size(24, 23);
             this.MinusFldrBtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.MinusFldrBtn.TabIndex = 5;
             this.MinusFldrBtn.TabStop = false;
             this.MinusFldrBtn.Click += new System.EventHandler(this.MinusFldrBtn_Click);
-            // 
-            // PlusFldrBtn
-            // 
-            this.PlusFldrBtn.Image = ((System.Drawing.Image)(resources.GetObject("PlusFldrBtn.Image")));
-            this.PlusFldrBtn.InitialImage = ((System.Drawing.Image)(resources.GetObject("PlusFldrBtn.InitialImage")));
-            this.PlusFldrBtn.Location = new System.Drawing.Point(335, 13);
-            this.PlusFldrBtn.Name = "PlusFldrBtn";
-            this.PlusFldrBtn.Size = new System.Drawing.Size(24, 23);
-            this.PlusFldrBtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.PlusFldrBtn.TabIndex = 4;
-            this.PlusFldrBtn.TabStop = false;
-            this.PlusFldrBtn.Click += new System.EventHandler(this.PlusFldrBtn_Click);
             // 
             // FldrComboBox
             // 
@@ -303,7 +305,7 @@
             // 
             this.InfoBtn.Image = global::UIF.Properties.Resources.info_icon;
             this.InfoBtn.InitialImage = global::UIF.Properties.Resources.info_icon;
-            this.InfoBtn.Location = new System.Drawing.Point(169, 13);
+            this.InfoBtn.Location = new System.Drawing.Point(193, 13);
             this.InfoBtn.Name = "InfoBtn";
             this.InfoBtn.Size = new System.Drawing.Size(24, 23);
             this.InfoBtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -311,18 +313,29 @@
             this.InfoBtn.TabStop = false;
             this.InfoBtn.Click += new System.EventHandler(this.InfoBtn_Click);
             // 
-            // AbouGroupBox
+            // AboutGroupBox
             // 
-            this.AbouGroupBox.Controls.Add(this.VersionLabel);
-            this.AbouGroupBox.Controls.Add(this.CopyrightLabel);
-            this.AbouGroupBox.Controls.Add(this.DiscordLink);
-            this.AbouGroupBox.Controls.Add(this.GitHubLink);
-            this.AbouGroupBox.Location = new System.Drawing.Point(12, 227);
-            this.AbouGroupBox.Name = "AbouGroupBox";
-            this.AbouGroupBox.Size = new System.Drawing.Size(455, 65);
-            this.AbouGroupBox.TabIndex = 6;
-            this.AbouGroupBox.TabStop = false;
-            this.AbouGroupBox.Text = "About";
+            this.AboutGroupBox.Controls.Add(this.RUAuthorLabel);
+            this.AboutGroupBox.Controls.Add(this.VersionLabel);
+            this.AboutGroupBox.Controls.Add(this.CopyrightLabel);
+            this.AboutGroupBox.Controls.Add(this.DiscordLink);
+            this.AboutGroupBox.Controls.Add(this.GitHubLink);
+            this.AboutGroupBox.Location = new System.Drawing.Point(12, 227);
+            this.AboutGroupBox.Name = "AboutGroupBox";
+            this.AboutGroupBox.Size = new System.Drawing.Size(455, 65);
+            this.AboutGroupBox.TabIndex = 6;
+            this.AboutGroupBox.TabStop = false;
+            this.AboutGroupBox.Text = "About";
+            // 
+            // RUAuthorLabel
+            // 
+            this.RUAuthorLabel.AutoSize = true;
+            this.RUAuthorLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.RUAuthorLabel.Location = new System.Drawing.Point(240, 29);
+            this.RUAuthorLabel.Name = "RUAuthorLabel";
+            this.RUAuthorLabel.Size = new System.Drawing.Size(0, 18);
+            this.RUAuthorLabel.TabIndex = 5;
+            this.RUAuthorLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // DiscordLink
             // 
@@ -355,7 +368,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(479, 306);
-            this.Controls.Add(this.AbouGroupBox);
+            this.Controls.Add(this.AboutGroupBox);
             this.Controls.Add(this.SettingsGroupBox);
             this.Controls.Add(this.MainGroupBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -368,12 +381,12 @@
             this.SettingsGroupBox.ResumeLayout(false);
             this.SettingsGroupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MarkFolderAsDefaultBtn)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PlusFldrBtn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.OpenFldrBtn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.MinusFldrBtn)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PlusFldrBtn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.InfoBtn)).EndInit();
-            this.AbouGroupBox.ResumeLayout(false);
-            this.AbouGroupBox.PerformLayout();
+            this.AboutGroupBox.ResumeLayout(false);
+            this.AboutGroupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DiscordLink)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GitHubLink)).EndInit();
             this.ResumeLayout(false);
@@ -397,7 +410,7 @@
         private System.Windows.Forms.Label VersionLabel;
         private System.Windows.Forms.GroupBox SettingsGroupBox;
         private System.Windows.Forms.PictureBox InfoBtn;
-        private System.Windows.Forms.GroupBox AbouGroupBox;
+        private System.Windows.Forms.GroupBox AboutGroupBox;
         private System.Windows.Forms.ComboBox FldrComboBox;
         private System.Windows.Forms.PictureBox MinusFldrBtn;
         private System.Windows.Forms.PictureBox PlusFldrBtn;
@@ -405,6 +418,7 @@
         private System.Windows.Forms.Button LoadModsToRamBtn;
         private System.Windows.Forms.ComboBox LocalizationComboBox;
         private System.Windows.Forms.Label LocalizationLabel;
+        private System.Windows.Forms.Label RUAuthorLabel;
         private System.Windows.Forms.PictureBox MarkFolderAsDefaultBtn;
     }
 }
