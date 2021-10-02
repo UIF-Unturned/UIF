@@ -117,7 +117,63 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="SearchNameBtn" xml:space="preserve">
+    <value>Поиск</value>
+  </data>
+  <data name="EnterIdLabel" xml:space="preserve">
+    <value>Введите id предмета:</value>
+  </data>
+  <data name="MainGroupBox" xml:space="preserve">
+    <value>Главное</value>
+  </data>
+  <data name="AboutGroupBox" xml:space="preserve">
+    <value>Информация</value>
+  </data>
+  <data name="MinusFldrBtnTip" xml:space="preserve">
+    <value>Удалить выбранную папку</value>
+  </data>
+  <data name="SearchIDBtn" xml:space="preserve">
+    <value>Поиск</value>
+  </data>
+  <data name="OpenFldrBtnTip" xml:space="preserve">
+    <value>Открыть выбранную папку</value>
+  </data>
+  <data name="AllItemsBtn" xml:space="preserve">
+    <value>Просмотр элементов по категориям</value>
+  </data>
+  <data name="LocalizationLabel" xml:space="preserve">
+    <value>Локализация:</value>
+  </data>
+  <data name="CopyrightLabel" xml:space="preserve">
+    <value>(с) YMO4</value>
+  </data>
   <data name="LoadModsToRamBtn" xml:space="preserve">
     <value>Загрузить моды</value>
+  </data>
+  <data name="ModsTip" xml:space="preserve">
+    <value>Путь к папке с модами.
+
+Пример: C:\Program Files (x86)\Steam\steamapps\workshop\content\304930
+
+
+Перед его использованием вам необходимо удалить все загруженные моды и войти на сервер.</value>
+  </data>
+  <data name="PlusFldrBtnTip" xml:space="preserve">
+    <value>Добавить выбранную папку</value>
+  </data>
+  <data name="SettingsGroupBox" xml:space="preserve">
+    <value>Настройки</value>
+  </data>
+  <data name="SelectFldrLabel" xml:space="preserve">
+    <value>Выбранная папка с модами:</value>
+  </data>
+  <data name="EnterNameLabel" xml:space="preserve">
+    <value>Введите имя предмета:</value>
+  </data>
+  <data name="RUAuthorLabel" xml:space="preserve">
+    <value>(c) Русифицировал BoomViz</value>
+  </data>
+  <data name="UnloadMods" xml:space="preserve">
+    <value>Выгрузить моды</value>
   </data>
 </root>

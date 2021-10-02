@@ -41,14 +41,16 @@
             this.NameLabel = new System.Windows.Forms.Label();
             this.IdToClipboard = new System.Windows.Forms.Button();
             this.ItemStatsGroupBox = new System.Windows.Forms.GroupBox();
-            this.LinkedModulesBtn = new System.Windows.Forms.Button();
-            this.LinkedModulesLabel = new System.Windows.Forms.Label();
             this.LinkedGunsBtn = new System.Windows.Forms.Button();
-            this.LinkedGunsLabel = new System.Windows.Forms.Label();
+            this.LinkedModulesBtn = new System.Windows.Forms.Button();
             this.LinkedAmmoBtn = new System.Windows.Forms.Button();
+            this.pellets = new System.Windows.Forms.TextBox();
+            this.PelletsLabel = new System.Windows.Forms.Label();
+            this.LinkedModulesLabel = new System.Windows.Forms.Label();
+            this.LinkedGunsLabel = new System.Windows.Forms.Label();
             this.LinkedAmmoLabel = new System.Windows.Forms.Label();
             this.amount = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.AmmoAmountLabel = new System.Windows.Forms.Label();
             this.damage = new System.Windows.Forms.TextBox();
             this.volume = new System.Windows.Forms.TextBox();
             this.shake = new System.Windows.Forms.TextBox();
@@ -68,9 +70,9 @@
             this.ItemHealthLabel = new System.Windows.Forms.Label();
             this.EngineLabel = new System.Windows.Forms.Label();
             this.RangeLabel = new System.Windows.Forms.Label();
-            this.ItemType2Label = new System.Windows.Forms.Label();
+            this.TypeLabel = new System.Windows.Forms.Label();
             this.BuildingsDamageLabel = new System.Windows.Forms.Label();
-            this.ItemTypeLabel = new System.Windows.Forms.Label();
+            this.UseableLabel = new System.Windows.Forms.Label();
             this.PlayerDamageLabel = new System.Windows.Forms.Label();
             this.BodyDamageLabel = new System.Windows.Forms.Label();
             this.HeadDamageLabel = new System.Windows.Forms.Label();
@@ -81,6 +83,8 @@
             this.SortCapacityBtn = new System.Windows.Forms.Button();
             this.SortProtectionBtn = new System.Windows.Forms.Button();
             this.SortingGroupBox = new System.Windows.Forms.GroupBox();
+            this.SortByPelletsBtn = new System.Windows.Forms.Button();
+            this.SortByAmmoAmountBtn = new System.Windows.Forms.Button();
             this.SortByLabel = new System.Windows.Forms.Label();
             this.SortByBarrelDamageBtn = new System.Windows.Forms.Button();
             this.SortByVolumeBtn = new System.Windows.Forms.Button();
@@ -89,11 +93,7 @@
             this.SortBarricadeCapacityBtn = new System.Windows.Forms.Button();
             this.SortVehicleHealthBtn = new System.Windows.Forms.Button();
             this.SortDamageBuildingsBtn = new System.Windows.Forms.Button();
-            this.SortByAmmoAmountBtn = new System.Windows.Forms.Button();
-            this.pellets = new System.Windows.Forms.TextBox();
-            this.PelletsLabel = new System.Windows.Forms.Label();
-            this.SortByPelletsBtn = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.MixBtn = new System.Windows.Forms.Button();
             this.InfoGroupBox.SuspendLayout();
             this.ItemStatsGroupBox.SuspendLayout();
             this.SortingGroupBox.SuspendLayout();
@@ -114,7 +114,7 @@
             this.ResultsListBox.FormattingEnabled = true;
             this.ResultsListBox.Location = new System.Drawing.Point(12, 29);
             this.ResultsListBox.Name = "ResultsListBox";
-            this.ResultsListBox.Size = new System.Drawing.Size(167, 537);
+            this.ResultsListBox.Size = new System.Drawing.Size(167, 550);
             this.ResultsListBox.TabIndex = 6;
             this.ResultsListBox.TabStop = false;
             this.ResultsListBox.SelectedIndexChanged += new System.EventHandler(this.ResultsListBox_SelectedIndexChanged);
@@ -232,7 +232,7 @@
             this.ItemStatsGroupBox.Controls.Add(this.LinkedGunsLabel);
             this.ItemStatsGroupBox.Controls.Add(this.LinkedAmmoLabel);
             this.ItemStatsGroupBox.Controls.Add(this.amount);
-            this.ItemStatsGroupBox.Controls.Add(this.label1);
+            this.ItemStatsGroupBox.Controls.Add(this.AmmoAmountLabel);
             this.ItemStatsGroupBox.Controls.Add(this.damage);
             this.ItemStatsGroupBox.Controls.Add(this.volume);
             this.ItemStatsGroupBox.Controls.Add(this.shake);
@@ -252,9 +252,9 @@
             this.ItemStatsGroupBox.Controls.Add(this.ItemHealthLabel);
             this.ItemStatsGroupBox.Controls.Add(this.EngineLabel);
             this.ItemStatsGroupBox.Controls.Add(this.RangeLabel);
-            this.ItemStatsGroupBox.Controls.Add(this.ItemType2Label);
+            this.ItemStatsGroupBox.Controls.Add(this.TypeLabel);
             this.ItemStatsGroupBox.Controls.Add(this.BuildingsDamageLabel);
-            this.ItemStatsGroupBox.Controls.Add(this.ItemTypeLabel);
+            this.ItemStatsGroupBox.Controls.Add(this.UseableLabel);
             this.ItemStatsGroupBox.Controls.Add(this.PlayerDamageLabel);
             this.ItemStatsGroupBox.Controls.Add(this.BodyDamageLabel);
             this.ItemStatsGroupBox.Controls.Add(this.HeadDamageLabel);
@@ -263,20 +263,61 @@
             this.ItemStatsGroupBox.Controls.Add(this.item_capacity);
             this.ItemStatsGroupBox.Location = new System.Drawing.Point(185, 164);
             this.ItemStatsGroupBox.Name = "ItemStatsGroupBox";
-            this.ItemStatsGroupBox.Size = new System.Drawing.Size(344, 402);
+            this.ItemStatsGroupBox.Size = new System.Drawing.Size(344, 414);
             this.ItemStatsGroupBox.TabIndex = 4;
             this.ItemStatsGroupBox.TabStop = false;
             this.ItemStatsGroupBox.Text = "Item Stats";
             // 
+            // LinkedGunsBtn
+            // 
+            this.LinkedGunsBtn.Location = new System.Drawing.Point(258, 384);
+            this.LinkedGunsBtn.Name = "LinkedGunsBtn";
+            this.LinkedGunsBtn.Size = new System.Drawing.Size(80, 23);
+            this.LinkedGunsBtn.TabIndex = 34;
+            this.LinkedGunsBtn.Text = "Click!";
+            this.LinkedGunsBtn.UseVisualStyleBackColor = true;
+            this.LinkedGunsBtn.Click += new System.EventHandler(this.LinkedGunsBtn_Click);
+            // 
             // LinkedModulesBtn
             // 
-            this.LinkedModulesBtn.Location = new System.Drawing.Point(259, 359);
+            this.LinkedModulesBtn.Location = new System.Drawing.Point(258, 362);
             this.LinkedModulesBtn.Name = "LinkedModulesBtn";
-            this.LinkedModulesBtn.Size = new System.Drawing.Size(79, 23);
+            this.LinkedModulesBtn.Size = new System.Drawing.Size(80, 23);
             this.LinkedModulesBtn.TabIndex = 36;
             this.LinkedModulesBtn.Text = "Click!";
             this.LinkedModulesBtn.UseVisualStyleBackColor = true;
             this.LinkedModulesBtn.Click += new System.EventHandler(this.LinkedModulesBtn_Click);
+            // 
+            // LinkedAmmoBtn
+            // 
+            this.LinkedAmmoBtn.Location = new System.Drawing.Point(258, 340);
+            this.LinkedAmmoBtn.Name = "LinkedAmmoBtn";
+            this.LinkedAmmoBtn.Size = new System.Drawing.Size(80, 23);
+            this.LinkedAmmoBtn.TabIndex = 32;
+            this.LinkedAmmoBtn.Text = "Click!";
+            this.LinkedAmmoBtn.UseVisualStyleBackColor = true;
+            this.LinkedAmmoBtn.Click += new System.EventHandler(this.LinkedAmmoBtn_Click);
+            // 
+            // pellets
+            // 
+            this.pellets.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.pellets.Location = new System.Drawing.Point(259, 318);
+            this.pellets.Name = "pellets";
+            this.pellets.ReadOnly = true;
+            this.pellets.Size = new System.Drawing.Size(79, 22);
+            this.pellets.TabIndex = 37;
+            this.pellets.TabStop = false;
+            this.pellets.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // PelletsLabel
+            // 
+            this.PelletsLabel.AutoSize = true;
+            this.PelletsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.PelletsLabel.Location = new System.Drawing.Point(6, 316);
+            this.PelletsLabel.Name = "PelletsLabel";
+            this.PelletsLabel.Size = new System.Drawing.Size(60, 20);
+            this.PelletsLabel.TabIndex = 38;
+            this.PelletsLabel.Text = "Pellets:";
             // 
             // LinkedModulesLabel
             // 
@@ -288,16 +329,6 @@
             this.LinkedModulesLabel.TabIndex = 35;
             this.LinkedModulesLabel.Text = "Linked modules:";
             // 
-            // LinkedGunsBtn
-            // 
-            this.LinkedGunsBtn.Location = new System.Drawing.Point(259, 379);
-            this.LinkedGunsBtn.Name = "LinkedGunsBtn";
-            this.LinkedGunsBtn.Size = new System.Drawing.Size(79, 23);
-            this.LinkedGunsBtn.TabIndex = 34;
-            this.LinkedGunsBtn.Text = "Click!";
-            this.LinkedGunsBtn.UseVisualStyleBackColor = true;
-            this.LinkedGunsBtn.Click += new System.EventHandler(this.LinkedGunsBtn_Click);
-            // 
             // LinkedGunsLabel
             // 
             this.LinkedGunsLabel.AutoSize = true;
@@ -307,16 +338,6 @@
             this.LinkedGunsLabel.Size = new System.Drawing.Size(99, 20);
             this.LinkedGunsLabel.TabIndex = 33;
             this.LinkedGunsLabel.Text = "Linked guns:";
-            // 
-            // LinkedAmmoBtn
-            // 
-            this.LinkedAmmoBtn.Location = new System.Drawing.Point(259, 339);
-            this.LinkedAmmoBtn.Name = "LinkedAmmoBtn";
-            this.LinkedAmmoBtn.Size = new System.Drawing.Size(79, 23);
-            this.LinkedAmmoBtn.TabIndex = 32;
-            this.LinkedAmmoBtn.Text = "Click!";
-            this.LinkedAmmoBtn.UseVisualStyleBackColor = true;
-            this.LinkedAmmoBtn.Click += new System.EventHandler(this.LinkedAmmoBtn_Click);
             // 
             // LinkedAmmoLabel
             // 
@@ -339,15 +360,15 @@
             this.amount.TabStop = false;
             this.amount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // label1
+            // AmmoAmountLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(6, 296);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(117, 20);
-            this.label1.TabIndex = 29;
-            this.label1.Text = "Ammo amount:";
+            this.AmmoAmountLabel.AutoSize = true;
+            this.AmmoAmountLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.AmmoAmountLabel.Location = new System.Drawing.Point(6, 296);
+            this.AmmoAmountLabel.Name = "AmmoAmountLabel";
+            this.AmmoAmountLabel.Size = new System.Drawing.Size(117, 20);
+            this.AmmoAmountLabel.TabIndex = 29;
+            this.AmmoAmountLabel.Text = "Ammo amount:";
             // 
             // damage
             // 
@@ -552,15 +573,15 @@
             this.RangeLabel.TabIndex = 2;
             this.RangeLabel.Text = "Range:";
             // 
-            // ItemType2Label
+            // TypeLabel
             // 
-            this.ItemType2Label.AutoSize = true;
-            this.ItemType2Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ItemType2Label.Location = new System.Drawing.Point(6, 176);
-            this.ItemType2Label.Name = "ItemType2Label";
-            this.ItemType2Label.Size = new System.Drawing.Size(47, 20);
-            this.ItemType2Label.TabIndex = 3;
-            this.ItemType2Label.Text = "Type:";
+            this.TypeLabel.AutoSize = true;
+            this.TypeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.TypeLabel.Location = new System.Drawing.Point(6, 176);
+            this.TypeLabel.Name = "TypeLabel";
+            this.TypeLabel.Size = new System.Drawing.Size(47, 20);
+            this.TypeLabel.TabIndex = 3;
+            this.TypeLabel.Text = "Type:";
             // 
             // BuildingsDamageLabel
             // 
@@ -572,15 +593,15 @@
             this.BuildingsDamageLabel.TabIndex = 6;
             this.BuildingsDamageLabel.Text = "Damage to buildings:";
             // 
-            // ItemTypeLabel
+            // UseableLabel
             // 
-            this.ItemTypeLabel.AutoSize = true;
-            this.ItemTypeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ItemTypeLabel.Location = new System.Drawing.Point(6, 156);
-            this.ItemTypeLabel.Name = "ItemTypeLabel";
-            this.ItemTypeLabel.Size = new System.Drawing.Size(72, 20);
-            this.ItemTypeLabel.TabIndex = 7;
-            this.ItemTypeLabel.Text = "Useable:";
+            this.UseableLabel.AutoSize = true;
+            this.UseableLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.UseableLabel.Location = new System.Drawing.Point(6, 156);
+            this.UseableLabel.Name = "UseableLabel";
+            this.UseableLabel.Size = new System.Drawing.Size(72, 20);
+            this.UseableLabel.TabIndex = 7;
+            this.UseableLabel.Text = "Useable:";
             // 
             // PlayerDamageLabel
             // 
@@ -645,7 +666,7 @@
             // 
             // SortDamagePlayersBtn
             // 
-            this.SortDamagePlayersBtn.Location = new System.Drawing.Point(13, 108);
+            this.SortDamagePlayersBtn.Location = new System.Drawing.Point(9, 106);
             this.SortDamagePlayersBtn.Name = "SortDamagePlayersBtn";
             this.SortDamagePlayersBtn.Size = new System.Drawing.Size(173, 23);
             this.SortDamagePlayersBtn.TabIndex = 4;
@@ -656,7 +677,7 @@
             // 
             // SortCapacityBtn
             // 
-            this.SortCapacityBtn.Location = new System.Drawing.Point(13, 50);
+            this.SortCapacityBtn.Location = new System.Drawing.Point(9, 49);
             this.SortCapacityBtn.Name = "SortCapacityBtn";
             this.SortCapacityBtn.Size = new System.Drawing.Size(173, 23);
             this.SortCapacityBtn.TabIndex = 3;
@@ -667,7 +688,7 @@
             // 
             // SortProtectionBtn
             // 
-            this.SortProtectionBtn.Location = new System.Drawing.Point(13, 79);
+            this.SortProtectionBtn.Location = new System.Drawing.Point(9, 78);
             this.SortProtectionBtn.Name = "SortProtectionBtn";
             this.SortProtectionBtn.Size = new System.Drawing.Size(173, 23);
             this.SortProtectionBtn.TabIndex = 2;
@@ -688,30 +709,52 @@
             this.SortingGroupBox.Controls.Add(this.SortBarricadeCapacityBtn);
             this.SortingGroupBox.Controls.Add(this.SortVehicleHealthBtn);
             this.SortingGroupBox.Controls.Add(this.SortDamageBuildingsBtn);
-            this.SortingGroupBox.Controls.Add(this.button2);
+            this.SortingGroupBox.Controls.Add(this.MixBtn);
             this.SortingGroupBox.Controls.Add(this.SortProtectionBtn);
             this.SortingGroupBox.Controls.Add(this.SortCapacityBtn);
             this.SortingGroupBox.Controls.Add(this.SortDamagePlayersBtn);
-            this.SortingGroupBox.Location = new System.Drawing.Point(535, 29);
+            this.SortingGroupBox.Location = new System.Drawing.Point(536, 29);
             this.SortingGroupBox.Name = "SortingGroupBox";
-            this.SortingGroupBox.Size = new System.Drawing.Size(192, 539);
+            this.SortingGroupBox.Size = new System.Drawing.Size(191, 549);
             this.SortingGroupBox.TabIndex = 0;
             this.SortingGroupBox.TabStop = false;
             this.SortingGroupBox.Text = "Sorting";
             // 
+            // SortByPelletsBtn
+            // 
+            this.SortByPelletsBtn.Location = new System.Drawing.Point(9, 369);
+            this.SortByPelletsBtn.Name = "SortByPelletsBtn";
+            this.SortByPelletsBtn.Size = new System.Drawing.Size(173, 23);
+            this.SortByPelletsBtn.TabIndex = 13;
+            this.SortByPelletsBtn.TabStop = false;
+            this.SortByPelletsBtn.Text = "Pellets";
+            this.SortByPelletsBtn.UseVisualStyleBackColor = true;
+            this.SortByPelletsBtn.Click += new System.EventHandler(this.SortByPelletsBtn_Click);
+            // 
+            // SortByAmmoAmountBtn
+            // 
+            this.SortByAmmoAmountBtn.Location = new System.Drawing.Point(9, 340);
+            this.SortByAmmoAmountBtn.Name = "SortByAmmoAmountBtn";
+            this.SortByAmmoAmountBtn.Size = new System.Drawing.Size(173, 23);
+            this.SortByAmmoAmountBtn.TabIndex = 12;
+            this.SortByAmmoAmountBtn.TabStop = false;
+            this.SortByAmmoAmountBtn.Text = "Ammo amount";
+            this.SortByAmmoAmountBtn.UseVisualStyleBackColor = true;
+            this.SortByAmmoAmountBtn.Click += new System.EventHandler(this.SortByAmmoAmountBtn_Click);
+            // 
             // SortByLabel
             // 
             this.SortByLabel.AutoSize = true;
-            this.SortByLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.SortByLabel.Location = new System.Drawing.Point(32, 16);
+            this.SortByLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 19F);
+            this.SortByLabel.Location = new System.Drawing.Point(11, 15);
             this.SortByLabel.Name = "SortByLabel";
-            this.SortByLabel.Size = new System.Drawing.Size(131, 31);
+            this.SortByLabel.Size = new System.Drawing.Size(122, 30);
             this.SortByLabel.TabIndex = 11;
             this.SortByLabel.Text = "Sort by ...";
             // 
             // SortByBarrelDamageBtn
             // 
-            this.SortByBarrelDamageBtn.Location = new System.Drawing.Point(13, 282);
+            this.SortByBarrelDamageBtn.Location = new System.Drawing.Point(9, 281);
             this.SortByBarrelDamageBtn.Name = "SortByBarrelDamageBtn";
             this.SortByBarrelDamageBtn.Size = new System.Drawing.Size(173, 23);
             this.SortByBarrelDamageBtn.TabIndex = 10;
@@ -722,7 +765,7 @@
             // 
             // SortByVolumeBtn
             // 
-            this.SortByVolumeBtn.Location = new System.Drawing.Point(13, 311);
+            this.SortByVolumeBtn.Location = new System.Drawing.Point(9, 310);
             this.SortByVolumeBtn.Name = "SortByVolumeBtn";
             this.SortByVolumeBtn.Size = new System.Drawing.Size(173, 23);
             this.SortByVolumeBtn.TabIndex = 9;
@@ -733,7 +776,7 @@
             // 
             // SortByShakeBtn
             // 
-            this.SortByShakeBtn.Location = new System.Drawing.Point(13, 253);
+            this.SortByShakeBtn.Location = new System.Drawing.Point(9, 252);
             this.SortByShakeBtn.Name = "SortByShakeBtn";
             this.SortByShakeBtn.Size = new System.Drawing.Size(173, 23);
             this.SortByShakeBtn.TabIndex = 8;
@@ -744,7 +787,7 @@
             // 
             // SortByBuildingHealthBtn
             // 
-            this.SortByBuildingHealthBtn.Location = new System.Drawing.Point(13, 224);
+            this.SortByBuildingHealthBtn.Location = new System.Drawing.Point(9, 223);
             this.SortByBuildingHealthBtn.Name = "SortByBuildingHealthBtn";
             this.SortByBuildingHealthBtn.Size = new System.Drawing.Size(173, 23);
             this.SortByBuildingHealthBtn.TabIndex = 7;
@@ -755,7 +798,7 @@
             // 
             // SortBarricadeCapacityBtn
             // 
-            this.SortBarricadeCapacityBtn.Location = new System.Drawing.Point(13, 195);
+            this.SortBarricadeCapacityBtn.Location = new System.Drawing.Point(9, 193);
             this.SortBarricadeCapacityBtn.Name = "SortBarricadeCapacityBtn";
             this.SortBarricadeCapacityBtn.Size = new System.Drawing.Size(173, 23);
             this.SortBarricadeCapacityBtn.TabIndex = 6;
@@ -766,7 +809,7 @@
             // 
             // SortVehicleHealthBtn
             // 
-            this.SortVehicleHealthBtn.Location = new System.Drawing.Point(13, 166);
+            this.SortVehicleHealthBtn.Location = new System.Drawing.Point(9, 164);
             this.SortVehicleHealthBtn.Name = "SortVehicleHealthBtn";
             this.SortVehicleHealthBtn.Size = new System.Drawing.Size(173, 23);
             this.SortVehicleHealthBtn.TabIndex = 5;
@@ -777,7 +820,7 @@
             // 
             // SortDamageBuildingsBtn
             // 
-            this.SortDamageBuildingsBtn.Location = new System.Drawing.Point(13, 137);
+            this.SortDamageBuildingsBtn.Location = new System.Drawing.Point(9, 135);
             this.SortDamageBuildingsBtn.Name = "SortDamageBuildingsBtn";
             this.SortDamageBuildingsBtn.Size = new System.Drawing.Size(173, 23);
             this.SortDamageBuildingsBtn.TabIndex = 0;
@@ -786,65 +829,22 @@
             this.SortDamageBuildingsBtn.UseVisualStyleBackColor = true;
             this.SortDamageBuildingsBtn.Click += new System.EventHandler(this.SortDamageBuildingsBtn_Click);
             // 
-            // SortByAmmoAmountBtn
+            // MixBtn
             // 
-            this.SortByAmmoAmountBtn.Location = new System.Drawing.Point(13, 340);
-            this.SortByAmmoAmountBtn.Name = "SortByAmmoAmountBtn";
-            this.SortByAmmoAmountBtn.Size = new System.Drawing.Size(173, 23);
-            this.SortByAmmoAmountBtn.TabIndex = 12;
-            this.SortByAmmoAmountBtn.TabStop = false;
-            this.SortByAmmoAmountBtn.Text = "Ammo amount";
-            this.SortByAmmoAmountBtn.UseVisualStyleBackColor = true;
-            this.SortByAmmoAmountBtn.Click += new System.EventHandler(this.SortByAmmoAmountBtn_Click);
-            // 
-            // pellets
-            // 
-            this.pellets.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.pellets.Location = new System.Drawing.Point(259, 318);
-            this.pellets.Name = "pellets";
-            this.pellets.ReadOnly = true;
-            this.pellets.Size = new System.Drawing.Size(79, 22);
-            this.pellets.TabIndex = 37;
-            this.pellets.TabStop = false;
-            this.pellets.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // PelletsLabel
-            // 
-            this.PelletsLabel.AutoSize = true;
-            this.PelletsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.PelletsLabel.Location = new System.Drawing.Point(6, 316);
-            this.PelletsLabel.Name = "PelletsLabel";
-            this.PelletsLabel.Size = new System.Drawing.Size(60, 20);
-            this.PelletsLabel.TabIndex = 38;
-            this.PelletsLabel.Text = "Pellets:";
-            // 
-            // SortByPelletsBtn
-            // 
-            this.SortByPelletsBtn.Location = new System.Drawing.Point(13, 369);
-            this.SortByPelletsBtn.Name = "SortByPelletsBtn";
-            this.SortByPelletsBtn.Size = new System.Drawing.Size(173, 23);
-            this.SortByPelletsBtn.TabIndex = 13;
-            this.SortByPelletsBtn.TabStop = false;
-            this.SortByPelletsBtn.Text = "Pellets";
-            this.SortByPelletsBtn.UseVisualStyleBackColor = true;
-            this.SortByPelletsBtn.Click += new System.EventHandler(this.SortByPelletsBtn_Click);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(13, 427);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(173, 23);
-            this.button2.TabIndex = 1;
-            this.button2.TabStop = false;
-            this.button2.Text = "Mix";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.MixBtn_Click);
+            this.MixBtn.Location = new System.Drawing.Point(13, 520);
+            this.MixBtn.Name = "MixBtn";
+            this.MixBtn.Size = new System.Drawing.Size(173, 23);
+            this.MixBtn.TabIndex = 1;
+            this.MixBtn.TabStop = false;
+            this.MixBtn.Text = "Mix";
+            this.MixBtn.UseVisualStyleBackColor = true;
+            this.MixBtn.Click += new System.EventHandler(this.MixBtn_Click);
             // 
             // ItemList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(734, 577);
+            this.ClientSize = new System.Drawing.Size(734, 583);
             this.Controls.Add(this.SortingGroupBox);
             this.Controls.Add(this.ItemStatsGroupBox);
             this.Controls.Add(this.InfoGroupBox);
@@ -884,10 +884,10 @@
         private System.Windows.Forms.Label HeadDamageLabel;
         private System.Windows.Forms.Label ProtectionLabel;
         private System.Windows.Forms.Label ItemCapacityLabel;
-        private System.Windows.Forms.Label ItemTypeLabel;
+        private System.Windows.Forms.Label UseableLabel;
         private System.Windows.Forms.TextBox useable;
         private System.Windows.Forms.TextBox type;
-        private System.Windows.Forms.Label ItemType2Label;
+        private System.Windows.Forms.Label TypeLabel;
         private System.Windows.Forms.Button SortDamagePlayersBtn;
         private System.Windows.Forms.Button SortCapacityBtn;
         private System.Windows.Forms.Button SortProtectionBtn;
@@ -920,7 +920,7 @@
         private System.Windows.Forms.Button NameIdToClipboard;
         private System.Windows.Forms.Label SortByLabel;
         private System.Windows.Forms.TextBox amount;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label AmmoAmountLabel;
         private System.Windows.Forms.Button LinkedAmmoBtn;
         private System.Windows.Forms.Label LinkedAmmoLabel;
         private System.Windows.Forms.Button LinkedModulesBtn;
@@ -931,6 +931,6 @@
         private System.Windows.Forms.TextBox pellets;
         private System.Windows.Forms.Label PelletsLabel;
         private System.Windows.Forms.Button SortByPelletsBtn;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button MixBtn;
     }
 }

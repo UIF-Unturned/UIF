@@ -120,4 +120,7 @@
   <data name="LoadModsToRamBtn" xml:space="preserve">
     <value>Load mods</value>
   </data>
+  <data name="UnloadMods" xml:space="preserve">
+    <value>Unload Mods</value>
+  </data>
 </root>
