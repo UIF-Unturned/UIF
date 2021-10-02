@@ -46,9 +46,11 @@ namespace UIF
 			return int.Parse(str);
 		}
 
+		// https://ru.stackoverflow.com/a/839207/436317
+		// He is GOD!!! Igor is GOD!
 		public static float ToFloat(this string str)
 		{
-			return float.Parse(str);
+			return Convert.ToSingle(str, System.Globalization.NumberFormatInfo.InvariantInfo);
 		}
 	}
 }
