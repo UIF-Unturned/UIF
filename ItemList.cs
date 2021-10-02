@@ -244,7 +244,17 @@ namespace UIF
 			UpdateItemList();
 		}
 
-		private void SortByVolumeBtn_Click(object sender, EventArgs e)
+        private void ItemCapacityLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SortByVolumeBtn_Click(object sender, EventArgs e)
 		{
 			items.Sort((a, b) => a.CompareTo(b, Core.CompareModes.BarrelVolume));
 

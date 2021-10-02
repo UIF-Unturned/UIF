@@ -219,7 +219,22 @@ namespace UIF
 			new ItemList(items).ShowDialog();
 		}
 
-		private void RaidItemsBtn_Click(object sender, EventArgs e)
+        private void OtherGroupBox_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void VehiclesGroup_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void GunsGroupBox_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void RaidItemsBtn_Click(object sender, EventArgs e)
 		{
 			var items = Core.ParseAll(Main.CurrentFolderPath, i => (
 				i.GetValue("useable") == "Gun" && i.ContainsKey("invulnerable") && i.GetValue("structure_damage", "0").ToFloat() != 0) ||	// Guns
