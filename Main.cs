@@ -11,7 +11,11 @@ namespace UIF
 		public static string CurrentFolderPath;
 		private string ModsTip;
 		private ToolTip Tip = new ToolTip();
-		private readonly string FolderErrorText = "Folder is not specified!";
+		private string FolderErrorText { 
+			get {
+				return Localization.CurrentAdditional.GetStringSafety("FolderErrorText");
+			}
+		}
 
 		private ResourceManager CurrentMainRM, CurrentAdditionalRM;
 
@@ -90,7 +94,7 @@ namespace UIF
 		private void SearchNameBtn_Click(object sender, EventArgs e)
 		{
 			if (CurrentFolderPath == null) {
-				throw new ArgumentNullException(FolderErrorText);
+				MessageBox.Show(FolderErrorText);
 			} else {
 				var items = Core.ParseAll(CurrentFolderPath, i => i.GetValue("name").ToLower().Contains(NameTextBox.Text.ToLower()));
 
@@ -101,7 +105,7 @@ namespace UIF
 		private void AllItemsBtn_Click(object sender, EventArgs e)
 		{
 			if (CurrentFolderPath == null)
-				throw new ArgumentNullException(FolderErrorText);
+				MessageBox.Show(FolderErrorText);
 			else
 				new ItemsCategories().ShowDialog();
 		}
@@ -129,7 +133,7 @@ namespace UIF
 
 				UpdateFoldersPaths();
 			} else {
-				throw new ArgumentNullException(FolderErrorText);
+				MessageBox.Show(FolderErrorText);
 			}
 		}
 
@@ -138,13 +142,13 @@ namespace UIF
 			if (Directory.Exists(CurrentFolderPath))
 				Process.Start("explorer.exe", CurrentFolderPath);
 			else
-				throw new ArgumentNullException(FolderErrorText);
+				MessageBox.Show(FolderErrorText);
 		}
 
 		private void SearchIDButton_Click(object sender, EventArgs e)
 		{
 			if (CurrentFolderPath == null) {
-				throw new ArgumentNullException(FolderErrorText);
+				MessageBox.Show(FolderErrorText);
 			} else {
 				var items = Core.ParseAll(CurrentFolderPath, i => i.GetValue("id") == IDBox.Text);
 
@@ -179,7 +183,7 @@ namespace UIF
 					LoadModsToRamBtn.Text = CurrentMainRM.GetStringSafety("UnloadMods");
 				}
 			else
-				throw new ArgumentNullException(FolderErrorText);
+				MessageBox.Show(FolderErrorText);
 		}
 
 		private void LocalizationComboBox_SelectedIndexChanged(object sender, EventArgs e)

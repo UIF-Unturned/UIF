@@ -13,6 +13,7 @@ namespace UIF
 			.Concat(Properties.Settings.Default.AdditionalLocales.Cast<string>()).ToArray();
 
 		private static string CurrentLocale;
+		public static ResourceManager CurrentAdditional = new ResourceManager(Program.ProjectNamespace + ".Properties.Additional", Program.ExeAssembly);
 
 		private static Dictionary<string, Dictionary<string, string>> DefaultLocaleValues = new Dictionary<string, Dictionary<string, string>>();
 
@@ -45,8 +46,8 @@ namespace UIF
 			System.Threading.Thread.CurrentThread.CurrentCulture =
 				Application.CurrentCulture = CurrentCulture;
 
-			ResourceManager RM = new ResourceManager(Program.ProjectNamespace + ".Properties." + resource_name, Program.ExeAssembly),
-				RM_Additional = new ResourceManager(Program.ProjectNamespace + ".Properties.Additional", Program.ExeAssembly);
+			ResourceManager RM = new ResourceManager(Program.ProjectNamespace + ".Properties." + resource_name, Program.ExeAssembly);
+			CurrentAdditional = new ResourceManager(Program.ProjectNamespace + ".Properties.Additional", Program.ExeAssembly);
 
 			if (CurrentLocale == Properties.Settings.Default.DefaultUILocale) {
 				foreach (Control control in controls) {
@@ -66,7 +67,7 @@ namespace UIF
 
 			MethodInfo method = class_obj.GetType().GetMethod("OnLocalizationChange");
 			if (method != null)
-				method.Invoke(class_obj, new object[] { RM, RM_Additional });
+				method.Invoke(class_obj, new object[] { RM, CurrentAdditional });
 		}
 	}
 }

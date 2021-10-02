@@ -18,7 +18,8 @@ namespace UIF
 		public ItemList(List<Item> _items)
 		{
 			if (_items == null) {
-				throw new ArgumentNullException("List<Item> is null");
+				MessageBox.Show(Localization.CurrentAdditional.GetStringSafety("ItemListIsNull") +
+					Localization.CurrentAdditional.GetStringSafety("ErrorDiscordSuffix"));
 			} else {
 				InitializeComponent();
 

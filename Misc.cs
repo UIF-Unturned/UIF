@@ -38,7 +38,7 @@ namespace UIF
 		public static void OpenUrl(string url)
 		{
 			if (Process.Start(url) == null)
-				throw new Exception("Url open failed");
+				MessageBox.Show(Localization.CurrentAdditional.GetStringSafety("UrlOpenFail"));
 		}
 
 		public static int ToInt(this string str)

@@ -297,7 +297,8 @@ namespace UIF
 						.CompareTo(a.GetValue("type") == "Magazine" ? a.GetValue("amount", "0").ToInt() * a.GetValue("pellets", "1").ToInt() : 0);
 
 				default:
-					throw new Exception("Invalid sort mode");
+					throw new Exception(Localization.CurrentAdditional.GetStringSafety("InvalidCompareMode") +
+						Localization.CurrentAdditional.GetStringSafety("ErrorDiscordSuffix"));
 			}
 		}
 
@@ -362,7 +363,7 @@ namespace UIF
 			if (loadedItems == null)
 			{
 				if (!Directory.Exists(folderPath))
-					throw new FileNotFoundException("Folder doesn't exist");
+					throw new FileNotFoundException(Localization.CurrentAdditional.GetStringSafety("FolderDoesntExists"));
 
 				List<Item> items = new List<Item>();
 
@@ -409,7 +410,7 @@ namespace UIF
 		public static Item ParseDir(string dir, Func<Item, bool> filter)
 		{
 			if (!File.Exists(dir + "\\English.dat"))
-				throw new FileNotFoundException("File doesn't exist");
+				return null;
 
 			Item item = new Item();
 
