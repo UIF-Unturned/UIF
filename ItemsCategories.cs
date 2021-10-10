@@ -159,7 +159,7 @@ namespace UIF
 		private void AllCustomizeBtn_Click(object sender, EventArgs e)
 		{
 			var items = Core.ParseAll(Main.CurrentFolderPath, i =>
-			i.GetValue("type").Contains("Barrel") || i.GetValue("type").Contains("Grip") || i.GetValue("type").Contains("Tactical"));
+			i.GetValue("type").Contains("Barrel") || i.GetValue("type").Contains("Grip") || i.GetValue("type").Contains("Tactical") || i.GetValue("type").Contains("Sight"));
 			new ItemList(items).ShowDialog();
 		}
 
