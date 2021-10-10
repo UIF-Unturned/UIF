@@ -159,7 +159,7 @@ namespace UIF
 		private void AllCustomizeBtn_Click(object sender, EventArgs e)
 		{
 			var items = Core.ParseAll(Main.CurrentFolderPath, i =>
-			i.GetValue("type").Contains("Barrel") || i.GetValue("type").Contains("Grip") || i.GetValue("type").Contains("Tactical") || i.GetValue("type").Contains("Sight"));
+				i.GetValue("type") == "Barrel" || i.GetValue("type") == "Grip" || i.GetValue("type") == "Tactical" || i.GetValue("type") == "Sight");
 			new ItemList(items).ShowDialog();
 		}
 
@@ -173,7 +173,7 @@ namespace UIF
 
 		private void SemiGunsBtn_Click(object sender, EventArgs e)
 		{
-			var items = Core.ParseAll(Main.CurrentFolderPath, i => i.GetValue("useable").Contains("Gun") && !i.ContainsKeys("auto", "burst") && i.ContainsKey("semi"));
+			var items = Core.ParseAll(Main.CurrentFolderPath, i => i.GetValue("useable") == "Gun" && !i.ContainsKeys("auto", "burst") && i.ContainsKey("semi"));
 			items.Sort((a, b) => a.CompareTo(b, Core.CompareModes.Damage));
 
 			new ItemList(items).ShowDialog();
