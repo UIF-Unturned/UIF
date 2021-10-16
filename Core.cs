@@ -211,7 +211,7 @@ namespace UIF
 
 					return errReturn;
 				case "amount":
-					if (this.GetValue("type") == "Magazine")
+					if (this.GetValue("type") == "Magazine" || this.GetValue("type") == "Supply")
 						return value;
 
 					return errReturn;

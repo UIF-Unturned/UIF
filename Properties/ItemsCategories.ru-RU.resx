@@ -198,6 +198,9 @@
   <data name="StructuresAndBarricadesBtn" xml:space="preserve">
     <value>Постройки</value>
   </data>
+  <data name="SupplyBtn" xml:space="preserve">
+    <value>Снабжение</value>
+  </data>
   <data name="SuppressorsBtn" xml:space="preserve">
     <value>Глушители</value>
   </data>
