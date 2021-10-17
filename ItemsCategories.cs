@@ -219,6 +219,13 @@ namespace UIF
 			new ItemList(items).ShowDialog();
 		}
 
+        private void SupplyBtn_Click(object sender, EventArgs e)
+		{
+			var items = Core.ParseAll(Main.CurrentFolderPath, i => i.GetValue("type") == "Supply");
+
+			new ItemList(items).ShowDialog();
+		}
+
 		private void RaidItemsBtn_Click(object sender, EventArgs e)
 		{
 			var items = Core.ParseAll(Main.CurrentFolderPath, i => (

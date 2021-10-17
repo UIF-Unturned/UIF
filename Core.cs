@@ -211,7 +211,7 @@ namespace UIF
 
 					return errReturn;
 				case "amount":
-					if (this.GetValue("type") == "Magazine")
+					if (this.GetValue("type") == "Magazine" || this.GetValue("type") == "Supply")
 						return value;
 
 					return errReturn;
@@ -293,8 +293,11 @@ namespace UIF
 						.CompareTo(buildingH_useable_a == "Barricade" || buildingH_useable_a == "Structure"
 						|| buildingH_type_a == "Structure" || buildingH_type_a == "Barricade" ? a.GetValue("health", "0").ToFloat() : 0);
 				case CompareModes.AmmoAmount:
-					return (val.GetValue("type") == "Magazine" ? val.GetValue("amount", "0").ToInt() * val.GetValue("pellets", "1").ToInt() : 0)
-						.CompareTo(a.GetValue("type") == "Magazine" ? a.GetValue("amount", "0").ToInt() * a.GetValue("pellets", "1").ToInt() : 0);
+					string typea = a.GetValue("type"),
+						typeval = val.GetValue("type");
+
+					return (typeval == "Magazine" ? val.GetValue("amount", "0").ToInt() * val.GetValue("pellets", "1").ToInt() : (typeval == "Supply" ? 1 : 0))
+						.CompareTo(typea == "Magazine" ? a.GetValue("amount", "0").ToInt() * a.GetValue("pellets", "1").ToInt() : (typea == "Supply" ? 1 : 0));
 
 				default:
 					throw new Exception(Localization.CurrentAdditional.GetStringSafety("InvalidCompareMode") +
