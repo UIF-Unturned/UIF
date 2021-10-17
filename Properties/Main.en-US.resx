@@ -117,8 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="DefaultFldrBtnTip" xml:space="preserve">
+    <value>Set as default folder</value>
+  </data>
   <data name="LoadModsToRamBtn" xml:space="preserve">
     <value>Load mods</value>
+  </data>
+  <data name="MinusFldrBtnTip" xml:space="preserve">
+    <value>Delete selected folder</value>
+  </data>
+  <data name="ModsTip" xml:space="preserve">
+    <value>Path to folder with mods.
+
+Example: C:\Program Files (x86)\Steam\steamapps\workshop\content\304930
+
+
+Before using it, you need to delete all the downloaded mods and log in to the server.</value>
+  </data>
+  <data name="OpenFldrBtnTip" xml:space="preserve">
+    <value>Open selected folder</value>
+  </data>
+  <data name="PlusFldrBtnTip" xml:space="preserve">
+    <value>Add selected folder</value>
   </data>
   <data name="UnloadMods" xml:space="preserve">
     <value>Unload Mods</value>

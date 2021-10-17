@@ -176,4 +176,7 @@
   <data name="UnloadMods" xml:space="preserve">
     <value>Выгрузить моды</value>
   </data>
+  <data name="DefaultFldrBtnTip" xml:space="preserve">
+    <value>Установить как папку по умолчанию</value>
+  </data>
 </root>
