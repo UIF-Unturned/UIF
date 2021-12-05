@@ -1,18 +1,30 @@
 # UIF ([Unturned](https://store.steampowered.com/app/304930/Unturned/) Id Finder)
-Program developed for game [Unturned](https://store.steampowered.com/app/304930/Unturned/) for finding ids by name, category, etc. and get item information.
-Before using it, you need to delete all the downloaded mods and log in to the server.
+Program developed for game [Unturned](https://store.steampowered.com/app/304930/Unturned/) for finding ids by name, category, etc. and get item information
 
-## How to compile installer?
-To compile installer you need to install [Inno](https://jrsoftware.org/isdl.php#cvsgit).
+## Inaccuracies
+Some values may be inaccurate because servers can set their own multipliers of protection, damage, etc.
 
-P.S.: Compiles from `bin/Release/` folder.
+## Screenshots
+You can find [screenshots here](README/screenshots.md)
 
-## Author Contacts
-Telegram: *[@YMO_4](https://t.me/YMO_4)*
+## How can I get started?
+1. Click the "Plus" button in the main menu
+2. Add a folder with mods that are on the disk where Unturned is installed (E.g. E:\SteamLibrary\steamapps\workshop\content\304930)
+3. Clear this folder
+4. Restart Unturned
+5. Connect to the server
+6. Explore!
 
-Discord: *YMO4#7441* (*[Server](https://discord.gg/VhpM2ex)*)
+## How to compile the installer?
+To compile installer you need to install [Inno](https://jrsoftware.org/isdl.php#cvsgit)
 
-## P.S.
-All modifications and pull requests are welcome.
+P.S.: Compiles from `bin/Release/` folder
 
-<div align="center"><img src="README/goodluck.png" alt="goodluck"></div>
+## Contributing
+1. Fork it!
+2. Create your feature branch: `git checkout -b my-new-feature`
+3. Commit your changes: `git commit -m 'Add some feature'`
+4. Push to the branch: `git push origin my-new-feature`
+5. Submit a pull request :D
+
+<div align="center"><img src="README/goodluck.png" alt="Good Luck"></div>
