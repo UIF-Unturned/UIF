@@ -211,11 +211,11 @@
             // 
             this.LocalizationLabel.AutoSize = true;
             this.LocalizationLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F);
-            this.LocalizationLabel.Location = new System.Drawing.Point(255, 45);
+            this.LocalizationLabel.Location = new System.Drawing.Point(280, 45);
             this.LocalizationLabel.Name = "LocalizationLabel";
-            this.LocalizationLabel.Size = new System.Drawing.Size(82, 16);
+            this.LocalizationLabel.Size = new System.Drawing.Size(72, 16);
             this.LocalizationLabel.TabIndex = 8;
-            this.LocalizationLabel.Text = "Localization:";
+            this.LocalizationLabel.Text = "Language:";
             // 
             // LoadModsToRamBtn
             // 
@@ -271,7 +271,7 @@
             // 
             this.RUAuthorLabel.AutoSize = true;
             this.RUAuthorLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.RUAuthorLabel.Location = new System.Drawing.Point(240, 29);
+            this.RUAuthorLabel.Location = new System.Drawing.Point(248, 29);
             this.RUAuthorLabel.Name = "RUAuthorLabel";
             this.RUAuthorLabel.Size = new System.Drawing.Size(0, 18);
             this.RUAuthorLabel.TabIndex = 5;

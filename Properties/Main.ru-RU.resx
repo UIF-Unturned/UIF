@@ -136,7 +136,7 @@
     <value>Просмотр элементов по категориям</value>
   </data>
   <data name="LocalizationLabel" xml:space="preserve">
-    <value>Локализация:</value>
+    <value>Language:</value>
   </data>
   <data name="CopyrightLabel" xml:space="preserve">
     <value>(с) YMO4</value>
