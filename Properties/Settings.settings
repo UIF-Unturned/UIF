@@ -2,9 +2,6 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="UIF.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="FoldersPaths" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
-    </Setting>
     <Setting Name="Locale" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
@@ -43,6 +40,12 @@
   &lt;string&gt;Dialogue&lt;/string&gt;
   &lt;string&gt;Vendor&lt;/string&gt;
 &lt;/ArrayOfString&gt;</Value>
+    </Setting>
+    <Setting Name="Folders" Type="System.Collections.Generic.List&lt;string&gt;" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="CheckedFolders" Type="System.Collections.Generic.List&lt;int&gt;" Scope="User">
+      <Value Profile="(Default)" />
     </Setting>
   </Settings>
 </SettingsFile>

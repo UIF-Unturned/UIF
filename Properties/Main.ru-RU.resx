@@ -129,14 +129,8 @@
   <data name="AboutGroupBox" xml:space="preserve">
     <value>Информация</value>
   </data>
-  <data name="MinusFldrBtnTip" xml:space="preserve">
-    <value>Удалить выбранную папку</value>
-  </data>
   <data name="SearchIDBtn" xml:space="preserve">
     <value>Поиск</value>
-  </data>
-  <data name="OpenFldrBtnTip" xml:space="preserve">
-    <value>Открыть выбранную папку</value>
   </data>
   <data name="AllItemsBtn" xml:space="preserve">
     <value>Просмотр элементов по категориям</value>
@@ -151,15 +145,12 @@
     <value>Загрузить моды</value>
   </data>
   <data name="ModsTip" xml:space="preserve">
-    <value>Путь к папке с модами.
+    <value>Добавьте папку с модами, которая находится на диске,
+на котором установлен Unturned (прим. E:\SteamLibrary\steamapps\workshop\content\304930).
+Для правильного отображения связанных пердметов,
+также надо указать папку с стандартными предметами (прим. C:\Program Files (x86)\Steam\steamapps\common\Unturned\Bundles)
 
-Пример: C:\Program Files (x86)\Steam\steamapps\workshop\content\304930
-
-
-Перед его использованием вам необходимо удалить все загруженные моды и войти на сервер.</value>
-  </data>
-  <data name="PlusFldrBtnTip" xml:space="preserve">
-    <value>Добавить выбранную папку</value>
+Перед использованием вам необходимо удалить все загруженные моды (...\workshop\content\304930) и войти на сервер.</value>
   </data>
   <data name="SettingsGroupBox" xml:space="preserve">
     <value>Настройки</value>
@@ -176,7 +167,7 @@
   <data name="UnloadMods" xml:space="preserve">
     <value>Выгрузить моды</value>
   </data>
-  <data name="DefaultFldrBtnTip" xml:space="preserve">
-    <value>Установить как папку по умолчанию</value>
+  <data name="SelectedFldrsBtn" xml:space="preserve">
+    <value>Клик!</value>
   </data>
 </root>

@@ -127,6 +127,9 @@ Contact the discord server with this error.</value>
   <data name="FolderErrorText" xml:space="preserve">
     <value>Folder is not specified!</value>
   </data>
+  <data name="FolderNotSelected" xml:space="preserve">
+    <value>Please, select folder.</value>
+  </data>
   <data name="InvalidCompareMode" xml:space="preserve">
     <value>Dev: CompareMode is not specified correctly.</value>
   </data>

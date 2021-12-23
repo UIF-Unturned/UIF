@@ -8,12 +8,13 @@ Some values may be inaccurate because servers can set their own multipliers of p
 You can find [screenshots here](README/screenshots.md)
 
 ## How can I get started?
-1. Click the "Plus" button in the main menu
-2. Add a folder with mods that are on the disk where Unturned is installed (E.g. E:\SteamLibrary\steamapps\workshop\content\304930)
-3. Clear this folder
-4. Restart Unturned
-5. Connect to the server
-6. Explore!
+1. Open the "Folders select" menu
+2. Click the "Plus" button
+3. Add a folder with mods that are on the disk where Unturned is installed (E.g. `E:\SteamLibrary\steamapps\workshop\content\304930`). To display the linked items correctly, you also need to add a folder with standard items (E.g. `C:\Program Files (x86)\Steam\steamapps\common\Unturned\Bundles`)
+4. Clear the `...\workshop\content\304930` folder
+5. Restart Unturned (or run)
+6. Connect to the server
+7. Explore!
 
 ## How to compile the installer?
 To compile installer you need to install [Inno](https://jrsoftware.org/isdl.php#cvsgit)

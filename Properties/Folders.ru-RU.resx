@@ -117,18 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="LoadModsToRamBtn" xml:space="preserve">
-    <value>Load mods</value>
+  <data name="MinusFldrBtnTip" xml:space="preserve">
+    <value>Удалить выбранную папку</value>
   </data>
-  <data name="ModsTip" xml:space="preserve">
-    <value>Folder with mods that are on the disk where Unturned is installed
-(E.g. E:\SteamLibrary\steamapps\workshop\content\304930).
-To display the linked items correctly, you also need to add a folder with standard items
-(E.g. C:\Program Files (x86)\Steam\steamapps\common\Unturned\Bundles)
-
-Before using, you need to delete all the downloaded mods (...\workshop\content\304930) and log in to the server.</value>
+  <data name="OpenFldrBtnTip" xml:space="preserve">
+    <value>Открыть выбранную папку</value>
   </data>
-  <data name="UnloadMods" xml:space="preserve">
-    <value>Unload Mods</value>
+  <data name="PlusFldrBtnTip" xml:space="preserve">
+    <value>Добавить папку</value>
   </data>
 </root>

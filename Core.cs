@@ -361,12 +361,23 @@ namespace UIF
 
 		}
 
+		public static List<Item> ParseAll(List<string> folders, Func<Item, bool> filter = null)
+		{
+			List<Item> ret = new List<Item>();
+
+			foreach (string folder in folders) {
+				ret.AddRange(ParseAll(folder, filter));
+			}
+
+			return ret;
+		}
+
 		public static List<Item> ParseAll(string folderPath, Func<Item, bool> filter = null)
 		{
 			if (loadedItems == null)
 			{
 				if (!Directory.Exists(folderPath))
-					throw new FileNotFoundException(Localization.CurrentAdditional.GetStringSafety("FolderDoesntExists"));
+					throw new FileNotFoundException(Localization.CurrentAdditional.GetStringSafety("FolderDoesntExists") + "\n\n(" + folderPath + ")");
 
 				List<Item> items = new List<Item>();
 

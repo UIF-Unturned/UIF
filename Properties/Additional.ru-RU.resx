@@ -127,6 +127,9 @@
   <data name="FolderErrorText" xml:space="preserve">
     <value>Папка не указана!</value>
   </data>
+  <data name="FolderNotSelected" xml:space="preserve">
+    <value>Пожалуйста, выберите папку.</value>
+  </data>
   <data name="InvalidCompareMode" xml:space="preserve">
     <value>Dev: CompareMode указан не верно.</value>
   </data>

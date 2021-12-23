@@ -26,18 +26,6 @@ namespace UIF.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string FoldersPaths {
-            get {
-                return ((string)(this["FoldersPaths"]));
-            }
-            set {
-                this["FoldersPaths"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string Locale {
             get {
                 return ((string)(this["Locale"]));
@@ -120,6 +108,28 @@ namespace UIF.Properties {
         public global::System.Collections.Specialized.StringCollection TypeIgnore {
             get {
                 return ((global::System.Collections.Specialized.StringCollection)(this["TypeIgnore"]));
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.Collections.Generic.List<string> Folders {
+            get {
+                return ((global::System.Collections.Generic.List<string>)(this["Folders"]));
+            }
+            set {
+                this["Folders"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.Collections.Generic.List<int> CheckedFolders {
+            get {
+                return ((global::System.Collections.Generic.List<int>)(this["CheckedFolders"]));
+            }
+            set {
+                this["CheckedFolders"] = value;
             }
         }
     }

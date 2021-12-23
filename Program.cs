@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Diagnostics;
+using System.Collections.Generic;
 using System.Reflection;
 using System.Windows.Forms;
 
@@ -15,8 +15,18 @@ namespace UIF
 		{
 			if (string.IsNullOrEmpty(Properties.Settings.Default.Locale)) {
 				Properties.Settings.Default.Locale = Properties.Settings.Default.DefaultUILocale;
-				Properties.Settings.Default.Save();
 			}
+
+			if (Properties.Settings.Default.Folders == null) {
+				Properties.Settings.Default.Folders = new List<string>();
+			}
+
+			if (Properties.Settings.Default.CheckedFolders == null) {
+				Properties.Settings.Default.CheckedFolders = new List<int>();
+
+			}
+
+			Properties.Settings.Default.Save();
 
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);

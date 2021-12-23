@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Diagnostics;
-using System.IO;
 using System.Resources;
 using System.Windows.Forms;
 
 namespace UIF
 {
-	public partial class Main : Form
+    public partial class Main : Form
 	{
-		public static string CurrentFolderPath;
 		private string ModsTip;
 		private ToolTip Tip = new ToolTip();
 		private string FolderErrorText { 
@@ -19,38 +16,12 @@ namespace UIF
 
 		private ResourceManager CurrentMainRM, CurrentAdditionalRM;
 
-		private void UpdateFoldersPaths()
-		{
-			Properties.Settings.Default.FoldersPaths = string.Empty;
-			for (int i = 0; i < FldrComboBox.Items.Count; i++) {
-				string fldrString = FldrComboBox.Items[i].ToString();
-				if (FldrComboBox.Items[i] != null &&
-					fldrString != string.Empty &&
-					fldrString != "\n") {
-					Properties.Settings.Default.FoldersPaths += FldrComboBox.Items[i].ToString();
-					if (i < FldrComboBox.Items.Count - 1) Properties.Settings.Default.FoldersPaths += '\n';
-				}
-			}
-			Properties.Settings.Default.Save();
-
-			FldrComboBox_SelectedIndexChanged(this, null);
-		}
-
 		public Main()
 		{
 			InitializeComponent();
 
 			VersionLabel.Text += Properties.Settings.Default.Version;
 			this.Text += " | Ver. " + Properties.Settings.Default.Version;
-
-			FldrComboBox.Items.Clear();
-			foreach (string path in Properties.Settings.Default.FoldersPaths.Split('\n')) {
-				if (path != string.Empty)
-					FldrComboBox.Items.Add(path);
-			}
-
-			if (FldrComboBox.Items.Count > 0)
-				FldrComboBox.SelectedIndex = 0;
 
 			for (int i = 0; i < Localization.AllLocales.Length; i++) {
 				string locale = Localization.AllLocales[i];
@@ -71,11 +42,6 @@ namespace UIF
 			CurrentMainRM = MainRM;
 			CurrentAdditionalRM = AdditionalRM;
 
-			Tip.SetToolTip(MinusFldrBtn, MainRM.GetStringSafety("MinusFldrBtnTip")); // Delete selected folder
-			Tip.SetToolTip(PlusFldrBtn, MainRM.GetStringSafety("PlusFldrBtnTip")); // Add selected folder
-			Tip.SetToolTip(OpenFldrBtn, MainRM.GetStringSafety("OpenFldrBtnTip")); // Open selected folder
-			Tip.SetToolTip(MarkFolderAsDefaultBtn, MainRM.GetStringSafety("DefaultFldrBtnTip")); // Mark current folder as default
-
 			ModsTip = MainRM.GetStringSafety("ModsTip");
 
 			Tip.SetToolTip(InfoBtn, ModsTip);
@@ -93,10 +59,10 @@ namespace UIF
 
 		private void SearchNameBtn_Click(object sender, EventArgs e)
 		{
-			if (CurrentFolderPath == null) {
+			if (Folders.CheckedFoldersCount == 0) {
 				MessageBox.Show(FolderErrorText);
 			} else {
-				var items = Core.ParseAll(CurrentFolderPath, i => i.GetValue("name").ToLower().Contains(NameTextBox.Text.ToLower()));
+				var items = Core.ParseAll(Folders.CheckedFolders, i => i.GetValue("name").ToLower().Contains(NameTextBox.Text.ToLower()));
 
 				new ItemList(items).ShowDialog();
 			}
@@ -104,53 +70,18 @@ namespace UIF
 
 		private void AllItemsBtn_Click(object sender, EventArgs e)
 		{
-			if (CurrentFolderPath == null)
+			if (Folders.CheckedFoldersCount == 0)
 				MessageBox.Show(FolderErrorText);
 			else
 				new ItemsCategories().ShowDialog();
 		}
 
-		private void PlusFldrBtn_Click(object sender, EventArgs e)
-		{
-			FolderBrowserDialog fbd = new FolderBrowserDialog();
-			
-			if (fbd.ShowDialog() == DialogResult.OK) {
-				if (fbd.SelectedPath != null) {
-					int newFolderIndex = FldrComboBox.Items.Add(fbd.SelectedPath);
-					FldrComboBox.SelectedIndex = newFolderIndex;
-
-					UpdateFoldersPaths();
-				}
-			}
-		}
-
-		private void MinusFldrBtn_Click(object sender, EventArgs e)
-		{
-			if (FldrComboBox.SelectedIndex != -1) {
-				FldrComboBox.Items.RemoveAt(FldrComboBox.SelectedIndex);
-				FldrComboBox.Text = string.Empty;
-				FldrComboBox.SelectedIndex = FldrComboBox.Items.Count > 0 ? 0 : -1;
-
-				UpdateFoldersPaths();
-			} else {
-				MessageBox.Show(FolderErrorText);
-			}
-		}
-
-		private void OpenFldrBtn_Click(object sender, EventArgs e)
-		{
-			if (Directory.Exists(CurrentFolderPath))
-				Process.Start("explorer.exe", CurrentFolderPath);
-			else
-				MessageBox.Show(FolderErrorText);
-		}
-
 		private void SearchIDButton_Click(object sender, EventArgs e)
 		{
-			if (CurrentFolderPath == null) {
+			if (Folders.CheckedFoldersCount == 0) {
 				MessageBox.Show(FolderErrorText);
 			} else {
-				var items = Core.ParseAll(CurrentFolderPath, i => i.GetValue("id") == IDBox.Text);
+				var items = Core.ParseAll(Folders.CheckedFolders, i => i.GetValue("id") == IDBox.Text);
 
 				new ItemList(items).ShowDialog();
 			}
@@ -164,26 +95,22 @@ namespace UIF
 
 		private void SelectFldrLabel_Click(object sender, EventArgs e) => Tip.Show(ModsTip, SelectFldrLabel);
 
-		private void FldrComboBox_SelectedIndexChanged(object sender, EventArgs e) =>
-			CurrentFolderPath = FldrComboBox.SelectedIndex != -1 ? FldrComboBox.SelectedItem.ToString() : null;
-
-		private void FldrComboBox_TextUpdate(object sender, EventArgs e) => FldrComboBox.Text = CurrentFolderPath;
-
 		private void LoadModsToRamBtn_Click(object sender, EventArgs e)
 		{
-			if (CurrentFolderPath != null)
+			if (Folders.CheckedFoldersCount == 0) {
+				MessageBox.Show(FolderErrorText);
+			} else {
 				if (Core.loadedItems != null) {
 					Core.loadedItems = null;
 					GC.Collect();
-					FldrComboBox.Enabled = true;
+					SelectedFldrsBtn.Enabled = true;
 					LoadModsToRamBtn.Text = CurrentMainRM.GetStringSafety("LoadModsToRamBtn");
 				} else {
-					Core.loadedItems = Core.ParseAll(CurrentFolderPath);
-					FldrComboBox.Enabled = false;
+					Core.loadedItems = Core.ParseAll(Folders.CheckedFolders);
+					SelectedFldrsBtn.Enabled = false;
 					LoadModsToRamBtn.Text = CurrentMainRM.GetStringSafety("UnloadMods");
 				}
-			else
-				MessageBox.Show(FolderErrorText);
+			}
 		}
 
 		private void LocalizationComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -194,15 +121,11 @@ namespace UIF
 			_UpdateLocalization();
 		}
 
-		private void MarkFolderAsDefaultBtn_Click(object sender, EventArgs e)
-		{
-			FldrComboBox.Items.Remove(CurrentFolderPath);
-			FldrComboBox.Items.Insert(0, CurrentFolderPath);
-			FldrComboBox.SelectedIndex = 0;
+        private void SelectedFldrsBtn_Click(object sender, EventArgs e)
+        {
+			new Folders().ShowDialog();
+        }
 
-			UpdateFoldersPaths();
-		}
-
-		private void LocalizationComboBox_TextUpdate(object sender, EventArgs e) => LocalizationComboBox.Text = Properties.Settings.Default.Locale;
+        private void LocalizationComboBox_TextUpdate(object sender, EventArgs e) => LocalizationComboBox.Text = Properties.Settings.Default.Locale;
 	}
 }

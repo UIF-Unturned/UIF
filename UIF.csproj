@@ -70,6 +70,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core.cs" />
+    <Compile Include="Folders.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Folders.Designer.cs">
+      <DependentUpon>Folders.cs</DependentUpon>
+    </Compile>
     <Compile Include="ItemsCategories.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -92,6 +98,9 @@
     <Compile Include="Misc.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Folders.resx">
+      <DependentUpon>Folders.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ItemsCategories.resx">
       <DependentUpon>ItemsCategories.cs</DependentUpon>
     </EmbeddedResource>
@@ -103,6 +112,8 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Additional.en-US.resx" />
     <EmbeddedResource Include="Properties\Additional.ru-RU.resx" />
+    <EmbeddedResource Include="Properties\Folders.en-US.resx" />
+    <EmbeddedResource Include="Properties\Folders.ru-RU.resx" />
     <EmbeddedResource Include="Properties\ItemList.en-US.resx" />
     <EmbeddedResource Include="Properties\ItemList.ru-RU.resx" />
     <EmbeddedResource Include="Properties\ItemsCategories.ru-RU.resx">
@@ -152,7 +163,6 @@
     <None Include="src\github_icon.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="src\up_arrow_icon.png" />
     <None Include="src\info_icon.jpg" />
     <None Include="src\plus_icon.png" />
     <None Include="src\minus_icon.png" />
