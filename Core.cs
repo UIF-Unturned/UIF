@@ -361,18 +361,38 @@ namespace UIF
 
 		}
 
-		public static List<Item> ParseAll(List<string> folders, Func<Item, bool> filter = null)
+		public static void ItemsFilter(Func<Item, bool> filter, ref List<Item> items)
+        {
+			for (int i = 0; i < items.Count; i++) {
+				if (!filter(items[i])) {
+					items.RemoveAt(i);
+					i -= 1;  // Так как мы удаляем элемент, то следующий стает на его место, таким образом, если не сделать i -= 1,
+							 // то мы оставим след. элемент в списке без проверки
+				}
+			}
+		}
+
+		public static List<Item> ParseAll(List<string> folders, Func<Item, bool> filter = null, bool enableProcessors = true)
 		{
 			List<Item> ret = new List<Item>();
 
 			foreach (string folder in folders) {
-				ret.AddRange(ParseAll(folder, filter));
+				ret.AddRange(ParseAll(folder, null, false));
 			}
+
+			if (enableProcessors)
+				ItemsPreprocessor(ref ret);
+
+			if (filter != null)
+				ItemsFilter(filter, ref ret);
+
+			if (enableProcessors)
+				ItemsPostprocessor(ref ret);
 
 			return ret;
 		}
 
-		public static List<Item> ParseAll(string folderPath, Func<Item, bool> filter = null)
+		public static List<Item> ParseAll(string folderPath, Func<Item, bool> filter = null, bool enableProcessors = true)
 		{
 			if (loadedItems == null)
 			{
@@ -390,19 +410,14 @@ namespace UIF
 					}
 				}
 
-				ItemsPreprocessor(ref items);
+				if (enableProcessors)
+					ItemsPreprocessor(ref items);
 
-				// filter
 				if (filter != null)
-					for (int i = 0; i < items.Count; i++) {
-						if (!filter(items[i])) {
-							items.RemoveAt(i);
-							i -= 1;  // Так как мы удаляем элемент, то следующий стает на его место, таким образом, если не сделать i -= 1,
-							// то мы оставим след. элемент в списке без проверки
-						}
-					}
+					ItemsFilter(filter, ref items);
 
-				ItemsPostprocessor(ref items);
+				if (enableProcessors)
+					ItemsPostprocessor(ref items);
 
 				return items;
 			} else {
