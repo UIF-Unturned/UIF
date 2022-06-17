@@ -14,6 +14,7 @@ namespace UIF
 		private ResourceManager CurrentMainRM, CurrentAdditionalRM;
 
 		Item selectedItem = null;
+		List<List<Item>> blueprints = new List<List<Item>>();
 
 		public ItemList(List<Item> _items)
 		{
@@ -72,6 +73,47 @@ namespace UIF
 
 				foreach (TextBox control in paramsBoxes)
 					control.Text = selectedItem.FormatKey(control.Name);
+
+				// blueprints
+				{
+					blueprints_listbox.Items.Clear();
+					blueprints_listbox.SelectedIndex = -1;
+					blueprints.Clear();
+
+					string _blueprints_cnt = selectedItem.GetValue("blueprints", null);
+					if (_blueprints_cnt != null) {
+						int blueprints_cnt = _blueprints_cnt.ToInt();
+						for (int i = 0; i < blueprints_cnt; i++) {
+							List<Item> __items = new List<Item>();
+							string i_str = i.ToString();
+							int supplies_cnt = selectedItem.GetValue("blueprint_" + i_str + "_supplies", "1").ToInt();
+							for (int supply = 0; supply < supplies_cnt; supply++) {
+								string supply_str = supply.ToString();
+
+								string supply_id = selectedItem.GetValue("blueprint_" + i_str + "_supply_" + supply_str + "_id");
+								string supply_cnt = selectedItem.GetValue("blueprint_" + i_str + "_supply_" + supply_str + "_amount", "1");
+
+								List<Item> _items = Core.ParseAll(
+									Folders.CheckedFolders,
+									c => c.GetValue("id") == supply_id && c.GetValue("type") != "Vehicle",
+									false
+								);
+								List<Item> items = new List<Item>();
+								foreach (Item item in _items) {
+									items.Add((Item)item.Clone());
+								}
+								
+								foreach (Item item in items) {
+									item["name"] += " (x" + supply_cnt + ")";
+								}
+								__items.AddRange(items);
+							}
+							blueprints.Add(__items);
+
+							blueprints_listbox.Items.Add("Blueprint " + i_str);
+						}
+					}
+				}
 			}
 		}
 
@@ -243,6 +285,15 @@ namespace UIF
 			.CompareTo(a.GetValue("type") == "Magazine" ? a.GetValue("pellets", "1").ToInt() : 1));
 
 			UpdateItemList();
+		}
+
+		private void blueprints_listbox_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			if (blueprints_listbox.SelectedIndex == -1) return;
+			
+			new ItemList(blueprints[blueprints_listbox.SelectedIndex]).Show();
+
+			blueprints_listbox.SelectedIndex = -1;
 		}
 
 		private void SortByVolumeBtn_Click(object sender, EventArgs e)

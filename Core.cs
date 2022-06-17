@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace UIF
 {
-	public class Item : Dictionary<string, string> {
+	public class Item : Dictionary<string, string>, ICloneable {
 		// мб сделать его public
 		private Dictionary<string, List<Item>> linked = new Dictionary<string, List<Item>>();
 
@@ -225,6 +225,18 @@ namespace UIF
 					return value;
 			}
 		}
+
+		public object Clone()
+		{
+			Item item = new Item();
+
+			item.linked = this.linked;
+			foreach (var pair in this) {
+				item.Add(string.Copy(pair.Key), string.Copy(pair.Value));
+			}
+
+			return item;
+		}
 	}
 
 	public static class Core
@@ -362,7 +374,7 @@ namespace UIF
 		}
 
 		public static void ItemsFilter(Func<Item, bool> filter, ref List<Item> items)
-        {
+		{
 			for (int i = 0; i < items.Count; i++) {
 				if (!filter(items[i])) {
 					items.RemoveAt(i);

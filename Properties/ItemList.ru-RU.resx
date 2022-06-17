@@ -132,6 +132,9 @@
   <data name="BuildingsDamageLabel" xml:space="preserve">
     <value>Урон постройкам:</value>
   </data>
+  <data name="CraftsFromLabel" xml:space="preserve">
+    <value>Крафтится из:</value>
+  </data>
   <data name="EngineLabel" xml:space="preserve">
     <value>Двигатель:</value>
   </data>

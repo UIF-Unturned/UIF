@@ -94,6 +94,8 @@
             this.SortVehicleHealthBtn = new System.Windows.Forms.Button();
             this.SortDamageBuildingsBtn = new System.Windows.Forms.Button();
             this.MixBtn = new System.Windows.Forms.Button();
+            this.CraftsFromLabel = new System.Windows.Forms.Label();
+            this.blueprints_listbox = new System.Windows.Forms.ListBox();
             this.InfoGroupBox.SuspendLayout();
             this.ItemStatsGroupBox.SuspendLayout();
             this.SortingGroupBox.SuspendLayout();
@@ -223,6 +225,8 @@
             // 
             // ItemStatsGroupBox
             // 
+            this.ItemStatsGroupBox.Controls.Add(this.blueprints_listbox);
+            this.ItemStatsGroupBox.Controls.Add(this.CraftsFromLabel);
             this.ItemStatsGroupBox.Controls.Add(this.LinkedGunsBtn);
             this.ItemStatsGroupBox.Controls.Add(this.LinkedModulesBtn);
             this.ItemStatsGroupBox.Controls.Add(this.LinkedAmmoBtn);
@@ -263,7 +267,7 @@
             this.ItemStatsGroupBox.Controls.Add(this.item_capacity);
             this.ItemStatsGroupBox.Location = new System.Drawing.Point(185, 164);
             this.ItemStatsGroupBox.Name = "ItemStatsGroupBox";
-            this.ItemStatsGroupBox.Size = new System.Drawing.Size(344, 414);
+            this.ItemStatsGroupBox.Size = new System.Drawing.Size(344, 456);
             this.ItemStatsGroupBox.TabIndex = 4;
             this.ItemStatsGroupBox.TabStop = false;
             this.ItemStatsGroupBox.Text = "Item Stats";
@@ -840,11 +844,30 @@
             this.MixBtn.UseVisualStyleBackColor = true;
             this.MixBtn.Click += new System.EventHandler(this.MixBtn_Click);
             // 
+            // CraftsFromLabel
+            // 
+            this.CraftsFromLabel.AutoSize = true;
+            this.CraftsFromLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.CraftsFromLabel.Location = new System.Drawing.Point(6, 419);
+            this.CraftsFromLabel.Name = "CraftsFromLabel";
+            this.CraftsFromLabel.Size = new System.Drawing.Size(92, 20);
+            this.CraftsFromLabel.TabIndex = 39;
+            this.CraftsFromLabel.Text = "Crafts from:";
+            // 
+            // blueprints_listbox
+            // 
+            this.blueprints_listbox.FormattingEnabled = true;
+            this.blueprints_listbox.Location = new System.Drawing.Point(218, 407);
+            this.blueprints_listbox.Name = "blueprints_listbox";
+            this.blueprints_listbox.Size = new System.Drawing.Size(120, 43);
+            this.blueprints_listbox.TabIndex = 40;
+            this.blueprints_listbox.SelectedIndexChanged += new System.EventHandler(this.blueprints_listbox_SelectedIndexChanged);
+            // 
             // ItemList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(734, 583);
+            this.ClientSize = new System.Drawing.Size(734, 632);
             this.Controls.Add(this.SortingGroupBox);
             this.Controls.Add(this.ItemStatsGroupBox);
             this.Controls.Add(this.InfoGroupBox);
@@ -932,5 +955,7 @@
         private System.Windows.Forms.Label PelletsLabel;
         private System.Windows.Forms.Button SortByPelletsBtn;
         private System.Windows.Forms.Button MixBtn;
+        private System.Windows.Forms.Label CraftsFromLabel;
+        private System.Windows.Forms.ListBox blueprints_listbox;
     }
 }
