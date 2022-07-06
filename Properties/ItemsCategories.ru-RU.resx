@@ -171,6 +171,9 @@
   <data name="ItemsCategoriesLabel" xml:space="preserve">
     <value>Категории предметров</value>
   </data>
+  <data name="MeleeBtn" xml:space="preserve">
+    <value>Холодное оружие</value>
+  </data>
   <data name="OtherGroupBox" xml:space="preserve">
     <value>Разное</value>
   </data>

@@ -219,9 +219,16 @@ namespace UIF
 			new ItemList(items).ShowDialog();
 		}
 
-        private void SupplyBtn_Click(object sender, EventArgs e)
+		private void SupplyBtn_Click(object sender, EventArgs e)
 		{
 			var items = Core.ParseAll(Folders.CheckedFolders, i => i.GetValue("type") == "Supply");
+
+			new ItemList(items).ShowDialog();
+		}
+
+		private void MeleeBtn_Click(object sender, EventArgs e)
+		{
+			var items = Core.ParseAll(Folders.CheckedFolders, i => i.GetValue("type") == "Melee");
 
 			new ItemList(items).ShowDialog();
 		}
