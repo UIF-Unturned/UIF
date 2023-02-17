@@ -362,7 +362,7 @@ namespace UIF
 		}
 
 		public static void ItemsFilter(Func<Item, bool> filter, ref List<Item> items)
-        {
+		{
 			for (int i = 0; i < items.Count; i++) {
 				if (!filter(items[i])) {
 					items.RemoveAt(i);
@@ -374,6 +374,20 @@ namespace UIF
 
 		public static List<Item> ParseAll(List<string> folders, Func<Item, bool> filter = null, bool enableProcessors = true)
 		{
+			if (loadedItems != null) {
+				if (filter != null) {
+					List<Item> items = new List<Item>();
+					foreach (Item item in loadedItems) {
+						if (filter(item))
+							items.Add(item);
+					}
+
+					return items;
+				} else {
+					return loadedItems;
+				}
+			}
+
 			List<Item> ret = new List<Item>();
 
 			foreach (string folder in folders) {
