@@ -118,8 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ErrorDiscordSuffix" xml:space="preserve">
-    <value>
-Обратитесь с этой ошибкой на дискорд сервер.</value>
+    <value>Обратитесь с этой ошибкой на дискорд сервер.</value>
   </data>
   <data name="FolderDoesntExists" xml:space="preserve">
     <value>Указанная папка больше не существует.</value>
