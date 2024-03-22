@@ -111,7 +111,9 @@
       <DependentUpon>ItemList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Additional.en-US.resx" />
-    <EmbeddedResource Include="Properties\Additional.ru-RU.resx" />
+    <EmbeddedResource Include="Properties\Additional.ru-RU.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Folders.en-US.resx" />
     <EmbeddedResource Include="Properties\Folders.ru-RU.resx" />
     <EmbeddedResource Include="Properties\ItemList.en-US.resx" />
@@ -119,6 +121,7 @@
     <EmbeddedResource Include="Properties\ItemsCategories.ru-RU.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ItemsCategories.ru-RU.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Main.en-US.resx">
       <SubType>Designer</SubType>

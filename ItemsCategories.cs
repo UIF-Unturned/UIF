@@ -48,7 +48,7 @@ namespace UIF
 		private void PantsBtn_Click(object sender, EventArgs e)
 		{
 			var items = Core.ParseAll(Folders.CheckedFolders, i => i.GetValue("type") == "Pants");
-			items.Sort((a, b) => b.CompareTo(a, Core.CompareModes.ClothingProtection));
+			items.Sort((a, b) => a.CompareTo(b, Core.CompareModes.ClothingProtection));
 
 			new ItemList(items).ShowDialog();
 		}
@@ -233,7 +233,38 @@ namespace UIF
 			new ItemList(items).ShowDialog();
 		}
 
-		private void RaidItemsBtn_Click(object sender, EventArgs e)
+        private void MasksBtn_Click(object sender, EventArgs e)
+        {
+            var items = Core.ParseAll(Folders.CheckedFolders, i => i.GetValue("type") == "Mask");
+            items.Sort((a, b) => a.CompareTo(b, Core.CompareModes.ClothingProtection));
+
+            new ItemList(items).ShowDialog();
+        }
+
+        private void GlassesBtn_Click(object sender, EventArgs e)
+        {
+            var items = Core.ParseAll(Folders.CheckedFolders, i => i.GetValue("type") == "Glasses");
+            items.Sort((a, b) => a.CompareTo(b, Core.CompareModes.ClothingProtection));
+
+			new ItemList(items).ShowDialog();
+		}
+
+        private void ChargesBtn_Click(object sender, EventArgs e)
+        {
+            var items = Core.ParseAll(Folders.CheckedFolders, i => i.GetValue("type") == "Charge");
+            items.Sort((a, b) => a.CompareTo(b, Core.CompareModes.StructureDamage));
+
+            new ItemList(items).ShowDialog();
+		}
+
+        private void DetonatorsBtn_Click(object sender, EventArgs e)
+        {
+            var items = Core.ParseAll(Folders.CheckedFolders, i => i.GetValue("type") == "Detonator");
+
+            new ItemList(items).ShowDialog();
+		}
+
+        private void RaidItemsBtn_Click(object sender, EventArgs e)
 		{
 			var items = Core.ParseAll(Folders.CheckedFolders, i => (
 				i.GetValue("useable") == "Gun" && i.ContainsKey("invulnerable") && i.GetValue("structure_damage", "0").ToFloat() != 0) ||	// Guns
